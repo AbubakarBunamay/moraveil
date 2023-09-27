@@ -1,96 +1,118 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
-public class FPScontroller : MonoBehaviour
+public class FPSController : MonoBehaviour
 {
-    // Reference to the CharacterController component.
-    CharacterController characterController;
+    private CharacterController characterController;
 
-    // Movement speed of the character.
-    public float movementSpeed = 1;
+    [Header("Movement")]
+    public float movementSpeed = 5f; // Speed of character movement.
 
-    // Gravity force applied to the character.
-    public float gravity = 9.8f;
+    [Header("Jumping")]
+    public float gravity = 9.8f; // Gravity force applied to the character.
+    public float jumpHeight = 1f; // Height of the character's jump.
+    public int maxJumps = 2; // Maximum number of allowed jumps.
 
-    // Height of the character's jump.
-    public float jumpHeight = 1f;
+    private int jumpsPerformed = 0; // Number of jumps performed.
+    private float verticalVelocity; // Vertical velocity of the character.
+    private bool isJumping = false; // Flag indicating whether the character is currently jumping.
 
-    // Maximum number of jumps allowed (2 for double jumping).
-    public int maxJumps = 2;
-
-    // Number of jumps performed.
-    private int jumpsPerformed = 0;
-
-    // Vertical velocity of the character.
-    private float verticalVelocity;
-
-    // Flag indicating whether the character is currently jumping.
-    private bool isJumping = false;
-
-    // Called when the script starts.
     private void Start()
     {
-        // Get a reference to the CharacterController component attached to this GameObject.
-        characterController = GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterController>(); // Get a reference to the CharacterController component.
     }
 
-    // Called once per frame.
-    void Update()
+    private void Update()
     {
-        // Check if the character is currently grounded (on the ground).
+        HandleMovement(); // Handle character movement.
+        HandleJump(); // Handle jumping.
+    }
+
+    // Handles character movement based on player input.
+    private void HandleMovement(){
+
+        // Get input for horizontal and vertical movement.
+        float horizontal = Input.GetAxis("Horizontal"); 
+        float vertical = Input.GetAxis("Vertical"); 
+
+        // Get the camera's forward and right vectors.
+        Vector3 cameraForward = Camera.main.transform.forward;
+        Vector3 cameraRight = Camera.main.transform.right;
+
+        // Project these vectors onto the XZ plane (ignore the vertical orientation).
+        cameraForward.y = 0f;
+        cameraRight.y = 0f;
+
+        // Normalizing the vectors to ensure consistent speed.
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        // Calculate the movement direction based on camera orientation.
+        Vector3 moveDirection = (cameraForward * vertical + cameraRight * horizontal).normalized;
+
+        // Apply movement speed to the movement direction.
+        Vector3 move = moveDirection * movementSpeed;
+
+        // Include vertical velocity if the character is in the air.
+        if (!characterController.isGrounded)
+        {
+            move.y = verticalVelocity;
+        }
+
+        // Apply delta time to make movement frame rate independent.
+        move *= Time.deltaTime;
+
+        // Move the character using the calculated movement vector.
+        characterController.Move(move);
+    }
+
+    // Handles character jumping behavior.
+    private void HandleJump(){
+
         bool groundedPlayer = characterController.isGrounded;
 
-        // If the character is on the ground...
         if (groundedPlayer)
         {
-            // Reset the vertical velocity when grounded.
-            verticalVelocity = 0f;
-
-            // Reset the jump count when grounded.
-            jumpsPerformed = 0;
-
-            // Allow jumping if not already jumping and the jump button is pressed.
-            if (!isJumping && Input.GetButtonDown("Jump"))
-            {
-                // Calculate the jump velocity using physics formula.
-                verticalVelocity = Mathf.Sqrt(2 * jumpHeight * gravity);
-                isJumping = true; // Set jumping flag to true
-                jumpsPerformed++; // Increment the jump count.
-            }
+            ResetJump(); // Reset jump-related variables when grounded.
+            TryPerformJump(); // Attempt to perform a jump.
         }
-        else // If the character is in the air...
+        else
         {
-            // Apply gravity force to the character's vertical velocity.
-            verticalVelocity -= gravity * Time.deltaTime;
-
-            // Check for double jump input if not already at the maximum jump count.
-            if (Input.GetButtonDown("Jump") && jumpsPerformed < maxJumps)
-            {
-                // Calculate the jump velocity for the double jump.
-                verticalVelocity = Mathf.Sqrt(2 * jumpHeight * gravity);
-                isJumping = true; // Set jumping flag to true
-                jumpsPerformed++; // Increment the jump count for double jump.
-            }
+            ApplyGravity(); // Apply gravity force when in the air.
+            TryPerformDoubleJump(); // Attempt to perform a double jump.
         }
+    }
 
-        // Capture player input for movement in the horizontal (left/right) and vertical (forward/backward) direction.
-        float horizontal = Input.GetAxis("Horizontal") * movementSpeed;
-        float vertical = Input.GetAxis("Vertical") * movementSpeed;
+    // Resets jump-related variables when the character is grounded.
+    private void ResetJump(){
+        verticalVelocity = 0f; // Reset vertical velocity when grounded.
+        jumpsPerformed = 0; // Reset jump count when grounded.
+    }
 
-        // Create a movement vector based on the input and vertical velocity, adjusted for frame rate (Time.deltaTime).
-        Vector3 move = new Vector3(horizontal, verticalVelocity, vertical) * Time.deltaTime;
-
-        // Move the character based on the input and vertical velocity.
-        characterController.Move(move);
-
-        // Check if the character has landed to reset the jump flag.
-        if (groundedPlayer)
+    // Attempts to perform a regular jump if conditions are met.
+    private void TryPerformJump(){
+        if (!isJumping && Input.GetButtonDown("Jump") && jumpsPerformed < maxJumps)
         {
-            isJumping = false; // Reset jumping flag when grounded.
+            verticalVelocity = Mathf.Sqrt(2 * jumpHeight * gravity); // Calculate jump velocity. 
+            isJumping = true; // Set jumping flag to true.
+            jumpsPerformed++; // Increment the jump count.
+        }
+    }
+
+    // Applies gravity force when the character is in the air.
+    private void ApplyGravity(){ 
+    
+        verticalVelocity -= gravity * Time.deltaTime; // Apply gravity force over time to simulate falling.
+    }
+
+    // Attempts to perform a double jump if conditions are met.
+    private void TryPerformDoubleJump() {  
+        if (Input.GetButtonDown("Jump") && jumpsPerformed < maxJumps)
+        {
+            verticalVelocity = Mathf.Sqrt(2 * jumpHeight * gravity); // Calculate double jump velocity.
+            isJumping = true; // Set jumping flag for double jump.
+            jumpsPerformed++; // Increment jump count for double jump.
         }
     }
 
 }
-
