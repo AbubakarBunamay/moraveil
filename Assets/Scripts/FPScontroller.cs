@@ -7,6 +7,7 @@ public class FPSController : MonoBehaviour
 
     [Header("Movement")]
     public float movementSpeed = 5f; // Speed of character movement.
+    public float runningSpeed = 5f; // Speed of running Movement
 
     [Header("Jumping")]
     public float gravity = 9.8f; // Gravity force applied to the character.
@@ -35,6 +36,9 @@ public class FPSController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal"); 
         float vertical = Input.GetAxis("Vertical"); 
 
+        //Get Input for running
+        bool isRunning = Input.GetKey(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift);
+
         // Get the camera's forward and right vectors.
         Vector3 cameraForward = Camera.main.transform.forward;
         Vector3 cameraRight = Camera.main.transform.right;
@@ -50,8 +54,12 @@ public class FPSController : MonoBehaviour
         // Calculate the movement direction based on camera orientation.
         Vector3 moveDirection = (cameraForward * vertical + cameraRight * horizontal).normalized;
 
+        // Calculate the movement speed based on whether the character is running or walking.
+        float moveSpeed = isRunning ? runningSpeed : movementSpeed;
+
+
         // Apply movement speed to the movement direction.
-        Vector3 move = moveDirection * movementSpeed;
+        Vector3 move = moveDirection * moveSpeed;
 
         // Include vertical velocity if the character is in the air.
         if (!characterController.isGrounded)
