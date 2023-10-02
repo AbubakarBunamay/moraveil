@@ -23,6 +23,7 @@ public class FPSController : MonoBehaviour
     private float verticalVelocity; // Vertical velocity of the character.
     private bool isJumping = false; // Flag indicating whether the character is currently jumping.
     private bool isCrouching = false; //Flag indicating whether the character is currently crouching
+    private bool isRunning = false; // Flag Indcating whether the character is running
 
     private void Start()
     {
@@ -42,30 +43,11 @@ public class FPSController : MonoBehaviour
 
         // Get input for horizontal and vertical movement.
         float horizontal = Input.GetAxis("Horizontal"); 
-        float vertical = Input.GetAxis("Vertical"); 
+        float vertical = Input.GetAxis("Vertical");
 
-        //Crouch Mechanic
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            isCrouching = !isCrouching;
+        HandleCrouch(); // Handling Crouch 
+        HandleRunning(); //Handling Running
 
-            if (isCrouching)
-            {
-                //Reduce the Characters Height
-                characterController.center = originalCenter * 0.5f;
-                characterController.height = originalHeight * 0.5f;
-            }
-            else
-            {
-                //Bring the Characters Height
-                characterController.center = originalCenter;
-                characterController.height = originalHeight;
-            }
-
-        }
-
-        //Get Input for running
-        bool isRunning = Input.GetKey(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift);
 
         // Get the camera's forward and right vectors.
         Vector3 cameraForward = Camera.main.transform.forward;
@@ -102,6 +84,45 @@ public class FPSController : MonoBehaviour
         characterController.Move(move);
     }
 
+    //Handling character running Behavior
+    private void HandleRunning()
+    {
+        //Get Input for running
+        isRunning = !isCrouching && Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+
+        if (isRunning)
+        {
+            runningSpeed = 10f;
+        }
+        else
+        {
+            runningSpeed = 5f;
+        }
+    }
+
+    //Handling character crouching behavior
+    private void HandleCrouch()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            isCrouching = !isCrouching;
+
+            if (isCrouching)
+            {
+
+                //Reduce the Characters Height
+                characterController.center = originalCenter * 0.5f;
+                characterController.height = originalHeight * 0.5f;
+            }
+            else
+            {
+                //Bring the Characters Height
+                characterController.center = originalCenter;
+                characterController.height = originalHeight;
+                
+            }
+        }
+    }
     // Handles character jumping behavior.
     private void HandleJump(){
 
