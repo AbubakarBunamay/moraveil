@@ -32,6 +32,30 @@ public class StressManager : MonoBehaviour
 
     private void Update()
     {
+        TriggerStress();
+        IncreaseStress();
+        // Update the stress meter UI.
+        //stressMeterUI.fillAmount = currentStress / maxStress;
+
+        
+    }
+
+    private void TriggerStress()
+    {
+        // Toggle the darkening effect based on stress level.
+        if (currentStress > 0)
+        {
+            darkScreen.color = new Color(0f, 0f, 0f, currentStress / maxStress);
+        }
+        else
+        {
+            darkScreen.color = Color.clear;
+        }
+    }
+
+    private void IncreaseStress()
+    {
+
         // Increase stress if the player is inside the trigger zone.
         if (playerInsideTrigger)
         {
@@ -46,17 +70,7 @@ public class StressManager : MonoBehaviour
         // Ensure stress stays within the 0 to maxStress range.
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
 
-        // Update the stress meter UI.
-        //stressMeterUI.fillAmount = currentStress / maxStress;
-
-        // Toggle the darkening effect based on stress level.
-        if (currentStress > 0)
-        {
-            darkScreen.color = new Color(0f, 0f, 0f, currentStress / maxStress);
-        }
-        else
-        {
-            darkScreen.color = Color.clear;
-        }
     }
+
+
 }
