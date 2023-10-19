@@ -14,6 +14,9 @@ public class StressManager : MonoBehaviour
 
     private bool playerInsideTrigger = false;
 
+    private CameraShakeManager shakeManager;
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(playerTag))
@@ -28,6 +31,10 @@ public class StressManager : MonoBehaviour
         {
             playerInsideTrigger = false;
         }
+    }
+    private void Start()
+    {
+        shakeManager = GameObject.Find("CameraShakeManager").GetComponent<CameraShakeManager>();
     }
 
     private void Update()
@@ -46,6 +53,8 @@ public class StressManager : MonoBehaviour
         if (currentStress > 0)
         {
             darkScreen.color = new Color(0f, 0f, 0f, currentStress / maxStress);
+            shakeManager.ShakeCamera(currentStress, maxStress);
+
         }
         else
         {
