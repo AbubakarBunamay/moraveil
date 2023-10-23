@@ -14,6 +14,7 @@ public class StressManager : MonoBehaviour
 
     private bool playerInsideTrigger = false;
 
+    [SerializeField]
     private CameraShakeManager shakeManager;
 
 
@@ -34,7 +35,10 @@ public class StressManager : MonoBehaviour
     }
     private void Start()
     {
-        shakeManager = GameObject.Find("CameraShakeManager").GetComponent<CameraShakeManager>();
+        if (shakeManager == null)
+        {
+            shakeManager = GameObject.FindAnyObjectByType<CameraShakeManager>();
+        }
     }
 
     private void Update()
