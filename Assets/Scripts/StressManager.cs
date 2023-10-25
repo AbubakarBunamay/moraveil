@@ -9,6 +9,7 @@ public class StressManager : MonoBehaviour
     public string playerTag = "Player"; // Tag of the player GameObject.
     //public Image stressMeterUI; // Reference to the stress meter UI element.
     public Image darkScreen; // Reference to the full-screen darkening effect.
+    public CanvasGroup stressCanvasGroup; // Reference to the CanvasGroup component.
 
     private float currentStress = 0f; // Current stress level.
 
@@ -62,26 +63,26 @@ public class StressManager : MonoBehaviour
 
     private void TriggerStress()
     {
-        // Calculate camera shake parameters based on stress.
-        float normalizedStress = currentStress / maxStress;
-        float shakeMagnitude = normalizedStress * maxShakeMagnitude; 
-        float shakeDuration = normalizedStress * maxShakeDuration;
+            // Calculate camera shake parameters based on stress.
+            float normalizedStress = currentStress / maxStress;
+            float shakeMagnitude = normalizedStress * maxShakeMagnitude;
+            float shakeDuration = normalizedStress * maxShakeDuration;
 
-        // Toggle the darkening effect and camera shake based on stress level.
-        if (currentStress > 0)
-        {
-            // Darken the screen with based on stress level.
-            darkScreen.color = new Color(0f, 0f, 0f, currentStress / maxStress);
+            // Toggle the darkening effect and camera shake based on stress level.
+            if (currentStress > 0)
+            {
+                // Fade in the image based on stress level.
+                stressCanvasGroup.alpha = normalizedStress;
 
-            // Trigger camera shake
-            shakeManager.ShakeCamera(shakeDuration, shakeMagnitude);
+                // Trigger camera shake
+                shakeManager.ShakeCamera(shakeDuration, shakeMagnitude);
 
-        }
-        else
-        {
-            // Clear the darkening effect when stress is zero.
-            darkScreen.color = Color.clear;
-        }
+            }
+            else
+            {
+                // Fade out the image when stress is zero.
+                stressCanvasGroup.alpha = 0f;
+            }
     }
 
     private void IncreaseStress()
