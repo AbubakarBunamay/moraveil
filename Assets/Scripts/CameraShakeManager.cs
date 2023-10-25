@@ -24,7 +24,16 @@ public class CameraShakeManager : MonoBehaviour
     {
         if (shakeDuration > 0)
         {
-            cameraTransform.localPosition = originalPosition + Random.insideUnitSphere * shakeMagnitude;
+            // Calculate a random offset based on the shakeMagnitude.
+            Vector3 randomOffset = Random.insideUnitSphere * shakeMagnitude;
+            randomOffset.z = 0; // Make sure the camera doesn't move in the Z-axis.
+
+            //cameraTransform.localPosition = originalPosition + Random.insideUnitSphere * shakeMagnitude;
+            // Add this inside your Update method.
+            cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, originalPosition + randomOffset, Time.deltaTime * recoverySpeed);
+            shakeDuration -= Time.deltaTime * recoverySpeed;
+
+            // Decrease shake duration over time.
             shakeDuration -= Time.deltaTime * recoverySpeed;
         }
         else

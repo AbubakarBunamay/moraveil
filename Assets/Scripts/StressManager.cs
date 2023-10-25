@@ -16,7 +16,10 @@ public class StressManager : MonoBehaviour
 
     [SerializeField]
     private CameraShakeManager shakeManager;
-
+    [SerializeField]
+    private float maxShakeMagnitude;
+    [SerializeField]
+    private float maxShakeDuration;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -53,11 +56,16 @@ public class StressManager : MonoBehaviour
 
     private void TriggerStress()
     {
+        // Calculate camera shake parameters based on stress.
+        float normalizedStress = currentStress / maxStress;
+        float shakeMagnitude = normalizedStress * maxShakeMagnitude; // Adjust maxShakeMagnitude as needed.
+        float shakeDuration = normalizedStress * maxShakeDuration;    // Adjust maxShakeDuration as needed.
+
         // Toggle the darkening effect based on stress level.
         if (currentStress > 0)
         {
             darkScreen.color = new Color(0f, 0f, 0f, currentStress / maxStress);
-            shakeManager.ShakeCamera(currentStress, maxStress);
+            shakeManager.ShakeCamera(shakeDuration, shakeMagnitude);
 
         }
         else

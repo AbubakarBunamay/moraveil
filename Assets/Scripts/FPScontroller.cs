@@ -57,7 +57,7 @@ public class FPSController : MonoBehaviour
 
         HandleCrouch(); // Handling Crouch 
         HandleRunning(); //Handling Running
-        HandleSwimming(); //Handling Swimming
+       // HandleSwimming(); //Handling Swimming
 
 
         // Get the camera's forward and right vectors.
