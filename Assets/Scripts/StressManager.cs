@@ -10,19 +10,22 @@ public class StressManager : MonoBehaviour
     //public Image stressMeterUI; // Reference to the stress meter UI element.
     public Image darkScreen; // Reference to the full-screen darkening effect.
 
-    private float currentStress = 0f;
+    private float currentStress = 0f; // Current stress level.
 
-    private bool playerInsideTrigger = false;
+    private bool playerInsideTrigger = false; // By default player not inside trigger
 
     [SerializeField]
-    private CameraShakeManager shakeManager;
+    private CameraShakeManager shakeManager; // Reference to the CameraShakeManager component.
+
     [SerializeField]
-    private float maxShakeMagnitude;
+    private float maxShakeMagnitude; // Maximum camera shake magnitude.
+
     [SerializeField]
-    private float maxShakeDuration;
+    private float maxShakeDuration; // Maximum camera shake duration.
 
     private void OnTriggerEnter(Collider other)
     {
+        // Check if the player enters the trigger zone.
         if (other.CompareTag(playerTag))
         {
             playerInsideTrigger = true;
@@ -31,6 +34,7 @@ public class StressManager : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        // Check if the player exits the trigger zone.
         if (other.CompareTag(playerTag))
         {
             playerInsideTrigger = false;
@@ -38,6 +42,7 @@ public class StressManager : MonoBehaviour
     }
     private void Start()
     {
+        // Check if the CameraShakeManager reference is not set, then try to find it.
         if (shakeManager == null)
         {
             shakeManager = GameObject.FindAnyObjectByType<CameraShakeManager>();
@@ -46,6 +51,7 @@ public class StressManager : MonoBehaviour
 
     private void Update()
     {
+        // Update stress, trigger stress effects, and update UI.
         TriggerStress();
         IncreaseStress();
         // Update the stress meter UI.
@@ -58,18 +64,22 @@ public class StressManager : MonoBehaviour
     {
         // Calculate camera shake parameters based on stress.
         float normalizedStress = currentStress / maxStress;
-        float shakeMagnitude = normalizedStress * maxShakeMagnitude; // Adjust maxShakeMagnitude as needed.
-        float shakeDuration = normalizedStress * maxShakeDuration;    // Adjust maxShakeDuration as needed.
+        float shakeMagnitude = normalizedStress * maxShakeMagnitude; 
+        float shakeDuration = normalizedStress * maxShakeDuration;
 
-        // Toggle the darkening effect based on stress level.
+        // Toggle the darkening effect and camera shake based on stress level.
         if (currentStress > 0)
         {
+            // Darken the screen with based on stress level.
             darkScreen.color = new Color(0f, 0f, 0f, currentStress / maxStress);
+
+            // Trigger camera shake
             shakeManager.ShakeCamera(shakeDuration, shakeMagnitude);
 
         }
         else
         {
+            // Clear the darkening effect when stress is zero.
             darkScreen.color = Color.clear;
         }
     }
