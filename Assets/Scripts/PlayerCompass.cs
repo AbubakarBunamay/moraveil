@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class PlayerCompass : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Camera Position
+    public Transform CamTransform;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (CamTransform != null)
+        {
+            // Get the Camera's rotation
+            Quaternion playerRotation = CamTransform.rotation;
+
+            // Calculate the Z-axis rotation based on Camera's Y-axis rotation
+            float zRotation = -playerRotation.eulerAngles.y;
+
+            // Rotate the compass image around the Z-axis to indicate the Camera's direction
+            transform.rotation = Quaternion.Euler(0, 0, zRotation);
+        }
     }
 }
