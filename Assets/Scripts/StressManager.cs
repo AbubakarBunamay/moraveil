@@ -7,7 +7,7 @@ public class StressManager : MonoBehaviour
     public float stressIncreaseRate = 10f; // Rate at which stress increases per second.
     public float stressDecreaseRate = 5f; // Rate at which stress decreases per second.
     public string playerTag = "Player"; // Tag of the player GameObject.
-    //public Image stressMeterUI; // Reference to the stress meter UI element.
+    public Image stressMeterBar; // Reference to the stress meter UI element.
     public Image darkScreen; // Reference to the full-screen darkening effect.
     public CanvasGroup stressCanvasGroup; // Reference to the CanvasGroup component.
 
@@ -55,10 +55,10 @@ public class StressManager : MonoBehaviour
         // Update stress, trigger stress effects, and update UI.
         TriggerStress();
         IncreaseStress();
-        // Update the stress meter UI.
-        //stressMeterUI.fillAmount = currentStress / maxStress;
-
         
+        // Updates the stress meter bar UI.
+        stressMeterBar.fillAmount = currentStress / maxStress;
+
     }
 
     private void TriggerStress()
