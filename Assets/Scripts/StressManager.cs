@@ -11,7 +11,7 @@ public class StressManager : MonoBehaviour
     public Image darkScreen; // Reference to the full-screen darkening effect.
     public CanvasGroup stressCanvasGroup; // Reference to the CanvasGroup component.
 
-    private float currentStress = 0f; // Current stress level.
+    public float currentStress = 0f; // Current stress level.
 
     private bool playerInsideTrigger = false; // By default player not inside trigger
 
@@ -61,7 +61,7 @@ public class StressManager : MonoBehaviour
 
     }
 
-    private void TriggerStress()
+    public void TriggerStress()
     {
             // Calculate camera shake parameters based on stress.
             float normalizedStress = currentStress / maxStress;
@@ -85,7 +85,7 @@ public class StressManager : MonoBehaviour
             }
     }
 
-    private void IncreaseStress()
+    public void IncreaseStress()
     {
 
         // Increase stress if the player is inside the trigger zone.
