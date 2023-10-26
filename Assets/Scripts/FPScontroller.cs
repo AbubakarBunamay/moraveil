@@ -19,16 +19,6 @@ public class FPSController : MonoBehaviour
     public float jumpHeight = 1f; // Height of the character's jump.
     public int maxJumps = 2; // Maximum number of allowed jumps.
 
-    [Header("Swimming")]
-    public float swimSpeed = 5f;
-    public float swimRotationSpeed = 2f;
-    public float swimGravity = 2f; //For Bouyance
-    public float waterGravity = 9.81f;
-    private bool isUnderwater = false;
-    private Vector3 swimmingDirection;
-
-
-
     private int jumpsPerformed = 0; // Number of jumps performed.
     private float verticalVelocity; // Vertical velocity of the character.
     private bool isJumping = false; // Flag indicating whether the character is currently jumping.
@@ -49,15 +39,15 @@ public class FPSController : MonoBehaviour
     }
 
     // Handles character movement based on player input.
-    private void HandleMovement(){
+    private void HandleMovement()
+    {
 
         // Get input for horizontal and vertical movement.
-        float horizontal = Input.GetAxis("Horizontal"); 
+        float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         HandleCrouch(); // Handling Crouch 
         HandleRunning(); //Handling Running
-       // HandleSwimming(); //Handling Swimming
 
 
         // Get the camera's forward and right vectors.
@@ -130,12 +120,13 @@ public class FPSController : MonoBehaviour
                 //Bring the Characters Height
                 characterController.center = originalCenter;
                 characterController.height = originalHeight;
-                
+
             }
         }
     }
     // Handles character jumping behavior.
-    private void HandleJump(){
+    private void HandleJump()
+    {
 
         bool groundedPlayer = characterController.isGrounded;
 
@@ -152,13 +143,15 @@ public class FPSController : MonoBehaviour
     }
 
     // Resets jump-related variables when the character is grounded.
-    private void ResetJump(){
+    private void ResetJump()
+    {
         verticalVelocity = 0f; // Reset vertical velocity when grounded.
         jumpsPerformed = 0; // Reset jump count when grounded.
     }
 
     // Attempts to perform a regular jump if conditions are met.
-    private void TryPerformJump(){
+    private void TryPerformJump()
+    {
         if (!isJumping && Input.GetButtonDown("Jump") && jumpsPerformed < maxJumps)
         {
             verticalVelocity = Mathf.Sqrt(2 * jumpHeight * gravity); // Calculate jump velocity. 
@@ -168,13 +161,15 @@ public class FPSController : MonoBehaviour
     }
 
     // Applies gravity force when the character is in the air.
-    private void ApplyGravity(){ 
-    
+    private void ApplyGravity()
+    {
+
         verticalVelocity -= gravity * Time.deltaTime; // Apply gravity force over time to simulate falling.
     }
 
     // Attempts to perform a double jump if conditions are met.
-    private void TryPerformDoubleJump() {  
+    private void TryPerformDoubleJump()
+    {
         if (Input.GetButtonDown("Jump") && jumpsPerformed < maxJumps)
         {
             verticalVelocity = Mathf.Sqrt(2 * jumpHeight * gravity); // Calculate double jump velocity.
@@ -182,51 +177,4 @@ public class FPSController : MonoBehaviour
             jumpsPerformed++; // Increment jump count for double jump.
         }
     }
-
-    private void HandleSwimming()
-    {
-        if (isUnderwater)
-        {
-            // Get input for horizontal and vertical movement.
-            float swimHorizontal = Input.GetAxis("Horizontal");
-            float swimVertical = Input.GetAxis("Vertical");
-
-            //Swim Controls
-            Vector3 swimDirection = transform.forward * swimVertical + transform.right * swimHorizontal;
-
-            swimmingDirection = swimDirection.normalized * swimSpeed;
-
-            transform.Rotate(Vector3.up * swimHorizontal * swimRotationSpeed);
-
-        }
-        else
-        {
-            swimmingDirection.y = waterGravity * Time.deltaTime;
-        }
-
-        characterController.Move(swimmingDirection * Time.deltaTime);
-    }
-
-    /*
-     * 
-     * TRIGGERS
-     * 
-     */
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Water"))
-        {
-            isUnderwater = true;
-        }
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Water"))
-        {
-            isUnderwater = false;
-        }
-    }
-
 }
