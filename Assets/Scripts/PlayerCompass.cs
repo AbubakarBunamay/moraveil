@@ -19,7 +19,7 @@ public class PlayerCompass : MonoBehaviour
             float zRotation = -playerRotation.eulerAngles.y;
 
             // Rotate the compass image around the Z-axis to indicate the Camera's direction
-            transform.rotation = Quaternion.Euler(0, 0, zRotation);
+            transform.rotation = Quaternion.Euler(0, 0, -zRotation);
         }
     }
 }
