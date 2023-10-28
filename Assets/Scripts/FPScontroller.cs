@@ -20,6 +20,8 @@ public class FPSController : MonoBehaviour
     public float waterGravity = 9.81f; // Gravity when underwater.
     private bool isUnderwater = false; // Flag indicating if the character is underwater.
     private Vector3 swimmingDirection; // Direction of swimming.
+    public float camAmplitude = 0.1f; // Adjust as needed.
+    public float camFrequency = 1.0f; // Adjust as needed.
 
     [Header("Jumping")]
     public float jumpHeight = 1f; // Height of the character's jump.
@@ -256,6 +258,8 @@ public class FPSController : MonoBehaviour
 
 
             Camera.main.transform.Rotate(Vector3.up * swimHorizontal * swimRotationSpeed);
+
+            CameraFloatEffect(); // Camera Float Effect
         }
         else
         {
@@ -265,7 +269,20 @@ public class FPSController : MonoBehaviour
 
         characterController.Move(swimmingDirection * Time.deltaTime);
     }
-    
+
+    private void CameraFloatEffect()
+    {
+
+        // Calculate the float offset based on time.
+        float floatOffset = Mathf.Sin(Time.time * camFrequency) * camAmplitude;
+
+        // Apply the float offset to the camera's position.
+        Vector3 cameraPosition = Camera.main.transform.position;
+        cameraPosition.y += floatOffset;
+
+        // Update the camera's position.
+        Camera.main.transform.position = cameraPosition;
+    }
 
     public void OnTriggerEnter(Collider other)
     {   
