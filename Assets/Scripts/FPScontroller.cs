@@ -5,17 +5,23 @@ public class FPSController : MonoBehaviour
 {
     private CharacterController characterController;
 
+    [Header("Character Height")]
+    public Vector3 originalCenter; // Original Center of Character
+    public float originalHeight; // Original Height of Character
+
     [Header("Movement")]
     public float movementSpeed = 5f; // Speed of character movement.
     public float runningSpeed = 5f; // Speed of running Movement
+    public float gravity = 9.8f; // Gravity force applied to the character.
 
-    [Header("Character Height")]
-    public Vector3 originalCenter; // Original Center of Character
-    public float originalHeight;   // Original Height of Character
-
+    [Header("Swimming")]
+    public float swimSpeed = 5f; // Speed of character while swimming.
+    public float swimRotationSpeed = 2f; // Rotation speed while swimming.
+    public float waterGravity = 9.81f; // Gravity when underwater.
+    private bool isUnderwater = false; // Flag indicating if the character is underwater.
+    private Vector3 swimmingDirection; // Direction of swimming.
 
     [Header("Jumping")]
-    public float gravity = 9.8f; // Gravity force applied to the character.
     public float jumpHeight = 1f; // Height of the character's jump.
     public int maxJumps = 2; // Maximum number of allowed jumps.
 
@@ -36,9 +42,16 @@ public class FPSController : MonoBehaviour
     {
         HandleMovement(); // Handle character movement.
         HandleJump(); // Handle jumping.
+        HandleSwimming(); //Handling Swimming
+
     }
 
-    // Handles character movement based on player input.
+    /*
+    * 
+    * Character Movement
+    * 
+    */
+
     private void HandleMovement()
     {
 
@@ -85,7 +98,12 @@ public class FPSController : MonoBehaviour
         characterController.Move(move);
     }
 
-    //Handling character running Behavior
+    /*
+    * 
+    * Running
+    * 
+    */
+
     private void HandleRunning()
     {
         //Get Input for running
@@ -101,7 +119,12 @@ public class FPSController : MonoBehaviour
         }
     }
 
-    //Handling character crouching behavior
+    /*
+    * 
+    * Crouching
+    * 
+    */
+
     private void HandleCrouch()
     {
         if (Input.GetKeyDown(KeyCode.C))
@@ -124,7 +147,13 @@ public class FPSController : MonoBehaviour
             }
         }
     }
-    // Handles character jumping behavior.
+
+    /*
+    * 
+    * Jumping
+    * 
+    */
+    
     private void HandleJump()
     {
 
@@ -163,8 +192,14 @@ public class FPSController : MonoBehaviour
     // Applies gravity force when the character is in the air.
     private void ApplyGravity()
     {
-
-        verticalVelocity -= gravity * Time.deltaTime; // Apply gravity force over time to simulate falling.
+        if (!isUnderwater)
+        {
+            verticalVelocity -= gravity * Time.deltaTime; // Apply gravity force when not swimming.
+        }
+        else
+        {
+            verticalVelocity = 0f; // Cancel gravity when swimming.
+        }
     }
 
     // Attempts to perform a double jump if conditions are met.
@@ -175,6 +210,80 @@ public class FPSController : MonoBehaviour
             verticalVelocity = Mathf.Sqrt(2 * jumpHeight * gravity); // Calculate double jump velocity.
             isJumping = true; // Set jumping flag for double jump.
             jumpsPerformed++; // Increment jump count for double jump.
+        }
+    }
+
+    /*
+     * 
+     * SWIMMING
+     * 
+     */
+    private void HandleSwimming()
+    {
+        if (isUnderwater)
+        {
+            // Get input for horizontal and vertical movement.
+            float swimHorizontal = Input.GetAxis("Horizontal");
+            float swimVertical = Input.GetAxis("Vertical");
+
+            // Swim Controls
+            Vector3 swimDirection = Camera.main.transform.forward * swimVertical + Camera.main.transform.right * swimHorizontal;
+
+            // Modify swimmingDirection to include vertical movement.
+            swimmingDirection = swimDirection.normalized * swimSpeed;
+
+            // Calculate the imaginary dot between the camera's forward direction and the world up vector.
+            float camDot = Vector3.Dot(Camera.main.transform.forward, Vector3.up);
+
+            // Swim Up when looking up 
+            if (camDot > 0.5f) 
+            {
+                swimmingDirection.y = -waterGravity * Time.deltaTime;
+                Debug.Log("Swim UP");
+
+            }
+            // Swim Down when looking down
+            else if (camDot < -0.5f) 
+            {
+                swimmingDirection.y = waterGravity * Time.deltaTime;
+                Debug.Log("Swim DOWN");
+
+            }
+            else
+            {
+                swimmingDirection.y = 0f; // Neutralize vertical movement when not looking up or down.
+            }
+
+
+            Camera.main.transform.Rotate(Vector3.up * swimHorizontal * swimRotationSpeed);
+        }
+        else
+        {
+            // If the player is not in the water, set the swimmingDirection to zero to stop movement.
+            swimmingDirection = Vector3.zero;
+        }
+
+        characterController.Move(swimmingDirection * Time.deltaTime);
+    }
+    
+
+    public void OnTriggerEnter(Collider other)
+    {   
+        //Swimming Trigger
+        if (other.CompareTag("Water"))
+        {
+            isUnderwater = true;
+            Debug.Log("Got into Water");
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        //Swimming Trigger
+        if (other.CompareTag("Water"))
+        {
+            isUnderwater = false;
+            Debug.Log("Out of Water");
         }
     }
 }
