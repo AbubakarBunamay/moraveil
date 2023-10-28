@@ -18,10 +18,13 @@ public class FPSController : MonoBehaviour
     public float swimSpeed = 5f; // Speed of character while swimming.
     public float swimRotationSpeed = 2f; // Rotation speed while swimming.
     public float waterGravity = 9.81f; // Gravity when underwater.
-    private bool isUnderwater = false; // Flag indicating if the character is underwater.
+    public bool isUnderwater = false; // Flag indicating if the character is underwater.
     private Vector3 swimmingDirection; // Direction of swimming.
     public float camAmplitude = 0.1f; // Adjust as needed.
     public float camFrequency = 1.0f; // Adjust as needed.
+    private StressManager stressManager; // Reference to the StressManager script.
+    private float timeUnderwater = 0.0f;
+    public float swimmingStressDelay = 2.0f;
 
     [Header("Jumping")]
     public float jumpHeight = 1f; // Height of the character's jump.
@@ -38,13 +41,20 @@ public class FPSController : MonoBehaviour
         characterController = GetComponent<CharacterController>(); // Get a reference to the CharacterController component.
         originalHeight = characterController.height;
         originalCenter = characterController.center;
+
+        stressManager = FindObjectOfType<StressManager>();
+
+
     }
 
     private void Update()
     {
         HandleMovement(); // Handle character movement.
         HandleJump(); // Handle jumping.
-        HandleSwimming(); //Handling Swimming
+        if (isUnderwater)
+        {
+            HandleSwimming();
+        }
 
     }
 
@@ -260,11 +270,24 @@ public class FPSController : MonoBehaviour
             Camera.main.transform.Rotate(Vector3.up * swimHorizontal * swimRotationSpeed);
 
             CameraFloatEffect(); // Camera Float Effect
+
+            //timeUnderwater += Time.deltaTime; // Increase the time spent underwater while the player is underwater.
+
+
+            /*if (timeUnderwater >= swimmingStressDelay)
+            {
+                stressManager.TriggerStress(); // Trigger stress when underwater for n seconds.
+            }*/
+
         }
         else
         {
             // If the player is not in the water, set the swimmingDirection to zero to stop movement.
             swimmingDirection = Vector3.zero;
+
+            // Reset the time spent underwater when the player is not underwater.
+            timeUnderwater = 0.0f;
+
         }
 
         characterController.Move(swimmingDirection * Time.deltaTime);
