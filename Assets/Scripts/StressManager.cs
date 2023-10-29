@@ -55,7 +55,7 @@ public class StressManager : MonoBehaviour
         // Update stress, trigger stress effects, and update UI.
         TriggerStress();
         IncreaseStress();
-        
+
         // Updates the stress meter bar UI.
         stressMeterBar.fillAmount = currentStress / maxStress;
 
@@ -63,26 +63,29 @@ public class StressManager : MonoBehaviour
 
     public void TriggerStress()
     {
-            // Calculate camera shake parameters based on stress.
-            float normalizedStress = currentStress / maxStress;
-            float shakeMagnitude = normalizedStress * maxShakeMagnitude;
-            float shakeDuration = normalizedStress * maxShakeDuration;
+        // Calculate camera shake parameters based on stress.
+        float normalizedStress = currentStress / maxStress;
+        float shakeMagnitude = normalizedStress * maxShakeMagnitude;
+        float shakeDuration = normalizedStress * maxShakeDuration;
 
-            // Toggle the darkening effect and camera shake based on stress level.
-            if (currentStress > 0)
-            {
-                // Fade in the image based on stress level.
-                stressCanvasGroup.alpha = normalizedStress;
+        float desiredOpacity = Mathf.Clamp(normalizedStress, 0.0f, 0.5f);
 
-                // Trigger camera shake
-                shakeManager.ShakeCamera(shakeDuration, shakeMagnitude);
+        // Toggle the darkening effect and camera shake based on stress level.
+        if (currentStress > 0)
+        {
+            // Fade in the image based on stress level.
+            // stressCanvasGroup.alpha = desiredOpacity;
+            stressCanvasGroup.alpha = normalizedStress;
 
-            }
-            else
-            {
-                // Fade out the image when stress is zero.
-                stressCanvasGroup.alpha = 0f;
-            }
+            // Trigger camera shake
+            shakeManager.ShakeCamera(shakeDuration, shakeMagnitude);
+
+        }
+        else
+        {
+            // Fade out the image when stress is zero.
+            stressCanvasGroup.alpha = 0f;
+        }
     }
 
     public void IncreaseStress()
