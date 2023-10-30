@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-7770697850537223027
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 8305f310603e5bb49a10bb9cd73ccac1
+  m_EffectName: Send
+  m_MixLevel: c84952e1aa6ce2a4a8d956f94daa6bc8
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -36,6 +50,7 @@ AudioMixerGroupController:
   m_Pitch: ba7a9146596286647ae97d738b4d1d6c
   m_Send: 00000000000000000000000000000000
   m_Effects:
+  - {fileID: -7770697850537223027}
   - {fileID: 24400004}
   m_UserColorIndex: 0
   m_Mute: 0
