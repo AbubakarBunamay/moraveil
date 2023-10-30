@@ -14,6 +14,7 @@ public class FlashLightcontroller : MonoBehaviour
     public float colorChangeDuration = 2f;  // The duration it takes to change colors.
     private float colorChangeStartTime;  // Stores the start time of color change.
 
+
     private RaycastHit hitInfo;  // Information about what the raycast hits.
     private List<Renderer> affectedObjects = new List<Renderer>();  // A list to store affected object renderers.
     private bool isColorChanging = false;  // A flag to track if the color change is in progress.
