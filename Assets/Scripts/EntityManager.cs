@@ -5,9 +5,10 @@ using UnityEngine.AI;
 
 public class EntityManager : MonoBehaviour
 {
-    private NavMeshAgent navMeshAgent;
-    public Transform player; 
+    private NavMeshAgent navMeshAgent; // Reference to the component
+    public Transform player; // To get player position
     public StressManager stressManager; // Reference to the StressManager component.
+    public float entityDistancetrigger = 5.0f; // Distance to trigger stress
 
 
     private void Start()
@@ -24,6 +25,7 @@ public class EntityManager : MonoBehaviour
 
     private void Update()
     {
+        // Check player
         if (player != null)
         {
             // Set the destination to follow the player
@@ -33,7 +35,7 @@ public class EntityManager : MonoBehaviour
         // Check stress-related conditions and call the stress manager's functions.
         if (stressManager != null)
         {
-            // Example: Call the TriggerStress and IncreaseStress functions from StressManager.
+            // Calling TriggerStress and IncreaseStress functions from StressManager.
             stressManager.TriggerStress();
             stressManager.IncreaseStress();
         }
@@ -41,11 +43,15 @@ public class EntityManager : MonoBehaviour
 
     private void EntityStress()
     {
+
+        // Check player
         if (player != null)
         {
+            //Calculate distance to player 
             float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-            if(distanceToPlayer < 5.0f)
+            // Increase stress when getting close to the player 
+            if(distanceToPlayer < entityDistancetrigger)
             {
                 stressManager.currentStress += stressManager.stressIncreaseRate * Time.deltaTime;
             }

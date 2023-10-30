@@ -23,8 +23,8 @@ public class FPSController : MonoBehaviour
     public float camAmplitude = 0.1f; // Adjust as needed.
     public float camFrequency = 1.0f; // Adjust as needed.
     private StressManager stressManager; // Reference to the StressManager script.
-    private float timeUnderwater = 0.0f;
-    public float swimmingStressDelay = 2.0f;
+    private float timeUnderwater = 0.0f; // Time spent underwater
+    public float swimmingStressDelay = 2.0f; // Delay Swim Stress
 
     [Header("Jumping")]
     public float jumpHeight = 1f; // Height of the character's jump.
@@ -51,9 +51,11 @@ public class FPSController : MonoBehaviour
     {
         HandleMovement(); // Handle character movement.
         HandleJump(); // Handle jumping.
+
+        // Check if underwater 
         if (isUnderwater)
         {
-            HandleSwimming();
+            HandleSwimming(); // Handle Swimming
         }
 
     }
@@ -271,6 +273,8 @@ public class FPSController : MonoBehaviour
 
             CameraFloatEffect(); // Camera Float Effect
 
+           //Swimming Stress Trigger
+           
             //timeUnderwater += Time.deltaTime; // Increase the time spent underwater while the player is underwater.
 
 
@@ -293,6 +297,7 @@ public class FPSController : MonoBehaviour
         characterController.Move(swimmingDirection * Time.deltaTime);
     }
 
+    // Simulate floating on when on water
     private void CameraFloatEffect()
     {
 
@@ -306,6 +311,13 @@ public class FPSController : MonoBehaviour
         // Update the camera's position.
         Camera.main.transform.position = cameraPosition;
     }
+
+
+    /*
+     * 
+     * Triggers
+     * 
+     */
 
     public void OnTriggerEnter(Collider other)
     {   

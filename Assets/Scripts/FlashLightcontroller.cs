@@ -12,6 +12,7 @@ public class FlashLightcontroller : MonoBehaviour
     public float raycastDistance = 10f;  // The maximum distance for raycasting.
     public Color targetColor = Color.red;  // The color to change affected objects to.
     public float colorChangeDuration = 2f;  // The duration it takes to change colors.
+    private float colorChangeStartTime;  // Stores the start time of color change.
 
     private RaycastHit hitInfo;  // Information about what the raycast hits.
     private List<Renderer> affectedObjects = new List<Renderer>();  // A list to store affected object renderers.
@@ -82,8 +83,6 @@ public class FlashLightcontroller : MonoBehaviour
         Debug.Log("Flashlight is " + (isFlashlightOn ? "on" : "off"));  // Log the flashlight state.
 
     }
-
-    private float colorChangeStartTime;  // Stores the start time of color change.
 
     private IEnumerator ChangeColors(float remainingTime)
     {

@@ -68,7 +68,7 @@ public class StressManager : MonoBehaviour
         float shakeMagnitude = normalizedStress * maxShakeMagnitude;
         float shakeDuration = normalizedStress * maxShakeDuration;
 
-        float desiredOpacity = Mathf.Clamp(normalizedStress, 0.0f, 0.5f);
+        //float desiredOpacity = Mathf.Clamp(normalizedStress, 0.0f, 0.5f);
 
         // Toggle the darkening effect and camera shake based on stress level.
         if (currentStress > 0)

@@ -6,13 +6,16 @@ public class MouseHandler : MonoBehaviour
     public float horizontalSpeed = 2f;
     // vertical rotation speed
     public float verticalSpeed = 2f;
+    //x rotation 
     private float xRotation = 0.0f;
+    //y rotation 
     private float yRotation = 0.0f;
+    //Camera
     private Camera cam;
 
     void Start()
     {
-        cam = Camera.main;
+        cam = Camera.main; //Referencing Camera
     }
 
     void Update()
@@ -33,7 +36,6 @@ public class MouseHandler : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90, 90);
 
         // Apply the new rotations to the camera's Euler angles to control its orientation.
-        // This allows you to look around using the mouse.
         cam.transform.eulerAngles = new Vector3(xRotation, yRotation, 0.0f);
     }
 }

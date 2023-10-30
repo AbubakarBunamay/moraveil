@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
+    //Interact Function 
     public virtual void Interact()
     {
         Debug.Log("Interacted with " + gameObject.name);

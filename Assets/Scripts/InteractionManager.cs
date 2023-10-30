@@ -10,12 +10,13 @@ public class InteractionManager : MonoBehaviour{
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
+            //If reaches an object 
             if (Physics.Raycast(ray, out hit))
             {
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable != null)
                 {
-                    interactable.Interact();
+                    interactable.Interact(); //Interact with object 
                 }
             }
         }
