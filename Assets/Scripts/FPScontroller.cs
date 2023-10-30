@@ -44,6 +44,10 @@ public class FPSController : MonoBehaviour
 
         stressManager = FindObjectOfType<StressManager>();
 
+        //Locking Cursor
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
 
     }
 
