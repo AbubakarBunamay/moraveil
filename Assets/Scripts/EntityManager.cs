@@ -10,6 +10,8 @@ public class EntityManager : MonoBehaviour
     public StressManager stressManager; // Reference to the StressManager component.
     public float entityDistancetrigger = 5.0f; // Distance to trigger stress
 
+    public Transform[] waypoints; // List of waypoints for patrolling
+    private int currentWaypointIndex = 0;
 
     private void Start()
     {
@@ -21,39 +23,57 @@ public class EntityManager : MonoBehaviour
         {
             player = playerObject.transform;
         }
+
+        // Checking that there are waypoints before starting patrolling
+        if (waypoints.Length > 0)
+        {
+            // Set the initial destination to the first waypoint
+            navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
+        }
+        else
+        {
+            Debug.Log("There no waypoints set");
+        }
     }
 
     private void Update()
     {
-        // Check player
-        if (player != null)
+        // Check if there are waypoints
+        if (waypoints.Length > 0)
         {
-            // Set the destination to follow the player
-            navMeshAgent.SetDestination(player.position);
+            Debug.Log("Destination: " + navMeshAgent.destination);
+
+            // Calculate distance to the current waypoint
+            float distanceToWaypoint = Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position);
+
+            // If the entity is close to the current waypoint, set the next waypoint as the destination
+            if (distanceToWaypoint < 1.0f)
+            {
+                currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+
+                navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
+            }
         }
 
-        // Check stress-related conditions and call the stress manager's functions.
-        if (stressManager != null)
-        {
-            // Calling TriggerStress and IncreaseStress functions from StressManager.
-            stressManager.TriggerStress();
-            stressManager.IncreaseStress();
-        }
+        // Check if an entity is close to the player and trigger stress
+        EntityStress();
     }
 
     private void EntityStress()
     {
-
-        // Check player
-        if (player != null)
+        if (waypoints.Length == 0)
         {
-            //Calculate distance to player 
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
-            // Increase stress when getting close to the player 
-            if(distanceToPlayer < entityDistancetrigger)
+            // Check if there is a player
+            if (stressManager != null && player != null)
             {
-                stressManager.currentStress += stressManager.stressIncreaseRate * Time.deltaTime;
+                // Calculate distance to the player
+                float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+                // Increase stress when getting close to the player
+                if (distanceToPlayer < entityDistancetrigger)
+                {
+                    stressManager.currentStress += stressManager.stressIncreaseRate * Time.deltaTime;
+                }
             }
         }
     }
