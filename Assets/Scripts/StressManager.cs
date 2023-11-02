@@ -92,6 +92,9 @@ public class StressManager : MonoBehaviour
                 // Adjust the Film Grain intensity based on stress level
                 fg.intensity.value = normalizedStress;
             }
+
+            // Trigger camera shake
+            shakeManager.ShakeCamera(shakeDuration, shakeMagnitude);
         }
 
         /*// Toggle the darkening effect and camera shake based on stress level.
