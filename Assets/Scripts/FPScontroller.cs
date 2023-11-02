@@ -44,11 +44,6 @@ public class FPSController : MonoBehaviour
 
         stressManager = FindObjectOfType<StressManager>();
 
-        //Locking Cursor
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
-
     }
 
     private void Update()
@@ -192,7 +187,7 @@ public class FPSController : MonoBehaviour
     // Resets jump-related variables when the character is grounded.
     private void ResetJump()
     {
-        verticalVelocity = 0f; // Reset vertical velocity when grounded.
+        //verticalVelocity = 0f; // Reset vertical velocity when grounded.
         jumpsPerformed = 0; // Reset jump count when grounded.
     }
 
