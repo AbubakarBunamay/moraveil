@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal; 
 
 public class StressManager : MonoBehaviour
 {
@@ -24,6 +26,7 @@ public class StressManager : MonoBehaviour
     [SerializeField]
     private float maxShakeDuration; // Maximum camera shake duration.
 
+    public Volume volume; // Reference to the Post-Processing Volume component
     private void OnTriggerEnter(Collider other)
     {
         // Check if the player enters the trigger zone.
@@ -43,6 +46,9 @@ public class StressManager : MonoBehaviour
     }
     private void Start()
     {
+        // Check if the Volume component is found
+        volume = FindObjectOfType<Volume>();
+
         // Check if the CameraShakeManager reference is not set, then try to find it.
         if (shakeManager == null)
         {
@@ -70,7 +76,25 @@ public class StressManager : MonoBehaviour
 
         //float desiredOpacity = Mathf.Clamp(normalizedStress, 0.0f, 0.5f);
 
-        // Toggle the darkening effect and camera shake based on stress level.
+        // Check if the Vignette effect is available
+        if (volume != null)
+        {
+            // Try to get the Vignette effect from the volume's profile
+            if (volume.profile.TryGet(out Vignette vignette))
+            {
+                // Adjust the vignette intensity based on stress level
+                vignette.intensity.value = normalizedStress;
+            }
+
+            // Try to get the Film Grain effect from the volume's profile
+            if (volume.profile.TryGet(out FilmGrain fg))
+            {
+                // Adjust the Film Grain intensity based on stress level
+                fg.intensity.value = normalizedStress;
+            }
+        }
+
+        /*// Toggle the darkening effect and camera shake based on stress level.
         if (currentStress > 0)
         {
             // Fade in the image based on stress level.
@@ -85,7 +109,7 @@ public class StressManager : MonoBehaviour
         {
             // Fade out the image when stress is zero.
             stressCanvasGroup.alpha = 0f;
-        }
+        }*/
     }
 
     public void IncreaseStress()
