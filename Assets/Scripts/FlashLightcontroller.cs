@@ -36,41 +36,49 @@ public class FlashLightcontroller : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(1))  // Check if the right mouse button is clicked.
+        // Check if the game is paused
+        if (SceneManager.isGamePaused)
         {
-            ToggleFlashlight();  // Toggle the flashlight on and off.
-
-            if (isFlashlightOn)
-            {
-                if (!isColorChanging)
-                {
-                    isColorChanging = true;  // Start color change if not already in progress.
-                    colorChangeCoroutine = StartCoroutine(ChangeColors(remainingColorChangeTime));  // Start the color change coroutine.
-                }
-            }
-            else
-            {
-                if (colorChangeCoroutine != null)
-                {
-                    StopCoroutine(colorChangeCoroutine);  // Stop the color change coroutine.
-                    colorChangeCoroutine = null;
-                    remainingColorChangeTime = colorChangeDuration - (Time.time - colorChangeStartTime);  // Calculate the remaining time for color change.
-                }
-                isColorChanging = false;  // Stop color change.
-            }
+            return;
         }
-
-        if (isFlashlightOn && isColorChanging)
+        else
         {
-            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out hitInfo, raycastDistance))  // Perform a raycast from the camera.
+            if (Input.GetMouseButtonDown(1))  // Check if the right mouse button is clicked.
             {
-                Renderer rend = hitInfo.collider.GetComponent<Renderer>();  // Get the renderer of the object hit by the ray.
-                if (rend != null && hitInfo.collider.CompareTag("LightObjects"))  // Check if the hit object has the "LightObjects" tag.
+                ToggleFlashlight();  // Toggle the flashlight on and off.
+
+                if (isFlashlightOn)
                 {
-                    if (!affectedObjects.Contains(rend))  // Add the renderer to the list if it's not already in the list.
+                    if (!isColorChanging)
                     {
-                        affectedObjects.Add(rend);
-                        originalColors[rend] = rend.material.color;  // Store the original color of the object.
+                        isColorChanging = true;  // Start color change if not already in progress.
+                        colorChangeCoroutine = StartCoroutine(ChangeColors(remainingColorChangeTime));  // Start the color change coroutine.
+                    }
+                }
+                else
+                {
+                    if (colorChangeCoroutine != null)
+                    {
+                        StopCoroutine(colorChangeCoroutine);  // Stop the color change coroutine.
+                        colorChangeCoroutine = null;
+                        remainingColorChangeTime = colorChangeDuration - (Time.time - colorChangeStartTime);  // Calculate the remaining time for color change.
+                    }
+                    isColorChanging = false;  // Stop color change.
+                }
+            }
+
+            if (isFlashlightOn && isColorChanging)
+            {
+                if (Physics.Raycast(playerCamera.position, playerCamera.forward, out hitInfo, raycastDistance))  // Perform a raycast from the camera.
+                {
+                    Renderer rend = hitInfo.collider.GetComponent<Renderer>();  // Get the renderer of the object hit by the ray.
+                    if (rend != null && hitInfo.collider.CompareTag("LightObjects"))  // Check if the hit object has the "LightObjects" tag.
+                    {
+                        if (!affectedObjects.Contains(rend))  // Add the renderer to the list if it's not already in the list.
+                        {
+                            affectedObjects.Add(rend);
+                            originalColors[rend] = rend.material.color;  // Store the original color of the object.
+                        }
                     }
                 }
             }
