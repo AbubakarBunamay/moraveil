@@ -36,6 +36,9 @@ public class SceneManager : MonoBehaviour
         Time.timeScale = 0f;
         isGamePaused = true;
 
+        // Pause all audio
+        AudioListener.pause = true;
+
         // Unlock and show the cursor when paused
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -46,6 +49,9 @@ public class SceneManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isGamePaused = false;
+
+        // Resume all audio
+        AudioListener.pause = false;
 
         // Lock and hide the cursor when resumed
         Cursor.lockState = CursorLockMode.Locked;
