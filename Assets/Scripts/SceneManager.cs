@@ -8,6 +8,7 @@ public class SceneManager : MonoBehaviour
 {
     public static bool isGamePaused = false;
     public GameObject pauseMenuUI; // Assign the pause menu UI in the Inspector.
+    public GameObject HUD; // Assign the HUD in the Inspector.
 
     private void Start()
     {
@@ -39,6 +40,9 @@ public class SceneManager : MonoBehaviour
         // Pause all audio
         AudioListener.pause = true;
 
+        // Hide the HUD when the game is paused
+        HUD.SetActive(false);
+
         // Unlock and show the cursor when paused
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -49,6 +53,9 @@ public class SceneManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isGamePaused = false;
+
+        // Show the HUD when the game is resumed
+        HUD.SetActive(true);
 
         // Resume all audio
         AudioListener.pause = false;
