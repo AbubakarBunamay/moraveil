@@ -51,4 +51,9 @@ public class SceneManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+    public void QuitGame()
+    {
+        Debug.Log("Game Exiting");
+        Application.Quit(); // Quit the game.
+    }
 }

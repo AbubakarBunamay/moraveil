@@ -36,6 +36,9 @@ public class FPSController : MonoBehaviour
     private bool isCrouching = false; //Flag indicating whether the character is currently crouching
     private bool isRunning = false; // Flag Indcating whether the character is running
 
+    private Transform cameraTransform;
+    private Quaternion originalCameraRotation;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>(); // Get a reference to the CharacterController component.
@@ -44,18 +47,32 @@ public class FPSController : MonoBehaviour
 
         stressManager = FindObjectOfType<StressManager>();
 
+        cameraTransform = Camera.main.transform;
+
     }
 
     private void Update()
     {
-        HandleMovement(); // Handle character movement.
-        HandleJump(); // Handle jumping.
-
-        // Check if underwater 
-        if (isUnderwater)
+        // Check if the game is paused
+        if (SceneManager.isGamePaused)
         {
-            HandleSwimming(); // Handle Swimming
+            // Freeze the camera's rotation when paused
+            cameraTransform.localRotation = originalCameraRotation;
         }
+        else
+        {
+            HandleMovement();
+            HandleJump();
+
+            // Check if underwater 
+            if (isUnderwater)
+            {
+                HandleSwimming();
+            }
+        }
+
+        originalCameraRotation = cameraTransform.localRotation;
+
 
     }
 
