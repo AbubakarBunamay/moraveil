@@ -175,13 +175,11 @@ public class FPSController : MonoBehaviour
         if (groundedPlayer)
         {
             ResetJump(); // Reset jump-related variables when grounded.
-            TryPerformJump(); // Attempt to perform a jump.
         }
-        else
-        {
+      
             ApplyGravity(); // Apply gravity force when in the air.
             TryPerformDoubleJump(); // Attempt to perform a double jump.
-        }
+        
     }
 
     // Resets jump-related variables when the character is grounded.
@@ -189,6 +187,7 @@ public class FPSController : MonoBehaviour
     {
         //verticalVelocity = 0f; // Reset vertical velocity when grounded.
         jumpsPerformed = 0; // Reset jump count when grounded.
+        isJumping = false;
     }
 
     // Attempts to perform a regular jump if conditions are met.
