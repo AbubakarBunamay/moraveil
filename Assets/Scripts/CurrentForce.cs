@@ -5,7 +5,8 @@ using UnityEngine;
 public class CurrentForce : MonoBehaviour
 {
     [Header("Force/Push")]
-    public float forceAmount = 10f; // The amount of force to apply to the player.
+    public float pushForceAmount = 2f; // The amount of force to apply to the player.
+    public float pullForceAmount = 3f; // The amount of force to pull the player.
     public string playerTag = "Player"; // Tag of the player GameObject.
 
     private bool playerInsideTrigger = false; //Track whether the player is inside the trigger zone.
@@ -40,8 +41,17 @@ public class CurrentForce : MonoBehaviour
                 // Calculate a force direction from the current object to the player and normalize it.
                 Vector3 forceDirection = (other.transform.position - transform.position).normalized;
 
-                // Apply a continuous force to push the player in the calculated direction.
-                playerController.Move(forceDirection * forceAmount * Time.deltaTime);
+                // Determine whether to apply push or pull force based on the relative positions of the player and the trigger zone.
+                if (Vector3.Dot(playerController.velocity, forceDirection) > 0)
+                {
+                    // Apply a continuous push force to push the player in the calculated direction.
+                    playerController.Move(forceDirection * pushForceAmount * Time.deltaTime);
+                }
+                else
+                {
+                    // Apply a continuous pull force to pull the player in the opposite direction.
+                    playerController.Move(-forceDirection * pullForceAmount * Time.deltaTime);
+                }
             }
         }
     }
