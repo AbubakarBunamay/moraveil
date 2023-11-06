@@ -66,6 +66,10 @@ public class FPSController : MonoBehaviour
             HandleMovement();
             HandleJump();
 
+            //Cursor Locked
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
             // Check if underwater 
             if (isUnderwater)
             {
