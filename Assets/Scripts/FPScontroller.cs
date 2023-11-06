@@ -39,6 +39,8 @@ public class FPSController : MonoBehaviour
     private Transform cameraTransform;
     private Quaternion originalCameraRotation;
 
+    private bool isCameraFloating = false;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>(); // Get a reference to the CharacterController component.
@@ -285,18 +287,22 @@ public class FPSController : MonoBehaviour
 
 
             Camera.main.transform.Rotate(Vector3.up * swimHorizontal * swimRotationSpeed);
+            
 
-            CameraFloatEffect(); // Camera Float Effect
+            if (isCameraFloating)
+            {
+                CameraFloatEffect(); // Camera Float Effect
+            }
 
            //Swimming Stress Trigger
            
-            //timeUnderwater += Time.deltaTime; // Increase the time spent underwater while the player is underwater.
+            timeUnderwater += Time.deltaTime; // Increase the time spent underwater while the player is underwater.
 
 
-            /*if (timeUnderwater >= swimmingStressDelay)
+            if (timeUnderwater >= swimmingStressDelay)
             {
                 stressManager.TriggerStress(); // Trigger stress when underwater for n seconds.
-            }*/
+            }
 
         }
         else
@@ -340,6 +346,7 @@ public class FPSController : MonoBehaviour
         if (other.CompareTag("Water"))
         {
             isUnderwater = true;
+            isCameraFloating = true;
             Debug.Log("Got into Water");
         }
     }
@@ -350,6 +357,7 @@ public class FPSController : MonoBehaviour
         if (other.CompareTag("Water"))
         {
             isUnderwater = false;
+            isCameraFloating = false;
             Debug.Log("Out of Water");
         }
     }
