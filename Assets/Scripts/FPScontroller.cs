@@ -18,7 +18,7 @@ public class FPSController : MonoBehaviour
     public float swimSpeed = 5f; // Speed of character while swimming.
     public float swimRotationSpeed = 2f; // Rotation speed while swimming.
     public float waterGravity = 9.81f; // Gravity when underwater.
-    public bool isUnderwater = false; // Flag indicating if the character is underwater.
+    private bool isUnderwater = false; // Flag indicating if the character is underwater.
     private Vector3 swimmingDirection; // Direction of swimming.
     public float camAmplitude = 0.1f; // Adjust as needed.
     public float camFrequency = 1.0f; // Adjust as needed.
@@ -159,7 +159,7 @@ public class FPSController : MonoBehaviour
 
     private void HandleCrouch()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             isCrouching = !isCrouching;
 
@@ -267,14 +267,14 @@ public class FPSController : MonoBehaviour
             float camDot = Vector3.Dot(Camera.main.transform.forward, Vector3.up);
 
             // Swim Up when looking up 
-            if (camDot > 0.5f) 
+            if (camDot > 0.5f || Input.GetKey(KeyCode.Space)) 
             {
                 swimmingDirection.y = -waterGravity * Time.deltaTime;
                 Debug.Log("Swim UP");
 
             }
             // Swim Down when looking down
-            else if (camDot < -0.5f) 
+            else if (camDot < -0.5f || Input.GetKey(KeyCode.LeftControl)) 
             {
                 swimmingDirection.y = waterGravity * Time.deltaTime;
                 Debug.Log("Swim DOWN");
