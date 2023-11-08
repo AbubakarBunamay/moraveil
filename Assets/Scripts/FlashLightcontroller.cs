@@ -24,6 +24,9 @@ public class FlashLightcontroller : MonoBehaviour
     // Store the current coroutine for color change
     private Coroutine colorChangeCoroutine;
 
+    public GlowstickController glowstickController; // Reference to the GlowstickController script.
+
+
     void Start()
     {
         flashLight = GetComponent<Light>();  // Get the Light component of the object.
@@ -65,6 +68,15 @@ public class FlashLightcontroller : MonoBehaviour
                     }
                     isColorChanging = false;  // Stop color change.
                 }
+            }
+
+            // Check if the player is underwater and the glowstick controller is available.
+            if (glowstickController != null && glowstickController.isInWater)
+            {
+                // Turn off the flashlight and turn on the glowstick.
+                isFlashlightOn = false;
+                flashLight.enabled = false;
+                glowstickController.TurnOnGlowstick();
             }
 
             if (isFlashlightOn && isColorChanging)

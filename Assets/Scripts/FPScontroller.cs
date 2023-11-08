@@ -18,10 +18,12 @@ public class FPSController : MonoBehaviour
     public float swimSpeed = 5f; // Speed of character while swimming.
     public float swimRotationSpeed = 2f; // Rotation speed while swimming.
     public float waterGravity = 9.81f; // Gravity when underwater.
-    private bool isUnderwater = false; // Flag indicating if the character is underwater.
+    public bool isUnderwater = false; // Flag indicating if the character is underwater.
     private Vector3 swimmingDirection; // Direction of swimming.
     public float camAmplitude = 0.1f; // Adjust as needed.
     public float camFrequency = 1.0f; // Adjust as needed.
+    public float maxFloatOffset = 0.1f; // Maximum allowed float offset
+    public float minFloatOffset = 1.0f; // Minimum allowed float offset
     private StressManager stressManager; // Reference to the StressManager script.
     private float timeUnderwater = 0.0f; // Time spent underwater
     public float swimmingStressDelay = 2.0f; // Delay Swim Stress
@@ -40,6 +42,8 @@ public class FPSController : MonoBehaviour
     private Quaternion originalCameraRotation;
 
     private bool isCameraFloating = false;
+
+    public GlowstickController glowstickController;
 
     private void Start()
     {
@@ -291,15 +295,15 @@ public class FPSController : MonoBehaviour
 
 
             Camera.main.transform.Rotate(Vector3.up * swimHorizontal * swimRotationSpeed);
-            
+
 
             if (isCameraFloating)
             {
                 CameraFloatEffect(); // Camera Float Effect
             }
 
-           //Swimming Stress Trigger
-           
+            //Swimming Stress Trigger
+
             timeUnderwater += Time.deltaTime; // Increase the time spent underwater while the player is underwater.
 
 
@@ -352,6 +356,7 @@ public class FPSController : MonoBehaviour
             isUnderwater = true;
             isCameraFloating = true;
             Debug.Log("Got into Water");
+            glowstickController.SetInWater(true);
         }
     }
 
@@ -363,6 +368,7 @@ public class FPSController : MonoBehaviour
             isUnderwater = false;
             isCameraFloating = false;
             Debug.Log("Out of Water");
+            glowstickController.SetInWater(false);
         }
     }
 }
