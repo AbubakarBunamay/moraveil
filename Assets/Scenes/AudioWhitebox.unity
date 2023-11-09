@@ -15122,6 +15122,7 @@ MonoBehaviour:
   shakeManager: {fileID: 0}
   maxShakeMagnitude: 0
   maxShakeDuration: 0
+  volume: {fileID: 0}
 --- !u!4 &628825649
 Transform:
   m_ObjectHideFlags: 0
@@ -29090,15 +29091,11 @@ MonoBehaviour:
   swimSpeed: 5
   swimRotationSpeed: 2
   waterGravity: 9.81
-  isUnderwater: 0
   camAmplitude: 0.1
   camFrequency: 1
   swimmingStressDelay: 2
   jumpHeight: 1
   maxJumps: 2
-  audiosource: {fileID: 1988107084}
-  walk: {fileID: 8300000, guid: 5ce7149ef80324047bb6051f21ec949d, type: 3}
-  volume: 1
 --- !u!4 &1270100779
 Transform:
   m_ObjectHideFlags: 0
@@ -36151,6 +36148,7 @@ MonoBehaviour:
   shakeManager: {fileID: 0}
   maxShakeMagnitude: 1
   maxShakeDuration: 5
+  volume: {fileID: 0}
 --- !u!43 &1495278135
 Mesh:
   m_ObjectHideFlags: 0
@@ -54016,7 +54014,7 @@ AudioSource:
   m_GameObject: {fileID: 1656297421}
   m_Enabled: 0
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 13a5868aeade23f4ca9b7c6df367e5f4, type: 2}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 3a012642586b3d346ad396f7ab8fba84, type: 2}
   m_audioClip: {fileID: 8300000, guid: 1c845a66e37652a4cb2bd2523cd13d80, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -65275,7 +65273,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: b588e6dd3363ecb44a5135e66bf7a875, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 87209c07e5928b9428c7b81c358f72e3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -65283,7 +65281,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 48
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -65321,7 +65319,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -65351,7 +65349,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.185
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -138,6 +138,7 @@ public class FPSController : MonoBehaviour
 
         // Move the character using the calculated movement vector.
         characterController.Move(move);
+
     }
 
     /*
