@@ -205,8 +205,8 @@ public class FPSController : MonoBehaviour
         }
       
             ApplyGravity(); // Apply gravity force when in the air.
-            TryPerformDoubleJump(); // Attempt to perform a double jump.
-        
+            Jump(); // Perform a jump or double jump if conditions are met.
+
     }
 
     // Resets jump-related variables when the character is grounded.
@@ -217,16 +217,6 @@ public class FPSController : MonoBehaviour
         isJumping = false;
     }
 
-    // Attempts to perform a regular jump if conditions are met.
-    private void TryPerformJump()
-    {
-        if (!isJumping && Input.GetButtonDown("Jump") && jumpsPerformed < maxJumps)
-        {
-            verticalVelocity = Mathf.Sqrt(2 * jumpHeight * gravity); // Calculate jump velocity. 
-            isJumping = true; // Set jumping flag to true.
-            jumpsPerformed++; // Increment the jump count.
-        }
-    }
 
     // Applies gravity force when the character is in the air.
     private void ApplyGravity()
@@ -241,10 +231,10 @@ public class FPSController : MonoBehaviour
         }
     }
 
-    // Attempts to perform a double jump if conditions are met.
-    private void TryPerformDoubleJump()
+    // Perform a jump or double jump if conditions are met..
+    private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && jumpsPerformed < maxJumps)
+        if (Input.GetButtonDown("Jump") && jumpsPerformed < maxJumps && !isCrouching)
         {
             verticalVelocity = Mathf.Sqrt(2 * jumpHeight * gravity); // Calculate double jump velocity.
             isJumping = true; // Set jumping flag for double jump.
