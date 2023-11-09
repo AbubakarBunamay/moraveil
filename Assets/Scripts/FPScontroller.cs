@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FPSController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class FPSController : MonoBehaviour
     public float movementSpeed = 5f; // Speed of character movement.
     public float runningSpeed = 5f; // Speed of running Movement
     public float gravity = 9.8f; // Gravity force applied to the character.
+    //public Image crouchIcon; // Reference to the UI Image for the crouch icon
 
     [Header("Swimming")]
     public float swimSpeed = 5f; // Speed of character while swimming.
@@ -36,7 +38,7 @@ public class FPSController : MonoBehaviour
     private float verticalVelocity; // Vertical velocity of the character.
     private bool isJumping = false; // Flag indicating whether the character is currently jumping.
     private bool isCrouching = false; //Flag indicating whether the character is currently crouching
-    private bool isRunning = false; // Flag Indcating whether the character is running
+    public bool isRunning = false; // Flag Indcating whether the character is running
 
     private Transform cameraTransform;
     private Quaternion originalCameraRotation;
@@ -177,12 +179,24 @@ public class FPSController : MonoBehaviour
                 //Reduce the Characters Height
                 characterController.center = originalCenter * 0.5f;
                 characterController.height = originalHeight * 0.5f;
+
+                // Show the crouch icon when crouching
+                /*if (crouchIcon != null)
+                {
+                    crouchIcon.enabled = true;
+                }*/
             }
             else
             {
                 //Bring the Characters Height
                 characterController.center = originalCenter;
                 characterController.height = originalHeight;
+
+                // Show the crouch icon when crouching
+                /*if (crouchIcon != null)
+                {
+                    crouchIcon.enabled = false;
+                }*/
 
             }
         }
