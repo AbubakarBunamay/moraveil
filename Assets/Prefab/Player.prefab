@@ -190,6 +190,7 @@ MonoBehaviour:
   movementSpeed: 5
   runningSpeed: 10
   gravity: 9.8
+  crouchIcon: {fileID: 7072528370024808574}
   swimSpeed: 5
   swimRotationSpeed: 2
   waterGravity: -130
@@ -1074,9 +1075,8 @@ GameObject:
   - component: {fileID: 47039214993162201}
   - component: {fileID: 3578970314120803817}
   - component: {fileID: 7072528370024808574}
-  - component: {fileID: 5621914377710174339}
   m_Layer: 5
-  m_Name: PlayerCompass
+  m_Name: CrouchIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1129,7 +1129,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5d323995caecc59428634b1db208b9db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d6440f498371d7429d0b707f96d5ab5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1139,19 +1139,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5621914377710174339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6645966638506691566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 300fcce58bc9cad40ad8b11f64f57de1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CamTransform: {fileID: 8018310091998129105}
 --- !u!1 &7477409977905893458
 GameObject:
   m_ObjectHideFlags: 0

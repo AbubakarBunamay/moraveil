@@ -14,7 +14,7 @@ public class FPSController : MonoBehaviour
     public float movementSpeed = 5f; // Speed of character movement.
     public float runningSpeed = 5f; // Speed of running Movement
     public float gravity = 9.8f; // Gravity force applied to the character.
-    //public Image crouchIcon; // Reference to the UI Image for the crouch icon
+    public Image crouchIcon; // Reference to the UI Image for the crouch icon
 
     [Header("Swimming")]
     public float swimSpeed = 5f; // Speed of character while swimming.
@@ -182,10 +182,10 @@ public class FPSController : MonoBehaviour
                 characterController.height = originalHeight * 0.5f;
 
                 // Show the crouch icon when crouching
-                /*if (crouchIcon != null)
+                if (crouchIcon != null)
                 {
                     crouchIcon.enabled = true;
-                }*/
+                }
             }
             else
             {
@@ -194,10 +194,10 @@ public class FPSController : MonoBehaviour
                 characterController.height = originalHeight;
 
                 // Show the crouch icon when crouching
-                /*if (crouchIcon != null)
+                if (crouchIcon != null)
                 {
                     crouchIcon.enabled = false;
-                }*/
+                }
 
             }
         }
