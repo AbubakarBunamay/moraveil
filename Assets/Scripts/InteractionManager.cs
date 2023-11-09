@@ -14,6 +14,7 @@ public class InteractionManager : MonoBehaviour{
             //If reaches an object 
             if (Physics.Raycast(ray, out hit))
             {
+                //Interactable
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable != null)
                 {
