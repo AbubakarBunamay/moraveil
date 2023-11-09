@@ -301,10 +301,10 @@ public class FPSController : MonoBehaviour
             Camera.main.transform.Rotate(Vector3.up * swimHorizontal * swimRotationSpeed);
 
 
-            if (isCameraFloating)
+            /*if (isCameraFloating)
             {
                 CameraFloatEffect(); // Camera Float Effect
-            }
+            }*/
 
             //Swimming Stress Trigger
 
