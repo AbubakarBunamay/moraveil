@@ -13,6 +13,7 @@ public class FPSController : MonoBehaviour
     [Header("Movement")]
     public float movementSpeed = 5f; // Speed of character movement.
     public float runningSpeed = 5f; // Speed of running Movement
+
     public float gravity = 9.8f; // Gravity force applied to the character.
     public Image crouchIcon; // Reference to the UI Image for the crouch icon
 
@@ -26,13 +27,19 @@ public class FPSController : MonoBehaviour
     public float camFrequency = 1.0f; // Adjust as needed.
     public float maxFloatOffset = 0.1f; // Maximum allowed float offset
     public float minFloatOffset = 1.0f; // Minimum allowed float offset
-    private StressManager stressManager; // Reference to the StressManager script.
-    private float timeUnderwater = 0.0f; // Time spent underwater
-    public float swimmingStressDelay = 2.0f; // Delay Swim Stress
+
 
     [Header("Jumping")]
     public float jumpHeight = 1f; // Height of the character's jump.
     public int maxJumps = 2; // Maximum number of allowed jumps.
+
+    [Header("Stress")]
+    public StressManager stressManager; // Reference to the StressManager script.
+    private float timeUnderwater = 0.0f; // Time spent underwater
+    public float swimmingStressDelay = 2.0f; // Delay Swim Stress
+    private float runTimer = 0f; // Timer to track how long the player has been running.
+    public float maxRunTime = 5f; // Maximum allowed running time before triggering stress.
+    public float runningStressIncreaseRate = 50f;
 
     private int jumpsPerformed = 0; // Number of jumps performed.
     private float verticalVelocity; // Vertical velocity of the character.
@@ -154,11 +161,20 @@ public class FPSController : MonoBehaviour
 
         if (isRunning)
         {
+            runTimer += Time.deltaTime;
             runningSpeed = 10f;
+            // If the player has been running for longer than the allowed time, trigger stress.
+            if (runTimer >= maxRunTime)
+            {
+                stressManager.IncreaseStress(Time.deltaTime * runningStressIncreaseRate);
+                Debug.Log("Running");
+
+            }
         }
         else
         {
             runningSpeed = 5f;
+            //runTimer = 0f;
         }
     }
 
