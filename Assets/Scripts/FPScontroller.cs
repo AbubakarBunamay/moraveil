@@ -356,8 +356,12 @@ public class FPSController : MonoBehaviour
             // If the player is not in the water, set the swimmingDirection to zero to stop movement.
             swimmingDirection = Vector3.zero;
 
-            // Reset the time spent underwater when the player is not underwater.
-            timeUnderwater = 0.0f;
+            // If the stress is at zero, reset the swim timer.
+            if (stressManager.currentStress == 0f)
+            {
+                // Reset the time spent underwater when the player is not underwater.
+                timeUnderwater = 0.0f;
+            }
 
         }
 
