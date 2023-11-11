@@ -60,7 +60,7 @@ public class StressManager : MonoBehaviour
     {
         // Update stress, trigger stress effects, and update UI.
         TriggerStress();
-        IncreaseStress();
+        IncreaseStressTrigger();
 
         // Updates the stress meter bar UI.
         stressMeterBar.fillAmount = currentStress / maxStress;
@@ -115,7 +115,17 @@ public class StressManager : MonoBehaviour
         }*/
     }
 
-    public void IncreaseStress()
+    public void IncreaseStress(float stressAmount)
+    {
+
+        currentStress += stressAmount;
+        // Trigger stress effects.
+        TriggerStress();
+        currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
+
+    }    
+    
+    public void IncreaseStressTrigger()
     {
 
         // Increase stress if the player is inside the trigger zone.
