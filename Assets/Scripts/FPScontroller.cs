@@ -170,7 +170,7 @@ public class FPSController : MonoBehaviour
 
     private void HandleCrouch()
     {
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             isCrouching = !isCrouching;
 
