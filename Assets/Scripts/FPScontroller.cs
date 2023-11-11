@@ -177,7 +177,11 @@ public class FPSController : MonoBehaviour
         else
         {
             runningSpeed = 5f;
-            //runTimer = 0f;
+            // If the player stops running and stress is at 0, reset the run timer.
+            if (stressManager.currentStress == 0f)
+            {
+                runTimer = 0f;
+            }
         }
     }
 
