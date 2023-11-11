@@ -27,6 +27,7 @@ public class FPSController : MonoBehaviour
     public float camFrequency = 1.0f; // Adjust as needed.
     public float maxFloatOffset = 0.1f; // Maximum allowed float offset
     public float minFloatOffset = 1.0f; // Minimum allowed float offset
+    public LayerMask waterLayerMask; // Water Layer 
 
 
     [Header("Jumping")]
@@ -39,7 +40,9 @@ public class FPSController : MonoBehaviour
     public float swimmingStressDelay = 2.0f; // Delay Swim Stress
     private float runTimer = 0f; // Timer to track how long the player has been running.
     public float maxRunTime = 5f; // Maximum allowed running time before triggering stress.
-    public float runningStressIncreaseRate = 50f;
+    public float runningStressIncreaseRate = 50f; // Rate of stress rising when running
+    public float swimmingStressIncreaseRate = 50f; // Rate of stress rising when swimming
+    public float swimmingStressDecreaseRate = 50f; // Rate of stress rising when swimming
 
     private int jumpsPerformed = 0; // Number of jumps performed.
     private float verticalVelocity; // Vertical velocity of the character.
@@ -325,12 +328,22 @@ public class FPSController : MonoBehaviour
 
             //Swimming Stress Trigger
 
+            // Get the current water level dynamically.
+            float currentWaterLevel = GetWaterLevel(); // Implement GetWaterLevel based on your setup.
+
+
             timeUnderwater += Time.deltaTime; // Increase the time spent underwater while the player is underwater.
 
 
-            if (timeUnderwater >= swimmingStressDelay)
+            if (timeUnderwater >= swimmingStressDelay && transform.position.y > currentWaterLevel)
             {
-                stressManager.TriggerStress(); // Trigger stress when underwater for n seconds.
+                // Increase stress gradually based on the time spent underwater.
+                stressManager.IncreaseStress(-Time.deltaTime * swimmingStressIncreaseRate);
+            }
+            else
+            {
+                // If the player is underwater, increase stress gradually based on the time spent underwater.
+                stressManager.IncreaseStress(Time.deltaTime * swimmingStressIncreaseRate);
             }
 
         }
@@ -346,6 +359,27 @@ public class FPSController : MonoBehaviour
 
         characterController.Move(swimmingDirection * Time.deltaTime);
     }
+
+    //Geting Water level
+    private float GetWaterLevel()
+    {
+        // Create a ray starting from a point above the player's position and pointing downwards.
+        Ray ray = new Ray(transform.position + Vector3.up * 10f, Vector3.down);
+
+        // Set the maximum distance the ray can travel.
+        float raycastDistance = 20f;
+
+        // Check if the ray hits anything on the water layer.
+        if (Physics.Raycast(ray, out RaycastHit waterhit, raycastDistance, waterLayerMask))
+        {
+            // If the ray hits, return the y-coordinate of the hit point.
+            return waterhit.point.y;
+        }
+
+        // If the ray doesn't hit anything, return a default value (float.MinValue).
+        return float.MinValue;
+    }
+
 
     // Simulate floating on when on water
     private void CameraFloatEffect()

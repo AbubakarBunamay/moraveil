@@ -199,9 +199,17 @@ MonoBehaviour:
   camFrequency: 1
   maxFloatOffset: 0.1
   minFloatOffset: 1
-  swimmingStressDelay: 2
+  waterLayerMask:
+    serializedVersion: 2
+    m_Bits: 16
   jumpHeight: 1
   maxJumps: 2
+  stressManager: {fileID: 0}
+  swimmingStressDelay: 2
+  maxRunTime: 5
+  runningStressIncreaseRate: 50
+  swimmingStressIncreaseRate: 50
+  swimmingStressDecreaseRate: 50
   isRunning: 0
   glowstickController: {fileID: 7457001500013815837}
 --- !u!114 &8318440606463636135
