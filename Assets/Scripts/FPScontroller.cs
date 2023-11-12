@@ -441,7 +441,7 @@ public class FPSController : MonoBehaviour
                 if (fallsCount >= 2)
                 {
                     // Calculate stress increase as a percentage of the fall height.
-                    float stressIncreasePercentage = Mathf.Clamp(fallHeight / fallHeightThreshold, 0f, maxFallinStress); 
+                    float stressIncreasePercentage = Mathf.Clamp(fallHeight / fallHeightThreshold, 0f, maxFallinStressRange); 
                     float stressIncrement = 20f; 
 
                     // Calculate the actual stress increase.
