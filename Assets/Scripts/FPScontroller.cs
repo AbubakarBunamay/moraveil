@@ -467,6 +467,10 @@ public class FPSController : MonoBehaviour
         {
             // Reset falls count when grounded.
             fallsCount = 0;
+
+            //If the player not falling decrease stress
+            stressManager.DecreaseStress(stressManager.stressDecreaseRate * Time.deltaTime);
+
         }
     }
 
