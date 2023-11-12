@@ -15,7 +15,7 @@ public class StressManager : MonoBehaviour
 
     public float currentStress = 0f; // Current stress level.
 
-    private bool playerInsideTrigger = false; // By default player not inside trigger
+    public bool playerInsideTrigger = false; // By default player not inside trigger
 
     [SerializeField]
     private CameraShakeManager shakeManager; // Reference to the CameraShakeManager component.
@@ -59,15 +59,15 @@ public class StressManager : MonoBehaviour
     private void Update()
     {
         // Update stress, trigger stress effects, and update UI.
-        TriggerStress();
-        IncreaseStressTrigger();
+        //StressEffects();
+        //IncreaseStressTrigger();
 
         // Updates the stress meter bar UI.
         stressMeterBar.fillAmount = currentStress / maxStress;
 
     }
 
-    public void TriggerStress()
+    public void StressEffects()
     {
         // Calculate camera shake parameters based on stress.
         float normalizedStress = currentStress / maxStress;
@@ -96,6 +96,7 @@ public class StressManager : MonoBehaviour
             // Trigger camera shake
             shakeManager.ShakeCamera(shakeDuration, shakeMagnitude);
         }
+        
 
         /*// Toggle the darkening effect and camera shake based on stress level.
         if (currentStress > 0)
@@ -120,7 +121,15 @@ public class StressManager : MonoBehaviour
 
         currentStress += stressAmount;
         // Trigger stress effects.
-        TriggerStress();
+        if(currentStress > 0)
+        {
+            StressEffects();
+
+        }
+        else 
+        {
+            ResetStressEffects();
+        }
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
 
     }    
@@ -128,20 +137,35 @@ public class StressManager : MonoBehaviour
     public void IncreaseStressTrigger()
     {
 
-        // Increase stress if the player is inside the trigger zone.
-        if (playerInsideTrigger)
-        {
-            currentStress += stressIncreaseRate * Time.deltaTime;
-        }
-        else
-        {
-            // Decrease stress if the player is outside the trigger zone.
-            currentStress -= stressDecreaseRate * Time.deltaTime;
-        }
-
-        // Ensure stress stays within the 0 to maxStress range.
+        currentStress += stressIncreaseRate * Time.deltaTime;
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
+        Debug.Log("Increasing stress: " + currentStress);
 
+    }
+
+    public void DecreaseStressTrigger()
+    {
+        currentStress -= stressDecreaseRate * Time.deltaTime;
+        currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
+        Debug.Log("Decreasing stress: " + currentStress);
+    }
+
+    public void ResetStressEffects()
+    {
+        // Reset Vignette intensity
+        if (volume.profile.TryGet(out Vignette vignette))
+        {
+            vignette.intensity.value = currentStress / maxStress;
+            vignette.intensity.value = Mathf.Clamp(vignette.intensity.value, 0f, maxStress);
+        }
+
+        // Reset Film Grain intensity
+        if (volume.profile.TryGet(out FilmGrain fg))
+        {
+            fg.intensity.value = currentStress / maxStress;
+            fg.intensity.value = Mathf.Clamp(fg.intensity.value, 0f, maxStress);
+
+        }
     }
 
 
