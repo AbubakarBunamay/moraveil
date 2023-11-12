@@ -33,6 +33,9 @@ public class FPSController : MonoBehaviour
     [Header("Jumping")]
     public float jumpHeight = 1f; // Height of the character's jump.
     public int maxJumps = 2; // Maximum number of allowed jumps.
+    private float maxJumpHeight; // Maximum Jump Height
+    private float fallHeightThreshold = 2.0f; // Maximum Fall Height
+    private int fallsCount = 0; // Falls Count
 
     [Header("Stress")]
     public StressManager stressManager; // Reference to the StressManager script.
@@ -43,6 +46,7 @@ public class FPSController : MonoBehaviour
     public float runningStressIncreaseRate = 50f; // Rate of stress rising when running
     public float swimmingStressIncreaseRate = 50f; // Rate of stress rising when swimming
     public float swimmingStressDecreaseRate = 50f; // Rate of stress rising when swimming
+    public float maxFallinStressRange = 1f; // Play with range of falling stress
 
     private int jumpsPerformed = 0; // Number of jumps performed.
     private float verticalVelocity; // Vertical velocity of the character.
@@ -81,6 +85,9 @@ public class FPSController : MonoBehaviour
         {
             HandleMovement();
             HandleJump();
+
+            // Check if the player is falling and trigger stress.
+            CheckFalls();
 
             //Cursor Locked
             Cursor.visible = false;
@@ -240,10 +247,17 @@ public class FPSController : MonoBehaviour
         if (groundedPlayer)
         {
             ResetJump(); // Reset jump-related variables when grounded.
+            maxJumpHeight = transform.position.y; // Reset maxJumpHeight when grounded.
         }
-      
-            ApplyGravity(); // Apply gravity force when in the air.
-            Jump(); // Perform a jump or double jump if conditions are met.
+
+        ApplyGravity(); // Apply gravity force when in the air.
+        Jump(); // Perform a jump or double jump if conditions are met.
+
+        // Update the maxJumpHeight during the jump.
+        if (transform.position.y > maxJumpHeight)
+        {
+            maxJumpHeight = transform.position.y;
+        }
 
     }
 
@@ -406,6 +420,56 @@ public class FPSController : MonoBehaviour
         // Update the camera's position.
         Camera.main.transform.position = cameraPosition;
     }
+
+
+    // This checks if the player is currently falling and triggers stress
+    private void CheckFalls()
+    {
+        // Check if the player is falling (not grounded and moving downward).
+        if (!characterController.isGrounded && characterController.velocity.y < 0)
+        {
+            // Calculate the fall height based on the highest point reached during the jump.
+            float fallHeight = maxJumpHeight - transform.position.y;
+
+            // Check if the fall height is greater than the specified threshold.
+            if (fallHeight > fallHeightThreshold)
+            {
+                // Increment the falls count.
+                fallsCount++;
+
+                // If the player falls twice their height, trigger stress.
+                if (fallsCount >= 2)
+                {
+                    // Calculate stress increase as a percentage of the fall height.
+                    float stressIncreasePercentage = Mathf.Clamp(fallHeight / fallHeightThreshold, 0f, maxFallinStress); 
+                    float stressIncrement = 20f; 
+
+                    // Calculate the actual stress increase.
+                    float stressIncrease = stressIncreasePercentage * stressIncrement;
+
+                    // Clamp the stress increase to a maximum value.
+                    //stressIncrease = Mathf.Clamp(stressIncrease, 0f, 20f); // Adjust the upper limit as needed.
+
+                    // Increment stress by the calculated amount
+                    stressManager.IncreaseStress(stressIncrease);
+
+                    // Reset falls count.
+                    fallsCount = 0;
+                }
+            }
+            else
+            {
+                // Reset falls count when the fall height is pointless.
+                fallsCount = 0;
+            }
+        }
+        else
+        {
+            // Reset falls count when grounded.
+            fallsCount = 0;
+        }
+    }
+
 
 
     /*
