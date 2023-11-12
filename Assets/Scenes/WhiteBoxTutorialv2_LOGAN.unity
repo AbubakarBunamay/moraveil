@@ -11747,6 +11747,7 @@ MonoBehaviour:
   darkScreen: {fileID: 1459009287}
   stressCanvasGroup: {fileID: 1323072882}
   currentStress: 0
+  playerInsideTrigger: 0
   shakeManager: {fileID: 569929307}
   maxShakeMagnitude: 1
   maxShakeDuration: 0
@@ -39850,6 +39851,7 @@ PrefabInstance:
     - {fileID: 2368578581841292531, guid: 8817d1d25b6c1c14e9594c057fbaa260, type: 3}
     - {fileID: 1188207160141378231, guid: 8817d1d25b6c1c14e9594c057fbaa260, type: 3}
     - {fileID: 6319158715264551467, guid: 8817d1d25b6c1c14e9594c057fbaa260, type: 3}
+    - {fileID: 5469178919940954715, guid: 8817d1d25b6c1c14e9594c057fbaa260, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5193075648366770628, guid: 8817d1d25b6c1c14e9594c057fbaa260, type: 3}
       insertIndex: 0
@@ -45163,6 +45165,7 @@ MonoBehaviour:
   darkScreen: {fileID: 1459009287}
   stressCanvasGroup: {fileID: 1323072882}
   currentStress: 0
+  playerInsideTrigger: 0
   shakeManager: {fileID: 569929307}
   maxShakeMagnitude: 1
   maxShakeDuration: 0
@@ -49360,8 +49363,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4309162000708614544, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      propertyPath: m_Range
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309162000708614544, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309162000708614544, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      propertyPath: m_Intensity
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4309162000708614544, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: m_RenderMode
@@ -91931,6 +91942,79 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1001 &1380468243
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 26.711445
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 26.711445
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 26.711445
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -108.016
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.954
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 68.467
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.39667776
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.010317561
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.91581774
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.061792325
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 6.971
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -226.945
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -1.739
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a5859882ab12a7d4bbdd86c07d03a66a, type: 2}
+    - target: {fileID: 919132149155446097, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
+      propertyPath: m_Name
+      value: polaroid
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b9c41441e2ce14845920da6311605f1b, type: 3}
 --- !u!1 &1381743576
 GameObject:
   m_ObjectHideFlags: 0
@@ -95840,6 +95924,7 @@ MonoBehaviour:
   darkScreen: {fileID: 0}
   stressCanvasGroup: {fileID: 0}
   currentStress: 0
+  playerInsideTrigger: 0
   shakeManager: {fileID: 0}
   maxShakeMagnitude: 0
   maxShakeDuration: 0
@@ -128418,3 +128503,4 @@ SceneRoots:
   - {fileID: 1359966145}
   - {fileID: 552541031}
   - {fileID: 1514660245}
+  - {fileID: 1380468243}
