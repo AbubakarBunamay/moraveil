@@ -132,8 +132,15 @@ public class StressManager : MonoBehaviour
         }
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
 
-    }    
-    
+    }
+
+    public void DecreaseStress(float stressAmount)
+    {
+        currentStress -= stressDecreaseRate * Time.deltaTime;
+        currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
+        Debug.Log("Decreasing stress: " + currentStress);
+    }
+
     public void IncreaseStressTrigger()
     {
 
@@ -168,5 +175,5 @@ public class StressManager : MonoBehaviour
         }
     }
 
-
+    
 }
