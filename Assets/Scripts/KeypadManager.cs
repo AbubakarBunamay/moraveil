@@ -28,7 +28,7 @@ public class KeypadManager : MonoBehaviour
     {
         if(!isPushed)
         {
-            PushCube();
+           // PushCube();
             
         }
     }
