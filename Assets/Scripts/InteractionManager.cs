@@ -30,7 +30,7 @@ public class InteractionManager : MonoBehaviour{
                 symbol.Interact();
             }
         }
-        else if(collider.CompareTag("KeypadButton"))
+        /*else if(collider.CompareTag("KeypadButton"))
         {
             KeypadButton keypadButton = collider.GetComponent<KeypadButton>();
             if (keypadButton != null)
@@ -38,7 +38,7 @@ public class InteractionManager : MonoBehaviour{
                 keypadButton.KeypadClicked();
             }
 
-        }
+        }*/
         else
         {
             Interactable interactable = collider.GetComponent<Interactable>();
