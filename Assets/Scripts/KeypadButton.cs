@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class KeypadButton : MonoBehaviour
 {
-    public Keypad keyPad;
+    public KeypadManager keyPad;
     public string digit;
+
 
     public void KeypadClicked()
     {
         keyPad.AppendDigit(digit);
+        Debug.Log("Input Digit:" + digit);
     }
+
 }

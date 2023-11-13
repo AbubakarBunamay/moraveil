@@ -6,34 +6,31 @@ public class KeypadManager : MonoBehaviour
 {
     public string correctCode = "1234";
 
-    public Material pushedMaterial;
-    public Material correctMaterial;
-    public Material wrongMaterial;
-    public Material originalMaterial;
-
 
     private bool isCorrect = false;
     private bool isPushed = false;
 
-    private MeshRenderer cubeRender;
 
     private string enteredCode = "";
 
     private void Start()
     {
-      
+
     }
 
-    public void Interact(KeypadButton keyPad)
+    public void Interact()
     {
         if(!isPushed)
         {
-           // PushCube();
+            PushCube();
             
         }
     }
 
-    
+    private void PushCube()
+    {
+        isPushed = true;
+    } 
 
     public void AppendDigit ( string digit)
     {
@@ -58,7 +55,6 @@ public class KeypadManager : MonoBehaviour
         isPushed = false;
         isCorrect = false;
         enteredCode = "";
-        cubeRender.material = originalMaterial;
         Debug.Log("Keypad reset");
     }
 }

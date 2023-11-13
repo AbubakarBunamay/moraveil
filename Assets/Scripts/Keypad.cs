@@ -4,23 +4,13 @@ using UnityEngine;
 
 public class Keypad : Interactable
 {
-    public Material pushedMaterial;
-    public Material correctMaterial;
-    public Material wrongMaterial;
+
     public KeypadManager manager;
 
     private bool isPushed = false;
-    private Renderer cubeRenderer;
-    private Material originalMaterial;
 
 
     private string enteredCode = ""; 
-
-    private void Start()
-    {
-        cubeRenderer = GetComponentInChildren <Renderer>();
-        originalMaterial = cubeRenderer.material;
-    }
 
     public override void Interact()
     {
@@ -34,7 +24,6 @@ public class Keypad : Interactable
     private void PushCube()
     {
         isPushed = true;
-        cubeRenderer.material = pushedMaterial;
     }
 
     private void CheckInput()
