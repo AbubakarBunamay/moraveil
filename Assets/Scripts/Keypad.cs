@@ -7,19 +7,18 @@ public class Keypad : Interactable
     public Material pushedMaterial;
     public Material correctMaterial;
     public Material wrongMaterial;
+    public KeypadManager manager;
 
     private bool isPushed = false;
-    private bool isCorrect = false;
-    private int wrongInputs = 0;
-    private int maxWrongInputs = 5;
-
     private Renderer cubeRenderer;
     private Material originalMaterial;
-    private string correctCode = "1234"; 
+
+
+    private string enteredCode = ""; 
 
     private void Start()
     {
-        cubeRenderer = GetComponent <Renderer>();
+        cubeRenderer = GetComponentInChildren <Renderer>();
         originalMaterial = cubeRenderer.material;
     }
 
@@ -40,32 +39,26 @@ public class Keypad : Interactable
 
     private void CheckInput()
     {
-        if (correctCode == "1234") // Replace with your actual correct code
+        KeypadManager keypadManager = FindAnyObjectByType<KeypadManager>();
+
+        if (keypadManager != null)
         {
-            isCorrect = true;
-            cubeRenderer.material = correctMaterial;
-            Debug.Log("Correct input! Something happens...");
+            keypadManager.CheckCode();
         }
         else
         {
-            wrongInputs++;
-            cubeRenderer.material = wrongMaterial;
-            Debug.Log("Wrong input.");
+            Debug.Log("KeypadManager not found");
+        }
+        
+    }
 
-            if (wrongInputs >= maxWrongInputs)
-            {
-                ResetKeypad();
-                Debug.Log("Too many wrong inputs. Resetting...");
-            }
+    public void AppendDigit(string digit)
+    {
+        if(!isPushed)
+        {
+            enteredCode = digit;
+            CheckInput();
         }
     }
 
-    private void ResetKeypad()
-    {
-        isPushed = false;
-        isCorrect = false;
-        wrongInputs = 0;
-        cubeRenderer.material = originalMaterial;
-        Debug.Log("Keypad reset.");
-    }
 }
