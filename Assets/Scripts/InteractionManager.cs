@@ -9,44 +9,43 @@ public class InteractionManager : MonoBehaviour{
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit interactHit;
+            RaycastHit[] interactHits = Physics.RaycastAll(ray);
 
-            // Raycast for general interactables
-            if (Physics.Raycast(ray, out interactHit))
+            foreach (RaycastHit hit in interactHits)
             {
-                Interactable interactable = interactHit.collider.GetComponent<Interactable>();
-                if (interactable != null)
-                {
-                    interactable.Interact(); // Interact with general object 
-                }
+                HandleInteractable(hit.collider);
             }
+           
 
-            // Raycast for symbols
-            RaycastHit symbolHit;
-            if (RaycastForSymbol(ray, out symbolHit))
-            {
-                SymbolInteract symbol = symbolHit.collider.GetComponent<SymbolInteract>();
-                if (symbol != null)
-                {
-                    symbol.Interact(); // Interact with symbol
-                }
-            }
         }
     }
 
-    private bool RaycastForSymbol(Ray ray, out RaycastHit hit)
+    private void HandleInteractable(Collider collider)
     {
-        int symbolLayer = LayerMask.NameToLayer("Symbol");
-
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << symbolLayer))
+        if (collider.CompareTag("Symbol"))
         {
-            SymbolInteract symbol = hit.collider.GetComponent<SymbolInteract>();
+            SymbolInteract symbol = collider.GetComponent<SymbolInteract>();
             if (symbol != null)
             {
-                return true;
+                symbol.Interact();
             }
         }
+        else if(collider.CompareTag("KeypadButton"))
+        {
+            KeypadButton keypadButton = collider.GetComponent<KeypadButton>();
+            if (keypadButton != null)
+            {
+                keypadButton.KeypadClicked();
+            }
 
-        return false;
+        }
+        else
+        {
+            Interactable interactable = collider.GetComponent<Interactable>();
+            if (interactable != null)
+            {
+                interactable.Interact();
+            }
+        }
     }
 }
