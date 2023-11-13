@@ -71,6 +71,7 @@ public class FPSController : MonoBehaviour
 
         cameraTransform = Camera.main.transform;
 
+        crouchIcon.enabled = false;
     }
 
     private void Update()
@@ -87,7 +88,7 @@ public class FPSController : MonoBehaviour
             HandleJump();
 
             // Check if the player is falling and trigger stress.
-            CheckFalls();
+            //CheckFalls();
 
             //Cursor Locked
             Cursor.visible = false;
