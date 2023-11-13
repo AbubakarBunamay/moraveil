@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    //Interact Function 
+    private bool isInteracting = false;
+
     public virtual void Interact()
     {
-        Debug.Log("Interacted with " + gameObject.name);
+        isInteracting = !isInteracting;
+    }
+
+    public bool IsInteracting()
+    {
+        return isInteracting;
     }
 }
