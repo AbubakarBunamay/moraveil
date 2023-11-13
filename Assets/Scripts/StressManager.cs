@@ -175,5 +175,22 @@ public class StressManager : MonoBehaviour
         }
     }
 
-    
+    public void IncreaseSafezoneStress()
+    {
+        // Player is inside the trigger zone.
+        if (currentStress < maxStress * 0.3f)
+        {
+            // Limit stress increase to 30%.
+            float stressIncrease = stressIncreaseRate * Time.deltaTime;
+            float remainingStressSpace = maxStress * 0.3f - currentStress;
+
+            if (remainingStressSpace > 0)
+            {
+                // Increase stress only if it won't exceed 30%.
+                currentStress += Mathf.Min(stressIncrease, remainingStressSpace);
+                Debug.Log("Increasing stress: " + currentStress);
+            }
+        }
+    }
+
 }
