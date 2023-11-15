@@ -42,6 +42,7 @@ public class Keypad : Interactable
             {
                 // Incorrect input, reset entered code and buttons in the KeypadManager
                 enteredCode = "";
+                manager.ResetButtons();
                 Debug.Log("Incorrect input. Retry.");
             }
         }
