@@ -77,7 +77,7 @@ public class FPSController : MonoBehaviour
     private void Update()
     {
         // Check if the game is paused
-        if (SceneManager.isGamePaused)
+        if (MoraveilSceneManager.isGamePaused)
         {
             // Freeze the camera's rotation when paused
             cameraTransform.localRotation = originalCameraRotation;
