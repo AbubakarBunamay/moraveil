@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class KeypadButton : MonoBehaviour
 {
-    public KeypadManager keyPad;
-    public string digit;
+    public KeypadManager keyPad; // Reference to the KeypadManager script
+    public Keypad button; // Reference to the Keypad script
+    public string digit; // String to store the digit associated with the button
 
-
+    // Method called when the keypad button is clicked
     public void KeypadClicked()
     {
-        keyPad.AppendDigit(digit);
+        // Call the Interact method of the KeypadManager, passing the button's transform
+        keyPad.Interact(this.transform);
+
+        // Call its AppendDigit method, passing the digit associated with the button & checks the input if correct 
+        if (button != null)
+        {
+            button.AppendDigit(digit);
+        }
+
         Debug.Log("Input Digit:" + digit);
     }
 

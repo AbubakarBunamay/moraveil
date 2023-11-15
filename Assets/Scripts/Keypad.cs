@@ -4,50 +4,69 @@ using UnityEngine;
 
 public class Keypad : Interactable
 {
+    public KeypadManager manager; // Reference to the KeypadManager script
+    private string correctCode = "1234"; // String to store the correct code
+    private string enteredCode = ""; // String to store the entered code
 
-    public KeypadManager manager;
-
-    private bool isPushed = false;
-
-
-    private string enteredCode = ""; 
-
+    // Method called when interacting with the keypad
     public override void Interact()
     {
-        if (!isPushed)
-        {
-            PushCube();
-            CheckInput();
-        }
+        CheckInput(); // Call the CheckInput method
     }
 
-    private void PushCube()
-    {
-        isPushed = true;
-    }
-
+    // Method to check the input code
     private void CheckInput()
     {
-        KeypadManager keypadManager = FindAnyObjectByType<KeypadManager>();
+        manager = FindAnyObjectByType<KeypadManager>(); // Find the KeypadManager in the scene
 
-        if (keypadManager != null)
+        if (manager != null) // Check if the KeypadManager is found
         {
-            keypadManager.CheckCode();
+            if (correctCode.StartsWith(enteredCode)) // Check if the correct code starts with the entered code
+            {
+
+                if (enteredCode == correctCode) // Check if the entered code matches the correct code
+                {
+                    // Output a debug message indicating the correct password
+                    Debug.Log("Password correct!");
+
+                    // Reset the buttons in the KeypadManager
+                    manager.ResetButtons();
+                }
+                else
+                {
+                    // Continue checking for the next digit
+                    Debug.Log("Correct input so far. Continue entering the password.");
+                }
+            }
+            else
+            {
+                // Incorrect input, reset entered code and buttons in the KeypadManager
+                enteredCode = "";
+                Debug.Log("Incorrect input. Retry.");
+            }
         }
         else
         {
-            Debug.Log("KeypadManager not found");
+            Debug.Log("KeypadManager not found"); // Output a debug message if KeypadManager is not found
         }
-        
     }
 
+    // Method to append a digit to the entered code
     public void AppendDigit(string digit)
     {
-        if(!isPushed)
-        {
-            enteredCode = digit;
-            CheckInput();
+            // Check if the entered code is shorter than the correct code
+            if (enteredCode.Length < correctCode.Length)
+            {
+                enteredCode += digit; // Append the digit to the entered code
+                CheckInput(); // Check the input again
         }
+            else
+            {
+                // Incorrect input, reset entered code
+                enteredCode = "";
+                Debug.Log("Incorrect input. Retry.");
+            }
+        
     }
 
 }

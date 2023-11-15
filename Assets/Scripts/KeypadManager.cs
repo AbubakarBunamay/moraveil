@@ -4,57 +4,81 @@ using UnityEngine;
 
 public class KeypadManager : MonoBehaviour
 {
-    public string correctCode = "1234";
-
-
-    private bool isCorrect = false;
-    private bool isPushed = false;
-
-
-    private string enteredCode = "";
+    private bool isPushed = false; // Track whether a button is currently pushed
+    private Vector3[] initialPositions; // Array to store the initial positions of the buttons
+    private List<Transform> pushedButtons = new List<Transform>(); // List to store pushed buttons
+    public Transform[] buttons; // Array to hold the transforms of keypad buttons
 
     private void Start()
     {
-
+        // Cache the initial positions of the buttons
+        StoreInitialPositions();
     }
 
-    public void Interact()
+    // When interacting with a button
+    public void Interact(Transform button)
     {
-        if(!isPushed)
+        // Call methods to push and move the button
+        PushCube(button);
+        MoveButton(button);
+    }
+
+    // Method to push a button and update the entered code
+    private void PushCube(Transform button)
+    {
+        // Check if the button has not been pushed before
+        if (!pushedButtons.Contains(button))
         {
-            PushCube();
-            
+            pushedButtons.Add(button); // Add the button to the list of pushed buttons
         }
-    }
 
-    private void PushCube()
-    {
+        // Set the isPushed flag to true
         isPushed = true;
-    } 
-
-    public void AppendDigit ( string digit)
-    {
-        if (!isCorrect)
-        {
-            enteredCode += digit;
-            //CheckCode();
-        }
     }
 
-    public void CheckCode()
+    // Method to see if pushed
+    public bool IsPushed()
     {
-        if ( enteredCode.Length > correctCode.Length)
-        {
-            ResetKeypad();
-        }
+        return isPushed;
     }
-    
 
-    private void ResetKeypad ()
+    // Method to move a button
+    private void MoveButton(Transform button)
     {
+        // Move only the clicked button to the pushed position
+        button.Translate(Vector3.back * 0.2f);
+    }
+
+    public void ResetButtons()
+    {
+        // Reset all pushed buttons to their initial positions
+        foreach (Transform pushedButton in pushedButtons)
+        {
+            int index = System.Array.IndexOf(buttons, pushedButton);
+            if (index != -1) 
+
+            {
+                pushedButton.position = initialPositions[index]; // If the button is found, reset its position to the initial position
+            }
+        }
+
+        // Clear the list of pushed buttons
+        pushedButtons.Clear();
+
+        // Reset flags
         isPushed = false;
-        isCorrect = false;
-        enteredCode = "";
-        Debug.Log("Keypad reset");
     }
+
+    // Method to store the initial positions of the buttons
+    private void StoreInitialPositions()
+    {
+        // Store the initial positions of the buttons
+        initialPositions = new Vector3[buttons.Length];
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            initialPositions[i] = buttons[i].position; // Store the initial position as a Vector3 in each button's script
+
+        }
+    }
+
 }
