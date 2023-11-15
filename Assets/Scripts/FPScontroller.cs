@@ -61,6 +61,8 @@ public class FPSController : MonoBehaviour
 
     public GlowstickController glowstickController;
 
+    public FootstepSound footstepSound;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>(); // Get a reference to the CharacterController component.
@@ -68,6 +70,7 @@ public class FPSController : MonoBehaviour
         originalCenter = characterController.center;
 
         stressManager = FindObjectOfType<StressManager>();
+        footstepSound = FindObjectOfType<FootstepSound>();
 
         cameraTransform = Camera.main.transform;
 
@@ -99,6 +102,16 @@ public class FPSController : MonoBehaviour
             {
                 HandleSwimming();
             }
+
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            {
+                footstepSound.PlayFootstepSound("DefaultFootstep");
+            }
+            else
+            {
+                footstepSound.StopFootstepSound();
+            }
+
         }
 
         originalCameraRotation = cameraTransform.localRotation;

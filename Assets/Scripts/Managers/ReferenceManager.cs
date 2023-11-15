@@ -40,7 +40,6 @@ public class ReferenceManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
 
-        flashLightcontroller = GetComponent<FlashLightcontroller>();
     }
     
     public void ClearAllReference()
