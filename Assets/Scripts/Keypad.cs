@@ -5,7 +5,7 @@ using UnityEngine;
 public class Keypad : Interactable
 {
     public KeypadManager manager; // Reference to the KeypadManager script
-    private string correctCode = "1234"; // String to store the correct code
+    public string correctCode = "1234"; // String to store the correct code
     private string enteredCode = ""; // String to store the entered code
 
     // Method called when interacting with the keypad

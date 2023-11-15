@@ -1573,23 +1573,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: -0.074496984
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0.07300903
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1597,11 +1597,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1786,6 +1786,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 340810913476259080}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 323577859943302276}
     - targetCorrespondingSourceObject: {fileID: -3491894390173606202, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3948778390519591971}
@@ -1887,7 +1890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 0}
+  keyPad: {fileID: 3948778390519591971}
+  button: {fileID: 323577859943302276}
   digit: 6
 --- !u!1 &609965004195785779 stripped
 GameObject:
@@ -1927,7 +1931,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 0}
+  keyPad: {fileID: 3948778390519591971}
+  button: {fileID: 323577859943302276}
   digit: 8
 --- !u!1 &677850476328933678 stripped
 GameObject:
@@ -1967,13 +1972,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 0}
+  keyPad: {fileID: 3948778390519591971}
+  button: {fileID: 323577859943302276}
   digit: 7
 --- !u!4 &1129867830773510920 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1235771116441399732, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
   m_PrefabInstance: {fileID: 2200095855909274300}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1317626524832448493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
+  m_PrefabInstance: {fileID: 2200095855909274300}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &323577859943302276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317626524832448493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a040b0ce9482d0544ba462a4c0c8f997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 3948778390519591971}
 --- !u!4 &1413363680734307556 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 942669874932704856, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
@@ -2037,7 +2061,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 0}
+  keyPad: {fileID: 3948778390519591971}
+  button: {fileID: 323577859943302276}
   digit: 3
 --- !u!1 &4930432812352172518 stripped
 GameObject:
@@ -2077,7 +2102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 0}
+  keyPad: {fileID: 3948778390519591971}
+  button: {fileID: 323577859943302276}
   digit: 5
 --- !u!1 &5608006976458079124 stripped
 GameObject:
@@ -2117,7 +2143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 0}
+  keyPad: {fileID: 3948778390519591971}
+  button: {fileID: 323577859943302276}
   digit: 9
 --- !u!1 &5717443337975761465 stripped
 GameObject:
@@ -2157,7 +2184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 0}
+  keyPad: {fileID: 3948778390519591971}
+  button: {fileID: 323577859943302276}
   digit: 2
 --- !u!1 &5837231415687502970 stripped
 GameObject:
@@ -2176,7 +2204,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962d89fa7572af9468fe2f4b9f479784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correctCode: 1234
+  buttons:
+  - {fileID: 2639020159768665229}
+  - {fileID: 2035332323667817870}
+  - {fileID: 1413363680734307556}
+  - {fileID: 3485513088183423876}
+  - {fileID: 6318749541196146428}
+  - {fileID: 1129867830773510920}
+  - {fileID: 18883324927165207}
+  - {fileID: 3879522267607803789}
+  - {fileID: 9104258482383245177}
 --- !u!4 &6318749541196146428 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5276242653000803392, guid: 8d53519c33f6d2f4d9b1cfa6e0ca6018, type: 3}
@@ -2220,7 +2257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 0}
+  keyPad: {fileID: 3948778390519591971}
+  button: {fileID: 323577859943302276}
   digit: 4
 --- !u!1 &8323677969312328195 stripped
 GameObject:
@@ -2260,7 +2298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 0}
+  keyPad: {fileID: 3948778390519591971}
+  button: {fileID: 323577859943302276}
   digit: 1
 --- !u!4 &9104258482383245177 stripped
 Transform:
