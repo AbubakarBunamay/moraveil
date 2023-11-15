@@ -27,6 +27,9 @@ public class StressManager : MonoBehaviour
     private float maxShakeDuration; // Maximum camera shake duration.
 
     public Volume volume; // Reference to the Post-Processing Volume component
+
+    public bool isPlayerDead = false; // Variable to track player's life status.
+
     private void OnTriggerEnter(Collider other)
     {
         // Check if the player enters the trigger zone.
@@ -64,6 +67,13 @@ public class StressManager : MonoBehaviour
 
         // Updates the stress meter bar UI.
         stressMeterBar.fillAmount = currentStress / maxStress;
+
+        if (currentStress >= maxStress && !isPlayerDead)
+        {
+            // Notify the SceneManager that the player is dead.
+            FindObjectOfType<MoraveilSceneManager>().PlayerDied();
+            isPlayerDead = true;
+        }
 
     }
 
