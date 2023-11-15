@@ -18,9 +18,10 @@ public class KeypadManager : MonoBehaviour
     // When interacting with a button
     public void Interact(Transform button)
     {
-        // Call methods to push and move the button
+        // Call methods to push, move the button and play the button press sound
         PushCube(button);
         MoveButton(button);
+        PlayButtonSound(button);
     }
 
     // Method to push a button and update the entered code
@@ -81,4 +82,15 @@ public class KeypadManager : MonoBehaviour
         }
     }
 
+    // Method to play the button press sound
+    private void PlayButtonSound(Transform button)
+    {
+        // Check if the button has an AudioSource component attached
+        AudioSource audioSource = button.GetComponent<AudioSource>();
+        if (audioSource != null && audioSource.clip != null)
+        {
+            // Play the button press sound
+            audioSource.PlayOneShot(audioSource.clip);
+        }
+    }
 }
