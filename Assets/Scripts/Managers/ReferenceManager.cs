@@ -26,6 +26,7 @@ public class ReferenceManager : MonoBehaviour
     //References to go here
     public FlashLightcontroller flashLightcontroller;
     public FPSController FPSController;
+    public StressManager stressManager;
 
     private void Awake()
     {

@@ -14,8 +14,9 @@ public class InteractionManager : MonoBehaviour{
             foreach (RaycastHit hit in interactHits)
             {
                 HandleInteractable(hit.collider);
+                //Debug.Log("Hit: " + hit.collider.gameObject.name);
             }
-           
+
 
         }
     }
