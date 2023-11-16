@@ -32,6 +32,11 @@ public class SoundTrigger : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        audioSource.Stop();
+    }
 }
 
 //public class SoundTrigger : MonoBehaviour
