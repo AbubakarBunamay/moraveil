@@ -46,7 +46,7 @@ public class InteractionManager : MonoBehaviour{
             MapInteraction mapInteraction = collider.GetComponent<MapInteraction>();
             if (mapInteraction != null)
             {
-                mapInteraction.Disappear();
+                mapInteraction.InteractWithMap();
             }
         }
         else

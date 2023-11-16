@@ -38552,9 +38552,10 @@ GameObject:
   - component: {fileID: 1833414556}
   - component: {fileID: 1833414555}
   - component: {fileID: 1833414554}
-  m_Layer: 0
+  - component: {fileID: 1833414558}
+  m_Layer: 4
   m_Name: SceneWater
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38574,9 +38575,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -38645,6 +38646,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -4.321, y: 8.658, z: 0.255}
+--- !u!114 &1833414558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833414553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c90c8a36957b44792e14280fbd6fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterRiseSpeed: 0.8
 --- !u!1 &1838309036
 GameObject:
   m_ObjectHideFlags: 0
