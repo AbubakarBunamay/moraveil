@@ -43,9 +43,6 @@ public class EntityManager : MonoBehaviour
         {
             Debug.Log("Destination: " + navMeshAgent.destination);
 
-            // Calculate distance to the current waypoint
-            float distanceToWaypoint = Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position);
-
             // If the entity is close to the current waypoint, set the next waypoint as the destination
             if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
             {
