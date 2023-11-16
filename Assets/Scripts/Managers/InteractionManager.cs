@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 public class InteractionManager : MonoBehaviour{
 
@@ -39,6 +40,14 @@ public class InteractionManager : MonoBehaviour{
                 keypadButton.KeypadClicked();
             }
 
+        }
+        else if (collider.CompareTag("Map"))
+        {
+            MapInteraction mapInteraction = collider.GetComponent<MapInteraction>();
+            if (mapInteraction != null)
+            {
+                mapInteraction.Disappear();
+            }
         }
         else
         {
