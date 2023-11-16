@@ -18,13 +18,17 @@ public class RoomTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        // Stop the current audio before playing the new one.
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
         if (!hasPlayed || !playOnce)
         {
             // Check if the object entering the trigger area has a specific tag (in this case, "Player").
             if (other.CompareTag("Player"))
             {
-                // Stop the current audio before playing the new one.
-                audioSource.Stop();
 
                 // Set the AudioClip for the AudioSource and play it.
                 audioSource.clip = soundToPlay;
