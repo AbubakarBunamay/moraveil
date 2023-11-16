@@ -29,6 +29,8 @@ public class FPSController : MonoBehaviour
     public float minFloatOffset = 1.0f; // Minimum allowed float offset
     public LayerMask waterLayerMask; // Water Layer 
 
+    [Header("Audio")]
+    public AudioSource waterSound;
 
     [Header("Jumping")]
     public float jumpHeight = 1f; // Height of the character's jump.
@@ -505,6 +507,10 @@ public class FPSController : MonoBehaviour
             isCameraFloating = true;
             Debug.Log("Got into Water");
             glowstickController.SetInWater(true);
+            if (!waterSound.isPlaying)
+            {
+                waterSound.Play();
+            }
         }
     }
 
@@ -517,6 +523,12 @@ public class FPSController : MonoBehaviour
             isCameraFloating = false;
             Debug.Log("Out of Water");
             glowstickController.SetInWater(false);
+
+            // Stop water sound if it's playing
+            if (waterSound.isPlaying)
+            {
+                waterSound.Stop();
+            }
         }
     }
 }
