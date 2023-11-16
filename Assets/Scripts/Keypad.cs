@@ -7,6 +7,8 @@ public class Keypad : Interactable
     public KeypadManager manager; // Reference to the KeypadManager script
     public string correctCode = "1234"; // String to store the correct code
     private string enteredCode = ""; // String to store the entered code
+    public GameObject Door; // Reference to the game object to move
+
 
     // Method called when interacting with the keypad
     public override void Interact()
@@ -31,6 +33,12 @@ public class Keypad : Interactable
 
                     // Reset the buttons in the KeypadManager
                     manager.ResetButtons();
+
+                    // Move the game object up (adjust the value based on your needs)
+                    if (Door != null)
+                    {
+                        Door.transform.Translate(Vector3.up * 10f);
+                    }
                 }
                 else
                 {

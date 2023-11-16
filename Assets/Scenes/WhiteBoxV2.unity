@@ -5322,6 +5322,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7816918368961912124, guid: 3c3a609265a3a5d4cb4fb449a3e2d84a, type: 3}
+--- !u!1 &412954674 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1899466796152337188, guid: f548320e96380dc4caaa9589d240af1e, type: 3}
+  m_PrefabInstance: {fileID: 588001293}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &414670279
 GameObject:
   m_ObjectHideFlags: 0
@@ -16700,7 +16705,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e07389548bbed864f842a6560725dda4, type: 2}
     - target: {fileID: 919132149155446097, guid: f548320e96380dc4caaa9589d240af1e, type: 3}
       propertyPath: m_Name
-      value: keypadDoor
+      value: LoveRoomDoor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17122,9 +17127,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 323577859943302276, guid: e4d3e2c69594ce448abfc1f138ae06b0, type: 3}
+      propertyPath: Door
+      value: 
+      objectReference: {fileID: 412954674}
     - target: {fileID: 1317626524832448493, guid: e4d3e2c69594ce448abfc1f138ae06b0, type: 3}
       propertyPath: m_Name
-      value: Keypad
+      value: LoveRoomKeypad
       objectReference: {fileID: 0}
     - target: {fileID: 1802274359972554071, guid: e4d3e2c69594ce448abfc1f138ae06b0, type: 3}
       propertyPath: m_LocalScale.x
@@ -20621,6 +20630,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1554929162}
     m_Modifications:
+    - target: {fileID: 23984665146414391, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -33.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23984665146414391, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -12.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 23984665146414391, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 91.5
+      objectReference: {fileID: 0}
     - target: {fileID: 237737970726586985, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -23482,7 +23503,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 628ecaabdf402f54aa314d5f866b7818, type: 2}
     - target: {fileID: 919132149155446097, guid: f548320e96380dc4caaa9589d240af1e, type: 3}
       propertyPath: m_Name
-      value: keypadDoor (1)
+      value: MapRoomDoor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25211,6 +25232,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5664338228449002960, guid: 16ebe47e4bf051b46ae2e509b2ef5c95, type: 3}
+--- !u!1 &980252604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1899466796152337188, guid: f548320e96380dc4caaa9589d240af1e, type: 3}
+  m_PrefabInstance: {fileID: 880903687}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &981627942
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34991,9 +35017,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 323577859943302276, guid: e4d3e2c69594ce448abfc1f138ae06b0, type: 3}
+      propertyPath: Door
+      value: 
+      objectReference: {fileID: 980252604}
     - target: {fileID: 1317626524832448493, guid: e4d3e2c69594ce448abfc1f138ae06b0, type: 3}
       propertyPath: m_Name
-      value: Keypad (1)
+      value: MapRoomKeypad
       objectReference: {fileID: 0}
     - target: {fileID: 1802274359972554071, guid: e4d3e2c69594ce448abfc1f138ae06b0, type: 3}
       propertyPath: m_LocalScale.x
