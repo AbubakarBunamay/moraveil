@@ -23,6 +23,9 @@ public class RoomTrigger : MonoBehaviour
             // Check if the object entering the trigger area has a specific tag (in this case, "Player").
             if (other.CompareTag("Player"))
             {
+                // Stop the current audio before playing the new one.
+                audioSource.Stop();
+
                 // Set the AudioClip for the AudioSource and play it.
                 audioSource.clip = soundToPlay;
                 audioSource.Play();
