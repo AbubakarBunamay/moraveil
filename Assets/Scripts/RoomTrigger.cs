@@ -6,36 +6,38 @@ public class RoomTrigger : MonoBehaviour
 {
     public AudioClip soundToPlay;      // The audio clip to play when triggered.
     private AudioSource audioSource;   // Reference to the AudioSource component attached to the GameObject.
-    public bool playOnce = true;       // Should the sound be played only once when triggered?
+    private static AudioSource currentlyPlaying;  // Static reference to the currently playing audio source.
 
-    private bool hasPlayed = false;    // Tracks whether the sound has been played.
 
     void Start()
     {
         // Get the AudioSource component attached to this GameObject.
         audioSource = GetComponent<AudioSource>();
+
+        // Set the currentlyPlaying to the audioSource of this instance.
+        currentlyPlaying = audioSource;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // Stop the current audio before playing the new one.
-        if (audioSource.isPlaying)
+        // Check if the object entering the trigger area has a specific tag (in this case, "Player").
+        if (other.CompareTag("Player"))
         {
-            audioSource.Stop();
-        }
-
-        if (!hasPlayed || !playOnce)
-        {
-            // Check if the object entering the trigger area has a specific tag (in this case, "Player").
-            if (other.CompareTag("Player"))
+            // Check if the audio is not already playing before starting it.
+            if (currentlyPlaying != audioSource || !audioSource.isPlaying)
             {
+                // Stop the currently playing audio source (if any).
+                if (currentlyPlaying != null && currentlyPlaying.isPlaying)
+                {
+                    currentlyPlaying.Stop();
+                }
 
                 // Set the AudioClip for the AudioSource and play it.
                 audioSource.clip = soundToPlay;
                 audioSource.Play();
 
-                // Mark that the sound has been played.
-                hasPlayed = true;
+                // Update the currently playing reference.
+                currentlyPlaying = audioSource;
             }
         }
     }
