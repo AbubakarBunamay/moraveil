@@ -37,7 +37,7 @@ public class Keypad : Interactable
                     // Move the game object up (adjust the value based on your needs)
                     if (Door != null)
                     {
-                        Door.transform.Translate(Vector3.up * 10f);
+                        Door.transform.Translate(Vector3.up * 10f * Time.deltaTime);
                     }
                 }
                 else
