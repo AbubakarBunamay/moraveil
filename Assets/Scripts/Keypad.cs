@@ -5,7 +5,7 @@ using UnityEngine;
 public class Keypad : Interactable
 {
     public KeypadManager manager; // Reference to the KeypadManager script
-    public string correctCode = "1234"; // String to store the correct code
+    public string correctCode = ""; // String to store the correct code
     private string enteredCode = ""; // String to store the entered code
     public GameObject Door; // Reference to the game object to move
 
