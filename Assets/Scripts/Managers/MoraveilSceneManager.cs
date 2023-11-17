@@ -1,79 +1,40 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MoraveilSceneManager : MonoBehaviour
 {
     public static bool isGamePaused = false;
-    public GameObject pauseMenuUI;
-    public GameObject restartMenuUI;
-    public GameObject startScreenUI;
-    public GameObject HUD;
-    private bool isPlayerDead = false;
+    public GameObject pauseMenuUI; // Assign the pause menu UI in the Inspector.
+    public GameObject restartMenuUI; // Assign the restart menu UI in the Inspector.
+    public GameObject HUD; // Assign the HUD in the Inspector.
+    private bool isPlayerDead = false; // New variable to track player's life status.
+
 
     private void Start()
     {
-        // Make sure the pause menu
+        // Make sure the pause menu is initially hidden.
         pauseMenuUI.SetActive(false);
         restartMenuUI.SetActive(false);
 
-        // Show the start screen UI when the game starts.
-        startScreenUI.SetActive(true);
-
-        // Unlock the cursor when the start screen is shown.
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
-        // Pause the game when the start screen is shown.
-        Time.timeScale = 0f;
-        isGamePaused = true;
-
-        // Pause all audio.
-        AudioListener.pause = true;
-
-        // Hide the HUD when the start screen is shown.
-        HUD.SetActive(false);
 
     }
 
     private void Update()
     {
-        if (!startScreenUI.activeSelf) // Check if the start screen is not active.
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (isGamePaused)
             {
-                if (isGamePaused)
-                {
-                    ResumeGame();
-                }
-                else
-                {
-                    PauseGame();
-                }
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
             }
         }
-    }
-
-
-    public void StartGame()
-    {
-        // Lock the cursor.
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        // Unpause the game.
-        Time.timeScale = 1f;
-        isGamePaused = false;
-
-        // Unpause all audio.
-        AudioListener.pause = false;
-
-        // Show the HUD.
-        HUD.SetActive(true);
-
-        // Hide the start screen UI.
-        startScreenUI.SetActive(false);
-
     }
 
     public void PauseGame()
@@ -109,7 +70,6 @@ public class MoraveilSceneManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
     public void QuitGame()
     {
         Debug.Log("Game Exiting");
@@ -166,17 +126,16 @@ public class MoraveilSceneManager : MonoBehaviour
         Cursor.visible = false;
     }
 
+
     public void RestartGame()
     {
-        if (!startScreenUI.activeSelf) // Check if the start screen is not active.
-        {
-            HideRestartPrompt(); // Hide the restart UI before restarting the game.
+        HideRestartPrompt(); // Hide the restart UI before restarting the game.
 
-            // Reset variables and state
-            isPlayerDead = false;
+        // Reset variables and state
+        isPlayerDead = false;
 
-            // Reload the scene
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        // Reload the scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
 }
