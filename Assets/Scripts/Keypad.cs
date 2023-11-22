@@ -31,9 +31,6 @@ public class Keypad : Interactable
                     // Output a debug message indicating the correct password
                     Debug.Log("Password correct!");
 
-                    // Reset the buttons in the KeypadManager
-                    manager.ResetButtons();
-
                     // Start the coroutine for gradually opening the door
                     if (Door != null)
                     {
