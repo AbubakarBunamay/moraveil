@@ -419,25 +419,6 @@ public class FPSController : MonoBehaviour
     }
 
 
-    // Simulate floating on when on water
-    private void CameraFloatEffect()
-    {
-
-        // Calculate the float offset based on time.
-        float floatOffset = Mathf.Sin(Time.time * camFrequency) * camAmplitude;
-
-        // Clamp the float offset to stay within the defined range.
-        floatOffset = Mathf.Clamp(floatOffset, minFloatOffset, maxFloatOffset);
-
-        // Apply the float offset to the camera's position.
-        Vector3 cameraPosition = Camera.main.transform.position;
-        cameraPosition.y += floatOffset;
-
-        // Update the camera's position.
-        Camera.main.transform.position = cameraPosition;
-    }
-
-
     // This checks if the player is currently falling and triggers stress
     private void CheckFalls()
     {
