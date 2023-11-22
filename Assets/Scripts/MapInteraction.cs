@@ -9,19 +9,6 @@ public class MapInteraction : MonoBehaviour
     public void InteractWithMap()
     {
         Disappear();
-
-        // Get the FloodObjectMovement script from floodObject
-        FloodWater floodWater = floodObject.GetComponent<FloodWater>();
-
-        if (floodWater != null)
-        {
-            // Start flooding in the FloodObjectMovement script
-            floodWater.StartFlooding();
-        }
-        else
-        {
-            Debug.LogError("FloodObjectMovement script not found on the floodObject.");
-        }
     }
 
     private void Disappear()
