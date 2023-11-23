@@ -17,17 +17,10 @@ public class FPSController : MonoBehaviour
     public float gravity = 9.8f; // Gravity force applied to the character.
     public Image crouchIcon; // Reference to the UI Image for the crouch icon
 
-    [Header("Swimming")]
-    public float swimSpeed = 5f; // Speed of character while swimming.
-    public float swimRotationSpeed = 2f; // Rotation speed while swimming.
-    public float waterGravity = 9.81f; // Gravity when underwater.
-    public bool isUnderwater = false; // Flag indicating if the character is underwater.
-    private Vector3 swimmingDirection; // Direction of swimming.
-    public float camAmplitude = 0.1f; // Adjust as needed.
-    public float camFrequency = 1.0f; // Adjust as needed.
-    public float maxFloatOffset = 0.1f; // Maximum allowed float offset
-    public float minFloatOffset = 1.0f; // Minimum allowed float offset
-    public LayerMask waterLayerMask; // Water Layer 
+    [Header("Walking on Water")]
+    public float walkOnWaterSpeed = 2.5f; // Adjust the speed as needed
+    public float waterRunningSpeed = 5f; // Adjust the speed as needed
+    private bool isWalkingOnWater = false; // Flag indicating whether the character is walking on water.
 
     [Header("Audio")]
     public AudioSource waterSound;
@@ -41,7 +34,6 @@ public class FPSController : MonoBehaviour
 
     [Header("Stress")]
     public StressManager stressManager; // Reference to the StressManager script.
-    private float timeUnderwater = 0.0f; // Time spent underwater
     public float swimmingStressDelay = 2.0f; // Delay Swim Stress
     private float runTimer = 0f; // Timer to track how long the player has been running.
     public float maxRunTime = 5f; // Maximum allowed running time before triggering stress.
@@ -58,8 +50,6 @@ public class FPSController : MonoBehaviour
 
     private Transform cameraTransform;
     private Quaternion originalCameraRotation;
-
-    private bool isCameraFloating = false;
 
     public GlowstickController glowstickController;
 
@@ -98,12 +88,6 @@ public class FPSController : MonoBehaviour
             //Cursor Locked
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-
-            // Check if underwater 
-            if (isUnderwater)
-            {
-                HandleSwimming();
-            }
 
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
@@ -153,9 +137,8 @@ public class FPSController : MonoBehaviour
         // Calculate the movement direction based on camera orientation.
         Vector3 moveDirection = (cameraForward * vertical + cameraRight * horizontal).normalized;
 
-        // Calculate the movement speed based on whether the character is running or walking.
-        float moveSpeed = isRunning ? runningSpeed : movementSpeed;
-
+        // Calculate the movement speed based on whether the character is running, walking, or walking on water.
+        float moveSpeed = isRunning ? runningSpeed : (isWalkingOnWater ? walkOnWaterSpeed : movementSpeed);
 
         // Apply movement speed to the movement direction.
         Vector3 move = moveDirection * moveSpeed;
@@ -188,7 +171,10 @@ public class FPSController : MonoBehaviour
         if (isRunning)
         {
             runTimer += Time.deltaTime;
-            runningSpeed = 10f;
+
+            // Set running speed based on whether the player is on water or not
+            runningSpeed = isWalkingOnWater ? waterRunningSpeed : runningSpeed;
+
             // If the player has been running for longer than the allowed time, trigger stress.
             if (runTimer >= maxRunTime)
             {
@@ -199,7 +185,8 @@ public class FPSController : MonoBehaviour
         }
         else
         {
-            runningSpeed = 5f;
+            runningSpeed = isWalkingOnWater ? walkOnWaterSpeed : movementSpeed;
+
             // If the player stops running and stress is at 0, reset the run timer.
             if (stressManager.currentStress == 0f)
             {
@@ -289,14 +276,7 @@ public class FPSController : MonoBehaviour
     // Applies gravity force when the character is in the air.
     private void ApplyGravity()
     {
-        if (!isUnderwater)
-        {
-            verticalVelocity -= gravity * Time.deltaTime; // Apply gravity force when not swimming.
-        }
-        else
-        {
-            verticalVelocity = 0f; // Cancel gravity when swimming.
-        }
+            verticalVelocity -= gravity * Time.deltaTime; 
     }
 
     // Perform a jump or double jump if conditions are met..
@@ -308,114 +288,6 @@ public class FPSController : MonoBehaviour
             isJumping = true; // Set jumping flag for double jump.
             jumpsPerformed++; // Increment jump count for double jump.
         }
-    }
-
-    /*
-     * 
-     * SWIMMING
-     * 
-     */
-    private void HandleSwimming()
-    {
-        if (isUnderwater)
-        {
-            // Get input for horizontal and vertical movement.
-            float swimHorizontal = Input.GetAxis("Horizontal");
-            float swimVertical = Input.GetAxis("Vertical");
-
-            // Swim Controls
-            Vector3 swimDirection = Camera.main.transform.forward * swimVertical + Camera.main.transform.right * swimHorizontal;
-
-            // Modify swimmingDirection to include vertical movement.
-            swimmingDirection = swimDirection.normalized * swimSpeed;
-
-            // Calculate the imaginary dot between the camera's forward direction and the world up vector.
-            float camDot = Vector3.Dot(Camera.main.transform.forward, Vector3.up);
-
-            // Swim Up when looking up 
-            if (camDot > 0.5f || Input.GetKey(KeyCode.Space)) 
-            {
-                swimmingDirection.y = -waterGravity * Time.deltaTime;
-                Debug.Log("Swim UP");
-
-            }
-            // Swim Down when looking down
-            else if (camDot < -0.5f || Input.GetKey(KeyCode.LeftControl)) 
-            {
-                swimmingDirection.y = waterGravity * Time.deltaTime;
-                Debug.Log("Swim DOWN");
-
-            }
-            else
-            {
-                swimmingDirection.y = 0f; // Neutralize vertical movement when not looking up or down.
-            }
-
-
-            Camera.main.transform.Rotate(Vector3.up * swimHorizontal * swimRotationSpeed);
-
-
-            /*if (isCameraFloating)
-            {
-                CameraFloatEffect(); // Camera Float Effect
-            }*/
-
-            //Swimming Stress Trigger
-
-            // Get the current water level dynamically.
-            float currentWaterLevel = GetWaterLevel(); // Implement GetWaterLevel based on your setup.
-
-
-            timeUnderwater += Time.deltaTime; // Increase the time spent underwater while the player is underwater.
-
-
-            if (timeUnderwater >= swimmingStressDelay && transform.position.y > currentWaterLevel)
-            {
-                // Increase stress gradually based on the time spent underwater.
-                stressManager.IncreaseStress(-Time.deltaTime * swimmingStressIncreaseRate);
-            }
-            else
-            {
-                // If the player is underwater, increase stress gradually based on the time spent underwater.
-                stressManager.IncreaseStress(Time.deltaTime * swimmingStressIncreaseRate);
-            }
-
-        }
-        else
-        {
-            // If the player is not in the water, set the swimmingDirection to zero to stop movement.
-            swimmingDirection = Vector3.zero;
-
-            // If the stress is at zero, reset the swim timer.
-            if (stressManager.currentStress == 0f)
-            {
-                // Reset the time spent underwater when the player is not underwater.
-                timeUnderwater = 0.0f;
-            }
-
-        }
-
-        characterController.Move(swimmingDirection * Time.deltaTime);
-    }
-
-    //Geting Water level
-    private float GetWaterLevel()
-    {
-        // Create a ray starting from a point above the player's position and pointing downwards.
-        Ray ray = new Ray(transform.position + Vector3.up * 10f, Vector3.down);
-
-        // Set the maximum distance the ray can travel.
-        float raycastDistance = 20f;
-
-        // Check if the ray hits anything on the water layer.
-        if (Physics.Raycast(ray, out RaycastHit waterhit, raycastDistance, waterLayerMask))
-        {
-            // If the ray hits, return the y-coordinate of the hit point.
-            return waterhit.point.y;
-        }
-
-        // If the ray doesn't hit anything, return a default value (float.MinValue).
-        return float.MinValue;
     }
 
 
@@ -484,9 +356,8 @@ public class FPSController : MonoBehaviour
         //Swimming Trigger
         if (other.CompareTag("Water"))
         {
-            isUnderwater = true;
-            isCameraFloating = true;
-            Debug.Log("Got into Water");
+            isWalkingOnWater = true; // Set the flag when entering water
+            Debug.Log("Walking on Water");
             glowstickController.SetInWater(true);
             if (!waterSound.isPlaying)
             {
@@ -500,8 +371,7 @@ public class FPSController : MonoBehaviour
         //Swimming Trigger
         if (other.CompareTag("Water"))
         {
-            isUnderwater = false;
-            isCameraFloating = false;
+            isWalkingOnWater = false; // Set the flag when entering water
             Debug.Log("Out of Water");
             glowstickController.SetInWater(false);
 
