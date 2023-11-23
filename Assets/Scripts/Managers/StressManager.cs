@@ -162,9 +162,12 @@ public class StressManager : MonoBehaviour
 
     public void DecreaseStressTrigger()
     {
-        currentStress -= stressDecreaseRate * Time.deltaTime;
-        currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
-        Debug.Log("Decreasing stress: " + currentStress);
+        if (currentStress > 0)
+        {
+            currentStress -= stressDecreaseRate * Time.deltaTime;
+            currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
+            Debug.Log("Decreasing stress: " + currentStress);
+        }
     }
 
     public void ResetStressEffects()
