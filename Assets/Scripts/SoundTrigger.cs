@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SoundTrigger : MonoBehaviour
@@ -9,11 +10,22 @@ public class SoundTrigger : MonoBehaviour
     public bool playOnce = true;       // Should the sound be played only once when triggered?
 
     private bool hasPlayed = false;    // Tracks whether the sound has been played.
+    private SubtitleManager subtitleManager;
+    public string subtitleText;
+    public float duration;
 
     void Start()
     {
         // Get the AudioSource component attached to this GameObject.
         audioSource = GetComponent<AudioSource>();
+
+        // Find the SubtitleManager in the scene
+        subtitleManager = GameObject.FindObjectOfType<SubtitleManager>();
+
+        if (subtitleManager == null)
+        {
+            Debug.LogError("SubtitleManager not found in the scene");
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -26,7 +38,7 @@ public class SoundTrigger : MonoBehaviour
                 // Set the AudioClip for the AudioSource and play it.
                 audioSource.clip = soundToPlay;
                 audioSource.Play();
-
+                subtitleManager.ShowSubtitle(subtitleText, duration);
                 // Mark that the sound has been played.
                 hasPlayed = true;
             }
