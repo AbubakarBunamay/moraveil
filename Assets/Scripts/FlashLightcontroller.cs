@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FlashLightcontroller : MonoBehaviour
 {
     public Light flashLight;  // Reference to a Light component for the flashlight.
-    private bool isFlashlightOn = false;  // A boolean flag to track if the flashlight is on or off.
+    public bool isFlashlightOn = false;  // A boolean flag to track if the flashlight is on or off.
     private Transform playerCamera;  // Reference to the player's camera.
 
     public float raycastDistance = 10f;  // The maximum distance for raycasting.
