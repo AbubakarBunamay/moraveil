@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal; 
@@ -29,6 +30,12 @@ public class StressManager : MonoBehaviour
     public Volume volume; // Reference to the Post-Processing Volume component
 
     public bool isPlayerDead = false; // Variable to track player's life status.
+
+    private float stunCooldown = 0f; // Cooldown for the stun effect.
+
+    public float stunDuration = 5f; // Duration of the stun effect in seconds.
+
+    private bool isStunned = false; // Flag to indicate whether the player is currently stunned.
 
     private void OnTriggerEnter(Collider other)
     {
@@ -70,9 +77,36 @@ public class StressManager : MonoBehaviour
 
         if (currentStress >= maxStress && !isPlayerDead)
         {
-            // Notify the SceneManager that the player is dead.
-            FindObjectOfType<MoraveilSceneManager>().PlayerDied();
-            isPlayerDead = true;
+            // Check if the stun cooldown has passed.
+            if (stunCooldown <= 0f)
+            {
+                // Trigger stun effect.
+                StunPlayer();
+                stunCooldown = stunDuration; // Set the cooldown for the stun effect.
+            }
+        }
+
+        // Update stun cooldown timer.
+        if (stunCooldown > 0f)
+        {
+            stunCooldown -= Time.deltaTime;
+        }
+
+        if (currentStress >= maxStress)
+        {
+            // Reset stress after triggering stun.
+            currentStress = 0f;
+        }
+
+        if (isStunned)
+        {
+            // Keep stress at max while stunned.
+            currentStress = maxStress;
+        }
+        else
+        {
+            // Gradually decrease stress when not stunned.
+            currentStress = Mathf.Clamp(currentStress - stressDecreaseRate * Time.deltaTime, 0f, maxStress);
         }
 
     }
@@ -205,5 +239,42 @@ public class StressManager : MonoBehaviour
             }
         }
     }
+
+    public void StunPlayer()
+    {
+        StartCoroutine(StunCoroutine());
+        // Set the cooldown for the stun effect.
+        stunCooldown = stunDuration;
+    }
+
+    private IEnumerator StunCoroutine()
+    {
+        // Set the flag indicating that the player is stunned.
+        isStunned = true;
+
+        Debug.Log("Player Stunned!");
+
+        // Disabling Character Movement
+        FPSController playerMovement = FindObjectOfType<FPSController>();
+        if (playerMovement != null)
+        {
+            playerMovement.SetMovementEnabled(false);
+        }
+
+        // Wait for the stun duration.
+        yield return new WaitForSeconds(stunDuration);
+
+        // Re-enable player movement after the stun duration.
+        if (playerMovement != null)
+        {
+            playerMovement.SetMovementEnabled(true);
+        }
+
+        Debug.Log("Player Unstunned!");
+
+        // Reset the flag after the stun effect is over.
+        isStunned = false;
+    }
+
 
 }

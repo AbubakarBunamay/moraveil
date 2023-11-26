@@ -343,6 +343,10 @@ public class FPSController : MonoBehaviour
         }
     }
 
+    public void SetMovementEnabled(bool isEnabled)
+    {
+        characterController.enabled = isEnabled;
+    }
 
 
     /*
