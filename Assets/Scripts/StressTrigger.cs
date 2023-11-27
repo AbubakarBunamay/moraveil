@@ -21,15 +21,17 @@ public class StressTrigger : MonoBehaviour
         if (playerInsideTrigger)
         {
             // Update stress, trigger stress effects, and update UI.
-            stressManager.StressEffects();
             stressManager.IncreaseStressTrigger();
         }
         else
         {
             // Decrease stress continuously if the player is outside the trigger zone.
-            stressManager.ResetStressEffects();
             stressManager.DecreaseStressTrigger();
         }
+
+        // Always update stress effects and UI.
+        stressManager.StressEffects();
+        stressManager.ResetStressEffects();
 
     }
 

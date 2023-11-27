@@ -72,9 +72,6 @@ public class StressManager : MonoBehaviour
         //StressEffects();
         //IncreaseStressTrigger();
 
-        // Updates the stress meter bar UI.
-        stressMeterBar.fillAmount = currentStress / maxStress;
-
         if (currentStress >= maxStress && !isPlayerDead)
         {
             // Check if the stun cooldown has passed.
