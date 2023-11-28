@@ -12,7 +12,7 @@ public class FPSController : MonoBehaviour
 
     [Header("Movement")]
     public float movementSpeed = 5f; // Speed of character movement.
-    public float runningSpeed = 5f; // Speed of running Movement
+    public float runningSpeed = 10f; // Speed of running Movement
 
     public float gravity = 9.8f; // Gravity force applied to the character.
     public Image crouchIcon; // Reference to the UI Image for the crouch icon
@@ -54,6 +54,7 @@ public class FPSController : MonoBehaviour
     public GlowstickController glowstickController;
 
     public FootstepSound footstepSound;
+    private MouseHandler m_Handler;
 
     private void Start()
     {
@@ -63,6 +64,7 @@ public class FPSController : MonoBehaviour
 
         stressManager = FindObjectOfType<StressManager>();
         footstepSound = FindObjectOfType<FootstepSound>();
+        m_Handler = FindObjectOfType<MouseHandler>();
 
         cameraTransform = Camera.main.transform;
 
@@ -74,11 +76,12 @@ public class FPSController : MonoBehaviour
         // Check if the game is paused
         if (MoraveilSceneManager.isGamePaused)
         {
-            // Freeze the camera's rotation when paused
-            cameraTransform.localRotation = originalCameraRotation;
+            m_Handler.enabled= false;
         }
         else
         {
+            m_Handler.enabled = true;
+
             HandleMovement();
             HandleJump();
 
@@ -185,8 +188,6 @@ public class FPSController : MonoBehaviour
         }
         else
         {
-            runningSpeed = isWalkingOnWater ? walkOnWaterSpeed : movementSpeed;
-
             // If the player stops running and stress is at 0, reset the run timer.
             if (stressManager.currentStress == 0f)
             {
