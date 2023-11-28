@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MapInteraction : MonoBehaviour
 {
-    public GameObject floodObject; // Reference to the flood object
 
     public void InteractWithMap()
     {
