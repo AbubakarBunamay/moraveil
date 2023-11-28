@@ -57,6 +57,7 @@ public class StressManager : MonoBehaviour
     private void Start()
     {
         // Check if the Volume component is found
+        if(volume == null)
         volume = FindObjectOfType<Volume>();
 
         // Check if the CameraShakeManager reference is not set, then try to find it.
