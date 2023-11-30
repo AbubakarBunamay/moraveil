@@ -118,8 +118,8 @@ public class FPSController : MonoBehaviour
     {
 
         // Get input for horizontal and vertical movement.
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
 
         HandleCrouch(); // Handling Crouch 
         HandleRunning(); //Handling Running
