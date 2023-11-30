@@ -9,6 +9,8 @@ public class FlashLightcontroller : MonoBehaviour
     public bool isFlashlightOn = false;  // A boolean flag to track if the flashlight is on or off.
     private Transform playerCamera;  // Reference to the player's camera.
     public GlowstickController glowstickController; // Reference to the GlowstickController script.
+    public float bigCrystalMaxIntensity = 30f;
+    public float smallCrystalMaxIntensity = 20f;
 
 
     void Start()
@@ -44,7 +46,40 @@ public class FlashLightcontroller : MonoBehaviour
                 flashLight.enabled = false;
                 glowstickController.TurnOnGlowstick();
             }
+
+            // Shine Crystals when Flashlight Shun 
+            if (isFlashlightOn)
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(playerCamera.position, playerCamera.forward, out hit))
+                {
+                    if (hit.collider.CompareTag("BigCrystal"))
+                    {
+                        Light pointLight = hit.collider.GetComponentInChildren<Light>();
+                        if (pointLight != null)
+                        {
+                            IncreasePointLightIntensity(pointLight, bigCrystalMaxIntensity);
+                        }
+                    }
+                    else if (hit.collider.CompareTag("SmallCrystal"))
+                    {
+                        Light pointLight = hit.collider.GetComponentInChildren<Light>();
+                        if (pointLight != null)
+                        {
+                            IncreasePointLightIntensity(pointLight, smallCrystalMaxIntensity);
+                        }
+
+                    }
+                }
+            }
         }
+    }
+     private void IncreasePointLightIntensity(Light pointLight, float maxIntensity)
+    {
+        pointLight.intensity += 10f * Time.deltaTime;  // Increase the intensity of the point light.
+
+        // Clamp the intensity to the specified maximum value.
+        pointLight.intensity = Mathf.Clamp(pointLight.intensity, 0f, maxIntensity);
     }
 
     private void ToggleFlashlight()
