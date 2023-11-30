@@ -8,9 +8,8 @@ public class FlashLightcontroller : MonoBehaviour
     public Light flashLight;  // Reference to a Light component for the flashlight.
     public bool isFlashlightOn = false;  // A boolean flag to track if the flashlight is on or off.
     private Transform playerCamera;  // Reference to the player's camera.
-    public GlowstickController glowstickController; // Reference to the GlowstickController script.
-    public float bigCrystalMaxIntensity = 30f;
-    public float smallCrystalMaxIntensity = 20f;
+    public float bigCrystalMaxIntensity = 30f; // Max intensity the BigCrystal can shine when light shinned on
+    public float smallCrystalMaxIntensity = 20f; // Max Intensity the SmallCrystals can shine when lught shinned on
 
 
     void Start()
@@ -35,16 +34,6 @@ public class FlashLightcontroller : MonoBehaviour
             if (Input.GetMouseButtonDown(1))  // Check if the right mouse button is clicked.
             {
                 ToggleFlashlight();  // Toggle the flashlight on and off.
-                
-            }
-
-            // Check if the player is underwater and the glowstick controller is available.
-            if (glowstickController != null && glowstickController.isInWater)
-            {
-                // Turn off the flashlight and turn on the glowstick.
-                isFlashlightOn = false;
-                flashLight.enabled = false;
-                glowstickController.TurnOnGlowstick();
             }
 
             // Shine Crystals when Flashlight Shun 
@@ -53,20 +42,20 @@ public class FlashLightcontroller : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(playerCamera.position, playerCamera.forward, out hit))
                 {
-                    if (hit.collider.CompareTag("BigCrystal"))
+                    if (hit.collider.CompareTag("BigCrystal")) // Check if Big Crystal
                     {
-                        Light pointLight = hit.collider.GetComponentInChildren<Light>();
-                        if (pointLight != null)
+                        Light pointLight = hit.collider.GetComponentInChildren<Light>(); // Find the light component 
+                        if (pointLight != null) // Check if not null
                         {
-                            IncreasePointLightIntensity(pointLight, bigCrystalMaxIntensity);
+                            IncreasePointLightIntensity(pointLight, bigCrystalMaxIntensity); // Crystal glow 
                         }
                     }
-                    else if (hit.collider.CompareTag("SmallCrystal"))
+                    else if (hit.collider.CompareTag("SmallCrystal")) // Check if Small Crystal
                     {
-                        Light pointLight = hit.collider.GetComponentInChildren<Light>();
-                        if (pointLight != null)
+                        Light pointLight = hit.collider.GetComponentInChildren<Light>(); // Find the light component
+                        if (pointLight != null) // Check if not null
                         {
-                            IncreasePointLightIntensity(pointLight, smallCrystalMaxIntensity);
+                            IncreasePointLightIntensity(pointLight, smallCrystalMaxIntensity); // Crystal glow 
                         }
 
                     }
@@ -77,9 +66,7 @@ public class FlashLightcontroller : MonoBehaviour
      private void IncreasePointLightIntensity(Light pointLight, float maxIntensity)
     {
         pointLight.intensity += 10f * Time.deltaTime;  // Increase the intensity of the point light.
-
-        // Clamp the intensity to the specified maximum value.
-        pointLight.intensity = Mathf.Clamp(pointLight.intensity, 0f, maxIntensity);
+        pointLight.intensity = Mathf.Clamp(pointLight.intensity, 0f, maxIntensity);         // Clamp the intensity to the specified maximum value.
     }
 
     private void ToggleFlashlight()
