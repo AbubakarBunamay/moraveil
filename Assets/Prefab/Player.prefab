@@ -77,7 +77,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
+  m_Cookie: {fileID: 2800000, guid: cb48157dcc242a242babea797e94da00, type: 3}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 1
@@ -132,10 +132,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashLight: {fileID: 4309162000708614544}
-  raycastDistance: 10
-  targetColor: {r: 1, g: 0, b: 0, a: 1}
-  colorChangeDuration: 2
-  glowstickController: {fileID: 7457001500013815837}
+  isFlashlightOn: 0
+  bigCrystalMaxIntensity: 30
+  smallCrystalMaxIntensity: 20
 --- !u!1 &719990635276630203
 GameObject:
   m_ObjectHideFlags: 0
