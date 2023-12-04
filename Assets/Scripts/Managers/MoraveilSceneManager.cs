@@ -9,6 +9,7 @@ public class MoraveilSceneManager : MonoBehaviour
     public static bool isGamePaused = false;
     public GameObject pauseMenuUI; // Assign the pause menu UI in the Inspector.
     public GameObject restartMenuUI; // Assign the restart menu UI in the Inspector.
+    public GameObject settingsMenuUI; // Assign the restart menu UI in the Inspector.
     public GameObject HUD; // Assign the HUD in the Inspector.
     private bool isPlayerDead = false; // New variable to track player's life status.
 
@@ -18,7 +19,7 @@ public class MoraveilSceneManager : MonoBehaviour
         // Make sure the pause menu is initially hidden.
         pauseMenuUI.SetActive(false);
         restartMenuUI.SetActive(false);
-
+        settingsMenuUI.SetActive(false);
 
     }
 
@@ -52,6 +53,30 @@ public class MoraveilSceneManager : MonoBehaviour
         // Unlock and show the cursor when paused
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+    
+    public void SettingsUI()
+    {
+        pauseMenuUI.SetActive(false);
+        settingsMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        isGamePaused = true;
+
+        // Pause all audio
+        AudioListener.pause = true;
+
+        // Hide the HUD when the game is paused
+        HUD.SetActive(false);
+
+        // Unlock and show the cursor when paused
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void BackButtonSetting()
+    {
+        settingsMenuUI.SetActive(false);
+        pauseMenuUI.SetActive(true );
     }
 
     public void ResumeGame()
