@@ -11,8 +11,9 @@ public class MoraveilSceneManager : MonoBehaviour
     public GameObject pauseMenuUI; // Assign the pause menu UI in the Inspector.
     public GameObject restartMenuUI; // Assign the restart menu UI in the Inspector.
     public GameObject settingsMenuUI; // Assign the restart menu UI in the Inspector.
+    public GameObject startMenuUI; // Assign the restart menu UI in the Inspector.
     public GameObject HUD; // Assign the HUD in the Inspector.
-    private bool isPlayerDead = false; // New variable to track player's life status.
+    private bool isPlayerDead = false; // Variable to track player's life status.
 
     //Volume Sliders
     public Slider masterVolumeSlider;
@@ -25,6 +26,25 @@ public class MoraveilSceneManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         restartMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
+        StartMenu();
+    }
+    private void StartMenu()
+    {
+        // Pause the game
+        Time.timeScale = 0f;
+        isGamePaused = true;
+
+        // Pause all audio 
+        AudioListener.pause = true;
+
+        // Hide the HUD when the restart prompt is shown 
+        HUD.SetActive(false);
+
+        // Unlock and show the cursor when the restart prompt is shown.
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        
+        startMenuUI.SetActive(true);
     }
 
     private void Update()
@@ -126,14 +146,14 @@ public class MoraveilSceneManager : MonoBehaviour
         // Show the restart prompt UI.
         restartMenuUI.SetActive(true);
 
-        // Pause the game (optional: you may choose to let the game continue running).
+        // Pause the game.
         Time.timeScale = 0f;
         isGamePaused = true;
 
-        // Pause all audio (optional: you may choose to let the audio continue playing).
+        // Pause all audio.
         AudioListener.pause = true;
 
-        // Hide the HUD when the restart prompt is shown (optional).
+        // Hide the HUD when the restart prompt is shown.
         HUD.SetActive(false);
 
         // Unlock and show the cursor when the restart prompt is shown.
@@ -146,14 +166,14 @@ public class MoraveilSceneManager : MonoBehaviour
         // Hide the restart prompt UI.
         restartMenuUI.SetActive(false);
 
-        // Resume the game (optional: you may choose to let the game continue running).
+        // Resume the game
         Time.timeScale = 1f;
         isGamePaused = false;
 
-        // Resume all audio (optional: you may choose to let the audio continue playing).
+        // Resume all audio
         AudioListener.pause = false;
 
-        // Show the HUD when the restart prompt is hidden (optional).
+        // Show the HUD when the restart prompt is hidden 
         HUD.SetActive(true);
 
         // Lock and hide the cursor when the restart prompt is hidden.
@@ -191,5 +211,11 @@ public class MoraveilSceneManager : MonoBehaviour
     {
         SoundManager.instance.SetSFXVolume(volume);
         PlayerPrefs.SetFloat("SFXVolume", volume);
+    }
+    
+    public void StartGameButton()
+    { 
+        startMenuUI.SetActive(false); // Hide the start menu
+        ResumeGame(); // Start the game
     }
 }

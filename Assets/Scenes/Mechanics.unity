@@ -1208,10 +1208,10 @@ PrefabInstance:
     - target: {fileID: 1036136058607011202, guid: 6e92569efcf72944f8364a1b4dec095c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1853535468}
+      objectReference: {fileID: 1951869927}
     - target: {fileID: 1036136058607011202, guid: 6e92569efcf72944f8364a1b4dec095c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: StartGameButton
       objectReference: {fileID: 0}
     - target: {fileID: 1100386291944073016, guid: 6e92569efcf72944f8364a1b4dec095c, type: 3}
       propertyPath: m_Pivot.x
@@ -4783,11 +4783,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1474767801}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1853535468 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 621905656796668980, guid: 14374dcbb517a794582b5f6b699da85c, type: 3}
-  m_PrefabInstance: {fileID: 1951869925}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1899210405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5154,6 +5149,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1899210407}
     - target: {fileID: 5840000104735677814, guid: 14374dcbb517a794582b5f6b699da85c, type: 3}
+      propertyPath: startMenuUI
+      value: 
+      objectReference: {fileID: 1962842928}
+    - target: {fileID: 5840000104735677814, guid: 14374dcbb517a794582b5f6b699da85c, type: 3}
       propertyPath: restartMenuUI
       value: 
       objectReference: {fileID: 495257436}
@@ -5228,12 +5227,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5840000104735677814, guid: 14374dcbb517a794582b5f6b699da85c, type: 3}
   m_PrefabInstance: {fileID: 1951869925}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1853535468}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d293546e9d6e4b4a831ff26f78d8c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1962842928 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3988629011387818494, guid: 6e92569efcf72944f8364a1b4dec095c, type: 3}
+  m_PrefabInstance: {fileID: 489232236}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1971289453
 GameObject:
   m_ObjectHideFlags: 0
