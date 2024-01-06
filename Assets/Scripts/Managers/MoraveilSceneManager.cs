@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MoraveilSceneManager : MonoBehaviour
 {
@@ -13,14 +14,17 @@ public class MoraveilSceneManager : MonoBehaviour
     public GameObject HUD; // Assign the HUD in the Inspector.
     private bool isPlayerDead = false; // New variable to track player's life status.
 
-
+    //Volume Sliders
+    public Slider masterVolumeSlider;
+    public Slider musicVolumeSlider;
+    public Slider sfxVolumeSlider;
+    
     private void Start()
     {
-        // Make sure the pause menu is initially hidden.
+        // Make sure the menu is initially hidden.
         pauseMenuUI.SetActive(false);
         restartMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
-
     }
 
     private void Update()
@@ -28,8 +32,9 @@ public class MoraveilSceneManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isGamePaused)
-            {
-                ResumeGame();
+            {   
+                if(!settingsMenuUI.activeSelf)
+                    ResumeGame();
             }
             else
             {
@@ -71,6 +76,11 @@ public class MoraveilSceneManager : MonoBehaviour
         // Unlock and show the cursor when paused
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        
+        // Add listeners for volume sliders
+        masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
+        musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
+        sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
     }
 
     public void BackButtonSetting()
@@ -162,5 +172,24 @@ public class MoraveilSceneManager : MonoBehaviour
         // Reload the scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
+    }
+    
+    //Volume Sliders
+    public void SetMasterVolume(float volume)
+    {
+        SoundManager.instance.SetMasterVolume(volume);
+        PlayerPrefs.SetFloat("MasterVolume", volume);
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        SoundManager.instance.SetMusicVolume(volume);
+        PlayerPrefs.SetFloat("MusicVolume", volume);
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        SoundManager.instance.SetSFXVolume(volume);
+        PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 }
