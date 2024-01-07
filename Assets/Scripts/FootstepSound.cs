@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class FootstepSound : MonoBehaviour
 {
-    public AudioClip defaultFootstepSound;
-    public AudioClip grassFootstepSound;
-    public AudioClip waterFootstepSound;
+    public AudioClip defaultFootstepSound; // Default footstep Sound
+    public AudioClip grassFootstepSound; // Grass Footstep Sound
+    public AudioClip waterFootstepSound; // Water Footstep sound
 
-    private AudioSource audioSource;
+    private AudioSource audioSource; // Player Audio Source
 
     private void Start()
     {
@@ -16,7 +16,8 @@ public class FootstepSound : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
         }
     }
-
+    
+    // Play the foot step sounds
     public void PlayFootstepSound(string soundType)
     {
         if (!audioSource.isPlaying)  // Check if the audio source is not currently playing
@@ -33,7 +34,8 @@ public class FootstepSound : MonoBehaviour
             }
         }
     }
-
+    
+    // Play according to each terrain
     private AudioClip GetFootstepSound(string soundType)
     {
         switch (soundType)

@@ -10,15 +10,15 @@ public class MoraveilSceneManager : MonoBehaviour
     public static bool isGamePaused = false;
     public GameObject pauseMenuUI; // Assign the pause menu UI in the Inspector.
     public GameObject restartMenuUI; // Assign the restart menu UI in the Inspector.
-    public GameObject settingsMenuUI; // Assign the restart menu UI in the Inspector.
-    public GameObject startMenuUI; // Assign the restart menu UI in the Inspector.
+    public GameObject settingsMenuUI; // Assign the settings menu UI in the Inspector.
+    public GameObject startMenuUI; // Assign the start menu UI in the Inspector.
     public GameObject HUD; // Assign the HUD in the Inspector.
     private bool isPlayerDead = false; // Variable to track player's life status.
 
     //Volume Sliders
-    public Slider masterVolumeSlider;
-    public Slider musicVolumeSlider;
-    public Slider sfxVolumeSlider;
+    public Slider masterVolumeSlider; // Master Volume Slider
+    public Slider musicVolumeSlider; // Music Volume Slider
+    public Slider sfxVolumeSlider; // SFX Volume Slider
     
     private void Start()
     {
@@ -26,7 +26,10 @@ public class MoraveilSceneManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         restartMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
+        
+        //Game Starts with the Start menu which then launches player into the game
         StartMenu();
+        
     }
     private void StartMenu()
     {
@@ -213,6 +216,7 @@ public class MoraveilSceneManager : MonoBehaviour
         PlayerPrefs.SetFloat("SFXVolume", volume);
     }
     
+    // Start Button Action 
     public void StartGameButton()
     { 
         startMenuUI.SetActive(false); // Hide the start menu
