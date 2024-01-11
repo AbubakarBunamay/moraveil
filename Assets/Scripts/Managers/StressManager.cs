@@ -58,7 +58,7 @@ public class StressManager : MonoBehaviour
     {
         // Check if the Volume component is found
         if(volume == null)
-        volume = FindObjectOfType<Volume>();
+         volume = FindObjectOfType<Volume>();
 
         // Check if the CameraShakeManager reference is not set, then try to find it.
         if (shakeManager == null)
@@ -157,7 +157,8 @@ public class StressManager : MonoBehaviour
             stressCanvasGroup.alpha = 0f;
         }*/
     }
-
+    
+    // Increasing Stress Function
     public void IncreaseStress(float stressAmount)
     {
 
@@ -175,14 +176,16 @@ public class StressManager : MonoBehaviour
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
 
     }
-
+    
+    // Decreasing Stress Function
     public void DecreaseStress(float stressAmount)
     {
         currentStress -= stressDecreaseRate * Time.deltaTime;
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
         Debug.Log("Decreasing stress: " + currentStress);
     }
-
+    
+    // Stress Trigger Increase
     public void IncreaseStressTrigger()
     {
 
@@ -191,7 +194,8 @@ public class StressManager : MonoBehaviour
         Debug.Log("Increasing stress: " + currentStress);
 
     }
-
+    
+    //Stress Trigger Decrease
     public void DecreaseStressTrigger()
     {
         if (currentStress > 0)
@@ -201,7 +205,8 @@ public class StressManager : MonoBehaviour
             Debug.Log("Decreasing stress: " + currentStress);
         }
     }
-
+    
+    // Reset Stress Effects
     public void ResetStressEffects()
     {
         // Reset Vignette intensity
@@ -220,6 +225,7 @@ public class StressManager : MonoBehaviour
         }
     }
 
+    // Increase Safe Zone Stress ( Limits the Stress to n%)
     public void IncreaseSafezoneStress()
     {
         // Player is inside the trigger zone.
@@ -238,13 +244,15 @@ public class StressManager : MonoBehaviour
         }
     }
 
+    //Stun Player Function
     public void StunPlayer()
     {
         StartCoroutine(StunCoroutine());
         // Set the cooldown for the stun effect.
         stunCooldown = stunDuration;
     }
-
+    
+    // Stun Coroutine 
     private IEnumerator StunCoroutine()
     {
         // Set the flag indicating that the player is stunned.

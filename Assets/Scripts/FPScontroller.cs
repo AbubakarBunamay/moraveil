@@ -44,7 +44,7 @@ public class FPSController : MonoBehaviour
 
     private int jumpsPerformed = 0; // Number of jumps performed.
     private float verticalVelocity; // Vertical velocity of the character.
-    private bool isJumping = false; // Flag indicating whether the character is currently jumping.
+    public bool isJumping = false; // Flag indicating whether the character is currently jumping.
     private bool isCrouching = false; //Flag indicating whether the character is currently crouching
     public bool isRunning = false; // Flag Indcating whether the character is running
 
@@ -54,7 +54,7 @@ public class FPSController : MonoBehaviour
     public GlowstickController glowstickController;
 
     public FootstepSound footstepSound;
-    private MouseHandler m_Handler;
+    private MouseHandler mHandler;
 
     private void Start()
     {
@@ -64,7 +64,7 @@ public class FPSController : MonoBehaviour
 
         stressManager = FindObjectOfType<StressManager>();
         footstepSound = FindObjectOfType<FootstepSound>();
-        m_Handler = FindObjectOfType<MouseHandler>();
+        mHandler = FindObjectOfType<MouseHandler>();
 
         cameraTransform = Camera.main.transform;
 
@@ -76,11 +76,11 @@ public class FPSController : MonoBehaviour
         // Check if the game is paused
         if (MoraveilSceneManager.isGamePaused)
         {
-            m_Handler.enabled= false;
+            mHandler.enabled= false;
         }
         else
         {
-            m_Handler.enabled = true;
+            mHandler.enabled = true;
 
             HandleMovement();
             HandleJump();
@@ -253,15 +253,16 @@ public class FPSController : MonoBehaviour
             ResetJump(); // Reset jump-related variables when grounded.
             maxJumpHeight = transform.position.y; // Reset maxJumpHeight when grounded.
         }
+        
+        //If Walking on water then jump less high
+        maxJumpHeight = isWalkingOnWater ? transform.position.y / 2 : maxJumpHeight;
 
         ApplyGravity(); // Apply gravity force when in the air.
         Jump(); // Perform a jump or double jump if conditions are met.
 
         // Update the maxJumpHeight during the jump.
-        if (transform.position.y > maxJumpHeight)
-        {
-            maxJumpHeight = transform.position.y;
-        }
+        maxJumpHeight = transform.position.y > maxJumpHeight ? transform.position.y : maxJumpHeight;
+
 
     }
 

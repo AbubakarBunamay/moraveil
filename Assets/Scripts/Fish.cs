@@ -9,7 +9,7 @@ public class Fish : MonoBehaviour
     public Transform[] waypoints;              // Array of waypoints for the fish to follow
     private int currentWaypointIndex = 0;      // Index to keep track of the current waypoint
 
-    public float rotationSpeed = 5f;           // Rotation speed for the fish (adjustable)
+    public float rotationSpeed = 5f;           // Rotation speed for the fish
 
     private void Start()
     {

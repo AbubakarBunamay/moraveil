@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LilyPadTrigger : MonoBehaviour
 {
-    public LilySoundManager lilySoundManager;
-    private AudioSource audioSource;
+    public LilySoundManager lilySoundManager; // Referencing LilySoundManager 
+    private AudioSource audioSource; // Audio Source of player
 
     private void Start()
     {

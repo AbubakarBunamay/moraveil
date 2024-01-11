@@ -44,7 +44,7 @@ public class EntityManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("There no waypoints set");
+            Debug.Log("There no waypoints set"); // If no waypoints have been add (Error Handler)
         }
     }
 
@@ -85,8 +85,8 @@ public class EntityManager : MonoBehaviour
             currentState = EntityState.Chasing;
             chaseTimer = 0.0f;
         }
-
-       // EntityStress();
+        
+        // EntityStress();
     }
 
     private bool IsPlayerInTriggerDistance()

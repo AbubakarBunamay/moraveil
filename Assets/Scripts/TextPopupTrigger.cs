@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class TextPopupManager : MonoBehaviour
+public class TextPopupTrigger : MonoBehaviour
 {
     public TextMeshProUGUI popupText; // Reference to the TextMeshProUGUI component
     public string message = "It Works!";

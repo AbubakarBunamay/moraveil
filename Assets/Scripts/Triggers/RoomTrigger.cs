@@ -20,7 +20,6 @@ public class RoomTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Check if the object entering the trigger area has a specific tag (in this case, "Player").
         if (other.CompareTag("Player"))
         {
             // Check if the audio is not already playing before starting it.

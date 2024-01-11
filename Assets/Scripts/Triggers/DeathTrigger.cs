@@ -8,7 +8,6 @@ public class DeathTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Assuming your player has a script named StressManager
             StressManager stressManager = other.GetComponent<StressManager>();
 
             // If the StressManager script is found, increase stress to the maximum.
