@@ -38,7 +38,7 @@ public class SoundTrigger : MonoBehaviour
                 // Set the AudioClip for the AudioSource and play it.
                 audioSource.clip = soundToPlay;
                 audioSource.Play();
-                subtitleManager.ShowSubtitle(subtitleText, duration);
+                subtitleManager.TriggerSubtitle();
                 // Mark that the sound has been played.
                 hasPlayed = true;
             }
