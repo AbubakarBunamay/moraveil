@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,5 +36,10 @@ public class SoundManager : MonoBehaviour
     public void SetSFXVolume(float volume)
     {
         audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
+    }
+
+    public void SetDialogueVolume(float volume)
+    {
+        audioMixer.SetFloat("DialogueVolume", Mathf.Log10(volume) * 20);
     }
 }
