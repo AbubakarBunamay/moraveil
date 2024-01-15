@@ -12,6 +12,7 @@ public class MoraveilSceneManager : MonoBehaviour
     public GameObject restartMenuUI; // Assign the restart menu UI in the Inspector.
     public GameObject settingsMenuUI; // Assign the settings menu UI in the Inspector.
     public GameObject startMenuUI; // Assign the start menu UI in the Inspector.
+    public GameObject exitMenuUI; // Assign the start menu UI in the Inspector.
     public GameObject HUD; // Assign the HUD in the Inspector.
     private bool isPlayerDead = false; // Variable to track player's life status.
 
@@ -19,6 +20,7 @@ public class MoraveilSceneManager : MonoBehaviour
     public Slider masterVolumeSlider; // Master Volume Slider
     public Slider musicVolumeSlider; // Music Volume Slider
     public Slider sfxVolumeSlider; // SFX Volume Slider
+    public Slider dialogVolumeSlider; // SFX Volume Slider
     
     private void Start()
     {
@@ -104,6 +106,7 @@ public class MoraveilSceneManager : MonoBehaviour
         masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
         musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
+        dialogVolumeSlider.onValueChanged.AddListener(setDialogVolume);
     }
 
     public void BackButtonSetting()
@@ -129,6 +132,13 @@ public class MoraveilSceneManager : MonoBehaviour
         Cursor.visible = false;
     }
     public void QuitGame()
+    {   
+        if(!settingsMenuUI.activeSelf)
+            settingsMenuUI.SetActive(false);
+        exitMenuUI.SetActive(true);
+    }   
+    
+    public void ExitGame()
     {
         Debug.Log("Game Exiting");
         Application.Quit(); // Quit the game.
@@ -214,6 +224,12 @@ public class MoraveilSceneManager : MonoBehaviour
     {
         SoundManager.instance.SetSFXVolume(volume);
         PlayerPrefs.SetFloat("SFXVolume", volume);
+    }
+
+    public void setDialogVolume(float volume)
+    {
+        SoundManager.instance.SetDialogueVolume(volume);
+        PlayerPrefs.SetFloat("DialogueVolume", volume);
     }
     
     // Start Button Action 
