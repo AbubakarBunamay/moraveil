@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DeathTrigger : MonoBehaviour
 {
+    public RespawnManager respawnManager;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -17,10 +19,16 @@ public class DeathTrigger : MonoBehaviour
             }
 
             // Notify the scene manager that the player died
-            MoraveilSceneManager sceneManager = FindObjectOfType<MoraveilSceneManager>();
-            if (sceneManager != null)
+            // MoraveilSceneManager sceneManager = FindObjectOfType<MoraveilSceneManager>();
+            // if (sceneManager != null)
+            // {
+            //     sceneManager.PlayerDied();
+            // }
+            
+            // Use the RespawnManager to respawn the player
+            if (respawnManager != null)
             {
-                sceneManager.PlayerDied();
+                respawnManager.Respawn();
             }
         }
     }
