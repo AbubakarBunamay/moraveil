@@ -22,6 +22,10 @@ public class MoraveilSceneManager : MonoBehaviour
     public Slider sfxVolumeSlider; // SFX Volume Slider
     public Slider dialogVolumeSlider; // SFX Volume Slider
     
+    //References
+    public RespawnManager respawnManager;
+
+    
     private void Start()
     {
         // Make sure the menu is initially hidden.
@@ -238,4 +242,19 @@ public class MoraveilSceneManager : MonoBehaviour
         startMenuUI.SetActive(false); // Hide the start menu
         ResumeGame(); // Start the game
     }
+    
+    // public void RespawnPlayer()
+    // {
+    //     // Reset variables and state
+    //     isPlayerDead = false;
+    //
+    //     // Call the respawn method from the RespawnManager
+    //     if (respawnManager != null)
+    //     {
+    //         respawnManager.Respawn(); // Adjust the tag as needed
+    //     }
+    //
+    //     // Resume the game without showing the start menu
+    //     ResumeGame();
+    // }
 }
