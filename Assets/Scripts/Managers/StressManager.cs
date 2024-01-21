@@ -104,6 +104,7 @@ public class StressManager : MonoBehaviour
         {
             // Gradually decrease stress when not stunned.
             currentStress = Mathf.Clamp(currentStress - stressDecreaseRate * Time.deltaTime, 0f, maxStress);
+            ResetStressEffects();
         }
 
     }
@@ -168,10 +169,7 @@ public class StressManager : MonoBehaviour
             StressEffects();
             
         }
-        else 
-        {
-            ResetStressEffects();
-        }
+
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
 
     }

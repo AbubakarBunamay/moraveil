@@ -139,14 +139,6 @@ public class Entity : MonoBehaviour
                     {
                         // Increase stress and trigger stress effects
                         stressManager.IncreaseStress(stressIncrease);
-                        stressManager.StressEffects();
-                    }
-                    else
-                    {
-                        // Decrease stress and adjust stress effects
-                        // float stressDecrease = entityStressDecreaseRate * Time.deltaTime;
-                        // stressManager.DecreaseStress(stressDecrease);
-                        // stressManager.ResetStressEffects();
                     }
                 }
             }
