@@ -25,7 +25,7 @@ public class FlashLightcontroller : MonoBehaviour
     void Update()
     {
         // Check if the game is paused
-        if (MoraveilSceneManager.isGamePaused)
+        if (UIManager.isGamePaused)
         {
             return;
         }

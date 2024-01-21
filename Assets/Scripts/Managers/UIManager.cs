@@ -5,9 +5,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MoraveilSceneManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     public static bool isGamePaused = false;
+    public static bool isGameOnStart = false;
     public GameObject pauseMenuUI; // Assign the pause menu UI in the Inspector.
     public GameObject restartMenuUI; // Assign the restart menu UI in the Inspector.
     public GameObject settingsMenuUI; // Assign the settings menu UI in the Inspector.
@@ -39,6 +40,9 @@ public class MoraveilSceneManager : MonoBehaviour
     }
     private void StartMenu()
     {
+        //Set State
+        isGameOnStart = true;
+        
         // Pause the game
         Time.timeScale = 0f;
         isGamePaused = true;
@@ -58,7 +62,7 @@ public class MoraveilSceneManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOnStart)
         {
             if (isGamePaused)
             {   
@@ -117,6 +121,11 @@ public class MoraveilSceneManager : MonoBehaviour
     {
         settingsMenuUI.SetActive(false);
         pauseMenuUI.SetActive(true );
+    }
+    public void BackButtonStart()
+    {
+        settingsMenuUI.SetActive(false);
+        startMenuUI.SetActive(true );
     }
 
     public void ResumeGame()
@@ -240,6 +249,7 @@ public class MoraveilSceneManager : MonoBehaviour
     public void StartGameButton()
     { 
         startMenuUI.SetActive(false); // Hide the start menu
+        isGameOnStart = false;         // Transition from start phase to gameplay
         ResumeGame(); // Start the game
     }
     

@@ -19,7 +19,7 @@ public class DeathTrigger : MonoBehaviour
             }
 
             // Notify the scene manager that the player died
-            // MoraveilSceneManager sceneManager = FindObjectOfType<MoraveilSceneManager>();
+            // UIManager sceneManager = FindObjectOfType<UIManager>();
             // if (sceneManager != null)
             // {
             //     sceneManager.PlayerDied();
