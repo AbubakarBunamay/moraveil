@@ -22,6 +22,6 @@ public class Video : MonoBehaviour
 
     void OnVideoFinish(VideoPlayer vp)
     {
-        //SceneManager.LoadScene("");
+        SceneManager.LoadScene("MainScene");
     }
 }

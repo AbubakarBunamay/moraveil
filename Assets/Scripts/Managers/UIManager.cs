@@ -205,15 +205,17 @@ public class UIManager : MonoBehaviour
         // Lock and hide the cursor when the restart prompt is hidden.
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        
+        // Reset variables and state
+        isPlayerDead = false;
+
+        // Reload the scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
     public void RestartGame()
     {
-        HideRestartPrompt(); // Hide the restart UI before restarting the game.
-
-        // Reset variables and state
-        isPlayerDead = false;
 
         // Reload the scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
