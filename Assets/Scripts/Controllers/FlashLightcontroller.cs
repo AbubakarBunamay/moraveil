@@ -11,6 +11,11 @@ public class FlashLightcontroller : MonoBehaviour
     public float bigCrystalMaxIntensity = 30f; // Max intensity the BigCrystal can shine when light shinned on
     public float smallCrystalMaxIntensity = 20f; // Max Intensity the SmallCrystals can shine when lught shinned on
 
+    RaycastHit hit; // Raycast hit var
+
+    public float maxDistance = 1f; // MAx Distance when Flashlight intensity lowers
+    public float maxIntensity = 100f; //Max Intensity when close to an object 
+    public float minIntensity = 70f; // Min Intensity when close to an object 
 
     void Start()
     {
@@ -39,7 +44,6 @@ public class FlashLightcontroller : MonoBehaviour
             // Shine Crystals when Flashlight Shun 
             if (isFlashlightOn)
             {
-                RaycastHit hit;
                 if (Physics.Raycast(playerCamera.position, playerCamera.forward, out hit))
                 {
                     if (hit.collider.CompareTag("BigCrystal")) // Check if Big Crystal
@@ -59,6 +63,8 @@ public class FlashLightcontroller : MonoBehaviour
                         }
 
                     }
+                    
+                    LightIntensityDistance();
                 }
             }
         }
@@ -75,5 +81,15 @@ public class FlashLightcontroller : MonoBehaviour
         flashLight.enabled = isFlashlightOn;  // Turn the flashlight on or off.
         Debug.Log("Flashlight is " + (isFlashlightOn ? "on" : "off"));  // Log the flashlight state.
 
+    }
+
+    private void LightIntensityDistance()
+    {
+        // Calculate the distance (0 to 1) based on the hit distance
+        float normalizedDistance = Mathf.Clamp01(hit.distance / maxDistance);
+
+        // Adjust the light intensity based on the distance
+        float newIntensity = Mathf.Lerp(minIntensity, maxIntensity,  normalizedDistance);
+        flashLight.intensity = newIntensity;
     }
 }
