@@ -65,15 +65,40 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && !isGameOnStart)
         {
             if (isGamePaused)
-            {   
-                if(!settingsMenuUI.activeSelf)
+            {
+                if (!settingsMenuUI.activeSelf)
+                {
                     ResumeGame();
+                }
+                else
+                {
+                    BackButton();
+                }
             }
             else
             {
                 PauseGame();
             }
         }
+    }
+
+    // Reason for this for that if case more UI and need to adjust esc key to go back
+    // Otherwise it just does what the BackButtonSettings instead, 
+    private void BackButton()
+    {
+        if (settingsMenuUI.activeSelf)
+        {
+            // If in settings menu, go back to pause menu
+            BackButtonSetting();
+        }
+        // else if (startMenuUI.activeSelf)
+        // {
+        //     QuitGame();
+        // }
+        // else
+        // {
+        //     ResumeGame();
+        // }
     }
 
     public void PauseGame()
