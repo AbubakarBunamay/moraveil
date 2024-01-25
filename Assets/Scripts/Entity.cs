@@ -226,15 +226,16 @@ public class Entity : MonoBehaviour
     }
     
     // This method is called by EntityManager to set initial values
-    public void Initialize(Transform player, StressManager stressManager)
+    public void Initialize(Transform player, StressManager stressManager, Transform[] assignedWaypoints)
     {
         // Set the player and stressManager references
         this.player = player;
         this.stressManager = stressManager;
 
-        // Check if there are waypoints before setting the initial destination
-        if (waypoints.Length > 0)
+        // Check if there are waypoints assigned before setting the initial destination
+        if (assignedWaypoints.Length > 0)
         {
+            waypoints = assignedWaypoints;
             navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
         }
         else
