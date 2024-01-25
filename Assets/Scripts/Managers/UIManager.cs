@@ -47,6 +47,31 @@ public class UIManager : MonoBehaviour
         StartMenu();
         
     }
+
+    private void Update()
+    {
+        // Check for the Escape key to handle pausing or going back
+        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOnStart)
+        {
+            if (isGamePaused)
+            {
+                // If the game is paused, check if not in settings to resume, otherwise go back
+                if (!settingsMenuUI.activeSelf)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    BackButton();
+                }
+            }
+            else
+            {
+                // If the game is not paused, pause it
+                PauseGame();
+            }
+        }
+    }
     
     // Method to set up the Start menu
     private void StartMenu()
@@ -71,29 +96,25 @@ public class UIManager : MonoBehaviour
         // Show the Start menu
         startMenuUI.SetActive(true);
     }
-
-    private void Update()
+    
+    // Method to handle the Start button action
+    public void StartGameButton()
+    { 
+        startMenuUI.SetActive(false); // Hide the start menu
+        isGameOnStart = false;         // Transition from start phase to gameplay
+        ResumeGame(); // Start the game
+    }
+    
+    // Method to toggle between full screen and windowed mode
+    public void ToggleFullScreen()
     {
-        // Check for the Escape key to handle pausing or going back
-        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOnStart)
+        if (Screen.fullScreenMode == FullScreenMode.Windowed)
         {
-            if (isGamePaused)
-            {
-                // If the game is paused, check if not in settings to resume, otherwise go back
-                if (!settingsMenuUI.activeSelf)
-                {
-                    ResumeGame();
-                }
-                else
-                {
-                    BackButton();
-                }
-            }
-            else
-            {
-                // If the game is not paused, pause it
-                PauseGame();
-            }
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        }
+        else
+        {
+            Screen.fullScreenMode = FullScreenMode.Windowed;
         }
     }
 
@@ -309,14 +330,6 @@ public class UIManager : MonoBehaviour
     public void UpdateVerticalSensitivity(float value)
     {
         mouseHandler.UpdateVerticalSensitivity(value);
-    }
-    
-    // Method to handle the Start button action
-    public void StartGameButton()
-    { 
-        startMenuUI.SetActive(false); // Hide the start menu
-        isGameOnStart = false;         // Transition from start phase to gameplay
-        ResumeGame(); // Start the game
     }
     
 }
