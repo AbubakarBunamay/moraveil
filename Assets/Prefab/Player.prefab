@@ -135,6 +135,9 @@ MonoBehaviour:
   isFlashlightOn: 0
   bigCrystalMaxIntensity: 30
   smallCrystalMaxIntensity: 20
+  maxDistance: 1
+  maxIntensity: 100
+  minIntensity: 70
 --- !u!1 &719990635276630203
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +190,7 @@ MonoBehaviour:
   originalCenter: {x: 0, y: 0, z: 0}
   originalHeight: 1
   movementSpeed: 5
-  runningSpeed: 10
+  runningSpeed: 13
   gravity: 9.8
   crouchIcon: {fileID: 7072528370024808574}
   walkOnWaterSpeed: 2.5
@@ -218,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ba40831b9dcd145b111d8c44d1cedf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManager: {fileID: 0}
   horizontalSpeed: 5
   verticalSpeed: 5
 --- !u!143 &2718699024034500145
