@@ -23,13 +23,18 @@ public class UIManager : MonoBehaviour
     private bool isPlayerDead = false; 
 
     // Volume Sliders
-    public Slider masterVolumeSlider; // Master Volume Slider
-    public Slider musicVolumeSlider; // Music Volume Slider
-    public Slider sfxVolumeSlider; // SFX Volume Slider
-    public Slider dialogVolumeSlider; // SFX Volume Slider
+    public Slider masterVolumeSlider; 
+    public Slider musicVolumeSlider; 
+    public Slider sfxVolumeSlider; 
+    public Slider dialogVolumeSlider; 
+    
+    //Sensitivity Sliders
+    public Slider horizontalSensitivitySlider;
+    public Slider verticalSensitivitySlider;
     
     //References
     public RespawnManager respawnManager;
+    public MouseHandler mouseHandler;
     
     private void Start()
     {
@@ -151,6 +156,10 @@ public class UIManager : MonoBehaviour
         musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
         dialogVolumeSlider.onValueChanged.AddListener(setDialogVolume);
+        
+        // Add listeners for sensitivity sliders
+        horizontalSensitivitySlider.onValueChanged.AddListener(UpdateHorizontalSensitivity);
+        verticalSensitivitySlider.onValueChanged.AddListener(UpdateVerticalSensitivity);
     }
     
     // Method to go back from the settings menu to the pause menu
@@ -289,6 +298,17 @@ public class UIManager : MonoBehaviour
     {
         SoundManager.instance.SetDialogueVolume(volume);
         PlayerPrefs.SetFloat("DialogueVolume", volume);
+    }
+    
+    //Sensitivity Sliders
+    public void UpdateHorizontalSensitivity(float value)
+    {
+        mouseHandler.UpdateHorizontalSensitivity(value);
+    }
+
+    public void UpdateVerticalSensitivity(float value)
+    {
+        mouseHandler.UpdateVerticalSensitivity(value);
     }
     
     // Method to handle the Start button action
