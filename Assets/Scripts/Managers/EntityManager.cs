@@ -10,6 +10,8 @@ public class EntityManager : MonoBehaviour
     
     // List of the entities
     private List<Entity> entities = new List<Entity>();
+    
+    public Transform[][] entityWaypoints; // Array of entities & their waypoints
 
     private void Start()
     {
@@ -31,19 +33,15 @@ public class EntityManager : MonoBehaviour
 
     private void InitializeEntities()
     {
-        foreach (Entity entity in entities)
+        for (int i = 0; i < entityWaypoints.Length && i < entities.Count; i++)
         {
-            // Create a new GameObject for each entity
-            GameObject entityObject = new GameObject("Entity");
+            Entity entity = entities[i];
 
-            // Set the EntityManager as the parent of the entityObject
-            entityObject.transform.parent = transform;
-
-            // Making sure player and stressManager are assigned before calling Initialize
+            // Checking if player and stressManager are assigned before calling Initialize
             if (player != null && stressManager != null)
             {
-                // Initialize the entity with the player and stressManager
-                entity.Initialize(player, stressManager);
+                // Initialize the entity with the player, stressManager, and specific waypoints
+                entity.Initialize(player, stressManager, entityWaypoints[i]);
             }
             else
             {

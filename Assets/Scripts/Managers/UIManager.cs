@@ -7,25 +7,34 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    // Static variables to track game state
     public static bool isGamePaused = false;
     public static bool isGameOnStart = false;
-    public GameObject pauseMenuUI; // Assign the pause menu UI in the Inspector.
-    public GameObject restartMenuUI; // Assign the restart menu UI in the Inspector.
-    public GameObject settingsMenuUI; // Assign the settings menu UI in the Inspector.
-    public GameObject startMenuUI; // Assign the start menu UI in the Inspector.
-    public GameObject exitMenuUI; // Assign the start menu UI in the Inspector.
-    public GameObject HUD; // Assign the HUD in the Inspector.
-    private bool isPlayerDead = false; // Variable to track player's life status.
+    
+    // UI elements to be assigned in the Inspector
+    public GameObject pauseMenuUI; 
+    public GameObject restartMenuUI; 
+    public GameObject settingsMenuUI; 
+    public GameObject startMenuUI; 
+    public GameObject exitMenuUI; 
+    public GameObject HUD; 
+    
+    // To track player's life status
+    private bool isPlayerDead = false; 
 
-    //Volume Sliders
-    public Slider masterVolumeSlider; // Master Volume Slider
-    public Slider musicVolumeSlider; // Music Volume Slider
-    public Slider sfxVolumeSlider; // SFX Volume Slider
-    public Slider dialogVolumeSlider; // SFX Volume Slider
+    // Volume Sliders
+    public Slider masterVolumeSlider; 
+    public Slider musicVolumeSlider; 
+    public Slider sfxVolumeSlider; 
+    public Slider dialogVolumeSlider; 
+    
+    //Sensitivity Sliders
+    public Slider horizontalSensitivitySlider;
+    public Slider verticalSensitivitySlider;
     
     //References
     public RespawnManager respawnManager;
-
+    public MouseHandler mouseHandler;
     
     private void Start()
     {
@@ -34,10 +43,37 @@ public class UIManager : MonoBehaviour
         restartMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
         
-        //Game Starts with the Start menu which then launches player into the game
+        // Game Starts with the Start menu which then launches player into the game
         StartMenu();
         
     }
+
+    private void Update()
+    {
+        // Check for the Escape key to handle pausing or going back
+        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOnStart)
+        {
+            if (isGamePaused)
+            {
+                // If the game is paused, check if not in settings to resume, otherwise go back
+                if (!settingsMenuUI.activeSelf)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    BackButton();
+                }
+            }
+            else
+            {
+                // If the game is not paused, pause it
+                PauseGame();
+            }
+        }
+    }
+    
+    // Method to set up the Start menu
     private void StartMenu()
     {
         //Set State
@@ -57,30 +93,55 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         
+        // Show the Start menu
         startMenuUI.SetActive(true);
     }
-
-    private void Update()
+    
+    // Method to handle the Start button action
+    public void StartGameButton()
+    { 
+        startMenuUI.SetActive(false); // Hide the start menu
+        isGameOnStart = false;         // Transition from start phase to gameplay
+        ResumeGame(); // Start the game
+    }
+    
+    // Method to toggle between full screen and windowed mode
+    public void ToggleFullScreen()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOnStart)
+        if (Screen.fullScreenMode == FullScreenMode.Windowed)
         {
-            if (isGamePaused)
-            {   
-                if(!settingsMenuUI.activeSelf)
-                    ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-            }
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        }
+        else
+        {
+            Screen.fullScreenMode = FullScreenMode.Windowed;
         }
     }
 
+    // Method to handle back button functionality for different menus
+    private void BackButton()
+    {
+        if (settingsMenuUI.activeSelf)
+        {
+            // If in settings menu, go back to pause menu
+            BackButtonSetting();
+        }
+        // else if (startMenuUI.activeSelf)
+        // {
+        //     QuitGame();
+        // }
+        // else
+        // {
+        //     ResumeGame();
+        // }
+    }
+
+    // Method to pause the game and show the pause menu
     public void PauseGame()
     {
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        isGamePaused = true;
+        pauseMenuUI.SetActive(true); // Show Pause Menu
+        Time.timeScale = 0f; // Stop Time
+        isGamePaused = true; // Set State
 
         // Pause all audio
         AudioListener.pause = true;
@@ -93,12 +154,13 @@ public class UIManager : MonoBehaviour
         Cursor.visible = true;
     }
     
+    // Method to show the settings menu
     public void SettingsUI()
     {
-        pauseMenuUI.SetActive(false);
-        settingsMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        isGamePaused = true;
+        pauseMenuUI.SetActive(false); // Hide Pause Menu
+        settingsMenuUI.SetActive(true); // Show Settings Menu
+        Time.timeScale = 0f; // Stop Time
+        isGamePaused = true; // Set State
 
         // Pause all audio
         AudioListener.pause = true;
@@ -115,24 +177,32 @@ public class UIManager : MonoBehaviour
         musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
         dialogVolumeSlider.onValueChanged.AddListener(setDialogVolume);
+        
+        // Add listeners for sensitivity sliders
+        horizontalSensitivitySlider.onValueChanged.AddListener(UpdateHorizontalSensitivity);
+        verticalSensitivitySlider.onValueChanged.AddListener(UpdateVerticalSensitivity);
     }
-
+    
+    // Method to go back from the settings menu to the pause menu
     public void BackButtonSetting()
     {
         settingsMenuUI.SetActive(false);
         pauseMenuUI.SetActive(true );
     }
+    
+    // Method to go back from the start menu to the pause menu
     public void BackButtonStart()
     {
         settingsMenuUI.SetActive(false);
         startMenuUI.SetActive(true );
     }
 
+    // Method to resume the game
     public void ResumeGame()
     {
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        isGamePaused = false;
+        pauseMenuUI.SetActive(false); // Hide Pause Menu
+        Time.timeScale = 1f; // Continue Time
+        isGamePaused = false; // Set State
 
         // Show the HUD when the game is resumed
         HUD.SetActive(true);
@@ -143,7 +213,9 @@ public class UIManager : MonoBehaviour
         // Lock and hide the cursor when resumed
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-    }
+    } 
+    
+    // Method to quit the game
     public void QuitGame()
     {   
         if(!settingsMenuUI.activeSelf)
@@ -151,12 +223,14 @@ public class UIManager : MonoBehaviour
         exitMenuUI.SetActive(true);
     }   
     
+    // Method to exit the game
     public void ExitGame()
     {
         Debug.Log("Game Exiting");
         Application.Quit(); // Quit the game.
     }
 
+    // Method called when the player dies to show the restart prompt
     public void PlayerDied()
     {
         // Show the restart prompt when the player dies.
@@ -167,6 +241,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    // Method to show the restart prompt
     public void RestartUI()
     {
         // Show the restart prompt UI.
@@ -187,6 +262,7 @@ public class UIManager : MonoBehaviour
         Cursor.visible = true;
     }
 
+    // Method to hide the restart prompt and resume the game
     public void HideRestartPrompt()
     {
         // Hide the restart prompt UI.
@@ -213,16 +289,14 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-
+    // Method to restart the game by reloading the scene
     public void RestartGame()
     {
-
         // Reload the scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
     }
     
-    //Volume Sliders
+    // Methods to set different volume levels
     public void SetMasterVolume(float volume)
     {
         SoundManager.instance.SetMasterVolume(volume);
@@ -247,26 +321,15 @@ public class UIManager : MonoBehaviour
         PlayerPrefs.SetFloat("DialogueVolume", volume);
     }
     
-    // Start Button Action 
-    public void StartGameButton()
-    { 
-        startMenuUI.SetActive(false); // Hide the start menu
-        isGameOnStart = false;         // Transition from start phase to gameplay
-        ResumeGame(); // Start the game
+    //Sensitivity Sliders
+    public void UpdateHorizontalSensitivity(float value)
+    {
+        mouseHandler.UpdateHorizontalSensitivity(value);
+    }
+
+    public void UpdateVerticalSensitivity(float value)
+    {
+        mouseHandler.UpdateVerticalSensitivity(value);
     }
     
-    // public void RespawnPlayer()
-    // {
-    //     // Reset variables and state
-    //     isPlayerDead = false;
-    //
-    //     // Call the respawn method from the RespawnManager
-    //     if (respawnManager != null)
-    //     {
-    //         respawnManager.Respawn(); // Adjust the tag as needed
-    //     }
-    //
-    //     // Resume the game without showing the start menu
-    //     ResumeGame();
-    // }
 }

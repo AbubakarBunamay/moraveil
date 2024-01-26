@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 153519372718113471}
+  - component: {fileID: -6967106456556263720}
   m_Layer: 0
   m_Name: Entity
   m_TagString: Untagged
@@ -36,6 +37,27 @@ Transform:
   - {fileID: 5587718815899692584}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-6967106456556263720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923382700314089226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a58817dc7b83c449a55f5dcf1e4b3e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  stressManager: {fileID: 0}
+  entityDistancetrigger: 5
+  waypoints: []
+  currentState: 0
+  chaseTimer: 0
+  cooldownDuration: 0
+  entityStressIncreaseRate: 0
+  entityStressDecreaseRate: 0
 --- !u!1 &4171980283851490072
 GameObject:
   m_ObjectHideFlags: 0
