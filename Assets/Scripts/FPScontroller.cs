@@ -23,7 +23,7 @@ public class FPSController : MonoBehaviour
     private bool isWalkingOnWater = false; // Flag indicating whether the character is walking on water.
 
     [Header("Audio")]
-    public AudioSource waterSound;
+
 
     [Header("Jumping")]
     public float jumpHeight = 1f; // Height of the character's jump.
@@ -364,10 +364,6 @@ public class FPSController : MonoBehaviour
             isWalkingOnWater = true; // Set the flag when entering water
             Debug.Log("Walking on Water");
             glowstickController.SetInWater(true);
-            if (!waterSound.isPlaying)
-            {
-                waterSound.Play();
-            }
         }
     }
 
@@ -379,12 +375,6 @@ public class FPSController : MonoBehaviour
             isWalkingOnWater = false; // Set the flag when entering water
             Debug.Log("Out of Water");
             glowstickController.SetInWater(false);
-
-            // Stop water sound if it's playing
-            if (waterSound.isPlaying)
-            {
-                waterSound.Stop();
-            }
         }
     }
 }
