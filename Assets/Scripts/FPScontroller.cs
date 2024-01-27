@@ -171,7 +171,7 @@ public class FPSController : MonoBehaviour
         //Get Input for running
         isRunning = !isCrouching && Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
-        if (isRunning)
+        if (isRunning && characterController.velocity.magnitude > 0.1f)
         {
             runTimer += Time.deltaTime;
 
