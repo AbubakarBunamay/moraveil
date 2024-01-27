@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 153519372718113471}
   - component: {fileID: -6967106456556263720}
   - component: {fileID: 2983480200068169121}
+  - component: {fileID: 976571150592511975}
   m_Layer: 0
   m_Name: Entity
   m_TagString: Untagged
@@ -56,9 +57,9 @@ MonoBehaviour:
   waypoints: []
   currentState: 0
   chaseTimer: 0
-  cooldownDuration: 0
-  entityStressIncreaseRate: 0
-  entityStressDecreaseRate: 0
+  cooldownDuration: 7
+  entityStressIncreaseRate: 10
+  entityStressDecreaseRate: 5
 --- !u!195 &2983480200068169121
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -81,6 +82,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &976571150592511975
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923382700314089226}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4171980283851490072
 GameObject:
   m_ObjectHideFlags: 0

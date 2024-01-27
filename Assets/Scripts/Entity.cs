@@ -55,9 +55,9 @@ public class Entity : MonoBehaviour
         }
         else
         {
-            Debug.Log("There no waypoints set"); // If no waypoints have been add (Error Handler)
+            Debug.Log("There no waypoints set on" + gameObject.name); // If no waypoints have been add (Error Handler)
         }
-        
+        SetReferencesFromManager();
     }
 
     // Update is called once per frame
@@ -225,13 +225,8 @@ public class Entity : MonoBehaviour
         }
     }
     
-    // This method is called by EntityManager to set initial values
-    public void Initialize(Transform player, StressManager stressManager, Transform[] assignedWaypoints)
+    public void Initialize(Transform[] assignedWaypoints)
     {
-        // Set the player and stressManager references
-        this.player = player;
-        this.stressManager = stressManager;
-
         // Check if there are waypoints assigned before setting the initial destination
         if (assignedWaypoints.Length > 0)
         {
@@ -242,6 +237,24 @@ public class Entity : MonoBehaviour
         {
             // Log a message if no waypoints have been set
             Debug.Log("No waypoints set");
+        }
+    }
+
+    private void SetReferencesFromManager()
+    {
+        // Check if the EntityManager is not null
+        if (entityManager != null)
+        {
+            // Set player and stressManager references from EntityManager
+            player = entityManager.player;
+            stressManager = entityManager.stressManager;
+
+            Debug.Log("Player and StressManager references set successfully.");
+        }
+        else
+        {
+            // Log an error if the EntityManager is not found
+            Debug.LogError("EntityManager not found!");
         }
     }
     
