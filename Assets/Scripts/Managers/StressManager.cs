@@ -12,6 +12,7 @@ public class StressManager : MonoBehaviour
     public string playerTag = "Player"; // Tag of the player GameObject.
     public Image darkScreen; // Reference to the full-screen darkening effect.
     public CanvasGroup stressCanvasGroup; // Reference to the CanvasGroup component.
+    public float releaseDuration = 2.0f; // Adjust this duration as needed
 
     public float currentStress = 0f; // Current stress level.
 
@@ -206,19 +207,16 @@ public class StressManager : MonoBehaviour
     // Reset Stress Effects
     public void ResetStressEffects()
     {
-        // Reset Vignette intensity
+        // Gradually reduce Vignette intensity
         if (volume.profile.TryGet(out Vignette vignette))
         {
-            vignette.intensity.value = currentStress / maxStress;
-            vignette.intensity.value = Mathf.Clamp(vignette.intensity.value, 0f, maxStress);
+            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0f, Time.deltaTime);
         }
 
-        // Reset Film Grain intensity
+        // Gradually reduce Film Grain intensity
         if (volume.profile.TryGet(out FilmGrain fg))
         {
-            fg.intensity.value = currentStress / maxStress;
-            fg.intensity.value = Mathf.Clamp(fg.intensity.value, 0f, maxStress);
-
+            fg.intensity.value = Mathf.Lerp(fg.intensity.value, 0f, Time.deltaTime);
         }
     }
 

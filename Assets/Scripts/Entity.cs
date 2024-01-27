@@ -164,6 +164,21 @@ public class Entity : MonoBehaviour
 
         // Increment the chase timer
         chaseTimer += Time.deltaTime;
+        
+        // Add debug logs to check stress increase
+        float stressIncrease = entityStressIncreaseRate * Time.deltaTime;
+        Debug.Log("ChasingUpdate - Stress Increase: " + stressIncrease);
+
+        // Check if stress is increasing as expected
+        float remainingStressSpace = stressManager.maxStress - stressManager.currentStress;
+        Debug.Log("ChasingUpdate - Remaining Stress Space: " + remainingStressSpace);
+
+        // Increase stress only if it won't exceed the maximum stress.
+        if (remainingStressSpace > 0)
+        {
+            // Increase stress and trigger stress effects
+            stressManager.IncreaseStress(stressIncrease);
+        }
     }
     
     // Update logic for the Cooldown state
