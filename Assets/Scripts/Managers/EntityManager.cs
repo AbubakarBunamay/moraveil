@@ -16,7 +16,7 @@ public class EntityManager : MonoBehaviour
     private void Start()
     {
         // Find the player GameObject by its tag.
-        GameObject playerObject = GameObject.FindGameObjectWithTag(stressManager.playerTag);
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
         if (playerObject != null)
         {
@@ -40,8 +40,9 @@ public class EntityManager : MonoBehaviour
             // Checking if player and stressManager are assigned before calling Initialize
             if (player != null && stressManager != null)
             {
+                
                 // Initialize the entity with the player, stressManager, and specific waypoints
-                entity.Initialize(player, stressManager, entityWaypoints[i]);
+                entity.Initialize(entityWaypoints[i]);
             }
             else
             {
@@ -49,6 +50,7 @@ public class EntityManager : MonoBehaviour
             }
         }
     }
+    
 
     private void Update()
     {
