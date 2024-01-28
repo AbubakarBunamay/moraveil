@@ -22,9 +22,6 @@ public class FPSController : MonoBehaviour
     public float waterRunningSpeed = 5f; // Adjust the speed as needed
     private bool isWalkingOnWater = false; // Flag indicating whether the character is walking on water.
 
-    [Header("Audio")]
-
-
     [Header("Jumping")]
     public float jumpHeight = 1f; // Height of the character's jump.
     public int maxJumps = 2; // Maximum number of allowed jumps.
@@ -45,26 +42,29 @@ public class FPSController : MonoBehaviour
     private bool isCrouching = false; //Flag indicating whether the character is currently crouching
     public bool isRunning = false; // Flag Indcating whether the character is running
 
-    private Transform cameraTransform;
-    private Quaternion originalCameraRotation;
+    private Transform cameraTransform; // Reference to the main camera's transform.
+    private Quaternion originalCameraRotation; // Stores the original rotation of the camera.
 
-    public GlowstickController glowstickController;
+    public GlowstickController glowstickController; // Reference to the GlowstickController component.
+    public FootstepSound footstepSound; // Reference to the FootstepSound component.
+    private MouseHandler mHandler; // Reference to the MouseHandler component.
 
-    public FootstepSound footstepSound;
-    private MouseHandler mHandler;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>(); // Get a reference to the CharacterController component.
+        
+        // Store the original height and center of the character.
         originalHeight = characterController.height;
         originalCenter = characterController.center;
 
+        // Find and assign the components.
         stressManager = FindObjectOfType<StressManager>();
         footstepSound = FindObjectOfType<FootstepSound>();
         mHandler = FindObjectOfType<MouseHandler>();
 
+        // Get the main camera's transform and set the crouch icon to initially be disabled.
         cameraTransform = Camera.main.transform;
-
         crouchIcon.enabled = false;
     }
 
@@ -73,22 +73,26 @@ public class FPSController : MonoBehaviour
         // Check if the game is paused
         if (UIManager.isGamePaused)
         {
+            // Disable the MouseHandler when the game is paused.
             mHandler.enabled= false;
         }
         else
         {
+            // Enable the MouseHandler when the game is not paused.
             mHandler.enabled = true;
 
+            // Handle character movement and jumping.
             HandleMovement();
             HandleJump();
 
             // Check if the player is falling and trigger stress.
             //CheckFalls();
 
-            //Cursor Locked
+            // Lock the cursor to the center of the screen.
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
+            // Play footstep sounds if the player is moving, stop otherwise.
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
                 footstepSound.PlayFootstepSound("DefaultFootstep");
@@ -99,7 +103,8 @@ public class FPSController : MonoBehaviour
             }
 
         }
-
+        
+        // Store the original rotation of the camera.
         originalCameraRotation = cameraTransform.localRotation;
 
 
@@ -165,11 +170,13 @@ public class FPSController : MonoBehaviour
 
     private void HandleRunning()
     {
-        //Get Input for running
+        // Get Input for running
         isRunning = !isCrouching && Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-
+        
+        // Check if the player is currently running.
         if (isRunning && characterController.velocity.magnitude > 0.1f)
         {
+            // Increment the run timer.
             runTimer += Time.deltaTime;
 
             // Set running speed based on whether the player is on water or not
@@ -182,7 +189,9 @@ public class FPSController : MonoBehaviour
                 Debug.Log("Running");
 
             }
-        }else if (stressManager.currentStress > 0f) // If Stress is rising and player starts running
+        }
+        // If Stress is rising and player starts running
+        else if (stressManager.currentStress > 0f) // If Stress is rising and player starts running
         {
             stressManager.IncreaseStress(Time.deltaTime * runningStressIncreaseRate);
         }
@@ -204,10 +213,13 @@ public class FPSController : MonoBehaviour
 
     private void HandleCrouch()
     {
+        // Check if the crouch input is pressed.
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
+            // Toggle the crouching state.
             isCrouching = !isCrouching;
 
+            // Adjust character height and center based on crouch state.
             if (isCrouching)
             {
 
@@ -223,11 +235,11 @@ public class FPSController : MonoBehaviour
             }
             else
             {
-                //Bring the Characters Height
+                // Restore original character height and center.
                 characterController.center = originalCenter;
                 characterController.height = originalHeight;
 
-                // Show the crouch icon when crouching
+                // Hide the crouch icon when standing.
                 if (crouchIcon != null)
                 {
                     crouchIcon.enabled = false;
@@ -245,16 +257,17 @@ public class FPSController : MonoBehaviour
     
     private void HandleJump()
     {
-
+        // Check if the player is grounded.
         bool groundedPlayer = characterController.isGrounded;
 
+        // Reset jump-related variables when grounded.
         if (groundedPlayer)
         {
             ResetJump(); // Reset jump-related variables when grounded.
             maxJumpHeight = transform.position.y; // Reset maxJumpHeight when grounded.
         }
         
-        //If Walking on water then jump less high
+        // Adjust maxJumpHeight when walking on water.
         maxJumpHeight = isWalkingOnWater ? transform.position.y / 2 : maxJumpHeight;
 
         ApplyGravity(); // Apply gravity force when in the air.

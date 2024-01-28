@@ -7,8 +7,8 @@ using UnityEngine.EventSystems;
 public class SelectButtonIcon : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
 {
     [SerializeField]
-    private GameObject icon;
-
+    private GameObject icon; // Highlight Icon
+    
     public void OnPointerEnter(PointerEventData eventData)
     {
         icon.SetActive(true);

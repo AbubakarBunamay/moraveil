@@ -6,37 +6,39 @@ using UnityEngine.Rendering.Universal;
 
 public class StressManager : MonoBehaviour
 {
+    /*
+     * Public variables for tuning stress-related parameters
+     */
     public float maxStress = 100f; // Maximum stress level.
     public float stressIncreaseRate = 10f; // Rate at which stress increases per second.
     public float stressDecreaseRate = 5f; // Rate at which stress decreases per second.
     public string playerTag = "Player"; // Tag of the player GameObject.
-    public Image darkScreen; // Reference to the full-screen darkening effect.
-    public CanvasGroup stressCanvasGroup; // Reference to the CanvasGroup component.
-    public float releaseDuration = 2.0f; // Adjust this duration as needed
-
     public float currentStress = 0f; // Current stress level.
-
-    public bool playerInsideTrigger = false; // By default player not inside trigger
-
+    private bool playerInsideTrigger = false; // By default player not inside trigger
+    // public Image darkScreen; // Reference to the full-screen darkening effect.
+    // public CanvasGroup stressCanvasGroup; // Reference to the CanvasGroup component.
+    
+    /*
+     * Serialized fields for inspector references
+     */
     [SerializeField]
     private CameraShakeManager shakeManager; // Reference to the CameraShakeManager component.
-
     [SerializeField]
     private float maxShakeMagnitude; // Maximum camera shake magnitude.
-
     [SerializeField]
     private float maxShakeDuration; // Maximum camera shake duration.
 
     public Volume volume; // Reference to the Post-Processing Volume component
 
-    public bool isPlayerDead = false; // Variable to track player's life status.
-
-    private float stunCooldown = 0f; // Cooldown for the stun effect.
-
+    private bool isPlayerDead = false; // Variable to track player's life status.
+    
+    /*
+     * Stun Effect
+     */
     public float stunDuration = 5f; // Duration of the stun effect in seconds.
-
+    private float stunCooldown = 0f; // Cooldown for the stun effect.
     private bool isStunned = false; // Flag to indicate whether the player is currently stunned.
-
+    
     private void OnTriggerEnter(Collider other)
     {
         // Check if the player enters the trigger zone.
@@ -54,17 +56,16 @@ public class StressManager : MonoBehaviour
             playerInsideTrigger = false;
         }
     }
+    
     private void Start()
     {
         // Check if the Volume component is found
-        if(volume == null)
-         volume = FindObjectOfType<Volume>();
+        if(volume == null) 
+            volume = FindObjectOfType<Volume>();
 
         // Check if the CameraShakeManager reference is not set, then try to find it.
-        if (shakeManager == null)
-        {
+        if (shakeManager == null) 
             shakeManager = GameObject.FindAnyObjectByType<CameraShakeManager>();
-        }
     }
 
     private void Update()
@@ -73,6 +74,7 @@ public class StressManager : MonoBehaviour
         //StressEffects();
         //IncreaseStressTrigger();
 
+        // If stress level is critical and the player is not dead, trigger stun effect.
         if (currentStress >= maxStress && !isPlayerDead)
         {
             // Check if the stun cooldown has passed.
@@ -89,13 +91,15 @@ public class StressManager : MonoBehaviour
         {
             stunCooldown -= Time.deltaTime;
         }
-
+        
+        // If stress level is critical, reset stress after stunning.
         if (currentStress >= maxStress)
         {
             // Reset stress after triggering stun.
             currentStress = 0f;
         }
-
+        
+        // If the player is stunned, keep stress at max.
         if (isStunned)
         {
             // Keep stress at max while stunned.
@@ -105,11 +109,12 @@ public class StressManager : MonoBehaviour
         {
             // Gradually decrease stress when not stunned.
             currentStress = Mathf.Clamp(currentStress - stressDecreaseRate * Time.deltaTime, 0f, maxStress);
-            ResetStressEffects();
+            ResetStressEffects(); // Reset visual effects when stress is decreasing.
         }
 
     }
-
+    
+    // Function to calculate and apply stress-related visual effects
     public void StressEffects()
     {
         // Calculate camera shake parameters based on stress.
@@ -162,23 +167,27 @@ public class StressManager : MonoBehaviour
     // Increasing Stress Function
     public void IncreaseStress(float stressAmount)
     {
-
+        // Increase stress by the specified amount
         currentStress += stressAmount;
-        // Trigger stress effects.
+        
+        // Trigger stress effects if stress is greater than zero
         if(currentStress > 0)
         {
             StressEffects();
             
         }
-
+        
+        // Clamp stress within the defined range
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
-
     }
     
     // Decreasing Stress Function
     public void DecreaseStress(float stressAmount)
     {
+        // Gradually decrease stress over time
         currentStress -= stressDecreaseRate * Time.deltaTime;
+        
+        // Clamp stress within the defined range
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
         Debug.Log("Decreasing stress: " + currentStress);
     }
@@ -255,7 +264,7 @@ public class StressManager : MonoBehaviour
 
         Debug.Log("Player Stunned!");
 
-        // Disabling Character Movement
+        // Disabling player movement
         FPSController playerMovement = FindObjectOfType<FPSController>();
         if (playerMovement != null)
         {

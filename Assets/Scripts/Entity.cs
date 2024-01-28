@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Entity : MonoBehaviour
 {
+    //Entity States
     public enum EntityState
     {
         Patrolling,
@@ -15,15 +16,15 @@ public class Entity : MonoBehaviour
     private EntityManager entityManager; // Reference to the EntityManager
     
     private NavMeshAgent navMeshAgent;     // Reference to the NavMeshAgent component
-    public Transform player; // Reference to the player's transform
-    public StressManager stressManager;     // Reference to the StressManager
-    public float entityDistancetrigger = 5.0f;     // Trigger distance for activating the chase state
+    private Transform player; // Reference to the player's transform
+    private StressManager stressManager;     // Reference to the StressManager
     
+    public float entityDistancetrigger = 5.0f;     // Trigger distance for activating the chase state
     public Transform[] waypoints; // Array of waypoints for patrolling
     private int currentWaypointIndex = 0; // Index of the current waypoint in the array
 
     public EntityState currentState = EntityState.Patrolling; // Current state of the entity
-    public float chaseTimer = 0.0f; // Timer for the chase state
+    private float chaseTimer = 0.0f; // Timer for the chase state
     public float cooldownDuration ; // Cooldown duration after chasing
     private float distanceToPlayer; // Distance to the player
     
@@ -43,7 +44,7 @@ public class Entity : MonoBehaviour
         // Log an error if the EntityManager is not found
         if (entityManager == null)
         {
-            Debug.LogError("EntityManager not found!");
+            Debug.Log("EntityManager not found!");
             return;
         }
         
@@ -57,7 +58,8 @@ public class Entity : MonoBehaviour
         {
             Debug.Log("There no waypoints set on" + gameObject.name); // If no waypoints have been add (Error Handler)
         }
-        SetReferencesFromManager();
+        
+        SetReferencesFromManager(); //Setting References
     }
 
     // Update is called once per frame
@@ -165,15 +167,13 @@ public class Entity : MonoBehaviour
         // Increment the chase timer
         chaseTimer += Time.deltaTime;
         
-        // Add debug logs to check stress increase
+        // Stress increase
         float stressIncrease = entityStressIncreaseRate * Time.deltaTime;
-        Debug.Log("ChasingUpdate - Stress Increase: " + stressIncrease);
 
         // Check if stress is increasing as expected
         float remainingStressSpace = stressManager.maxStress - stressManager.currentStress;
-        Debug.Log("ChasingUpdate - Remaining Stress Space: " + remainingStressSpace);
 
-        // Increase stress only if it won't exceed the maximum stress.
+        // Increase stress 
         if (remainingStressSpace > 0)
         {
             // Increase stress and trigger stress effects
@@ -222,7 +222,7 @@ public class Entity : MonoBehaviour
             {
                 // Get the state of the flashlight
                 bool isOn = flashlight.isFlashlightOn;
-                Debug.Log("Entity Flashlight detection state: " + (isOn ? "On" : "Off"));
+                //Debug.Log("Entity Flashlight detection state: " + (isOn ? "On" : "Off"));
                 return isOn;
             }
             else

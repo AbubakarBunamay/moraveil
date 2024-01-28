@@ -4,7 +4,7 @@ using UnityEngine;
 public class TextPopupTrigger : MonoBehaviour
 {
     public TextMeshProUGUI popupText; // Reference to the TextMeshProUGUI component
-    public string message = "It Works!";
+    public string message = "It Works!"; // The message to be displayed in the popup.
     private string defaultText = "Default message"; // Default message if no specific message is found
 
     private void Start()
@@ -15,30 +15,33 @@ public class TextPopupTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Check if the entering object is the player.
         if (IsPlayer(other))
         {
+            // Update the popup text.
             UpdatePopupText();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        // Check if the exiting object is the player.
         if (IsPlayer(other))
         {
+            // Hide the popup text.
             HidePopupText();
         }
     }
 
     private void UpdatePopupText()
     {
-        // Customize this method to return a specific message or perform actions based on the attached object's logic.
-
-        // Use the default message if no specific message is found
+        // Use the default message if no specific message is found.
         SetPopupText(message != null ? message : defaultText);
     }
 
     private void SetPopupText(string text)
     {
+        // Set the text of the popup and make it visible.
         if (popupText != null)
         {
             popupText.text = text;
@@ -48,6 +51,7 @@ public class TextPopupTrigger : MonoBehaviour
 
     private void HidePopupText()
     {
+        // Hide the popup text.
         if (popupText != null)
         {
             popupText.gameObject.SetActive(false);
@@ -56,6 +60,7 @@ public class TextPopupTrigger : MonoBehaviour
 
     private bool IsPlayer(Collider other)
     {
+        // Check if the collider's object has the "Player" tag.
         return other.CompareTag("Player");
     }
 }
