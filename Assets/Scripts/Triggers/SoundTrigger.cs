@@ -10,9 +10,7 @@ public class SoundTrigger : MonoBehaviour
     public bool playOnce = true;       // Should the sound be played only once when triggered?
 
     private bool hasPlayed = false;    // Tracks whether the sound has been played.
-    private SubtitleManager subtitleManager;
-    public string subtitleText;
-    public float duration;
+    private SubtitleManager subtitleManager; // Reference to the subtitleManager
 
     void Start()
     {

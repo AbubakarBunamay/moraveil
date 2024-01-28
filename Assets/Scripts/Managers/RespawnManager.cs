@@ -15,7 +15,7 @@ public class RespawnManager : MonoBehaviour
     }
     
     // Actual respawn logic for the player
-    public void RespawnPlayer()
+    private void RespawnPlayer()
     {
         // Check if the respawn point is assigned
         if (respawnPoint != null)
@@ -24,8 +24,8 @@ public class RespawnManager : MonoBehaviour
             player.transform.position = respawnPoint.position;
             player.transform.rotation = respawnPoint.rotation;
             
-            // Log a debug message with respawned position and rotation
-            Debug.Log("respawned at position: " + transform.position + ", rotation: " + transform.rotation.eulerAngles);
+            // Log a message with respawned position and rotation
+            Debug.Log("Respawned at position: " + transform.position + ", rotation: " + transform.rotation.eulerAngles);
 
         }
         else

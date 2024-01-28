@@ -9,11 +9,12 @@ public class LilyPadTrigger : MonoBehaviour
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component attached to this GameObject
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        // Check if the object entering the trigger area has a specific tag (in this case, "Player").
         if (other.CompareTag("Player"))
         {
             // Play a random sound from the array

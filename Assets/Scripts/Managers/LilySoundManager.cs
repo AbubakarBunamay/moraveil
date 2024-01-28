@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class LilySoundManager : MonoBehaviour
 {
-    public AudioClip[] lilySounds;
+    public AudioClip[] lilySounds; // Storing the Lilypad Sounds
 
 }

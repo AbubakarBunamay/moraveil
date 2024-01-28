@@ -8,8 +8,8 @@ public class EntityManager : MonoBehaviour
    public Transform player; // To get player position
     public StressManager stressManager; // Reference to the StressManager component.
     
-    // List of the entities
-    private List<Entity> entities = new List<Entity>();
+    private List<Entity> entities = new List<Entity>();     // List of the entities
+
     
     public Transform[][] entityWaypoints; // Array of entities & their waypoints
 
@@ -31,21 +31,24 @@ public class EntityManager : MonoBehaviour
         InitializeEntities();
     }
 
+    // Method to initialize entities with waypoints
     private void InitializeEntities()
     {
+        // Loop through each entity waypoint and corresponding entity in the list
         for (int i = 0; i < entityWaypoints.Length && i < entities.Count; i++)
         {
+            // Get the current entity from the list
             Entity entity = entities[i];
 
-            // Checking if player and stressManager are assigned before calling Initialize
+            // Check if both player and stressManager are assigned before proceeding with initialization
             if (player != null && stressManager != null)
             {
-                
-                // Initialize the entity with the player, stressManager, and specific waypoints
+                // Initialize the entity with specific waypoints
                 entity.Initialize(entityWaypoints[i]);
             }
             else
             {
+                // Log an error if either the player or stressManager is not assigned
                 Debug.LogError("Player or stressManager not assigned!");
             }
         }
