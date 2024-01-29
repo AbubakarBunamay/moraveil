@@ -1344,7 +1344,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 12.8
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1379,7 +1379,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1409,7 +1409,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.472
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1820,8 +1820,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: f9f21b828ed7ff94d93e168957eeed3b, type: 3}
   playOnce: 1
-  subtitleText: 
-  duration: 0
 --- !u!82 &397912335
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3201,8 +3199,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 0}
   playOnce: 1
-  subtitleText: 
-  duration: 0
 --- !u!65 &782347852
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6220,7 +6216,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855329001}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
