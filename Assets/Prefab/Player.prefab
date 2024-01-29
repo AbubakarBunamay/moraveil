@@ -136,6 +136,7 @@ MonoBehaviour:
   bigCrystalMaxIntensity: 30
   smallCrystalMaxIntensity: 20
   maxDistance: 1
+  minDistance: 2
   maxIntensity: 100
   minIntensity: 70
 --- !u!1 &719990635276630203
@@ -195,15 +196,11 @@ MonoBehaviour:
   crouchIcon: {fileID: 7072528370024808574}
   walkOnWaterSpeed: 2.5
   waterRunningSpeed: 5
-  waterSound: {fileID: 0}
   jumpHeight: 1
   maxJumps: 1
   stressManager: {fileID: 0}
-  swimmingStressDelay: 2
   maxRunTime: 5
   runningStressIncreaseRate: 50
-  swimmingStressIncreaseRate: 50
-  swimmingStressDecreaseRate: 50
   maxFallinStressRange: 1
   isJumping: 0
   isRunning: 0
@@ -946,7 +943,7 @@ Transform:
   m_GameObject: {fileID: 6573685573254117707}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.8803582, z: 0.27}
+  m_LocalPosition: {x: -0, y: 0.8803582, z: 0.404}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1361,7 +1358,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8561630234717393742}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
