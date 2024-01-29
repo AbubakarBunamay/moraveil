@@ -1268,7 +1268,7 @@ GameObject:
   - component: {fileID: 264699088}
   - component: {fileID: 264699087}
   m_Layer: 0
-  m_Name: Mural 2 (killing Dog)
+  m_Name: Mural 1 (killing Dog)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2014,7 +2014,7 @@ AudioSource:
   m_GameObject: {fileID: 472468171}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6769789331830970360, guid: b588e6dd3363ecb44a5135e66bf7a875, type: 2}
+  OutputAudioMixerGroup: {fileID: -6769789331830970360, guid: 3807043400585594d902cdd898b01255, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -3601,7 +3601,7 @@ AudioSource:
   m_GameObject: {fileID: 890729546}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6769789331830970360, guid: b588e6dd3363ecb44a5135e66bf7a875, type: 2}
+  OutputAudioMixerGroup: {fileID: -6769789331830970360, guid: 3807043400585594d902cdd898b01255, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -3883,7 +3883,7 @@ GameObject:
   - component: {fileID: 1085410424}
   - component: {fileID: 1085410423}
   m_Layer: 0
-  m_Name: Mural 5 (wedding)
+  m_Name: Mural 2 (battle)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3937,7 +3937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a455cb34f2942b445a12fe51594afe8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundToPlay: {fileID: 8300000, guid: c59c8b1470fb80544812f13fbb9df8b8, type: 3}
+  soundToPlay: {fileID: 8300000, guid: 7b51d4df1c1ea914f950d43f99a12b6a, type: 3}
 --- !u!82 &1085410425
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4756,12 +4756,12 @@ GameObject:
   - component: {fileID: 1456965273}
   - component: {fileID: 1456965272}
   m_Layer: 0
-  m_Name: Mural 3 (ride to Valhala)
+  m_Name: Mural 3 (wedding)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1456965271
 Transform:
   m_ObjectHideFlags: 0
@@ -4810,7 +4810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a455cb34f2942b445a12fe51594afe8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundToPlay: {fileID: 8300000, guid: 0a0de9f9aae635f4bad39184525ac828, type: 3}
+  soundToPlay: {fileID: 8300000, guid: c59c8b1470fb80544812f13fbb9df8b8, type: 3}
 --- !u!82 &1456965274
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4974,7 +4974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a455cb34f2942b445a12fe51594afe8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundToPlay: {fileID: 8300000, guid: 7b51d4df1c1ea914f950d43f99a12b6a, type: 3}
+  soundToPlay: {fileID: 8300000, guid: 0a0de9f9aae635f4bad39184525ac828, type: 3}
 --- !u!82 &1466749336
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5361,12 +5361,12 @@ GameObject:
   - component: {fileID: 1598527719}
   - component: {fileID: 1598527718}
   m_Layer: 0
-  m_Name: Mural 1 (cu culains death)
+  m_Name: Mural 4 (cu culains death)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1598527717
 Transform:
   m_ObjectHideFlags: 0
@@ -5729,6 +5729,10 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.65
       objectReference: {fileID: 0}
+    - target: {fileID: 5836786648840833029, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a34f108aa1205c04b87b173edb01ee62, type: 3}
     - target: {fileID: 6773020965956643555, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: grassFootstepSound
       value: 
@@ -6181,11 +6185,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1598527717}
   - {fileID: 264699086}
-  - {fileID: 1456965271}
-  - {fileID: 1466749333}
   - {fileID: 1085410422}
+  - {fileID: 1456965271}
+  - {fileID: 1598527717}
+  - {fileID: 1466749333}
   m_Father: {fileID: 2120268950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1855329003
@@ -6751,7 +6755,7 @@ AudioSource:
   m_GameObject: {fileID: 2087613333}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6769789331830970360, guid: b588e6dd3363ecb44a5135e66bf7a875, type: 2}
+  OutputAudioMixerGroup: {fileID: -6769789331830970360, guid: 3807043400585594d902cdd898b01255, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
