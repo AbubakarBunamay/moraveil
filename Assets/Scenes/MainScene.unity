@@ -2600,6 +2600,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1092457053}
     m_Modifications:
+    - target: {fileID: 225151884085618324, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
+      propertyPath: m_TagString
+      value: Map
+      objectReference: {fileID: 0}
     - target: {fileID: 1951747730435109558, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
       propertyPath: m_Name
       value: Logan (7 and 8)
@@ -2648,8 +2652,28 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 8141595112098838863, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 225151884085618324, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 555575010}
   m_SourcePrefab: {fileID: 100100000, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
+--- !u!1 &555575009 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 225151884085618324, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
+  m_PrefabInstance: {fileID: 555575008}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &555575010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555575009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acbbcfe397780c747ad48bc62f75b7c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &599318705
 PrefabInstance:
   m_ObjectHideFlags: 0
