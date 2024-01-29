@@ -14,6 +14,7 @@ public class FlashLightcontroller : MonoBehaviour
     RaycastHit hit; // Raycast hit var
 
     public float maxDistance = 1f; // MAx Distance when Flashlight intensity lowers
+    public float minDistance = 2f;
     public float maxIntensity = 100f; //Max Intensity when close to an object 
     public float minIntensity = 70f; // Min Intensity when close to an object 
 
@@ -82,14 +83,29 @@ public class FlashLightcontroller : MonoBehaviour
         Debug.Log("Flashlight is " + (isFlashlightOn ? "on" : "off"));  // Log the flashlight state.
 
     }
+    
+    /*
+     * TODO:
+     * Spherecast
+     * Dynamic Intensity 
+     */
 
     private void LightIntensityDistance()
     {
         // Calculate the distance (0 to 1) based on the hit distance
         float normalizedDistance = Mathf.Clamp01(hit.distance / maxDistance);
 
+        if (hit.distance <= minDistance)
+        {
+            normalizedDistance = 0f;
+        }
+
         // Adjust the light intensity based on the distance
         float newIntensity = Mathf.Lerp(minIntensity, maxIntensity,  normalizedDistance);
         flashLight.intensity = newIntensity;
+        
+        Debug.Log("Hit is" + hit.distance);
+        Debug.Log("Hit Gameobject name:" + gameObject.name, hit.transform);
+
     }
 }
