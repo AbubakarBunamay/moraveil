@@ -13,9 +13,10 @@ public class FPSController : MonoBehaviour
     [Header("Movement")]
     public float movementSpeed = 5f; // Speed of character movement.
     public float runningSpeed = 10f; // Speed of running Movement
-
+    public float crouchRunningSpeed = 7f; // Speed when running while crouched
     public float gravity = 9.8f; // Gravity force applied to the character.
     public Image crouchIcon; // Reference to the UI Image for the crouch icon
+    private float originalRunningSpeed; // Variable to store the original running speed
 
     [Header("Walking on Water")]
     public float walkOnWaterSpeed = 2.5f; // Adjust the speed as needed
@@ -66,6 +67,9 @@ public class FPSController : MonoBehaviour
         // Get the main camera's transform and set the crouch icon to initially be disabled.
         cameraTransform = Camera.main.transform;
         crouchIcon.enabled = false;
+        
+        //Storing the original running speed
+        originalRunningSpeed = runningSpeed; 
     }
 
     private void Update()
@@ -171,7 +175,8 @@ public class FPSController : MonoBehaviour
     private void HandleRunning()
     {
         // Get Input for running
-        isRunning = !isCrouching && Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        // * Removed !isCrouching so now the player can run 
+        isRunning =  Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         
         // Check if the player is currently running.
         if (isRunning && characterController.velocity.magnitude > 0.1f)
@@ -202,7 +207,15 @@ public class FPSController : MonoBehaviour
             {
                 runTimer = 0f;
             }
+            
+            // If player is not crouching then to return to default running speed
+            if (!isCrouching)
+                runningSpeed = originalRunningSpeed;
         }
+        //If player is crouching then update to crouch running speed
+        if (isCrouching)
+            runningSpeed = crouchRunningSpeed;
+        
     }
 
     /*
