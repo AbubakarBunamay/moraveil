@@ -324,7 +324,10 @@ public class FPSController : MonoBehaviour
     // Perform a jump or double jump if conditions are met..
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && jumpsPerformed < maxJumps && !isCrouching)
+        // Check if the player is allowed to jump.
+        bool canJump = !isCrouching && !isWalkingOnWater;
+        
+        if (Input.GetButtonDown("Jump") && jumpsPerformed < maxJumps && canJump)
         {
             verticalVelocity = Mathf.Sqrt(2 * jumpHeight * gravity); // Calculate double jump velocity.
             isJumping = true; // Set jumping flag for double jump.
