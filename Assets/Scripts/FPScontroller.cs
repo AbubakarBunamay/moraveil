@@ -149,6 +149,8 @@ public class FPSController : MonoBehaviour
         // Calculate the movement speed based on whether the character is running, walking, or walking on water.
         float moveSpeed = isRunning ? runningSpeed : (isWalkingOnWater ? walkOnWaterSpeed : movementSpeed);
 
+        //Debug.Log("Move Speed: " + moveSpeed);
+
         // Apply movement speed to the movement direction.
         Vector3 move = moveDirection * moveSpeed;
 
@@ -294,7 +296,7 @@ public class FPSController : MonoBehaviour
     // Resets jump-related variables when the character is grounded.
     private void ResetJump()
     {
-        //verticalVelocity = 0f; // Reset vertical velocity when grounded.
+        verticalVelocity = 0f; // Reset vertical velocity when grounded.
         jumpsPerformed = 0; // Reset jump count when grounded.
         isJumping = false;
     }
@@ -303,7 +305,20 @@ public class FPSController : MonoBehaviour
     // Applies gravity force when the character is in the air.
     private void ApplyGravity()
     {
-            verticalVelocity -= gravity * Time.deltaTime; 
+        // Only apply gravity when the character is falling.
+        if (!characterController.isGrounded)
+        {
+            // Update the vertical velocity based on gravity.
+            verticalVelocity -= gravity * Time.deltaTime;
+
+            // Apply vertical velocity to the character controller.
+            characterController.Move(Vector3.up * verticalVelocity * Time.deltaTime);
+        }
+        else
+        {
+            // Reset vertical velocity when grounded.
+            verticalVelocity = -gravity * Time.deltaTime;
+        }
     }
 
     // Perform a jump or double jump if conditions are met..
