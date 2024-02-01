@@ -93,10 +93,11 @@ public class FlashLightcontroller : MonoBehaviour
     private void LightIntensityDistance()
     {
         // Calculate the normalized distance based on the hit distance, min distance, and max distance
-        float normalizedDistance = Mathf.Clamp01((hit.distance - minDistance) / (maxDistance - minDistance * 0.5f));
+        //float normalizedDistance = Mathf.Clamp01((hit.distance - minDistance) / (maxDistance - minDistance * 0.5f));
 
         // Use a smoother easing function to create subtler transitions in intensity
-        float easedIntensity = EaseInOut(normalizedDistance);
+        //float easedIntensity = EaseInOut(normalizedDistance);
+        float easedIntensity = Mathf.InverseLerp(minDistance, maxDistance, hit.distance);
 
         // Reduce the overall intensity range directly using a linear interpolation
         float smoothedIntensity = Mathf.Lerp(minIntensity, maxIntensity, easedIntensity);
