@@ -126,8 +126,11 @@ public class FPSController : MonoBehaviour
         // Get input for horizontal and vertical movement.
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-
-        HandleCrouch(); // Handling Crouch 
+        
+        // If player is not walking on water then crouch
+        if(!isWalkingOnWater)
+            HandleCrouch(); // Handling Crouch 
+        
         HandleRunning(); //Handling Running
 
 
