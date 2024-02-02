@@ -13,9 +13,10 @@ public class FPSController : MonoBehaviour
     [Header("Movement")]
     public float movementSpeed = 5f; // Speed of character movement.
     public float runningSpeed = 10f; // Speed of running Movement
-
+    public float crouchRunningSpeed = 7f; // Speed when running while crouched
     public float gravity = 9.8f; // Gravity force applied to the character.
     public Image crouchIcon; // Reference to the UI Image for the crouch icon
+    private float originalRunningSpeed; // Variable to store the original running speed
 
     [Header("Walking on Water")]
     public float walkOnWaterSpeed = 2.5f; // Adjust the speed as needed
@@ -66,6 +67,9 @@ public class FPSController : MonoBehaviour
         // Get the main camera's transform and set the crouch icon to initially be disabled.
         cameraTransform = Camera.main.transform;
         crouchIcon.enabled = false;
+        
+        //Storing the original running speed
+        originalRunningSpeed = runningSpeed; 
     }
 
     private void Update()
@@ -122,8 +126,11 @@ public class FPSController : MonoBehaviour
         // Get input for horizontal and vertical movement.
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-
-        HandleCrouch(); // Handling Crouch 
+        
+        // If player is not walking on water then crouch
+        if(!isWalkingOnWater)
+            HandleCrouch(); // Handling Crouch 
+        
         HandleRunning(); //Handling Running
 
 
@@ -144,6 +151,8 @@ public class FPSController : MonoBehaviour
 
         // Calculate the movement speed based on whether the character is running, walking, or walking on water.
         float moveSpeed = isRunning ? runningSpeed : (isWalkingOnWater ? walkOnWaterSpeed : movementSpeed);
+
+        //Debug.Log("Move Speed: " + moveSpeed);
 
         // Apply movement speed to the movement direction.
         Vector3 move = moveDirection * moveSpeed;
@@ -171,7 +180,8 @@ public class FPSController : MonoBehaviour
     private void HandleRunning()
     {
         // Get Input for running
-        isRunning = !isCrouching && Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        // * Removed !isCrouching so now the player can run 
+        isRunning =  Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         
         // Check if the player is currently running.
         if (isRunning && characterController.velocity.magnitude > 0.1f)
@@ -202,7 +212,15 @@ public class FPSController : MonoBehaviour
             {
                 runTimer = 0f;
             }
+            
+            // If player is not crouching then to return to default running speed
+            if (!isCrouching)
+                runningSpeed = originalRunningSpeed;
         }
+        //If player is crouching then update to crouch running speed
+        if (isCrouching)
+            runningSpeed = crouchRunningSpeed;
+        
     }
 
     /*
@@ -281,7 +299,7 @@ public class FPSController : MonoBehaviour
     // Resets jump-related variables when the character is grounded.
     private void ResetJump()
     {
-        //verticalVelocity = 0f; // Reset vertical velocity when grounded.
+        verticalVelocity = 0f; // Reset vertical velocity when grounded.
         jumpsPerformed = 0; // Reset jump count when grounded.
         isJumping = false;
     }
@@ -290,13 +308,29 @@ public class FPSController : MonoBehaviour
     // Applies gravity force when the character is in the air.
     private void ApplyGravity()
     {
-            verticalVelocity -= gravity * Time.deltaTime; 
+        // Only apply gravity when the character is falling.
+        if (!characterController.isGrounded)
+        {
+            // Update the vertical velocity based on gravity.
+            verticalVelocity -= gravity * Time.deltaTime;
+
+            // Apply vertical velocity to the character controller.
+            characterController.Move(Vector3.up * verticalVelocity * Time.deltaTime);
+        }
+        else
+        {
+            // Reset vertical velocity when grounded.
+            verticalVelocity = -gravity * Time.deltaTime;
+        }
     }
 
     // Perform a jump or double jump if conditions are met..
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && jumpsPerformed < maxJumps && !isCrouching)
+        // Check if the player is allowed to jump.
+        bool canJump = !isCrouching && !isWalkingOnWater;
+        
+        if (Input.GetButtonDown("Jump") && jumpsPerformed < maxJumps && canJump)
         {
             verticalVelocity = Mathf.Sqrt(2 * jumpHeight * gravity); // Calculate double jump velocity.
             isJumping = true; // Set jumping flag for double jump.

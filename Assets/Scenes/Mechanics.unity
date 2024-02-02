@@ -4206,8 +4206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a58817dc7b83c449a55f5dcf1e4b3e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 357111493}
-  stressManager: {fileID: 595291828}
   entityDistancetrigger: 5
   waypoints:
   - {fileID: 1123669326}
@@ -4219,7 +4217,6 @@ MonoBehaviour:
   - {fileID: 1471749248}
   - {fileID: 315332147}
   currentState: 0
-  chaseTimer: 0
   cooldownDuration: 2
   entityStressIncreaseRate: 30
   entityStressDecreaseRate: 10
@@ -5886,16 +5883,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 92060021}
     m_Modifications:
     - target: {fileID: 23984665146414391, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 12.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 23984665146414391, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 23984665146414391, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 31.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 719990635276630203, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: m_Name
@@ -5907,7 +5896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2601426767785049532, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2601426767785049532, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5945,6 +5934,22 @@ PrefabInstance:
       propertyPath: stressManager
       value: 
       objectReference: {fileID: 595291828}
+    - target: {fileID: 4779076755987483843, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      propertyPath: maxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779076755987483843, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      propertyPath: minDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779076755987483843, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      propertyPath: maxIntensity
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779076755987483843, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      propertyPath: minIntensity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8318440606463636135, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: uiManager
       value: 

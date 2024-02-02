@@ -6,18 +6,23 @@ using UnityEngine.Video;
 
 public class Video : MonoBehaviour
 {
-    private VideoPlayer videoPlayer; // VideoPlayer Reference Object
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        videoPlayer.GetComponent<VideoPlayer>();         // Get the VideoPlayer component attached to this GameObject.
-        videoPlayer.loopPointReached += OnVideoFinish;         // Subscribe to the loopPointReached event, which is triggered when the video finishes playing.
+    public VideoPlayer videoPlayer;
 
+    private void OnEnable()
+    {
+        if (!videoPlayer)
+            videoPlayer = GetComponent<VideoPlayer>();
+
+        videoPlayer.loopPointReached += LoadNextScene;
     }
 
-    void OnVideoFinish(VideoPlayer vp)
+    private void OnDisable()
     {
-        SceneManager.LoadScene("MainScene");         // Load the specified scene ("MainScene") when the video finishes.
+        videoPlayer.loopPointReached -= LoadNextScene;
+    }
+
+    private void LoadNextScene(VideoPlayer source)
+    {
+        SceneManager.LoadScene(1);
     }
 }

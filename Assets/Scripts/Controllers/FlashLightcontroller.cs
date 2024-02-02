@@ -14,6 +14,7 @@ public class FlashLightcontroller : MonoBehaviour
     RaycastHit hit; // Raycast hit var
 
     public float maxDistance = 1f; // MAx Distance when Flashlight intensity lowers
+    public float minDistance = 2f;
     public float maxIntensity = 100f; //Max Intensity when close to an object 
     public float minIntensity = 70f; // Min Intensity when close to an object 
 
@@ -82,14 +83,46 @@ public class FlashLightcontroller : MonoBehaviour
         Debug.Log("Flashlight is " + (isFlashlightOn ? "on" : "off"));  // Log the flashlight state.
 
     }
+    
+    /*
+     * TODO:
+     * Spherecast
+     * Dynamic Intensity 
+     */
 
     private void LightIntensityDistance()
     {
-        // Calculate the distance (0 to 1) based on the hit distance
-        float normalizedDistance = Mathf.Clamp01(hit.distance / maxDistance);
+        // Calculate the normalized distance based on the hit distance, min distance, and max distance
+        //float normalizedDistance = Mathf.Clamp01((hit.distance - minDistance) / (maxDistance - minDistance * 0.5f));
 
-        // Adjust the light intensity based on the distance
-        float newIntensity = Mathf.Lerp(minIntensity, maxIntensity,  normalizedDistance);
-        flashLight.intensity = newIntensity;
+        // Use a smoother easing function to create subtler transitions in intensity
+        //float easedIntensity = EaseInOut(normalizedDistance);
+        float easedIntensity = Mathf.InverseLerp(minDistance, maxDistance, hit.distance);
+
+        // Reduce the overall intensity range directly using a linear interpolation
+        float smoothedIntensity = Mathf.Lerp(minIntensity, maxIntensity, easedIntensity);
+
+        // Set the flashlight intensity to the smoothed value
+        flashLight.intensity = smoothedIntensity;
+        
+        // Debug.Log("Hit distance: " + hit.distance);
+        // Debug.Log("Hit GameObject name: " + hit.transform.name);
     }
+
+    // smoother ease-in-out function
+    private float EaseInOut(float t)
+    {
+        // Cubing 't' to accentuate the easing effect
+        // This gives a cubic curve for smoother transitions
+        
+        // Then Calculating a cubic Hermite interpolation
+        // The inner part creates a smooth curve with ease-in-out effect
+        
+        // Combining the cubic curve with the Hermite interpolation
+        // This produces an ease-in-out effect with smooth acceleration and deceleration
+        
+        // All that into this statement
+        return t * t * t * (t * (6f * t - 15f) + 10f);
+    }
+    
 }
