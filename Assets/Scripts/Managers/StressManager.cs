@@ -186,6 +186,8 @@ public class StressManager : MonoBehaviour
         
         // Clamp stress within the defined range
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
+        Debug.Log("Increasing stress: " + currentStress);
+
     }
     
     // Decreasing Stress Function
@@ -196,7 +198,6 @@ public class StressManager : MonoBehaviour
         
         // Clamp stress within the defined range
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
-        Debug.Log("Decreasing stress: " + currentStress);
     }
     
     // Stress Trigger Increase

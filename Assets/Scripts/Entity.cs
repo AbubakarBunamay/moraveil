@@ -119,7 +119,10 @@ public class Entity : MonoBehaviour
         if (player != null && currentState == EntityState.Patrolling)
         {
             // Calculate the distance to the player
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+            // Calculate stress increase based on distance
+            float stressIncrease = CalculateStressIncrease(distanceToPlayer,stressManager.maxStress);
 
             // Check if the player is within the trigger distance
             if (distanceToPlayer < entityDistancetrigger)
@@ -130,24 +133,29 @@ public class Entity : MonoBehaviour
                     currentState = EntityState.Chasing;
                     chaseTimer = 0.0f;
                 }
-                else
-                {
-                    // Increase stress only if it won't exceed the maximum stress.
-                    float stressIncrease = entityStressIncreaseRate * Time.deltaTime;
-                    float remainingStressSpace = stressManager.maxStress - stressManager.currentStress;
 
-                    // Check if there is remaining stress space
-                    if (remainingStressSpace > 0)
-                    {
-                        // Increase stress and trigger stress effects
-                        stressManager.IncreaseStress(stressIncrease);
-                    }
-                }
+                stressManager.IncreaseStress(stressIncrease * Time.deltaTime);
+            }
+            else
+            {
+                // Gradually decrease stress when player is not within trigger distance
+                stressManager.ResetStressEffects();
+                float stressDecrease = entityStressDecreaseRate * Time.deltaTime;
+                stressManager.DecreaseStress(stressDecrease);
+                
             }
         }
 
         // Return false by default
-        return false;
+        return entityDistancetrigger >= distanceToPlayer;
+    }
+    
+    // Calculate stress increase based on distance
+    private float CalculateStressIncrease(float distance, float maxstress)
+    {
+        float stressChangeThreshold = entityDistancetrigger;
+        float stressFactor = Mathf.Clamp01((stressChangeThreshold - distance) / stressChangeThreshold);
+        return Mathf.Lerp(-entityDistancetrigger, entityStressIncreaseRate, stressFactor) * maxstress;
     }
     
     // Update logic for the Chasing state

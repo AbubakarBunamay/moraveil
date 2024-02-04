@@ -202,7 +202,7 @@ public class FPSController : MonoBehaviour
             }
         }
         // If Stress is rising and player starts running
-        else if (stressManager.currentStress > 0f) // If Stress is rising and player starts running
+        else if ( isRunning && stressManager.currentStress > 0f ) // If Stress is rising and player starts running
         {
             stressManager.IncreaseStress(Time.deltaTime * runningStressIncreaseRate);
         }
