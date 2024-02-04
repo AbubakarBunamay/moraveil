@@ -49,7 +49,8 @@ public class FPSController : MonoBehaviour
     public GlowstickController glowstickController; // Reference to the GlowstickController component.
     public FootstepSound footstepSound; // Reference to the FootstepSound component.
     private MouseHandler mHandler; // Reference to the MouseHandler component.
-
+    public GameManager gameManager; //Reference to the game manager
+    private bool isInEndpointTriggerZone = false; // Bool if player passes end point
 
     private void Start()
     {
@@ -412,6 +413,12 @@ public class FPSController : MonoBehaviour
             Debug.Log("Walking on Water");
             glowstickController.SetInWater(true);
         }
+        
+        //Check if passes through the end trigger
+        if (other.gameObject == gameManager.endpoint)
+        {
+            isInEndpointTriggerZone = true;
+        }
     }
 
     public void OnTriggerExit(Collider other)
@@ -423,5 +430,16 @@ public class FPSController : MonoBehaviour
             Debug.Log("Out of Water");
             glowstickController.SetInWater(false);
         }
+        
+        //Check if passes through the end trigger
+        if (other.gameObject == gameManager.endpoint)
+        {
+            isInEndpointTriggerZone = false;
+        }
+    }
+    
+    public bool IsInEndpointTriggerZone
+    {
+        get { return isInEndpointTriggerZone; }
     }
 }
