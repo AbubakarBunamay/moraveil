@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     public void MapPickedUp()
     {
         isMapPickedUp = true;
-        uiManager.StartTimer(timerDuration); // Call UIManager method to start the timer
+        uiManager.StartTimer(); // Call UIManager method to start the timer
         // Enable the timer UI when the map is picked up
         uiManager.EnableTimerUI();
     }
@@ -76,4 +76,12 @@ public class GameManager : MonoBehaviour
         // Check if the player has entered the trigger zone of the endpoint
         return player.IsInEndpointTriggerZone;
     }
+    
+    // Method to reset and start the timer
+    public void ResetAndStartTimer()
+    {
+        timer = timerDuration; // Reset the timer to its initial value
+        uiManager.ResetTimer(); // Reset and start the timer in UIManager
+    }
+
 }
