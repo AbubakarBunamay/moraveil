@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,6 +19,14 @@ public class UIManager : MonoBehaviour
     public GameObject startMenuUI; 
     public GameObject exitMenuUI; 
     public GameObject HUD; 
+    public GameObject creditsUI; 
+    public GameObject FullScreencreditsUI; 
+    public GameObject gameOverUI; 
+    public TextMeshProUGUI UItimer;
+    
+    // Time Tracker
+    private float timer = 0f;
+    private bool isTimerRunning = false;
     
     // To track player's life status
     private bool isPlayerDead = false; 
@@ -35,6 +44,8 @@ public class UIManager : MonoBehaviour
     //References
     public RespawnManager respawnManager;
     public MouseHandler mouseHandler;
+    public GameManager gameManager; // Reference to the GameManager script
+
     
     private void Start()
     {
@@ -294,6 +305,46 @@ public class UIManager : MonoBehaviour
     {
         // Reload the scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    
+    // Time Related 
+    // Method to start the timer with an initial value
+    public void StartTimer(float initialTimerValue)
+    {
+        timer = initialTimerValue;
+        isTimerRunning = true;
+        StartCoroutine(UpdateTimerDisplay());
+    }
+
+    // Coroutine to update the timer display
+    private IEnumerator UpdateTimerDisplay()
+    {
+        while (isTimerRunning && timer > 0f)
+        {
+            timer -= Time.deltaTime; // Decrement the timer
+            UpdateTimerUI();
+            yield return null;
+        }
+
+        // If the timer reaches zero, show the game over UI or other relevant logic
+        if (timer <= 0f)
+        {
+            gameManager.ShowGameOver();
+        }
+    }
+    
+    // Method to update the timer TextMeshProUGUI
+    private void UpdateTimerUI()
+    {
+        if (UItimer != null)
+        {
+            // Display the timer as minutes and seconds
+            int minutes = Mathf.FloorToInt(timer / 60F);
+            int seconds = Mathf.FloorToInt(timer % 60F);
+            string timerString = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+            UItimer.text = timerString;
+        }
     }
     
     // Methods to set different volume levels
