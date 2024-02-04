@@ -123,7 +123,15 @@ public class StressManager : MonoBehaviour
         float normalizedStress = currentStress / maxStress;
         float shakeMagnitude = normalizedStress * maxShakeMagnitude;
         float shakeDuration = normalizedStress * maxShakeDuration;
+        
+        // Trigger camera shake
+        shake.ShakeCamera(shakeDuration, shakeMagnitude);
+        
+        HandleVisualEffects(normalizedStress);
+    }
 
+    private void HandleVisualEffects( float normalizedStress)
+    {
         //float desiredOpacity = Mathf.Clamp(normalizedStress, 0.0f, 0.5f);
 
         // Check if the Vignette effect is available
@@ -142,12 +150,9 @@ public class StressManager : MonoBehaviour
                 // Adjust the Film Grain intensity based on stress level
                 fg.intensity.value = normalizedStress;
             }
-
-            // Trigger camera shake
-            shake.ShakeCamera(shakeDuration, shakeMagnitude);
+            
         }
         
-
         /*// Toggle the darkening effect and camera shake based on stress level.
         if (currentStress > 0)
         {
