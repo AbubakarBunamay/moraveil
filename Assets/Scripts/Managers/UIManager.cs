@@ -307,6 +307,48 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
+    // Methods for Credits UI
+    public void CreditsUI()
+    {
+        creditsUI.SetActive(true); // Show Credits Menu
+        Time.timeScale = 0f; // Stop Time
+        isGamePaused = true; // Set State
+
+        // Pause all audio
+        AudioListener.pause = true;
+
+        // Hide the HUD when the game is paused
+        HUD.SetActive(false);
+    }
+    
+    // Methods for FullScreen Credits UI
+    public void FullScreenCreditsUI()
+    {
+        FullScreencreditsUI.SetActive(true); // Show Credits Menu
+        Time.timeScale = 0f; // Stop Time
+        isGamePaused = true; // Set State
+
+        // Pause all audio
+        AudioListener.pause = true;
+
+        // Hide the HUD when the game is paused
+        HUD.SetActive(false);
+    }
+    
+    // Methods for GameOver UI
+    public void GameOverUI()
+    {
+        gameOverUI.SetActive(true); // Show Credits Menu
+        Time.timeScale = 0f; // Stop Time
+        isGamePaused = true; // Set State
+
+        // Pause all audio
+        AudioListener.pause = true;
+
+        // Hide the HUD when the game is paused
+        HUD.SetActive(false);
+    }
+    
     // Time Related 
     // Method to start the timer with an initial value
     public void StartTimer(float initialTimerValue)
