@@ -12,11 +12,16 @@ public class GameManager : MonoBehaviour
     
     public UIManager uiManager; // Reference to UIManager script
 
+    public GameObject endpoint; // Reference to the GameObject with Collider representing the endpoint
+
+    private FPSController player;
 
     // Start is called before the first frame update
     void Start()
     {
         timer = timerDuration; // Set the initial timer value
+        // Find the player in the scene
+        player = FindObjectOfType<FPSController>();
     }
 
     // Update is called once per frame
@@ -25,13 +30,21 @@ public class GameManager : MonoBehaviour
         // Check if Game is not over and map is picked up
         if (!isGameOver && isMapPickedUp)
         {
-            // Decrement timer if game is not over and the map is picked up
-            timer -= Time.deltaTime;
-
-            // If the player has not reached the endpoint within a certain time, show game over
-            if (timer <= 0f) 
+            // If the player has reached the endpoint, show right UI
+            if (CheckIfPlayerReachedEndPoint())
             {
                 ShowGameOver();
+            }
+            else
+            {
+                // Decrement timer if the player is not in the endpoint trigger zone
+                timer -= Time.deltaTime;
+
+                // If the timer runs out, show game over
+                if (timer <= 0f)
+                {
+                    ShowGameOver();
+                }
             }
         }
     }
@@ -48,7 +61,19 @@ public class GameManager : MonoBehaviour
     // Method to show game over UI
     public void ShowGameOver()
     {
-        isGameOver = true;
-        uiManager.GameOverUI(); // Call UIManager method to show the GameOver UI
+        if (player.IsInEndpointTriggerZone)
+        {
+            uiManager.ShowResultUI(true); // Show credits UI
+        }
+        else
+        {
+            uiManager.ShowResultUI(false); // Show game over UI
+        }
+    }
+    
+    private bool CheckIfPlayerReachedEndPoint()
+    {
+        // Check if the player has entered the trigger zone of the endpoint
+        return player.IsInEndpointTriggerZone;
     }
 }
