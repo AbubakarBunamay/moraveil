@@ -351,6 +351,24 @@ public class UIManager : MonoBehaviour
 
         // Hide the HUD when the game is paused
         HUD.SetActive(false);
+        
+        // Unlock and show the cursor when the prompt is shown.
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    
+    // Method to show the appropriate UI based on game END result
+    public void ShowResultUI(bool isCredits)
+    {
+        if (isCredits)
+        {
+            FullScreenCreditsUI(); 
+            //FullScreen For Playtest but then to return to creditsUI();
+        }
+        else
+        {
+            GameOverUI();
+        }
     }
     
     // Time Related 
