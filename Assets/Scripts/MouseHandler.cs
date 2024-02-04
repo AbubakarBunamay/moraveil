@@ -22,7 +22,7 @@ public class MouseHandler : MonoBehaviour
         
         if (uiManager != null)
         {
-            Debug.Log("UIManager is not null");
+            //Debug.Log("UIManager is not null");
             UpdateSensitivityFromUI(); // Set initial sensitivity from UI sliders
             
             // Register listeners for sensitivity sliders
