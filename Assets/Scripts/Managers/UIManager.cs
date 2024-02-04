@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     // Time Tracker
     private float timer = 0f;
     private bool isTimerRunning = false;
+    private float initialTimerValue;
     
     // To track player's life status
     private bool isPlayerDead = false; 
@@ -57,6 +58,9 @@ public class UIManager : MonoBehaviour
         
         // Game Starts with the Start menu which then launches player into the game
         StartMenu();
+        
+        // Store the initial timer value
+        initialTimerValue = gameManager.timerDuration;
         
     }
 
@@ -311,6 +315,27 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
+    // Method for respawn
+    public void RespawnUIReset()
+    {
+        gameOverUI.SetActive(false);
+        
+        // Resume the game
+        Time.timeScale = 1f;
+        isGamePaused = false;
+
+        // Resume all audio
+        AudioListener.pause = false;
+
+        // Show the HUD when the restart prompt is hidden 
+        HUD.SetActive(true);
+        
+        // Lock and hide the cursor when the restart prompt is hidden.
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        
+    }
+    
     // Methods for Credits UI
     public void CreditsUI()
     {
@@ -373,7 +398,7 @@ public class UIManager : MonoBehaviour
     
     // Time Related 
     // Method to start the timer with an initial value
-    public void StartTimer(float initialTimerValue)
+    public void StartTimer()
     {
         timer = initialTimerValue;
         isTimerRunning = true;
@@ -421,6 +446,19 @@ public class UIManager : MonoBehaviour
     public void DisableTimerUI()
     {
         UItimer.gameObject.SetActive(false);
+    }
+    
+    // Method to reset the timer
+    public void ResetTimer()
+    {
+        // Reset the timer to its initial value
+        timer = gameManager.timerDuration;
+    
+        // Stop the timer coroutine if it's running
+        StopCoroutine(UpdateTimerDisplay());
+    
+        // Start the timer coroutine again
+        StartCoroutine(UpdateTimerDisplay());
     }
     
     // Methods to set different volume levels
