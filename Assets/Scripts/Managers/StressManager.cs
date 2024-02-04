@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal; 
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Serialization;
 
 public class StressManager : MonoBehaviour
 {
@@ -21,8 +22,9 @@ public class StressManager : MonoBehaviour
     /*
      * Serialized fields for inspector references
      */
+    [FormerlySerializedAs("shakeManager")]
     [SerializeField]
-    private CameraShakeManager shakeManager; // Reference to the CameraShakeManager component.
+    private CameraShake shake; // Reference to the CameraShake component.
     [SerializeField]
     private float maxShakeMagnitude; // Maximum camera shake magnitude.
     [SerializeField]
@@ -63,9 +65,9 @@ public class StressManager : MonoBehaviour
         if(volume == null) 
             volume = FindObjectOfType<Volume>();
 
-        // Check if the CameraShakeManager reference is not set, then try to find it.
-        if (shakeManager == null) 
-            shakeManager = GameObject.FindAnyObjectByType<CameraShakeManager>();
+        // Check if the CameraShake reference is not set, then try to find it.
+        if (shake == null) 
+            shake = GameObject.FindAnyObjectByType<CameraShake>();
     }
 
     private void Update()
@@ -142,7 +144,7 @@ public class StressManager : MonoBehaviour
             }
 
             // Trigger camera shake
-            shakeManager.ShakeCamera(shakeDuration, shakeMagnitude);
+            shake.ShakeCamera(shakeDuration, shakeMagnitude);
         }
         
 
@@ -154,7 +156,7 @@ public class StressManager : MonoBehaviour
             stressCanvasGroup.alpha = normalizedStress;
 
             // Trigger camera shake
-            shakeManager.ShakeCamera(shakeDuration, shakeMagnitude);
+            shake.ShakeCamera(shakeDuration, shakeMagnitude);
 
         }
         else

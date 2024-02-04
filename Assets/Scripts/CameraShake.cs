@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraShakeManager : MonoBehaviour
+public class CameraShake : MonoBehaviour
 {
     private Transform cameraTransform; // Reference to the camera's transform component.
     private Vector3 originalPosition; // Store the camera's original position for recovery.
