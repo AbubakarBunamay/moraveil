@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
     {
         isMapPickedUp = true;
         uiManager.StartTimer(timerDuration); // Call UIManager method to start the timer
+        // Enable the timer UI when the map is picked up
+        uiManager.EnableTimerUI();
     }
 
     // Method to show game over UI

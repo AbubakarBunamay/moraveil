@@ -53,6 +53,7 @@ public class UIManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         restartMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
+        UItimer.gameObject.SetActive(false);
         
         // Game Starts with the Start menu which then launches player into the game
         StartMenu();
@@ -106,6 +107,9 @@ public class UIManager : MonoBehaviour
         
         // Show the Start menu
         startMenuUI.SetActive(true);
+        
+        // Disable the timer UI initially
+        DisableTimerUI();
     }
     
     // Method to handle the Start button action
@@ -387,6 +391,18 @@ public class UIManager : MonoBehaviour
 
             UItimer.text = timerString;
         }
+    }
+    
+    // Method to enable Timer UI
+    public void EnableTimerUI()
+    {
+        UItimer.gameObject.SetActive(true);
+    }
+
+// Method to disable Timer UI
+    public void DisableTimerUI()
+    {
+        UItimer.gameObject.SetActive(false);
     }
     
     // Methods to set different volume levels
