@@ -12,6 +12,7 @@ public class FlashLightcontroller : MonoBehaviour
     public float smallCrystalMaxIntensity = 20f; // Max Intensity the SmallCrystals can shine when lught shinned on
 
     RaycastHit hit; // Raycast hit var
+    private RaycastHit sphereHit; // sphereCast Hit
 
     public float maxDistance = 1f; // MAx Distance when Flashlight intensity lowers
     public float minDistance = 2f;
@@ -83,30 +84,26 @@ public class FlashLightcontroller : MonoBehaviour
         Debug.Log("Flashlight is " + (isFlashlightOn ? "on" : "off"));  // Log the flashlight state.
 
     }
-    
-    /*
-     * TODO:
-     * Spherecast
-     * Dynamic Intensity 
-     */
 
     private void LightIntensityDistance()
     {
         // Calculate the normalized distance based on the hit distance, min distance, and max distance
         //float normalizedDistance = Mathf.Clamp01((hit.distance - minDistance) / (maxDistance - minDistance * 0.5f));
+        if (Physics.SphereCast(playerCamera.position, 15f, playerCamera.forward, out sphereHit, maxDistance))
+        {
+            // Use a smoother easing function to create subtler transitions in intensity
+            //float easedIntensity = EaseInOut(normalizedDistance);
+            float easedIntensity = Mathf.InverseLerp(minDistance, maxDistance, hit.distance);
 
-        // Use a smoother easing function to create subtler transitions in intensity
-        //float easedIntensity = EaseInOut(normalizedDistance);
-        float easedIntensity = Mathf.InverseLerp(minDistance, maxDistance, hit.distance);
+            // Reduce the overall intensity range directly using a linear interpolation
+            float smoothedIntensity = Mathf.Lerp(minIntensity, maxIntensity, easedIntensity);
 
-        // Reduce the overall intensity range directly using a linear interpolation
-        float smoothedIntensity = Mathf.Lerp(minIntensity, maxIntensity, easedIntensity);
+            // Set the flashlight intensity to the smoothed value
+            flashLight.intensity = smoothedIntensity;
 
-        // Set the flashlight intensity to the smoothed value
-        flashLight.intensity = smoothedIntensity;
-        
-        // Debug.Log("Hit distance: " + hit.distance);
-        // Debug.Log("Hit GameObject name: " + hit.transform.name);
+            //Debug.Log("Hit distance: " + hit.distance);
+            // Debug.Log("Hit GameObject name: " + hit.transform.name);
+        }
     }
 
     // smoother ease-in-out function
