@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6804628914634209147}
   - component: {fileID: 5629488443583898009}
   - component: {fileID: 4542670480985173316}
+  - component: {fileID: 6131643988277762460}
   m_Layer: 0
   m_Name: button2
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +32,8 @@ Transform:
   m_LocalPosition: {x: -0.00004841866, y: -0.014367999, z: -0.0000000023841857}
   m_LocalScale: {x: 0.9886253, y: 1.0561026, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1111498702239310324}
   m_Father: {fileID: 7366580303948023086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6804628914634209147
@@ -96,9 +98,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 5515087890118453425}
-  button: {fileID: 7193806863888318881}
-  digit: 
+  keyPad: {fileID: 8143645501149654175}
+  button: {fileID: 0}
+  digit: 2
+--- !u!65 &6131643988277762460
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711805530279234359}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011537686, y: 0.009614734, z: 0.0012557653}
+  m_Center: {x: 0.00000059604645, y: 0.00000047683716, z: 0}
 --- !u!1 &783379373073443179
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +175,7 @@ GameObject:
   - component: {fileID: 77685457237427769}
   m_Layer: 0
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 18
@@ -164,16 +187,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034975349165270139}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.00614}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: 0.00011310385, y: 0.0044224607, z: -0.9996922, w: -0.024412526}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0019830305}
+  m_LocalScale: {x: 0.080832995, y: 0.08340834, z: 0.07972901}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9168761365993782461}
+  m_Father: {fileID: 3995249270502233790}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0184, y: 0.0184}
+  m_AnchoredPosition: {x: 0.00040301494, y: -0.0003114473}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &9183713790757147488
@@ -488,9 +511,10 @@ GameObject:
   - component: {fileID: 4407836227026613700}
   - component: {fileID: 665777398383022710}
   - component: {fileID: 108521466271607984}
+  - component: {fileID: 5586867558062278119}
   m_Layer: 0
   m_Name: button8
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -507,7 +531,8 @@ Transform:
   m_LocalPosition: {x: 0.00031626763, y: 0.014427353, z: -0.0000000023841857}
   m_LocalScale: {x: 0.9812965, y: 1.0141262, z: 0.970513}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2792093003235885314}
   m_Father: {fileID: 7366580303948023086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4407836227026613700
@@ -572,9 +597,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 5515087890118453425}
-  button: {fileID: 7193806863888318881}
-  digit: 
+  keyPad: {fileID: 8143645501149654175}
+  button: {fileID: 0}
+  digit: 8
+--- !u!65 &5586867558062278119
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377590629627048891}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011565857, y: 0.0100931795, z: 0.0012557656}
+  m_Center: {x: 0.00000023841858, y: 0, z: -0.0000014305115}
 --- !u!1 &1685630983434421946
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,9 +633,10 @@ GameObject:
   - component: {fileID: 1640354573885506623}
   - component: {fileID: 4201114566785332540}
   - component: {fileID: 1814368809911209149}
+  - component: {fileID: 5431624732754561379}
   m_Layer: 0
   m_Name: button4
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -606,7 +653,8 @@ Transform:
   m_LocalPosition: {x: -0.015138288, y: 0.0010105048, z: -0.0000000023841857}
   m_LocalScale: {x: 0.8989121, y: 0.8989121, z: 0.8989121}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5085334647001800103}
   m_Father: {fileID: 7366580303948023086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1640354573885506623
@@ -671,9 +719,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 5515087890118453425}
-  button: {fileID: 7193806863888318881}
-  digit: 
+  keyPad: {fileID: 8143645501149654175}
+  button: {fileID: 0}
+  digit: 4
+--- !u!65 &5431624732754561379
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685630983434421946}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011247295, y: 0.010368024, z: 0.0012557657}
+  m_Center: {x: 0.00000011920929, y: -0.0000019073486, z: -0.0000009536743}
 --- !u!1 &1920679129298383943
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,7 +756,7 @@ GameObject:
   - component: {fileID: 3819953479908066880}
   m_Layer: 0
   m_Name: Text (TMP) (7)
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 18
@@ -699,16 +768,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920679129298383943}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.005}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.99994695, w: -0.0102993455}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0010966314}
+  m_LocalScale: {x: 0.08034681, y: 0.07774796, z: 0.0812407}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9168761365993782461}
+  m_Father: {fileID: 6282604578658358811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0011, y: -0.0179}
+  m_AnchoredPosition: {x: 0.00032237475, y: -0.00032074936}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &3729166031624099468
@@ -941,7 +1010,7 @@ GameObject:
   - component: {fileID: 8009451467656539347}
   m_Layer: 0
   m_Name: Text (TMP) (4)
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 18
@@ -953,16 +1022,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2231404755945774037}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0046}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.99994695, w: -0.0102993455}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0007864723}
+  m_LocalScale: {x: 0.08336676, y: 0.08864241, z: 0.082773805}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9168761365993782461}
+  m_Father: {fileID: 143240399480182647}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0015, y: -0.0007}
+  m_AnchoredPosition: {x: -0.01551721, y: 0.00011228828}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &8224778952706865155
@@ -1111,9 +1180,10 @@ GameObject:
   - component: {fileID: 1403239074852696185}
   - component: {fileID: 8200155965042050700}
   - component: {fileID: 4038635457612917542}
+  - component: {fileID: 1940257882786242721}
   m_Layer: 0
   m_Name: button5
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1130,7 +1200,8 @@ Transform:
   m_LocalPosition: {x: 0.0003100675, y: 0.00060180796, z: -0.0000000023841857}
   m_LocalScale: {x: 1.0010861, y: 0.9141571, z: 0.9583808}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7456856088928496530}
   m_Father: {fileID: 7366580303948023086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1403239074852696185
@@ -1195,9 +1266,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 5515087890118453425}
-  button: {fileID: 7193806863888318881}
-  digit: 
+  keyPad: {fileID: 8143645501149654175}
+  button: {fileID: 0}
+  digit: 5
+--- !u!65 &1940257882786242721
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3320245446877780901}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011494018, y: 0.010093188, z: 0.0012557653}
+  m_Center: {x: 0.00000011920929, y: -0.0000009536743, z: 0.00000047683716}
 --- !u!1 &4500654751214780201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,9 +1302,10 @@ GameObject:
   - component: {fileID: 8803089733467250403}
   - component: {fileID: 3390414830637481258}
   - component: {fileID: 7096991434828552013}
+  - component: {fileID: 8578523439766864589}
   m_Layer: 0
   m_Name: button6
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1229,7 +1322,8 @@ Transform:
   m_LocalPosition: {x: 0.015344424, y: 0.0004372608, z: -2.220446e-18}
   m_LocalScale: {x: 0.94578636, y: 0.88945055, z: 0.95253736}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8749893554998280650}
   m_Father: {fileID: 7366580303948023086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8803089733467250403
@@ -1294,9 +1388,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 5515087890118453425}
-  button: {fileID: 7193806863888318881}
-  digit: 
+  keyPad: {fileID: 8143645501149654175}
+  button: {fileID: 0}
+  digit: 6
+--- !u!65 &8578523439766864589
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500654751214780201}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.010200943, y: 0.01027278, z: 0.0012557706}
+  m_Center: {x: 0.00000071525574, y: 0.0000009536743, z: -0.00000047683716}
 --- !u!1 &4633966778112917095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,7 +1421,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9168761365993782461}
-  - component: {fileID: 7193806863888318881}
   m_Layer: 0
   m_Name: StoneKeypadPrefab
   m_TagString: Untagged
@@ -1330,35 +1444,9 @@ Transform:
   - {fileID: 7366580303948023086}
   - {fileID: 7167918630438523337}
   - {fileID: 1889843838879699098}
-  - {fileID: 9006813768910551401}
-  - {fileID: 1111498702239310324}
-  - {fileID: 2303073997655660446}
-  - {fileID: 5085334647001800103}
-  - {fileID: 8749893554998280650}
-  - {fileID: 7456856088928496530}
-  - {fileID: 6204275189655909141}
-  - {fileID: 2792093003235885314}
-  - {fileID: 4829549837474094555}
+  - {fileID: 344257482994187111}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7193806863888318881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4633966778112917095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a040b0ce9482d0544ba462a4c0c8f997, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 5515087890118453425}
-  correctCode: 8
-  Door: {fileID: 0}
-  doorOpenSpeed: 0.2
-  doorAudioSource: {fileID: 0}
-  doorOpenSound: {fileID: 8300000, guid: 43d343bcf2e1919458acdf9c2e882138, type: 3}
 --- !u!1 &4810931962631045059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,16 +1472,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4810931962631045059}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0047}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.99994695, w: -0.0102993455}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0008616913}
+  m_LocalScale: {x: 0.08204657, y: 0.09230858, z: 0.08204268}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9168761365993782461}
+  m_Father: {fileID: 5289594060112645052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0204, y: -0.0179}
+  m_AnchoredPosition: {x: 0.0002463814, y: -0.00006033294}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &7766075861877670469
@@ -1543,7 +1631,7 @@ GameObject:
   - component: {fileID: 8392434455245443628}
   m_Layer: 0
   m_Name: Text (TMP) (6)
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 18
@@ -1555,16 +1643,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5215017631271750325}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0077}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.99994695, w: -0.0102993455}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0032503784}
+  m_LocalScale: {x: 0.073719844, y: 0.08026526, z: 0.08026827}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9168761365993782461}
+  m_Father: {fileID: 5080637440282397826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0171, y: -0.0175}
+  m_AnchoredPosition: {x: 0.000890119, y: -0.0007856507}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &7164681350651358912
@@ -1714,7 +1802,7 @@ GameObject:
   - component: {fileID: 35368947035650067}
   m_Layer: 0
   m_Name: Text (TMP) (3)
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 18
@@ -1726,16 +1814,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5382797225584190268}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0064}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.99994695, w: -0.0102993455}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0024118281}
+  m_LocalScale: {x: 0.08771175, y: 0.087711744, z: 0.08771175}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9168761365993782461}
+  m_Father: {fileID: 5824588404105893387}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0183, y: -0.0008}
+  m_AnchoredPosition: {x: 0.00022307411, y: -0.000081875885}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &6390143878738689194
@@ -2050,9 +2138,10 @@ GameObject:
   - component: {fileID: 11762587726226288}
   - component: {fileID: 6134992399852155942}
   - component: {fileID: 2147352713813886895}
+  - component: {fileID: 6569936180712463812}
   m_Layer: 0
   m_Name: button9
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2069,7 +2158,8 @@ Transform:
   m_LocalPosition: {x: 0.01561, y: 0.01384, z: -2.220446e-18}
   m_LocalScale: {x: 0.961026, y: 0.85410225, z: 0.961026}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4829549837474094555}
   m_Father: {fileID: 7366580303948023086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &11762587726226288
@@ -2134,9 +2224,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 5515087890118453425}
-  button: {fileID: 7193806863888318881}
-  digit: 
+  keyPad: {fileID: 8143645501149654175}
+  button: {fileID: 0}
+  digit: 9
+--- !u!65 &6569936180712463812
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5904163908985202919}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.010344615, y: 0.009985424, z: 0.00125577}
+  m_Center: {x: 0, y: 0.0000009536743, z: 0}
 --- !u!1 &6153231327043244988
 GameObject:
   m_ObjectHideFlags: 0
@@ -2150,7 +2261,7 @@ GameObject:
   - component: {fileID: 5518952993128244266}
   m_Layer: 0
   m_Name: Text (TMP) (2)
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 18
@@ -2162,16 +2273,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6153231327043244988}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0077}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.99994695, w: -0.0102993455}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0031927393}
+  m_LocalScale: {x: 0.090020165, y: 0.0755422, z: 0.07884516}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9168761365993782461}
+  m_Father: {fileID: 2470739010031110451}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0192, y: 0.0179}
+  m_AnchoredPosition: {x: -0.000874646, y: 0.0003577117}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &3601360288001230249
@@ -2321,7 +2432,7 @@ GameObject:
   - component: {fileID: 81855005085164348}
   m_Layer: 0
   m_Name: Text (TMP) (5)
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 18
@@ -2333,16 +2444,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6328999617803536071}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0051}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.99994695, w: -0.0102993455}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0011925761}
+  m_LocalScale: {x: 0.07876253, y: 0.08624556, z: 0.08226913}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9168761365993782461}
+  m_Father: {fileID: 3207787267239613887}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0201, y: -0.0009}
+  m_AnchoredPosition: {x: 0.015007628, y: -0.00022933562}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &3322662405531629984
@@ -2571,6 +2682,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7366580303948023086}
+  - component: {fileID: 1124068136453289707}
   m_Layer: 0
   m_Name: buttons2
   m_TagString: Untagged
@@ -2602,6 +2714,24 @@ Transform:
   - {fileID: 5289594060112645052}
   m_Father: {fileID: 9168761365993782461}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1124068136453289707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6928373176521496991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a040b0ce9482d0544ba462a4c0c8f997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 8143645501149654175}
+  correctCode: 8
+  Door: {fileID: 0}
+  doorOpenSpeed: 0.2
+  doorAudioSource: {fileID: 0}
+  doorOpenSound: {fileID: 8300000, guid: 43d343bcf2e1919458acdf9c2e882138, type: 3}
 --- !u!1 &7205769062051220132
 GameObject:
   m_ObjectHideFlags: 0
@@ -2698,7 +2828,7 @@ GameObject:
   - component: {fileID: 6437188440211628440}
   m_Layer: 0
   m_Name: Text (TMP) (1)
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 18
@@ -2710,16 +2840,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7283796382867379561}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0057}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.99994695, w: -0.0102993455}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0016158352}
+  m_LocalScale: {x: 0.07975001, y: 0.07465873, z: 0.07884516}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9168761365993782461}
+  m_Father: {fileID: 8756767583610055313}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0011, y: 0.0183}
+  m_AnchoredPosition: {x: 0.00009425322, y: -0.000061985105}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1107941975079846211
@@ -2868,9 +2998,10 @@ GameObject:
   - component: {fileID: 6612728637911974530}
   - component: {fileID: 3085743593312905712}
   - component: {fileID: 5988784499530440225}
+  - component: {fileID: 15518921565322240}
   m_Layer: 0
   m_Name: button1
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2887,7 +3018,8 @@ Transform:
   m_LocalPosition: {x: -0.015729897, y: -0.013930193, z: 0.0000000023841857}
   m_LocalScale: {x: 0.9754801, y: 0.9452154, z: 0.9889175}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9006813768910551401}
   m_Father: {fileID: 7366580303948023086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6612728637911974530
@@ -2952,9 +3084,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 5515087890118453425}
-  button: {fileID: 7193806863888318881}
-  digit: 
+  keyPad: {fileID: 8143645501149654175}
+  button: {fileID: 0}
+  digit: 1
+--- !u!65 &15518921565322240
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7381706332001816572}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.010960801, y: 0.010576211, z: 0.0012557653}
+  m_Center: {x: 0.00000035762787, y: 0, z: 0.00000047683716}
 --- !u!1 &7383585283465750965
 GameObject:
   m_ObjectHideFlags: 0
@@ -2966,7 +3119,6 @@ GameObject:
   - component: {fileID: 1889843838879699098}
   - component: {fileID: 3589549598955714905}
   - component: {fileID: 5116581458237591936}
-  - component: {fileID: 5515087890118453425}
   m_Layer: 0
   m_Name: stoneKeypad
   m_TagString: Untagged
@@ -3039,28 +3191,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5515087890118453425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7383585283465750965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 962d89fa7572af9468fe2f4b9f479784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 3995249270502233790}
-  - {fileID: 8756767583610055313}
-  - {fileID: 2470739010031110451}
-  - {fileID: 5824588404105893387}
-  - {fileID: 3207787267239613887}
-  - {fileID: 143240399480182647}
-  - {fileID: 5080637440282397826}
-  - {fileID: 6282604578658358811}
-  - {fileID: 5289594060112645052}
 --- !u!1 &7566363906640955175
 GameObject:
   m_ObjectHideFlags: 0
@@ -3073,9 +3203,10 @@ GameObject:
   - component: {fileID: 399397587444468884}
   - component: {fileID: 1005648095037963197}
   - component: {fileID: 2182726754032032543}
+  - component: {fileID: 7477709505926936668}
   m_Layer: 0
   m_Name: button7
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3092,7 +3223,8 @@ Transform:
   m_LocalPosition: {x: -0.014672339, y: 0.014853997, z: -0.0000000023841857}
   m_LocalScale: {x: 1.0695611, y: 0.98227036, z: 0.98227036}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6204275189655909141}
   m_Father: {fileID: 7366580303948023086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &399397587444468884
@@ -3157,9 +3289,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 5515087890118453425}
-  button: {fileID: 7193806863888318881}
-  digit: 
+  keyPad: {fileID: 8143645501149654175}
+  button: {fileID: 0}
+  digit: 7
+--- !u!65 &7477709505926936668
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7566363906640955175}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.010093188, y: 0.010200944, z: 0.0012557654}
+  m_Center: {x: 0.00000023841858, y: 0.00000047683716, z: -0.00000047683716}
 --- !u!1 &7751835431767431975
 GameObject:
   m_ObjectHideFlags: 0
@@ -3172,9 +3325,10 @@ GameObject:
   - component: {fileID: 5345546550878390725}
   - component: {fileID: 8353798692992068537}
   - component: {fileID: 5626147256147876203}
+  - component: {fileID: 5434034475767035457}
   m_Layer: 0
   m_Name: button3
-  m_TagString: Untagged
+  m_TagString: KeypadButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3191,7 +3345,8 @@ Transform:
   m_LocalPosition: {x: 0.015085294, y: -0.014785394, z: -0.0000000023841857}
   m_LocalScale: {x: 0.87578976, y: 1.0437948, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2303073997655660446}
   m_Father: {fileID: 7366580303948023086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5345546550878390725
@@ -3256,9 +3411,84 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90936912654dee547b10123bc29e788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyPad: {fileID: 5515087890118453425}
-  button: {fileID: 7193806863888318881}
-  digit: 
+  keyPad: {fileID: 8143645501149654175}
+  button: {fileID: 0}
+  digit: 3
+--- !u!65 &5434034475767035457
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7751835431767431975}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011681908, y: 0.009518588, z: 0.0012557652}
+  m_Center: {x: 0.00000035762787, y: 0.00000047683716, z: -0.00000047683716}
+--- !u!1 &7791387631535859124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 344257482994187111}
+  - component: {fileID: 8143645501149654175}
+  m_Layer: 0
+  m_Name: KeypadManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &344257482994187111
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7791387631535859124}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9168761365993782461}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8143645501149654175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7791387631535859124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962d89fa7572af9468fe2f4b9f479784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons:
+  - {fileID: 3995249270502233790}
+  - {fileID: 8756767583610055313}
+  - {fileID: 2470739010031110451}
+  - {fileID: 5824588404105893387}
+  - {fileID: 3207787267239613887}
+  - {fileID: 143240399480182647}
+  - {fileID: 5080637440282397826}
+  - {fileID: 6282604578658358811}
+  - {fileID: 5289594060112645052}
 --- !u!1 &8102663860358554498
 GameObject:
   m_ObjectHideFlags: 0
