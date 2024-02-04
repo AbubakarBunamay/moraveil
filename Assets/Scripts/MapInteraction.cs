@@ -8,6 +8,8 @@ public class MapInteraction : MonoBehaviour
 
     public Material materialToChange;
     
+    public GameManager gameManager; // Reference to the GameManager script
+    
     // Interact with the map function 
     public void InteractWithMap()
     {
@@ -15,7 +17,11 @@ public class MapInteraction : MonoBehaviour
         {
             ChangeMaterialOftheObject(objToChange);
         }
+        
         Disappear();
+        
+        // Notify GameManager that the map has been picked up
+        gameManager.MapPickedUp();
     }
     private void ChangeMaterialOftheObject(GameObject objToChange)
     {
