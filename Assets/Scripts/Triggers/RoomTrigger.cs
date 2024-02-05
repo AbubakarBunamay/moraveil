@@ -7,6 +7,7 @@ public class RoomTrigger : MonoBehaviour
     public AudioClip soundToPlay;      // The audio clip to play when triggered.
     private AudioSource audioSource;   // Reference to the AudioSource component attached to the GameObject.
     private static AudioSource currentlyPlaying;  // Static reference to the currently playing audio source.
+    public float fadeDuration = 1.0f;   // Duration of the crossfade.
 
 
     void Start()
@@ -26,19 +27,44 @@ public class RoomTrigger : MonoBehaviour
             // Check if the audio is not already playing before starting it.
             if (currentlyPlaying != audioSource || !audioSource.isPlaying)
             {
-                // Stop the currently playing audio source (if any).
-                if (currentlyPlaying != null && currentlyPlaying.isPlaying)
-                {
-                    currentlyPlaying.Stop();
-                }
-
-                // Set the AudioClip for the AudioSource and play it.
-                audioSource.clip = soundToPlay;
-                audioSource.Play();
-
-                // Update the currently playing reference.
-                currentlyPlaying = audioSource;
+                // Start crossfade.
+                StartCoroutine(CrossfadeAudio());
             }
         }
+    }
+
+    IEnumerator CrossfadeAudio()
+    {
+        float timer = 0f;
+        float initialVolume = currentlyPlaying.volume;
+
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            
+            // Calculate the normalized volume based on the current time and fade duration.
+            float normalizedVolume = Mathf.Lerp(initialVolume, 0f, timer / fadeDuration);
+
+            // Update the volume of the currently playing audio source.
+            currentlyPlaying.volume = normalizedVolume;
+
+            yield return null;
+        }
+
+        // Stop the currently playing audio source (if any).
+        if (currentlyPlaying != null && currentlyPlaying.isPlaying)
+        {
+            currentlyPlaying.Stop();
+        }
+
+        // Set the AudioClip for the AudioSource and play it.
+        audioSource.clip = soundToPlay;
+        audioSource.Play();
+
+        // Update the currently playing reference.
+        currentlyPlaying = audioSource;
+
+        // Reset the volume of the newly started audio source.
+        currentlyPlaying.volume = 1.0f;
     }
 }
