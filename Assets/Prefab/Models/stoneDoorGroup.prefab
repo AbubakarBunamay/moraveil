@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 804264247363868508}
   - component: {fileID: 6560992187659694959}
   - component: {fileID: 5650268541996607147}
+  - component: {fileID: 5147082609071384842}
   m_Layer: 0
   m_Name: stoneDoor
   m_TagString: Untagged
@@ -213,6 +214,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!64 &5147082609071384842
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836509359141032967}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2265781570225793437, guid: f548320e96380dc4caaa9589d240af1e, type: 3}
 --- !u!1 &3563729956694233816
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +247,7 @@ GameObject:
   - component: {fileID: 7438543481349836042}
   - component: {fileID: 759234755370598183}
   - component: {fileID: 8783585018078961122}
+  - component: {fileID: 7520563065585735869}
   m_Layer: 0
   m_Name: doorFrame
   m_TagString: Untagged
@@ -296,3 +320,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7520563065585735869
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563729956694233816}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4213738248861224339, guid: f548320e96380dc4caaa9589d240af1e, type: 3}
