@@ -15,7 +15,7 @@ public class FlashLightcontroller : MonoBehaviour
     private RaycastHit sphereHit; // sphereCast Hit
 
     public float maxDistance = 1f; // MAx Distance when Flashlight intensity lowers
-    public float minDistance = 2f;
+    public float minDistance = 2f; // Min Distance when flashlight intensity increases
     public float maxIntensity = 100f; //Max Intensity when close to an object 
     public float minIntensity = 70f; // Min Intensity when close to an object 
 
@@ -66,17 +66,20 @@ public class FlashLightcontroller : MonoBehaviour
 
                     }
                     
-                    LightIntensityDistance();
+                    LightIntensityDistance(); // Gradual Increase/Decrease light intensity based on distance
                 }
             }
         }
     }
+    
+    // Method to increase light intensity on objects with a point light
      private void IncreasePointLightIntensity(Light pointLight, float maxIntensity)
     {
         pointLight.intensity += 10f * Time.deltaTime;  // Increase the intensity of the point light.
         pointLight.intensity = Mathf.Clamp(pointLight.intensity, 0f, maxIntensity);         // Clamp the intensity to the specified maximum value.
     }
-
+    
+     // Method to toggle the flashlight on or off
     private void ToggleFlashlight()
     {
         isFlashlightOn = !isFlashlightOn;  // Toggle the flashlight state.
@@ -84,7 +87,9 @@ public class FlashLightcontroller : MonoBehaviour
         Debug.Log("Flashlight is " + (isFlashlightOn ? "on" : "off"));  // Log the flashlight state.
 
     }
-
+    
+    // Method to gradually increase/decrease flashlight intensity based on distance 
+    // To allow to see without blinding players
     private void LightIntensityDistance()
     {
         // Calculate the normalized distance based on the hit distance, min distance, and max distance
