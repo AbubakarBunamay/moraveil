@@ -94,7 +94,7 @@ public class FlashLightcontroller : MonoBehaviour
     {
         // Calculate the normalized distance based on the hit distance, min distance, and max distance
         //float normalizedDistance = Mathf.Clamp01((hit.distance - minDistance) / (maxDistance - minDistance * 0.5f));
-        if (Physics.SphereCast(playerCamera.position, 15f, playerCamera.forward, out sphereHit, maxDistance))
+        if (Physics.SphereCast(playerCamera.position, 50f, playerCamera.forward, out sphereHit, maxDistance))
         {
             // Use a smoother easing function to create subtler transitions in intensity
             //float easedIntensity = EaseInOut(normalizedDistance);

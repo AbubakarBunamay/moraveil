@@ -31,6 +31,7 @@ public class KeypadManager : MonoBehaviour
         if (!pushedButtons.Contains(button))
         {
             pushedButtons.Add(button); // Add the button to the list of pushed buttons
+            Debug.Log("Added"+ button.name);
         }
 
         // Set the isPushed flag to true
@@ -60,6 +61,8 @@ public class KeypadManager : MonoBehaviour
 
             {
                 pushedButton.position = initialPositions[index]; // If the button is found, reset its position to the initial position
+                Debug.Log("Reset Keypad Buttons");
+
             }
         }
 
