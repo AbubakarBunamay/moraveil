@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public GameObject pauseMenuUI; 
     public GameObject restartMenuUI; 
     public GameObject settingsMenuUI; 
+    public GameObject settingsMenuUIFromStart; 
     public GameObject startMenuUI; 
     public GameObject exitMenuUI; 
     public GameObject HUD; 
@@ -46,6 +47,14 @@ public class UIManager : MonoBehaviour
     public RespawnManager respawnManager;
     public MouseHandler mouseHandler;
     public GameManager gameManager; // Reference to the GameManager script
+    
+    // Constants
+    private const float DefaultMasterVolume = 1f;
+    private const float DefaultMusicVolume = 1f;
+    private const float DefaultSFXVolume = 1f;
+    private const float DefaultDialogueVolume = 1f;
+    private const float DefaultHorizontalSensitivity = 2f;
+    private const float DefaultVerticalSensitivity = 2f;
 
     
     private void Start()
@@ -202,6 +211,35 @@ public class UIManager : MonoBehaviour
         verticalSensitivitySlider.onValueChanged.AddListener(UpdateVerticalSensitivity);
     }
     
+    
+    public void SettingsUIFromStart()
+    {
+        startMenuUI.SetActive(false); // Hide Pause Menu
+        settingsMenuUIFromStart.SetActive(true); // Show Settings Menu
+        Time.timeScale = 0f; // Stop Time
+        isGamePaused = true; // Set State
+
+        // Pause all audio
+        AudioListener.pause = true;
+
+        // Hide the HUD when the game is paused
+        HUD.SetActive(false);
+
+        // Unlock and show the cursor when paused
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        
+        // Add listeners for volume sliders
+        masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
+        musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
+        sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
+        dialogVolumeSlider.onValueChanged.AddListener(setDialogVolume);
+        
+        // Add listeners for sensitivity sliders
+        horizontalSensitivitySlider.onValueChanged.AddListener(UpdateHorizontalSensitivity);
+        verticalSensitivitySlider.onValueChanged.AddListener(UpdateVerticalSensitivity);
+    }
+    
     // Method to go back from the settings menu to the pause menu
     public void BackButtonSetting()
     {
@@ -212,7 +250,7 @@ public class UIManager : MonoBehaviour
     // Method to go back from the start menu to the pause menu
     public void BackButtonStart()
     {
-        settingsMenuUI.SetActive(false);
+        settingsMenuUIFromStart.SetActive(false);
         startMenuUI.SetActive(true );
     }
 
