@@ -5,12 +5,9 @@ using UnityEngine.AI;
 
 public class EntityManager : MonoBehaviour
 {
-   public Transform player; // To get player position
+    public Transform player; // To get player position
     public StressManager stressManager; // Reference to the StressManager component.
-    
     private List<Entity> entities = new List<Entity>();     // List of the entities
-
-    
     public Transform[][] entityWaypoints; // Array of entities & their waypoints
 
     private void Start()
@@ -63,7 +60,8 @@ public class EntityManager : MonoBehaviour
             enemyEntity.Update();
         }
     }
-
+    
+    // Method to Update Entity States
     public void UpdateEntityState(Entity entity)
     {
         // Call the corresponding entity state update based on the entity's current state
