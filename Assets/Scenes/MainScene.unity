@@ -1330,8 +1330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 156ec9d4fe5002341b116bdda9e0bc52, type: 3}
-  audioMixer: {fileID: 0}
-  mixerParameter: CrossfadeParameter
+  fadeDuration: 1
 --- !u!82 &176026064
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1732,8 +1731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: c59c8b1470fb80544812f13fbb9df8b8, type: 3}
-  audioMixer: {fileID: 0}
-  mixerParameter: CrossfadeParameter
+  fadeDuration: 1
 --- !u!82 &227653633
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3039,6 +3037,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ff406bce6dc4de743973af833c5f85a6, type: 2}
+    - target: {fileID: 784213663278059823, guid: 818a7eada263fc74aa2faf04f05eb52c, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 784213663278059823, guid: 818a7eada263fc74aa2faf04f05eb52c, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 784213663278059823, guid: 818a7eada263fc74aa2faf04f05eb52c, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1204564354055868345, guid: 818a7eada263fc74aa2faf04f05eb52c, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -3083,6 +3093,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Emily (3 and 4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2729375284435193046, guid: 818a7eada263fc74aa2faf04f05eb52c, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2734251210138240973, guid: 818a7eada263fc74aa2faf04f05eb52c, type: 3}
       propertyPath: Door
       value: 
@@ -3119,6 +3133,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ff406bce6dc4de743973af833c5f85a6, type: 2}
+    - target: {fileID: 4487562481561838697, guid: 818a7eada263fc74aa2faf04f05eb52c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4666576728270978497, guid: 818a7eada263fc74aa2faf04f05eb52c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3538,8 +3556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 03fc7a447e1dbd4478d8edbac6fda1fa, type: 3}
-  audioMixer: {fileID: 0}
-  mixerParameter: CrossfadeParameter
+  fadeDuration: 1
 --- !u!82 &472468175
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4238,8 +4255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 8507226bb7f6c1e489a459b5c0d48c75, type: 3}
-  audioMixer: {fileID: 0}
-  mixerParameter: CrossfadeParameter
+  fadeDuration: 1
 --- !u!82 &625601322
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4613,8 +4629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 7b51d4df1c1ea914f950d43f99a12b6a, type: 3}
-  audioMixer: {fileID: 0}
-  mixerParameter: CrossfadeParameter
+  fadeDuration: 1
 --- !u!82 &676311042
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9976,8 +9991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 227b8e1e5f1e00c4e88c243694164e28, type: 3}
-  audioMixer: {fileID: 24100000, guid: 3807043400585594d902cdd898b01255, type: 2}
-  mixerParameter: RoomTrigerVolume
+  fadeDuration: 1
 --- !u!82 &777842707
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10142,8 +10156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 1911f823a8e88dd409a217a7d9315b11, type: 3}
-  audioMixer: {fileID: 0}
-  mixerParameter: CrossfadeParameter
+  fadeDuration: 1
 --- !u!82 &807278677
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10385,6 +10398,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rory (1 and 2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5747233899679939308, guid: c8d1dfc9bd89ba641b460a4b3e1d75e8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5349a80287fa2f048a13d9516b2df154, type: 2}
+    - target: {fileID: 6514602980480517639, guid: c8d1dfc9bd89ba641b460a4b3e1d75e8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ea6826ce692385e42865fdeb29d61996, type: 2}
+    - target: {fileID: 7929754730086938185, guid: c8d1dfc9bd89ba641b460a4b3e1d75e8, type: 3}
+      propertyPath: m_TagString
+      value: SmallCrystal
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191474078959999226, guid: c8d1dfc9bd89ba641b460a4b3e1d75e8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5349a80287fa2f048a13d9516b2df154, type: 2}
+    - target: {fileID: 8447366740804112634, guid: c8d1dfc9bd89ba641b460a4b3e1d75e8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ea6826ce692385e42865fdeb29d61996, type: 2}
     - target: {fileID: 8758443644639299329, guid: c8d1dfc9bd89ba641b460a4b3e1d75e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10428,8 +10461,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7929754730086938185, guid: c8d1dfc9bd89ba641b460a4b3e1d75e8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 844073363}
   m_SourcePrefab: {fileID: 100100000, guid: c8d1dfc9bd89ba641b460a4b3e1d75e8, type: 3}
+--- !u!1 &844073362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7929754730086938185, guid: c8d1dfc9bd89ba641b460a4b3e1d75e8, type: 3}
+  m_PrefabInstance: {fileID: 844073361}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &844073363
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844073362}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.006
+  m_Center: {x: 0.04, y: 0, z: 0}
 --- !u!1001 &881695847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10579,8 +10641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 210bea95c1a2e6c45a7cc506aa08a764, type: 3}
-  audioMixer: {fileID: 0}
-  mixerParameter: CrossfadeParameter
+  fadeDuration: 1
 --- !u!82 &890729550
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10853,8 +10914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 0814dbb0e0fd61444a3e1225e7ebd220, type: 3}
-  audioMixer: {fileID: 0}
-  mixerParameter: CrossfadeParameter
+  fadeDuration: 1
 --- !u!82 &919612964
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11135,8 +11195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 1e972e02e5ad9bb43a0b3a2c2bb6ca96, type: 3}
-  audioMixer: {fileID: 0}
-  mixerParameter: CrossfadeParameter
+  fadeDuration: 1
 --- !u!82 &996262984
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11301,8 +11360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: c99abf6edd7c91c48b9f4597d8c4f184, type: 3}
-  audioMixer: {fileID: 0}
-  mixerParameter: CrossfadeParameter
+  fadeDuration: 1
 --- !u!82 &1041122434
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11684,8 +11742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 210bea95c1a2e6c45a7cc506aa08a764, type: 3}
-  audioMixer: {fileID: 24100000, guid: 3807043400585594d902cdd898b01255, type: 2}
-  mixerParameter: RoomTrigerVolume
+  fadeDuration: 1
 --- !u!82 &1098063365
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11850,8 +11907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 9ab7c246c18b0e840898e41038a2f9ca, type: 3}
-  audioMixer: {fileID: 24100000, guid: 3807043400585594d902cdd898b01255, type: 2}
-  mixerParameter: RoomTrigerVolume
+  fadeDuration: 1
 --- !u!82 &1117293749
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12267,8 +12323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 0a0de9f9aae635f4bad39184525ac828, type: 3}
-  audioMixer: {fileID: 0}
-  mixerParameter: CrossfadeParameter
+  fadeDuration: 1
 --- !u!82 &1185617238
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13913,8 +13968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: cb94422056df7784898fe12c20dcb24f, type: 3}
-  audioMixer: {fileID: 0}
-  mixerParameter: CrossfadeParameter
+  fadeDuration: 1
 --- !u!82 &1416926481
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25859,8 +25913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 9ab7c246c18b0e840898e41038a2f9ca, type: 3}
-  audioMixer: {fileID: 0}
-  mixerParameter: CrossfadeParameter
+  fadeDuration: 1
 --- !u!82 &2087613337
 AudioSource:
   m_ObjectHideFlags: 0
@@ -26143,8 +26196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 329d7ce6222ad8f4988baa2c48b5f457, type: 3}
-  audioMixer: {fileID: 0}
-  mixerParameter: CrossfadeParameter
+  fadeDuration: 1
 --- !u!82 &2115116930
 AudioSource:
   m_ObjectHideFlags: 0
@@ -26292,6 +26344,29 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 97899576575175731, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
   m_PrefabInstance: {fileID: 555575008}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &453088087492783670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9146689944457922838}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.6171127, y: -0.4491106, z: -0.23952216, w: 0.60008395}
+  m_LocalPosition: {x: 57.634945, y: 65.102974, z: -8.020641}
+  m_LocalScale: {x: 79.38304, y: 79.38305, z: 79.38303}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1280651104170755020
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9146689944457922838}
+  m_Mesh: {fileID: 8387563506840695184, guid: d6b7ede7af755eb448ef851365379121, type: 3}
 --- !u!1 &1814120360752382487
 GameObject:
   m_ObjectHideFlags: 0
@@ -26360,6 +26435,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 285299896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &6189500253734775321
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9146689944457922838}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 0
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 5349a80287fa2f048a13d9516b2df154, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6537255693410467996
 GameObject:
   m_ObjectHideFlags: 0
@@ -26434,6 +26551,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4125d0e0a691dc42be79341e99522bf, type: 3}
+--- !u!1 &9146689944457922838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 453088087492783670}
+  - component: {fileID: 1280651104170755020}
+  - component: {fileID: 6189500253734775321}
+  m_Layer: 0
+  m_Name: treeLeaves
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -26452,3 +26587,4 @@ SceneRoots:
   - {fileID: 1311599300}
   - {fileID: 1951979112}
   - {fileID: 729306915}
+  - {fileID: 453088087492783670}
