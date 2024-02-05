@@ -7,7 +7,6 @@ public class RespawnManager : MonoBehaviour
 {
     public Transform  respawnPoint; // The point where the player will respawn.
     public GameObject player; // Reference to the player GameObject.
-    
     public UIManager uiManager; // Reference to the UIManager script.
     public GameManager gameManager;
     
@@ -30,6 +29,7 @@ public class RespawnManager : MonoBehaviour
             // Restart the timer in UIManager
             if (uiManager != null)
             {
+                // Reset and restarts timer
                 gameManager.ResetAndStartTimer();
                 // Hide the restart menu
                 uiManager.RespawnUIReset();
