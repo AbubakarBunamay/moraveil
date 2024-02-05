@@ -391,7 +391,8 @@ public class FPSController : MonoBehaviour
     //
     //     }
     // }
-
+    
+    // Method to disable or enable movement
     public void SetMovementEnabled(bool isEnabled)
     {
         characterController.enabled = isEnabled;
@@ -406,38 +407,36 @@ public class FPSController : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {   
-        //Swimming Trigger
+        // Check if the triggering object has the tag "Water".
         if (other.CompareTag("Water"))
         {
-            isWalkingOnWater = true; // Set the flag when entering water
-            Debug.Log("Walking on Water");
-            glowstickController.SetInWater(true);
+            isWalkingOnWater = true; // Set the flag to indicate that the character is walking on water.
         }
         
-        //Check if passes through the end trigger
+        // Check if the player object is the endpoint in the GameManager.
         if (other.gameObject == gameManager.endpoint)
         {
-            isInEndpointTriggerZone = true;
+            isInEndpointTriggerZone = true; // Setting the flag to indicate that the character is in the endpoint trigger zone.
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        //Swimming Trigger
+        // Check if the triggering object has the tag "Water".
         if (other.CompareTag("Water"))
         {
-            isWalkingOnWater = false; // Set the flag when entering water
-            Debug.Log("Out of Water");
-            glowstickController.SetInWater(false);
+            isWalkingOnWater = false; // Set the flag to indicate that the character is not walking on water anymore.
+            Debug.Log("Out of Water"); // Log a debug message indicating that the character is out of water.
         }
         
-        //Check if passes through the end trigger
+        // Check if the player object is the endpoint in the GameManager.
         if (other.gameObject == gameManager.endpoint)
         {
-            isInEndpointTriggerZone = false;
+            isInEndpointTriggerZone = false; // Setting the flag to indicate that the character is not in the endpoint trigger zone anymore.
         }
     }
     
+    // Property to get the current state of player being in the endpoint trigger zone.
     public bool IsInEndpointTriggerZone
     {
         get { return isInEndpointTriggerZone; }
