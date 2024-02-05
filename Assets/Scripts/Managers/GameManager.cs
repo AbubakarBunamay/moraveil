@@ -5,23 +5,18 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public float timerDuration = 60f; // Initial timer duration in seconds
-
     private bool isGameOver = false; // Game state if
     private bool isMapPickedUp = false; // Bool if map is picked up 
     private float timer; // Current timer value
-    
     public UIManager uiManager; // Reference to UIManager script
-
     public GameObject endpoint; // Reference to the GameObject with Collider representing the endpoint
-
-    private FPSController player;
+    private FPSController player; // Reference to the player Object 
 
     // Start is called before the first frame update
     void Start()
     {
         timer = timerDuration; // Set the initial timer value
-        // Find the player in the scene
-        player = FindObjectOfType<FPSController>();
+        player = FindObjectOfType<FPSController>(); // Find the player in the scene
     }
 
     // Update is called once per frame
@@ -54,8 +49,7 @@ public class GameManager : MonoBehaviour
     {
         isMapPickedUp = true;
         uiManager.StartTimer(); // Call UIManager method to start the timer
-        // Enable the timer UI when the map is picked up
-        uiManager.EnableTimerUI();
+        uiManager.EnableTimerUI(); // Enable the timer UI when the map is picked up
     }
 
     // Method to show game over UI
@@ -71,6 +65,7 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    // Check if the player has reached the endpoint
     private bool CheckIfPlayerReachedEndPoint()
     {
         // Check if the player has entered the trigger zone of the endpoint
