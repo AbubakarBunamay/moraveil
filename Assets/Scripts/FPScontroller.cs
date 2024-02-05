@@ -229,20 +229,18 @@ public class FPSController : MonoBehaviour
     * Crouching
     * 
     */
-
+    
     private void HandleCrouch()
     {
         // Check if the crouch input is pressed.
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
-            // Toggle the crouching state.
-            isCrouching = !isCrouching;
+
 
             // Adjust character height and center based on crouch state.
-            if (isCrouching)
+            if (!isCrouching)
             {
-
-                //Reduce the Characters Height
+                // Reduce the Characters Height
                 characterController.center = originalCenter * 0.5f;
                 characterController.height = originalHeight * 0.5f;
 
@@ -251,22 +249,90 @@ public class FPSController : MonoBehaviour
                 {
                     crouchIcon.enabled = true;
                 }
+                
+                isCrouching = true;
             }
             else
             {
-                // Restore original character height and center.
-                characterController.center = originalCenter;
-                characterController.height = originalHeight;
-
-                // Hide the crouch icon when standing.
-                if (crouchIcon != null)
+                // Use a raycast to check if there's enough space above to uncrouch.
+                if (CanUncrouch())
                 {
-                    crouchIcon.enabled = false;
-                }
+                    characterController.center = originalCenter;
+                    characterController.height = originalHeight;
 
+                    // Hide the crouch icon when standing.
+                    if (crouchIcon != null)
+                    {
+                        crouchIcon.enabled = false;
+                    }
+                    isCrouching = false;
+                }
             }
         }
     }
+
+    private bool CanUncrouch()
+    {
+        float standingHeight = originalHeight;
+        float radius = characterController.radius * 0.2f; // Adjust the factor as needed.
+
+        // Calculate the half extents of the box.
+        Vector3 halfExtents = new Vector3(radius, standingHeight * 0.5f, radius);
+
+        // Calculate the position of the box slightly above the player's head.
+        Vector3 boxPosition = transform.position + Vector3.up * (standingHeight - radius);
+
+        // Perform an OverlapBox to check for obstructions.
+        Collider[] colliders = Physics.OverlapBox(boxPosition, halfExtents, Quaternion.identity);
+
+        // If there are no colliders in the box, it means there's enough space to uncrouch.
+        return colliders.Length == 0;
+    }
+
+    // private void HandleCrouch()
+    // {
+    //     // Check if the crouch input is pressed.
+    //     if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+    //     {
+    //         // If the player is trying to uncrouch and there's an obstruction above, return.
+    //         if (!isCrouching && !CanUncrouch())
+    //         {
+    //             return;
+    //         }
+    //         
+    //         // Toggle the crouching state.
+    //         isCrouching = !isCrouching;
+    //
+    //         // Adjust character height and center based on crouch state.
+    //         if (isCrouching)
+    //         {
+    //
+    //             //Reduce the Characters Height
+    //             characterController.center = originalCenter * 0.5f;
+    //             characterController.height = originalHeight * 0.5f;
+    //
+    //             // Show the crouch icon when crouching
+    //             if (crouchIcon != null)
+    //             {
+    //                 crouchIcon.enabled = true;
+    //             }
+    //         }
+    //         else
+    //         {
+    //             // Restore original character height and center.
+    //             characterController.center = originalCenter;
+    //             characterController.height = originalHeight;
+    //
+    //             // Hide the crouch icon when standing.
+    //             if (crouchIcon != null)
+    //             {
+    //                 crouchIcon.enabled = false;
+    //             }
+    //
+    //         }
+    //     }
+    // }
+    
 
     /*
     * 
