@@ -45,14 +45,16 @@ public class Keypad : Interactable
             }
             else
             {
-                // Incorrect input, reset entered code and buttons in the KeypadManager
-                enteredCode = "";
+
                 // Reset the buttons in the KeypadManager only when the first digit is incorrect
-                if (enteredCode.Length == 0)
+                if (enteredCode.Length == correctCode.Length)
                 {
                     manager.ResetButtons();
+                    // Incorrect input, reset entered code and buttons in the KeypadManager
+                    enteredCode = "";
+                    Debug.Log("Incorrect input. Retry.");
+
                 }
-                Debug.Log("Incorrect input. Retry.");
             }
         }
         else
