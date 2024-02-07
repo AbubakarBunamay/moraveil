@@ -1275,12 +1275,12 @@ GameObject:
   - component: {fileID: 176026063}
   - component: {fileID: 176026062}
   m_Layer: 0
-  m_Name: Mural 4 (cu culains death)
+  m_Name: Mural 4 (war)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &176026061
 Transform:
   m_ObjectHideFlags: 0
@@ -1289,13 +1289,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176026060}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.11746786, z: -0, w: 0.9930767}
-  m_LocalPosition: {x: 53.31972, y: 12.688866, z: 151.75168}
+  m_LocalRotation: {x: -0, y: 0.68489236, z: -0, w: 0.72864425}
+  m_LocalPosition: {x: -21.7, y: 2.35, z: 79.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1397119656}
-  m_LocalEulerAnglesHint: {x: 0, y: 13.492, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 86.454, z: 0}
 --- !u!65 &176026062
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1329,7 +1329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a455cb34f2942b445a12fe51594afe8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundToPlay: {fileID: 8300000, guid: 156ec9d4fe5002341b116bdda9e0bc52, type: 3}
+  soundToPlay: {fileID: 8300000, guid: 0a0de9f9aae635f4bad39184525ac828, type: 3}
   fadeDuration: 1
 --- !u!82 &176026064
 AudioSource:
@@ -1340,7 +1340,7 @@ AudioSource:
   m_GameObject: {fileID: 176026060}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6769789331830970360, guid: b588e6dd3363ecb44a5135e66bf7a875, type: 2}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 143433a4618ba6047a878fb3b2c0232f, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1351,10 +1351,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 4.863098
+  MaxDistance: 12
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1362,23 +1362,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.06949336
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -1.508537
+      outSlope: -1.508537
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0.21372037
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 0.004180908
+      inSlope: -1.0714285
+      outSlope: -1.0714285
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -1387,7 +1387,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1741,7 +1741,7 @@ AudioSource:
   m_GameObject: {fileID: 227653629}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6769789331830970360, guid: b588e6dd3363ecb44a5135e66bf7a875, type: 2}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 143433a4618ba6047a878fb3b2c0232f, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -4049,7 +4049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a455cb34f2942b445a12fe51594afe8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundToPlay: {fileID: 8300000, guid: 8507226bb7f6c1e489a459b5c0d48c75, type: 3}
+  soundToPlay: {fileID: 8300000, guid: 1911f823a8e88dd409a217a7d9315b11, type: 3}
   fadeDuration: 1
 --- !u!82 &625601322
 AudioSource:
@@ -4434,7 +4434,7 @@ AudioSource:
   m_GameObject: {fileID: 676311038}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6769789331830970360, guid: b588e6dd3363ecb44a5135e66bf7a875, type: 2}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 143433a4618ba6047a878fb3b2c0232f, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -9901,7 +9901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &807278674
 Transform:
   m_ObjectHideFlags: 0
@@ -9910,13 +9910,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807278673}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.11746786, z: -0, w: 0.9930767}
-  m_LocalPosition: {x: 53.31972, y: 12.688866, z: 151.75168}
+  m_LocalRotation: {x: -0, y: 0.7996464, z: -0, w: 0.6004712}
+  m_LocalPosition: {x: -18.22, y: 2.38, z: 82.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1273280285}
-  m_LocalEulerAnglesHint: {x: 0, y: 13.492, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 106.193, z: 0}
 --- !u!65 &807278675
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9950,7 +9950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a455cb34f2942b445a12fe51594afe8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundToPlay: {fileID: 8300000, guid: 1911f823a8e88dd409a217a7d9315b11, type: 3}
+  soundToPlay: {fileID: 8300000, guid: 8507226bb7f6c1e489a459b5c0d48c75, type: 3}
   fadeDuration: 1
 --- !u!82 &807278677
 AudioSource:
@@ -9972,7 +9972,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 125
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 5.812237
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -10650,8 +10650,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 5, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5.21133, y: 5, z: 5}
+  m_Center: {x: -1.1056659, y: 0, z: -0.0000000041100927}
 --- !u!114 &919612963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10675,7 +10675,7 @@ AudioSource:
   m_GameObject: {fileID: 919612960}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6769789331830970360, guid: b588e6dd3363ecb44a5135e66bf7a875, type: 2}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 143433a4618ba6047a878fb3b2c0232f, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -11070,13 +11070,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041122430}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.11746786, z: -0, w: 0.9930767}
-  m_LocalPosition: {x: 58.63, y: 1.93, z: 28.21}
+  m_LocalRotation: {x: -0, y: 0.018126342, z: -0, w: 0.9998357}
+  m_LocalPosition: {x: 59.63, y: 1.93, z: 26.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1273280285}
-  m_LocalEulerAnglesHint: {x: 0, y: 13.492, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 2.077, z: 0}
 --- !u!65 &1041122432
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11096,8 +11096,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 4, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 8.191011, y: 4, z: 9.069182}
+  m_Center: {x: -2.6451116, y: 0, z: 0.5036011}
 --- !u!114 &1041122433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11478,8 +11478,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.0696614, y: 2, z: 3.0736978}
+  m_Center: {x: 0.53482926, y: 0, z: -0.00704755}
 --- !u!114 &1098063364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12019,7 +12019,7 @@ GameObject:
   - component: {fileID: 1185617237}
   - component: {fileID: 1185617236}
   m_Layer: 0
-  m_Name: Mural 5 (War)
+  m_Name: Mural 5 (cu culains death)*
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12073,7 +12073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a455cb34f2942b445a12fe51594afe8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundToPlay: {fileID: 8300000, guid: 0a0de9f9aae635f4bad39184525ac828, type: 3}
+  soundToPlay: {fileID: 8300000, guid: 156ec9d4fe5002341b116bdda9e0bc52, type: 3}
   fadeDuration: 1
 --- !u!82 &1185617238
 AudioSource:
@@ -12084,7 +12084,7 @@ AudioSource:
   m_GameObject: {fileID: 1185617234}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6769789331830970360, guid: b588e6dd3363ecb44a5135e66bf7a875, type: 2}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 143433a4618ba6047a878fb3b2c0232f, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -25705,13 +25705,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115116926}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.10920912, z: -0, w: 0.9940188}
+  m_LocalRotation: {x: -0, y: 0.07875056, z: -0, w: 0.99689436}
   m_LocalPosition: {x: 3.883, y: -0.28, z: 0.461}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1273280285}
-  m_LocalEulerAnglesHint: {x: 0, y: -12.539, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 9.034, z: 0}
 --- !u!65 &2115116928
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25731,8 +25731,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.9172635, y: 3, z: 5.5670414}
+  m_Center: {x: 0.275851, y: 0, z: -0.2835176}
 --- !u!114 &2115116929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25746,7 +25746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 329d7ce6222ad8f4988baa2c48b5f457, type: 3}
-  fadeDuration: 1
+  fadeDuration: 0
 --- !u!82 &2115116930
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25767,7 +25767,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 125
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.0345049
   MaxDistance: 6.95
   Pan2D: 0
   rolloffMode: 0
@@ -25803,7 +25803,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
