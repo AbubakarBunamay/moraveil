@@ -1681,7 +1681,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &227653630
 Transform:
   m_ObjectHideFlags: 0
@@ -1691,7 +1691,7 @@ Transform:
   m_GameObject: {fileID: 227653629}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.11746786, z: -0, w: 0.9930767}
-  m_LocalPosition: {x: 53.31972, y: 12.688866, z: 151.75168}
+  m_LocalPosition: {x: 38.51, y: -0.37, z: 56.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1716,7 +1716,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 5, z: 5}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &227653632
 MonoBehaviour:
@@ -1752,10 +1752,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0.83
+  MaxDistance: 11.59
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1788,7 +1788,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -10896,7 +10896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &996262981
 Transform:
   m_ObjectHideFlags: 0
@@ -10906,7 +10906,7 @@ Transform:
   m_GameObject: {fileID: 996262980}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.11746786, z: -0, w: 0.9930767}
-  m_LocalPosition: {x: 53.31972, y: 12.688866, z: 151.75168}
+  m_LocalPosition: {x: 39.2, y: -0.23, z: 59.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10931,7 +10931,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 5, z: 5}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &996262983
 MonoBehaviour:
@@ -10967,7 +10967,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 125
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 2.1923866
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -11515,9 +11515,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 73.7
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -11565,7 +11565,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.0095833335
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -11580,7 +11580,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.412
       inSlope: 0
       outSlope: 0
       tangentMode: 0
