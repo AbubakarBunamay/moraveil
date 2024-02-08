@@ -33,11 +33,12 @@ public class ReplaceWithPrefab : EditorWindow
                 var selected = selection[i];
 
                 // Determine the type of the selected prefab
-                var prefabType = PrefabUtility.GetPrefabType(prefab);
+                var prefabAssetType = PrefabUtility.GetPrefabAssetType(prefab);
+                var prefabInstanceStatus = PrefabUtility.GetPrefabInstanceStatus(prefab);
                 GameObject newObject;
 
                 // Instantiate the prefab based on its type
-                if (prefabType == PrefabType.Prefab)
+                if (prefabAssetType == PrefabAssetType.Regular && prefabInstanceStatus == PrefabInstanceStatus.NotAPrefab)
                 {
                     // Instantiate a regular prefab and set its name
                     newObject = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
