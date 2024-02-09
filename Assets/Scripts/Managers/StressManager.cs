@@ -15,7 +15,6 @@ public class StressManager : MonoBehaviour
     public float stressDecreaseRate = 5f; // Rate at which stress decreases per second.
     public string playerTag = "Player"; // Tag of the player GameObject.
     public float currentStress = 0f; // Current stress level.
-    private bool playerInsideTrigger = false; // By default player not inside trigger
     // public Image darkScreen; // Reference to the full-screen darkening effect.
     // public CanvasGroup stressCanvasGroup; // Reference to the CanvasGroup component.
     
@@ -40,24 +39,6 @@ public class StressManager : MonoBehaviour
     public float stunDuration = 5f; // Duration of the stun effect in seconds.
     private float stunCooldown = 0f; // Cooldown for the stun effect.
     private bool isStunned = false; // Flag to indicate whether the player is currently stunned.
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        // Check if the player enters the trigger zone.
-        if (other.CompareTag(playerTag))
-        {
-            playerInsideTrigger = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        // Check if the player exits the trigger zone.
-        if (other.CompareTag(playerTag))
-        {
-            playerInsideTrigger = false;
-        }
-    }
     
     private void Start()
     {
