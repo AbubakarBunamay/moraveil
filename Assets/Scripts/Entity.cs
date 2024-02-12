@@ -27,6 +27,7 @@ public class Entity : MonoBehaviour
     private float chaseTimer = 0.0f; // Timer for the chase state
     public float cooldownDuration ; // Cooldown duration after chasing
     private float distanceToPlayer; // Distance to the player
+    public float rotationSpeed = 5.0f; // Rotation speed of the entity
     
     // Stress Variables
     public float entityStressIncreaseRate; // Separate stress increase rate for this entity
@@ -127,6 +128,11 @@ public class Entity : MonoBehaviour
             // Check if the player is within the trigger distance
             if (distanceToPlayer < entityDistancetrigger)
             {
+                // Rotate the entity to look at the player
+                Vector3 directionToPlayer = (player.position - transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(directionToPlayer.x, 0f, directionToPlayer.z));
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+                
                 // Check if the player has the flashlight on
                 if (IsPlayerFlashlightOn())
                 {
@@ -175,18 +181,6 @@ public class Entity : MonoBehaviour
         // Increment the chase timer
         chaseTimer += Time.deltaTime;
         
-        // Stress increase
-        float stressIncrease = entityStressIncreaseRate * Time.deltaTime;
-
-        // Check if stress is increasing as expected
-        float remainingStressSpace = stressManager.maxStress - stressManager.currentStress;
-
-        // Increase stress 
-        if (remainingStressSpace > 0)
-        {
-            // Increase stress and trigger stress effects
-            stressManager.IncreaseStress(stressIncrease);
-        }
     }
     
     // Update logic for the Cooldown state
