@@ -5,6 +5,9 @@ using UnityEngine.InputSystem.Interactions;
 
 public class InteractionManager : MonoBehaviour{
 
+    // Maximum distance for interaction
+    public float maxInteractionDistance = 0.5f;
+
     private void Update()
     {
         // Check if the left mouse button is clicked
@@ -19,8 +22,12 @@ public class InteractionManager : MonoBehaviour{
             // Iterate through all the hits and handle interactions
             foreach (RaycastHit hit in interactHits)
             {
-                HandleInteractable(hit.collider);
-                //Debug.Log("Hit: " + hit.collider.gameObject.name);
+                // Check if the hit is within the maximum interaction distance
+                if (hit.distance <= maxInteractionDistance)
+                {
+                    HandleInteractable(hit.collider);
+                    // Debug.Log("Hit: " + hit.collider.gameObject.name);
+                }
             }
         }
     }
