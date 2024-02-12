@@ -270,7 +270,7 @@ PrefabInstance:
     - target: {fileID: 7638401433777748961, guid: 9c05477e179379143a1f087dd07ba406, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 889545044}
+      objectReference: {fileID: 1657632490}
     - target: {fileID: 7638401433777748961, guid: 9c05477e179379143a1f087dd07ba406, type: 3}
       propertyPath: uiManager
       value: 
@@ -5416,10 +5416,6 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 92980555}
-    - target: {fileID: 1328940133289732675, guid: 4ecbf3d495231a240bc747f0b28fd8d0, type: 3}
-      propertyPath: timerDuration
-      value: 240
-      objectReference: {fileID: 0}
     - target: {fileID: 2192872748757385714, guid: 4ecbf3d495231a240bc747f0b28fd8d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 81.14185
@@ -7542,14 +7538,14 @@ PrefabInstance:
     - target: {fileID: 6957266010005182072, guid: 33281594328e8354b88f4b735a3a8cbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 17445922}
+      objectReference: {fileID: 92980555}
     - target: {fileID: 6957266010005182072, guid: 33281594328e8354b88f4b735a3a8cbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Respawn
+      value: RespawnPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 6957266010005182072, guid: 33281594328e8354b88f4b735a3a8cbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RespawnManager, Assembly-CSharp
+      value: UIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9130053184993207487, guid: 33281594328e8354b88f4b735a3a8cbf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -23739,6 +23735,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!143 &1657632490 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 2718699024034500145, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+  m_PrefabInstance: {fileID: 1657632487}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1660741089
 PrefabInstance:
   m_ObjectHideFlags: 0
