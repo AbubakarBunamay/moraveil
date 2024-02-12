@@ -16,7 +16,9 @@ public class FPSController : MonoBehaviour
     public float crouchRunningSpeed = 7f; // Speed when running while crouched
     public float gravity = 9.8f; // Gravity force applied to the character.
     public Image crouchIcon; // Reference to the UI Image for the crouch icon
-    private float originalRunningSpeed; // Variable to store the original running speed
+    
+    [HideInInspector]
+    public float originalRunningSpeed; // Variable to store the original running speed
 
     [Header("Walking on Water")]
     public float walkOnWaterSpeed = 2.5f; // Adjust the speed as needed
