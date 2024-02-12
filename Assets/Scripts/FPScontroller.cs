@@ -404,7 +404,10 @@ public class FPSController : MonoBehaviour
         
         if (Input.GetButtonDown("Jump") && jumpsPerformed < maxJumps && canJump)
         {
-            verticalVelocity = Mathf.Sqrt(2 * jumpHeight * gravity); // Calculate double jump velocity.
+            // Adjust jump height when walking on water.
+            float adjustedJumpHeight = isWalkingOnWater ? jumpHeight / 2 : jumpHeight;
+
+            verticalVelocity = Mathf.Sqrt(2 * adjustedJumpHeight  * gravity); // Calculate double jump velocity.
             isJumping = true; // Set jumping flag for double jump.
             jumpsPerformed++; // Increment jump count for double jump.
         }
