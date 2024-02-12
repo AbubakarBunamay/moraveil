@@ -353,6 +353,33 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
+    // Method to restart the game by respawning the player
+    public void RespawnPlayer()
+    {
+        // Hide the gameover UI.
+        gameOverUI.SetActive(false);
+
+        // Trigger respawn functionality
+        respawnManager.Respawn();
+
+        // Resume the game
+        Time.timeScale = 1f;
+        isGamePaused = false;
+
+        // Resume all audio
+        AudioListener.pause = false;
+
+        // Show the HUD when the restart prompt is hidden 
+        HUD.SetActive(true);
+
+        // Lock and hide the cursor when the restart prompt is hidden.
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        // Reset variables and state
+        isPlayerDead = false;
+    }
+    
     // Method for respawn
     public void RespawnUIReset()
     {
