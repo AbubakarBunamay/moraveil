@@ -3076,8 +3076,8 @@ Transform:
   - {fileID: 6733830785205111377}
   - {fileID: 7311959395530425500}
   - {fileID: 6846332324588062384}
-  - {fileID: 6868625186651456026}
   - {fileID: 3127330512089513185}
+  - {fileID: 8202619712698904621}
   - {fileID: 3559123516750079097}
   m_Father: {fileID: 8758443644639299329}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25807,6 +25807,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5481464876629194529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8202619712698904621}
+  m_Layer: 0
+  m_Name: Crystal_Room_Falling_Stalagmites
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8202619712698904621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5481464876629194529}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6868625186651456026}
+  m_Father: {fileID: 4215869649404115453}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5510054059065513751
 GameObject:
   m_ObjectHideFlags: 0
@@ -47346,7 +47378,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 4215869649404115453}
+    m_TransformParent: {fileID: 8202619712698904621}
     m_Modifications:
     - target: {fileID: 197214666194586560, guid: 737a4063788d7824db5669dd28f7530b, type: 3}
       propertyPath: m_Name
@@ -57477,7 +57509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 259289456373319427, guid: 06903adff3eaa1e44aa2d2f6fb9b2a42, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.12255
+      value: 0.122550026
       objectReference: {fileID: 0}
     - target: {fileID: 259289456373319427, guid: 06903adff3eaa1e44aa2d2f6fb9b2a42, type: 3}
       propertyPath: m_LocalRotation.w
