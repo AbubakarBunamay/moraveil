@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class RespawnManager : MonoBehaviour
 {
     public Transform  respawnPoint; // The point where the player will respawn.
-    public GameObject player; // Reference to the player GameObject.
+    public CharacterController player; // Reference to the player CharacterController.
     public UIManager uiManager; // Reference to the UIManager script.
-    public GameManager gameManager;
+    public GameManager gameManager; // Reference to the GameManager script.
     
+
     // Public method to initiate player respawn
     public void Respawn()
     {
@@ -22,10 +23,15 @@ public class RespawnManager : MonoBehaviour
         // Check if the respawn point is assigned
         if (respawnPoint != null)
         {
-            // Update player's position and rotation to the respawn point
-            player.transform.position = respawnPoint.position;
-            player.transform.rotation = respawnPoint.rotation;
+            // Cache the player's transform component
+            Transform playerTransform = player.transform;
             
+            // Update player's position and rotation to the respawn point
+            player.enabled = false; // Disabling the CharacterController temporarily to directly set position
+            playerTransform.position = respawnPoint.position;
+            playerTransform.rotation = respawnPoint.rotation;
+            player.enabled = true; // Re-enabling the CharacterController after respawning position
+        
             // Restart the timer in UIManager
             if (uiManager != null)
             {
@@ -36,16 +42,16 @@ public class RespawnManager : MonoBehaviour
             }
             else
             {
+                // Log an error if  UIManager is not assigned
                 Debug.LogError("UIManager script not assigned in the RespawnManager script.");
             }
-            
+        
             // Log a message with respawned position and rotation
-            //Debug.Log("Respawned at position: " + transform.position + ", rotation: " + transform.rotation.eulerAngles);
-
+            //Debug.Log("Respawned at position: " + player.transform.position + ", rotation: " + player.transform.rotation.eulerAngles);
         }
         else
         {
-            // Error handling: Log an error if respawn point or player is not assigned
+            // Log an error if respawn point or player is not assigned
             if (player == null)
             {
                 Debug.LogError("Player GameObject not assigned in the RespawnManager script.");
