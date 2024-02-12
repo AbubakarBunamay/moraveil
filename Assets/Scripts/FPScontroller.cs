@@ -400,7 +400,7 @@ public class FPSController : MonoBehaviour
     private void Jump()
     {
         // Check if the player is allowed to jump.
-        bool canJump = !isCrouching && !isWalkingOnWater;
+        bool canJump = !isCrouching;
         
         if (Input.GetButtonDown("Jump") && jumpsPerformed < maxJumps && canJump)
         {
