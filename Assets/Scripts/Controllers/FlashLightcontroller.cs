@@ -53,7 +53,7 @@ public class FlashLightcontroller : MonoBehaviour
                         Light pointLight = hit.collider.GetComponentInChildren<Light>(); // Find the light component 
                         if (pointLight != null) // Check if not null
                         {
-                            IncreasePointLightIntensity(pointLight, bigCrystalMaxIntensity); // Crystal glow 
+                            IncreaseCrystalLightIntensity(pointLight, bigCrystalMaxIntensity); // Crystal glow 
                         }
                     }
                     else if (hit.collider.CompareTag("SmallCrystal")) // Check if Small Crystal
@@ -61,7 +61,7 @@ public class FlashLightcontroller : MonoBehaviour
                         Light pointLight = hit.collider.GetComponentInChildren<Light>(); // Find the light component
                         if (pointLight != null) // Check if not null
                         {
-                            IncreasePointLightIntensity(pointLight, smallCrystalMaxIntensity); // Crystal glow 
+                            IncreaseCrystalLightIntensity(pointLight, smallCrystalMaxIntensity); // Crystal glow 
                         }
 
                     }
@@ -72,11 +72,11 @@ public class FlashLightcontroller : MonoBehaviour
         }
     }
     
-    // Method to increase light intensity on objects with a point light
-     private void IncreasePointLightIntensity(Light pointLight, float maxIntensity)
+    // Method to increase light intensity on crystals
+     private void IncreaseCrystalLightIntensity(Light pointLight, float maxIntensity)
     {
-        pointLight.intensity += 10f * Time.deltaTime;  // Increase the intensity of the point light.
-        pointLight.intensity = Mathf.Clamp(pointLight.intensity, 0f, maxIntensity);         // Clamp the intensity to the specified maximum value.
+        pointLight.intensity += 10f * Time.deltaTime;  // Increase the intensity of the light.
+        pointLight.intensity = Mathf.Clamp(pointLight.intensity, 0f, maxIntensity); // Clamp the intensity to the specified maximum value.
     }
     
      // Method to toggle the flashlight on or off
@@ -93,7 +93,7 @@ public class FlashLightcontroller : MonoBehaviour
     private void LightIntensityDistance()
     {
         // Calculate the normalized distance based on the hit distance, min distance, and max distance
-        //float normalizedDistance = Mathf.Clamp01((hit.distance - minDistance) / (maxDistance - minDistance * 0.5f));
+        // float normalizedDistance = Mathf.Clamp01((hit.distance - minDistance) / (maxDistance - minDistance * 0.5f));
         if (Physics.SphereCast(playerCamera.position, 50f, playerCamera.forward, out sphereHit, maxDistance))
         {
             // Use a smoother easing function to create subtler transitions in intensity

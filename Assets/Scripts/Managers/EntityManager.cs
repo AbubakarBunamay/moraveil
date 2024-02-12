@@ -46,7 +46,7 @@ public class EntityManager : MonoBehaviour
             else
             {
                 // Log an error if either the player or stressManager is not assigned
-                Debug.LogError("Player or stressManager not assigned!");
+                Debug.LogError("Player or stressManager not assigned in the EntityManager!");
             }
         }
     }

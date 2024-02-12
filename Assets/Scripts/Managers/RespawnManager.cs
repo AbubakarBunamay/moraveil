@@ -54,7 +54,7 @@ public class RespawnManager : MonoBehaviour
             // Log an error if respawn point or player is not assigned
             if (player == null)
             {
-                Debug.LogError("Player GameObject not assigned in the RespawnManager script.");
+                Debug.LogError("Player CharacterController not assigned in the RespawnManager script.");
             }
 
             if (respawnPoint == null)

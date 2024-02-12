@@ -230,14 +230,14 @@ public class Entity : MonoBehaviour
             else
             {
                 // Log an error if the flashlight component is not found on the player
-                Debug.LogError("Flashlight component not found on player.");
+                Debug.LogError("Flashlight component not found on player from Entity Script.", this);
                 return false;
             }
         }
         else
         {
             // Log an error if the player object is null
-            Debug.LogError("Player object is null.");
+            Debug.LogError("Flashlight in Player object is null from Entity Script.", this);
             return false;
         }
     }
@@ -253,7 +253,7 @@ public class Entity : MonoBehaviour
         else
         {
             // Log a message if no waypoints have been set
-            Debug.Log("No waypoints set");
+            Debug.LogError("No waypoints set on Entities", this);
         }
     }
 
