@@ -253,6 +253,9 @@ public class FPSController : MonoBehaviour
                 }
                 
                 isCrouching = true;
+                
+                // Update Crouch movement speed to half of the original movement speed
+                movementSpeed *= 0.5f;
             }
             else
             {
@@ -268,6 +271,9 @@ public class FPSController : MonoBehaviour
                         crouchIcon.enabled = false;
                     }
                     isCrouching = false;
+                    
+                    // Restore the movement speed to its original value
+                    movementSpeed /= 0.5f;
                 }
             }
         }
