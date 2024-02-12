@@ -388,9 +388,6 @@ public class FPSController : MonoBehaviour
         {
             // Update the vertical velocity based on gravity.
             verticalVelocity -= gravity * Time.deltaTime;
-
-            // Apply vertical velocity to the character controller.
-            characterController.Move(Vector3.up * verticalVelocity * Time.deltaTime);
         }
         else
         {
