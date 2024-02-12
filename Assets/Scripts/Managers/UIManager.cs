@@ -442,7 +442,7 @@ public class UIManager : MonoBehaviour
         // Hide the HUD when the game is paused
         HUD.SetActive(false);
         
-        // Unlock and show the cursor when the prompt is shown.
+        // Unlock and show the cursor when paused
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
