@@ -44,6 +44,7 @@ public class FPSController : MonoBehaviour
     public bool isJumping = false; // Flag indicating whether the character is currently jumping.
     private bool isCrouching = false; //Flag indicating whether the character is currently crouching
     public bool isRunning = false; // Flag Indcating whether the character is running
+    private bool canCrouch = true; // Add this line to store the crouch permission
 
     private Transform cameraTransform; // Reference to the main camera's transform.
     private Quaternion originalCameraRotation; // Stores the original rotation of the camera.
@@ -232,17 +233,30 @@ public class FPSController : MonoBehaviour
     * 
     */
     
+    // A property to manage the crouch permission
+    public bool CanCrouch
+    {
+        get { return canCrouch; }
+        set { canCrouch = value; }
+    }
+
     private void HandleCrouch()
     {
         // Check if the crouch input is pressed.
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
-
+            // If the player is crouching and they're inside the trigger zone, prevent uncrouching.
+            if (isCrouching && !CanCrouch)
+            {
+                Debug.Log("Cannot uncrouch while inside the trigger zone.");
+                return;
+            }
 
             // Adjust character height and center based on crouch state.
+            // Toggle the crouching state.
             if (!isCrouching)
             {
-                // Reduce the Characters Height
+                // Reduce the character's height and adjust center when crouching.
                 characterController.center = originalCenter * 0.5f;
                 characterController.height = originalHeight * 0.5f;
 
@@ -251,7 +265,7 @@ public class FPSController : MonoBehaviour
                 {
                     crouchIcon.enabled = true;
                 }
-                
+
                 isCrouching = true;
                 
                 // Update Crouch movement speed to half of the original movement speed
@@ -259,87 +273,21 @@ public class FPSController : MonoBehaviour
             }
             else
             {
-                // Use a raycast to check if there's enough space above to uncrouch.
-                if (CanUncrouch())
-                {
-                    characterController.center = originalCenter;
-                    characterController.height = originalHeight;
+                // If the player is crouching, allow uncrouching.
+                // Restore original height and center.
+                characterController.center = originalCenter;
+                characterController.height = originalHeight;
 
-                    // Hide the crouch icon when standing.
-                    if (crouchIcon != null)
-                    {
-                        crouchIcon.enabled = false;
-                    }
-                    isCrouching = false;
-                    
-                    // Restore the movement speed to its original value
-                    movementSpeed /= 0.5f;
+                // Hide the crouch icon when standing.
+                if (crouchIcon != null)
+                {
+                    crouchIcon.enabled = false;
                 }
+
+                isCrouching = false;
             }
         }
     }
-
-    private bool CanUncrouch()
-    {
-        float standingHeight = originalHeight;
-        float radius = characterController.radius * 0.2f; // Adjust the factor as needed.
-
-        // Calculate the half extents of the box.
-        Vector3 halfExtents = new Vector3(radius, standingHeight * 0.5f, radius);
-
-        // Calculate the position of the box slightly above the player's head.
-        Vector3 boxPosition = transform.position + Vector3.up * (standingHeight - radius);
-
-        // Perform an OverlapBox to check for obstructions.
-        Collider[] colliders = Physics.OverlapBox(boxPosition, halfExtents, Quaternion.identity);
-
-        // If there are no colliders in the box, it means there's enough space to uncrouch.
-        return colliders.Length == 0;
-    }
-
-    // private void HandleCrouch()
-    // {
-    //     // Check if the crouch input is pressed.
-    //     if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
-    //     {
-    //         // If the player is trying to uncrouch and there's an obstruction above, return.
-    //         if (!isCrouching && !CanUncrouch())
-    //         {
-    //             return;
-    //         }
-    //         
-    //         // Toggle the crouching state.
-    //         isCrouching = !isCrouching;
-    //
-    //         // Adjust character height and center based on crouch state.
-    //         if (isCrouching)
-    //         {
-    //
-    //             //Reduce the Characters Height
-    //             characterController.center = originalCenter * 0.5f;
-    //             characterController.height = originalHeight * 0.5f;
-    //
-    //             // Show the crouch icon when crouching
-    //             if (crouchIcon != null)
-    //             {
-    //                 crouchIcon.enabled = true;
-    //             }
-    //         }
-    //         else
-    //         {
-    //             // Restore original character height and center.
-    //             characterController.center = originalCenter;
-    //             characterController.height = originalHeight;
-    //
-    //             // Hide the crouch icon when standing.
-    //             if (crouchIcon != null)
-    //             {
-    //                 crouchIcon.enabled = false;
-    //             }
-    //
-    //         }
-    //     }
-    // }
     
 
     /*
@@ -492,6 +440,11 @@ public class FPSController : MonoBehaviour
         {
             isInEndpointTriggerZone = true; // Setting the flag to indicate that the character is in the endpoint trigger zone.
         }
+        
+        if (other.CompareTag("NoUnCrouchZone"))
+        {
+            CanCrouch = false;
+        }
     }
 
     public void OnTriggerExit(Collider other)
@@ -507,6 +460,11 @@ public class FPSController : MonoBehaviour
         if (other.gameObject == gameManager.endpoint)
         {
             isInEndpointTriggerZone = false; // Setting the flag to indicate that the character is not in the endpoint trigger zone anymore.
+        }
+        
+        if (other.CompareTag("NoUnCrouchZone"))
+        {
+            CanCrouch = true;
         }
     }
     
