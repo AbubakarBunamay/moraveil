@@ -71,6 +71,21 @@ public class InteractionManager : MonoBehaviour{
                 mapInteraction.InteractWithMap();
             }
         }
+        // Check if the collider has the "Mural" tag
+        else if (collider.CompareTag("Mural"))
+        {
+            
+        }
+        // Check if the collider has the "Polaroid" tag
+        else if (collider.CompareTag("Polaroid"))
+        {
+            
+        }
+        // Check if the collider has the "Journal" tag
+        else if (collider.CompareTag("Journal"))
+        {
+            
+        }
         // If none of the specific tags match, get the generic Interactable component
         else
         {
