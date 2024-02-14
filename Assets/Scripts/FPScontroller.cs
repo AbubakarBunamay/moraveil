@@ -285,6 +285,10 @@ public class FPSController : MonoBehaviour
                 }
 
                 isCrouching = false;
+                
+                // Restore original movement speed when standing up.
+                movementSpeed /= 0.5f;
+                
             }
         }
     }
