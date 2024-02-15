@@ -71,6 +71,42 @@ public class InteractionManager : MonoBehaviour{
                 mapInteraction.InteractWithMap();
             }
         }
+        // Check if the collider has the "Mural" tag
+        else if (collider.CompareTag("Mural"))
+        {
+            // Get the MuralInteraction component from the collider
+            MuralInteraction mural = collider.GetComponent<MuralInteraction>();
+
+            if (mural != null)
+            {
+                // If the MuralInteraction component is not null, call its MuralInteract method
+                mural.MuralInteract();
+            }
+        }
+        // Check if the collider has the "Polaroid" tag
+        else if (collider.CompareTag("Polaroid"))
+        {
+            // Get the PolaroidInteraction component from the collider
+            Polaroid polaroid = collider.GetComponent<Polaroid>();
+
+            if (polaroid != null)
+            {
+                // If the PolaroidInteraction component is not null, call its PolaroidInteract method
+                polaroid.PolaroidInteract();
+            }
+        }
+        // Check if the collider has the "Journal" tag
+        else if (collider.CompareTag("Journal"))
+        {
+            // Get the JournalInteraction component from the collider
+            JournalInteraction journal = collider.GetComponent<JournalInteraction>();
+
+            if (journal != null)
+            {
+                // If the JournalInteraction component is not null, call its JournalInteract method
+                journal.JournalInteract();
+            }
+        }
         // If none of the specific tags match, get the generic Interactable component
         else
         {

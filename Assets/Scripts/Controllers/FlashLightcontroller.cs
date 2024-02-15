@@ -65,6 +65,19 @@ public class FlashLightcontroller : MonoBehaviour
                         }
 
                     }
+                    else if (hit.collider.CompareTag("InstructionMural")) // Check if Instruction Mural
+                    {
+                        Debug.Log("Hit an Instruction Mural");
+                        // Check if the hit object has a renderer component
+                        Renderer renderer = hit.collider.GetComponent<Renderer>();
+                        if (renderer != null)
+                        {
+                            // Get the material of the renderer
+                            Material material = renderer.material;
+
+                            material.SetFloat("_Emissive_Strength", 1f);
+                        }
+                    }
                     
                     LightIntensityDistance(); // Gradual Increase/Decrease light intensity based on distance
                 }

@@ -16,6 +16,7 @@ public class FPSController : MonoBehaviour
     public float crouchRunningSpeed = 7f; // Speed when running while crouched
     public float gravity = 9.8f; // Gravity force applied to the character.
     public Image crouchIcon; // Reference to the UI Image for the crouch icon
+    public GameObject headCube; // Reference to the cube object placed above the player's head
     
     [HideInInspector]
     public float originalRunningSpeed; // Variable to store the original running speed
@@ -67,6 +68,7 @@ public class FPSController : MonoBehaviour
         stressManager = FindObjectOfType<StressManager>();
         footstepSound = FindObjectOfType<FootstepSound>();
         mHandler = FindObjectOfType<MouseHandler>();
+        footstepSound = FindObjectOfType<FootstepSound>(); 
 
         // Get the main camera's transform and set the crouch icon to initially be disabled.
         cameraTransform = Camera.main.transform;
@@ -100,22 +102,32 @@ public class FPSController : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
-            // Play footstep sounds if the player is moving, stop otherwise.
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-            {
-                footstepSound.PlayFootstepSound("DefaultFootstep");
-            }
-            else
-            {
-                footstepSound.StopFootstepSound();
-            }
-
         }
         
         // Store the original rotation of the camera.
         originalCameraRotation = cameraTransform.localRotation;
 
 
+    }
+    
+    private string CalculateTerrainType()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, characterController.radius * 0.5f);
+
+        foreach (Collider collider in colliders)
+        {
+            // Check the tag of the collider to determine the terrain type
+            if (collider.CompareTag("Grass"))
+            {
+                return "GrassFootstep"; // Return grass footstep sound
+            }
+            else if (collider.CompareTag("Water"))
+            {
+                return "WaterFootstep"; // Return water footstep sound
+            }
+        }
+
+        return "DefaultFootstep"; // Default footstep sound if no specific terrain is detected
     }
 
     /*
@@ -136,6 +148,21 @@ public class FPSController : MonoBehaviour
             HandleCrouch(); // Handling Crouch 
         
         HandleRunning(); //Handling Running
+        
+        // If there is movement input, calculate terrain type and play footstep sound.
+        if (horizontal != 0 || vertical != 0)
+        {
+            // Calculate the terrain type based on the player's position.
+            string terrainType = CalculateTerrainType();
+
+            // Play the footstep sound based on the terrain type.
+            footstepSound.PlayFootstepSound(terrainType);
+        }
+        else
+        {
+            // Stop footstep sound when there is no movement input.
+            footstepSound.StopFootstepSound();
+        }
 
 
         // Get the camera's forward and right vectors.
@@ -245,10 +272,17 @@ public class FPSController : MonoBehaviour
         // Check if the crouch input is pressed.
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
-            // If the player is crouching and they're inside the trigger zone, prevent uncrouching.
-            if (isCrouching && !CanCrouch)
+            // // If the player is crouching and they're inside the trigger zone, prevent uncrouching.
+            // if (isCrouching && !CanCrouch)
+            // {
+            //     Debug.Log("Cannot uncrouch while inside the trigger zone.");
+            //     return;
+            // }
+            
+            // Check if the cube collides with anything above the player's head.
+            if (isCrouching && HeadCubeCollides())
             {
-                Debug.Log("Cannot uncrouch while inside the trigger zone.");
+                Debug.Log("Cannot uncrouch due to obstruction above.");
                 return;
             }
 
@@ -285,7 +319,27 @@ public class FPSController : MonoBehaviour
                 }
 
                 isCrouching = false;
+                
+                // Restore original movement speed when standing up.
+                movementSpeed /= 0.5f;
+                
             }
+        }
+    }
+    
+    // Method to check if the cube collides with anything above the player's head preventing uncrouching.
+    private bool HeadCubeCollides()
+    {
+        // Check if the headCube object reference is set
+        if (headCube != null)
+        {
+            // Use Physics.BoxCast to check for collisions with the cube
+            return Physics.BoxCast(headCube.transform.position, headCube.transform.localScale / 2, Vector3.up, Quaternion.identity, originalHeight);
+        }
+        else
+        {
+            // If the headCube reference is not set, return false
+            return false;
         }
     }
     
