@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class FlashLightcontroller : MonoBehaviour
@@ -18,6 +19,14 @@ public class FlashLightcontroller : MonoBehaviour
     public float minDistance = 2f; // Min Distance when flashlight intensity increases
     public float maxIntensity = 100f; //Max Intensity when close to an object 
     public float minIntensity = 70f; // Min Intensity when close to an object 
+    
+    // Decal Fade Variables
+    // Variable for fade speed
+    [SerializeField]
+    private float fadeSpeed = 5f;
+    // Target fade factor
+    private float targetFadeFactor = 0f;
+
 
     void Start()
     {
@@ -67,24 +76,36 @@ public class FlashLightcontroller : MonoBehaviour
                     }
                     else if (hit.collider.CompareTag("InstructionMural")) // Check if Instruction Mural
                     {
-                        Debug.Log("Hit an Instruction Mural");
-                        // Check if the hit object has a renderer component
-                        Renderer renderer = hit.collider.GetComponent<Renderer>();
-                        if (renderer != null)
+                        // Get the DecalProjector component
+                        var decalProjector = hit.collider.GetComponent<DecalProjector>();
+                        if (decalProjector != null)
                         {
-                            // Get the material of the renderer
-                            Material material = renderer.material;
-
-                            material.SetFloat("_Emissive_Strength", 1f);
+                            // Set the target fade factor to control opacity gradually
+                            targetFadeFactor = 1f; 
                         }
                     }
+
+                    // Gradually adjust the Decal fade factor
+                    AdjustDecalFadeFactor();
                     
                     LightIntensityDistance(); // Gradual Increase/Decrease light intensity based on distance
                 }
             }
         }
     }
-    
+    private void AdjustDecalFadeFactor()
+    {
+        // Get the DecalProjector component
+        var decalProjector = hit.collider.GetComponent<DecalProjector>();
+        if (decalProjector != null)
+        {
+            // Calculate the new fade factor based on the difference between current and target fade factors
+            float newFadeFactor = Mathf.MoveTowards(decalProjector.fadeFactor, targetFadeFactor, fadeSpeed * Time.deltaTime);
+            // Apply the new fade factor
+            decalProjector.fadeFactor = newFadeFactor;
+        }    
+    }
+
     // Method to increase light intensity on crystals
      private void IncreaseCrystalLightIntensity(Light pointLight, float maxIntensity)
     {
