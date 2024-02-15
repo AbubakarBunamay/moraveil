@@ -98,7 +98,14 @@ public class InteractionManager : MonoBehaviour{
         // Check if the collider has the "Journal" tag
         else if (collider.CompareTag("Journal"))
         {
-            
+            // Get the JournalInteraction component from the collider
+            JournalInteraction journal = collider.GetComponent<JournalInteraction>();
+
+            if (journal != null)
+            {
+                // If the JournalInteraction component is not null, call its JournalInteract method
+                journal.JournalInteract();
+            }
         }
         // If none of the specific tags match, get the generic Interactable component
         else
