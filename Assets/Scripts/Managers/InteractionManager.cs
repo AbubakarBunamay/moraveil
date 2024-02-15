@@ -79,7 +79,14 @@ public class InteractionManager : MonoBehaviour{
         // Check if the collider has the "Polaroid" tag
         else if (collider.CompareTag("Polaroid"))
         {
-            
+            // Get the PolaroidInteraction component from the collider
+            Polaroid polaroid = collider.GetComponent<Polaroid>();
+
+            if (polaroid != null)
+            {
+                // If the PolaroidInteraction component is not null, call its PolaroidInteract method
+                polaroid.PolaroidInteract();
+            }
         }
         // Check if the collider has the "Journal" tag
         else if (collider.CompareTag("Journal"))
