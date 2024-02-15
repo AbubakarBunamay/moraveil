@@ -67,6 +67,7 @@ public class FPSController : MonoBehaviour
         stressManager = FindObjectOfType<StressManager>();
         footstepSound = FindObjectOfType<FootstepSound>();
         mHandler = FindObjectOfType<MouseHandler>();
+        footstepSound = FindObjectOfType<FootstepSound>(); 
 
         // Get the main camera's transform and set the crouch icon to initially be disabled.
         cameraTransform = Camera.main.transform;
@@ -100,22 +101,32 @@ public class FPSController : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
-            // Play footstep sounds if the player is moving, stop otherwise.
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-            {
-                footstepSound.PlayFootstepSound("DefaultFootstep");
-            }
-            else
-            {
-                footstepSound.StopFootstepSound();
-            }
-
         }
         
         // Store the original rotation of the camera.
         originalCameraRotation = cameraTransform.localRotation;
 
 
+    }
+    
+    private string CalculateTerrainType()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, characterController.radius * 0.5f);
+
+        foreach (Collider collider in colliders)
+        {
+            // Check the tag of the collider to determine the terrain type
+            if (collider.CompareTag("Grass"))
+            {
+                return "GrassFootstep"; // Return grass footstep sound
+            }
+            else if (collider.CompareTag("Water"))
+            {
+                return "WaterFootstep"; // Return water footstep sound
+            }
+        }
+
+        return "DefaultFootstep"; // Default footstep sound if no specific terrain is detected
     }
 
     /*
@@ -136,6 +147,21 @@ public class FPSController : MonoBehaviour
             HandleCrouch(); // Handling Crouch 
         
         HandleRunning(); //Handling Running
+        
+        // If there is movement input, calculate terrain type and play footstep sound.
+        if (horizontal != 0 || vertical != 0)
+        {
+            // Calculate the terrain type based on the player's position.
+            string terrainType = CalculateTerrainType();
+
+            // Play the footstep sound based on the terrain type.
+            footstepSound.PlayFootstepSound(terrainType);
+        }
+        else
+        {
+            // Stop footstep sound when there is no movement input.
+            footstepSound.StopFootstepSound();
+        }
 
 
         // Get the camera's forward and right vectors.
