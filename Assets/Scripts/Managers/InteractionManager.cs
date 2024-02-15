@@ -74,7 +74,14 @@ public class InteractionManager : MonoBehaviour{
         // Check if the collider has the "Mural" tag
         else if (collider.CompareTag("Mural"))
         {
-            
+            // Get the MuralInteraction component from the collider
+            MuralInteraction mural = collider.GetComponent<MuralInteraction>();
+
+            if (mural != null)
+            {
+                // If the MuralInteraction component is not null, call its MuralInteract method
+                mural.MuralInteract();
+            }
         }
         // Check if the collider has the "Polaroid" tag
         else if (collider.CompareTag("Polaroid"))
