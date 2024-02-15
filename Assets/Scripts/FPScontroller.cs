@@ -16,6 +16,7 @@ public class FPSController : MonoBehaviour
     public float crouchRunningSpeed = 7f; // Speed when running while crouched
     public float gravity = 9.8f; // Gravity force applied to the character.
     public Image crouchIcon; // Reference to the UI Image for the crouch icon
+    public GameObject headCube; // Reference to the cube object placed above the player's head
     
     [HideInInspector]
     public float originalRunningSpeed; // Variable to store the original running speed
@@ -271,10 +272,17 @@ public class FPSController : MonoBehaviour
         // Check if the crouch input is pressed.
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
-            // If the player is crouching and they're inside the trigger zone, prevent uncrouching.
-            if (isCrouching && !CanCrouch)
+            // // If the player is crouching and they're inside the trigger zone, prevent uncrouching.
+            // if (isCrouching && !CanCrouch)
+            // {
+            //     Debug.Log("Cannot uncrouch while inside the trigger zone.");
+            //     return;
+            // }
+            
+            // Check if the cube collides with anything above the player's head.
+            if (isCrouching && HeadCubeCollides())
             {
-                Debug.Log("Cannot uncrouch while inside the trigger zone.");
+                Debug.Log("Cannot uncrouch due to obstruction above.");
                 return;
             }
 
@@ -316,6 +324,22 @@ public class FPSController : MonoBehaviour
                 movementSpeed /= 0.5f;
                 
             }
+        }
+    }
+    
+    // Method to check if the cube collides with anything above the player's head preventing uncrouching.
+    private bool HeadCubeCollides()
+    {
+        // Check if the headCube object reference is set
+        if (headCube != null)
+        {
+            // Use Physics.BoxCast to check for collisions with the cube
+            return Physics.BoxCast(headCube.transform.position, headCube.transform.localScale / 2, Vector3.up, Quaternion.identity, originalHeight);
+        }
+        else
+        {
+            // If the headCube reference is not set, return false
+            return false;
         }
     }
     
