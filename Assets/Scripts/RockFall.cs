@@ -46,8 +46,16 @@ public class RockFall : MonoBehaviour
                 rb.useGravity = true;
             }
             
+            // So the rock passes through colliders
+            rb.detectCollisions = false;
+            
             // Wait for a random delay before the next fall
             yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
+            
+            // Disable the gameobject making it disappear to stop falling after n seconds
+            yield return new WaitForSeconds(2f);
+            
+            rockToFall.SetActive(false);
         }
     }
 }
