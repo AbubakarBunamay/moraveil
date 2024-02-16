@@ -87,7 +87,7 @@ public class InteractionManager : MonoBehaviour{
         else if (collider.CompareTag("Polaroid"))
         {
             // Get the PolaroidInteraction component from the collider
-            Polaroid polaroid = collider.GetComponent<Polaroid>();
+            PolaroidInteraction polaroid = collider.GetComponent<PolaroidInteraction>();
 
             if (polaroid != null)
             {
