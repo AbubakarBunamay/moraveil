@@ -176,6 +176,12 @@ public class StressManager : MonoBehaviour
         
         // Clamp stress within the defined range
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
+        
+        // If stress level drops to zero or below, reset camera shake
+        if (currentStress <= 0f)
+        {
+            shake.ResetCameraShake();
+        }
     }
     
     // Stress Trigger Increase
@@ -214,8 +220,11 @@ public class StressManager : MonoBehaviour
             fg.intensity.value = Mathf.Lerp(fg.intensity.value, 0f, Time.deltaTime);
         }
         
-        //Resetting Camera Shake
-        shake.ResetCameraShake();
+        // If stress level drops to zero or below, reset camera shake
+        if (currentStress <= 0f)
+        {
+            shake.ResetCameraShake();
+        }
 
     }
 
