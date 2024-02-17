@@ -11,12 +11,22 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager; // Reference to UIManager script
     public GameObject endpoint; // Reference to the GameObject with Collider representing the endpoint
     private FPSController player; // Reference to the player Object 
+    
+    // Triggers to be enabled after the map is picked up
+    [SerializeField]
+    private Collider[] rockfallTriggersToEnable;
 
     // Start is called before the first frame update
     void Start()
     {
         timer = timerDuration; // Set the initial timer value
         player = FindObjectOfType<FPSController>(); // Find the player in the scene
+        
+        // Disable all triggers initially
+        foreach (Collider trigger in rockfallTriggersToEnable)
+        {
+            trigger.enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -50,6 +60,13 @@ public class GameManager : MonoBehaviour
         isMapPickedUp = true;
         uiManager.StartTimer(); // Call UIManager method to start the timer
         uiManager.EnableTimerUI(); // Enable the timer UI when the map is picked up
+        
+        // Enable all the rockfall triggers after the map is picked up
+        foreach (Collider trigger in rockfallTriggersToEnable)
+        {
+            trigger.enabled = true;
+        }
+        
     }
 
     // Method to show game over UI
