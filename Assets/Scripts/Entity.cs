@@ -110,6 +110,14 @@ public class Entity : MonoBehaviour
                 currentState = EntityState.Chasing;
                 chaseTimer = 0.0f;
             }
+            
+            // Check if the player is within the trigger distance to increase stress
+            if (IsPlayerWithinStressTriggerDistance())
+            {
+                // Increase stress as the player is close
+                float stressIncrease = entityStressIncreaseRate * Time.deltaTime;
+                stressManager.IncreaseStress(stressIncrease);
+            }
         }
     }
     
@@ -122,9 +130,6 @@ public class Entity : MonoBehaviour
             // Calculate the distance to the player
             distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-            // Calculate stress increase based on distance
-            float stressIncrease = CalculateStressIncrease(distanceToPlayer,stressManager.maxStress);
-
             // Check if the player is within the trigger distance
             if (distanceToPlayer < entityDistancetrigger)
             {
@@ -132,28 +137,34 @@ public class Entity : MonoBehaviour
                 Vector3 directionToPlayer = (player.position - transform.position).normalized;
                 Quaternion lookRotation = Quaternion.LookRotation(new Vector3(directionToPlayer.x, 0f, directionToPlayer.z));
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
-                
+
+
                 // Check if the player has the flashlight on
                 if (IsPlayerFlashlightOn())
                 {
-                    currentState = EntityState.Chasing;
-                    chaseTimer = 0.0f;
+                    return true;
                 }
-
-                stressManager.IncreaseStress(stressIncrease * Time.deltaTime);
-            }
-            else
-            {
-                // Gradually decrease stress when player is not within trigger distance
-                stressManager.ResetStressEffects();
-                float stressDecrease = entityStressDecreaseRate * Time.deltaTime;
-                stressManager.DecreaseStress(stressDecrease);
-                
             }
         }
 
         // Return false by default
-        return entityDistancetrigger >= distanceToPlayer;
+        return false;
+    }
+    
+    // Check if the player is within the trigger distance
+    private bool IsPlayerWithinStressTriggerDistance()
+    {
+        // Check if the player is not null
+        if (player != null)
+        {
+            // Calculate the distance to the player
+            distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+            // Check if the player is within the trigger distance
+            return distanceToPlayer < entityDistancetrigger;
+        }
+
+        return false;
     }
     
     // Calculate stress increase based on distance
@@ -169,7 +180,14 @@ public class Entity : MonoBehaviour
     {
         // Set the destination of the NavMeshAgent to the player's position
         navMeshAgent.SetDestination(player.position);
-
+        
+        // Check if the player is within the trigger distance to increase stress
+        if (IsPlayerWithinStressTriggerDistance())
+        {
+            // Increase stress as the player is close
+            float stressIncrease = entityStressIncreaseRate * Time.deltaTime;
+            stressManager.IncreaseStress(stressIncrease);
+        }
         // Check if the player turns off the flashlight
         if (!IsPlayerFlashlightOn())
         {
@@ -187,6 +205,9 @@ public class Entity : MonoBehaviour
     public void CooldownUpdate()
     {
         Debug.Log("Cooldown: " + chaseTimer);
+        
+        // Decrease stress during cooldown
+        stressManager.DecreaseStress(entityStressDecreaseRate * Time.deltaTime);
 
         // Continue cooldown
         chaseTimer += Time.deltaTime;

@@ -5993,6 +5993,28 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 6aedd396095e4a144b5bd3990f823599, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &1275351459 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2280859131091611477, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+  m_PrefabInstance: {fileID: 1941636838}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1275351464
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275351459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 0
+  mNoiseOffsets: {x: -106.21298, y: 204.44455, z: 632.78894}
 --- !u!1 &1289969070
 GameObject:
   m_ObjectHideFlags: 0
@@ -7844,6 +7866,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1369029910924926137, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369029910924926137, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      propertyPath: shakeDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369029910924926137, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: virtualCamera
       value: 
       objectReference: {fileID: 1086205875}
@@ -7961,7 +7991,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7079456499641897679, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 203367127}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2280859131091611477, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1275351464}
   m_SourcePrefab: {fileID: 100100000, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
 --- !u!1 &1941636839 stripped
 GameObject:
