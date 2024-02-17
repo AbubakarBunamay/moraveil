@@ -10,15 +10,19 @@ public class CameraShake : MonoBehaviour
     private CinemachineBasicMultiChannelPerlin virtualCameraNoise; // Reference to the Cinemachine noise settings.
     private Vector3 originalPosition; // Store the camera's original position for recovery.
     private float shakeTimer = 0f; // Timer to control the duration of the shake.
+    private float shakeDuration = 0f; // Duration of the shake.
 
-    private float defaultFrequencyGain = 0f; // Default frequency gain.
-    private float defaultAmplitudeGain = 1f; // Default amplitude gain.
+    private float defaultFrequencyGain; // Default frequency gain.
+    private float defaultAmplitudeGain; // Default amplitude gain.
 
     private void Start()
     {
         if (virtualCamera != null) // Initialize Virtual Camera
         {
             virtualCameraNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            // Store default values
+            defaultFrequencyGain = virtualCameraNoise.m_FrequencyGain;
+            defaultAmplitudeGain = virtualCameraNoise.m_AmplitudeGain;
         }
         else
         {
@@ -56,6 +60,7 @@ public class CameraShake : MonoBehaviour
         virtualCameraNoise.m_FrequencyGain = defaultFrequencyGain;
         virtualCameraNoise.m_AmplitudeGain = defaultAmplitudeGain;
         virtualCamera.transform.position = originalPosition; // Reset camera position.
+        shakeTimer = 0f;
     }
 
     private void Update()
@@ -65,7 +70,8 @@ public class CameraShake : MonoBehaviour
             shakeTimer -= Time.deltaTime; // Decrease shake timer over time.
             if (shakeTimer <= 0f)
             {
-                virtualCamera.transform.position = originalPosition; // Reset camera position.
+                // Reset frequency and amplitude when shake ends
+                ResetCameraShake();
             }
         }
     }
