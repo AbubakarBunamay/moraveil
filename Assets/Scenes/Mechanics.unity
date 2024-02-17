@@ -3718,6 +3718,10 @@ PrefabInstance:
       value: -465
       objectReference: {fileID: 0}
     - target: {fileID: 7992375351808625205, guid: 03c3e3144fbc80444853dda01cf7c198, type: 3}
+      propertyPath: m_Value
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 7992375351808625205, guid: 03c3e3144fbc80444853dda01cf7c198, type: 3}
       propertyPath: m_MinValue
       value: 80
       objectReference: {fileID: 0}
@@ -4626,6 +4630,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4529949352362174518, guid: 881ef55860e04bb4b998fda172886d48, type: 3}
+      propertyPath: shake
+      value: 
+      objectReference: {fileID: 1643570730}
+    - target: {fileID: 4529949352362174518, guid: 881ef55860e04bb4b998fda172886d48, type: 3}
       propertyPath: volume
       value: 
       objectReference: {fileID: 311636215}
@@ -4641,6 +4649,10 @@ PrefabInstance:
       propertyPath: shakeManager
       value: 
       objectReference: {fileID: 1643570730}
+    - target: {fileID: 4529949352362174518, guid: 881ef55860e04bb4b998fda172886d48, type: 3}
+      propertyPath: maxShakeDuration
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4529949352362174518, guid: 881ef55860e04bb4b998fda172886d48, type: 3}
       propertyPath: stressCanvasGroup
       value: 
@@ -5630,6 +5642,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1086205875 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1852675463129958873, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+  m_PrefabInstance: {fileID: 1941636838}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1096637251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7820,6 +7843,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1369029910924926137, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      propertyPath: virtualCamera
+      value: 
+      objectReference: {fileID: 1086205875}
     - target: {fileID: 2601426767785049532, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

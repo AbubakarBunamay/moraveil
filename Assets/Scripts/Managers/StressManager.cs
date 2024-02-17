@@ -27,8 +27,7 @@ public class StressManager : MonoBehaviour
     [SerializeField]
     private float maxShakeMagnitude; // Maximum camera shake magnitude.
     [SerializeField]
-    private float maxShakeDuration; // Maximum camera shake duration.
-
+    private float maxShakeDuration,maxFrequency = 5f, maxAmplitude = 1f; // Maximum camera shake duration, Maximum frequency, Maximum amplitude  .
     public Volume volume; // Reference to the Post-Processing Volume component
 
     private bool isPlayerDead = false; // Variable to track player's life status.
@@ -102,11 +101,9 @@ public class StressManager : MonoBehaviour
     {
         // Calculate camera shake parameters based on stress.
         float normalizedStress = currentStress / maxStress;
-        float shakeMagnitude = normalizedStress * maxShakeMagnitude;
-        float shakeDuration = normalizedStress * maxShakeDuration;
         
         // Trigger camera shake
-        shake.ShakeCamera(shakeDuration, shakeMagnitude);
+        shake.StressShakeCamera(currentStress, maxStress, maxFrequency, maxAmplitude);
         
         HandleVisualEffects(normalizedStress);
     }
@@ -142,7 +139,7 @@ public class StressManager : MonoBehaviour
             stressCanvasGroup.alpha = normalizedStress;
 
             // Trigger camera shake
-            shake.ShakeCamera(shakeDuration, shakeMagnitude);
+            shake.StressShakeCamera(shakeDuration, shakeMagnitude);
 
         }
         else
@@ -216,6 +213,10 @@ public class StressManager : MonoBehaviour
         {
             fg.intensity.value = Mathf.Lerp(fg.intensity.value, 0f, Time.deltaTime);
         }
+        
+        //Resetting Camera Shake
+        shake.ResetCameraShake();
+
     }
 
     // Increase Safe Zone Stress ( Limits the Stress to n%)
