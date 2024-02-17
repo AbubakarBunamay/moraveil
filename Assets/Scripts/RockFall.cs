@@ -26,6 +26,14 @@ public class RockFall : MonoBehaviour
         for (int i = 0; i < objectsToFall.Length; i++)
         {
             originalPositions[i] = objectsToFall[i].transform.position;
+            
+            // Disable gravity and set kinematic to true for each rock
+            Rigidbody rb = objectsToFall[i].GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.useGravity = false;
+                rb.isKinematic = true;
+            }
         }
     }
 
