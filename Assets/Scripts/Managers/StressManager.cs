@@ -39,6 +39,9 @@ public class StressManager : MonoBehaviour
     private float stunCooldown = 0f; // Cooldown for the stun effect.
     private bool isStunned = false; // Flag to indicate whether the player is currently stunned.
     
+    // Reference to all entities in the scene
+    private Entity[] entities;
+    
     private void Start()
     {
         // Check if the Volume component is found
@@ -48,6 +51,9 @@ public class StressManager : MonoBehaviour
         // Check if the CameraShake reference is not set, then try to find it.
         if (shake == null) 
             shake = GameObject.FindAnyObjectByType<CameraShake>();
+        
+        // Find all Entity components in the scene
+        entities = FindObjectsOfType<Entity>();
     }
 
     private void Update()
@@ -249,6 +255,12 @@ public class StressManager : MonoBehaviour
             }
         }
     }
+    
+    // Method to check if the player is stunned
+    public bool IsPlayerStunned()
+    {
+        return isStunned;
+    }
 
     //Stun Player Function
     public void StunPlayer()
@@ -256,6 +268,12 @@ public class StressManager : MonoBehaviour
         StartCoroutine(StunCoroutine());
         // Set the cooldown for the stun effect.
         stunCooldown = stunDuration;
+        
+        // Inform all entities that the player is stunned
+        foreach (Entity entity in entities)
+        {
+            entity.OnPlayerStunned();
+        }
     }
     
     // Stun Coroutine 
