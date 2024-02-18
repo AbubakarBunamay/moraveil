@@ -269,16 +269,29 @@ public class FPSController : MonoBehaviour
 
     private void HandleCrouch()
     {
+        // Check if the player is in water, if so, automatically uncrouch.
+    if (isWalkingOnWater && isCrouching)
+    {
+        // Restore original height and center.
+        characterController.center = originalCenter;
+        characterController.height = originalHeight;
+
+        // Hide the crouch icon when standing.
+        if (crouchIcon != null)
+        {
+            crouchIcon.enabled = false;
+        }
+
+        isCrouching = false;
+
+        // Restore original movement speed when standing up.
+        movementSpeed /= 0.5f;
+    }
+    else
+    {
         // Check if the crouch input is pressed.
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
-            // // If the player is crouching and they're inside the trigger zone, prevent uncrouching.
-            // if (isCrouching && !CanCrouch)
-            // {
-            //     Debug.Log("Cannot uncrouch while inside the trigger zone.");
-            //     return;
-            // }
-            
             // Check if the cube collides with anything above the player's head.
             if (isCrouching && HeadCubeCollides())
             {
@@ -301,7 +314,7 @@ public class FPSController : MonoBehaviour
                 }
 
                 isCrouching = true;
-                
+
                 // Update Crouch movement speed to half of the original movement speed
                 movementSpeed *= 0.5f;
             }
@@ -319,12 +332,12 @@ public class FPSController : MonoBehaviour
                 }
 
                 isCrouching = false;
-                
+
                 // Restore original movement speed when standing up.
                 movementSpeed /= 0.5f;
-                
             }
         }
+    }
     }
     
     // Method to check if the cube collides with anything above the player's head preventing uncrouching.
@@ -487,6 +500,7 @@ public class FPSController : MonoBehaviour
         if (other.CompareTag("Water"))
         {
             isWalkingOnWater = true; // Set the flag to indicate that the character is walking on water.
+            HandleCrouch();
         }
         
         // Check if the player object is the endpoint in the GameManager.
