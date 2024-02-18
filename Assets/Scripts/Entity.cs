@@ -79,6 +79,12 @@ public class Entity : MonoBehaviour
         {
             ImplementDefaultEntityLogic();
         }
+        
+        // Check if the player is stunned, then proceed to patrol
+        if (stressManager != null && stressManager.IsPlayerStunned())
+        {
+            currentState = EntityState.Patrolling;
+        }
     }
     
     // Update the entity state using the EntityManager
@@ -183,6 +189,11 @@ public class Entity : MonoBehaviour
         return Mathf.Lerp(-entityDistancetrigger, entityStressIncreaseRate, stressFactor) * maxstress;
     }
     
+    public void OnPlayerStunned()
+    {
+        // Change the entity's state to patrolling
+        currentState = EntityState.Patrolling;
+    }
     // Update logic for the Chasing state
     public void ChasingUpdate()
     {
