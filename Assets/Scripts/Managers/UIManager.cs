@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class UIManager : MonoBehaviour
 {
@@ -55,6 +56,13 @@ public class UIManager : MonoBehaviour
     private const float DefaultDialogueVolume = 1f;
     private const float DefaultHorizontalSensitivity = 2f;
     private const float DefaultVerticalSensitivity = 2f;
+    
+    // Opening SceneVideoPlayer
+    [SerializeField]
+    private VideoPlayer videoPlayer; // Reference to the VideoPlayer component
+    [SerializeField]
+    private GameObject videoCanvas; // Reference to the VideoPlayer component
+
 
     
     private void Start()
@@ -70,7 +78,8 @@ public class UIManager : MonoBehaviour
         
         // Store the initial timer value
         initialTimerValue = gameManager.timerDuration;
-        
+        // Subscribe to the loopPointReached event
+        videoPlayer.loopPointReached += OnVideoEnd;
     }
 
     private void Update()
@@ -128,10 +137,32 @@ public class UIManager : MonoBehaviour
     // Method to handle the Start button action
     public void StartGameButton()
     { 
+        // Play the video when the player starts the game
+        PlayVideo();
+        
         startMenuUI.SetActive(false); // Hide the start menu
-        isGameOnStart = false;         // Transition from start phase to gameplay
-        ResumeGame(); // Start the game
     }
+    
+    // Method to play the video
+    private void PlayVideo()
+    {
+        // Enable the video canvas
+        videoCanvas.SetActive(true);
+
+        // Enable the VideoPlayer component
+        videoPlayer.enabled = true;
+        
+        // Play the video
+        videoPlayer.Play();
+        
+        // Lock and hide the cursor 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        
+        Time.timeScale = 0f; // Stop Time
+        isGamePaused = true; // Set State
+    }
+    
     
     // Method to toggle between full screen and windowed mode
     public void ToggleFullScreen()
@@ -271,6 +302,19 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     } 
+    
+    // Method called when the video reaches its end
+    private void OnVideoEnd(VideoPlayer vp)
+    {
+        // Hide the video canvas when the video finishes
+        videoCanvas.SetActive(false);
+        
+        // Set the game state to false after the video ends
+        isGameOnStart = false;
+
+        // Resume the game
+        ResumeGame();
+    }
     
     // Method to quit the game
     public void QuitGame()
