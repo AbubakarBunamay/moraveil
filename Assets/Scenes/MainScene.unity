@@ -18548,10 +18548,11 @@ GameObject:
   - component: {fileID: 919612961}
   - component: {fileID: 919612964}
   - component: {fileID: 919612963}
+  - component: {fileID: 919612965}
   - component: {fileID: 919612962}
   m_Layer: 0
   m_Name: Mural 1 (killing Dog)
-  m_TagString: Untagged
+  m_TagString: Mural
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18564,13 +18565,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919612960}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.10920912, z: -0, w: 0.9940188}
-  m_LocalPosition: {x: 63.19, y: 1.47, z: 29.83}
+  m_LocalRotation: {x: -0, y: 0.30793402, z: -0, w: 0.9514078}
+  m_LocalPosition: {x: 69.15, y: 1.47, z: 36.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1397119656}
-  m_LocalEulerAnglesHint: {x: 0, y: -12.539, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 35.87, z: 0}
 --- !u!65 &919612962
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18590,7 +18591,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.21133, y: 5, z: 5}
+  m_Size: {x: 5.21133, y: 5, z: 9.3}
   m_Center: {x: -1.1056659, y: 0, z: -0.0000000041100927}
 --- !u!114 &919612963
 MonoBehaviour:
@@ -18599,7 +18600,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919612960}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a455cb34f2942b445a12fe51594afe8b, type: 3}
   m_Name: 
@@ -18702,6 +18703,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &919612965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919612960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f0ddbad0d2dca4cb850944636046fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionSound: {fileID: 8300000, guid: 0814dbb0e0fd61444a3e1225e7ebd220, type: 3}
+  player: {fileID: 889545044}
 --- !u!114 &924393258 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1349447519264775227, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
