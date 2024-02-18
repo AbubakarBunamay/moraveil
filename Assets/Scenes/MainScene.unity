@@ -8759,10 +8759,11 @@ GameObject:
   - component: {fileID: 676311039}
   - component: {fileID: 676311042}
   - component: {fileID: 676311041}
+  - component: {fileID: 676311043}
   - component: {fileID: 676311040}
   m_Layer: 0
   m_Name: Mural 2 (battle)
-  m_TagString: Untagged
+  m_TagString: Mural
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8775,13 +8776,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676311038}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.11746786, z: -0, w: 0.9930767}
-  m_LocalPosition: {x: 45.18, y: 17.96, z: 87.2}
+  m_LocalRotation: {x: -0, y: 0.06564827, z: -0, w: 0.9978429}
+  m_LocalPosition: {x: 42.83, y: 17.96, z: 90.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1397119656}
-  m_LocalEulerAnglesHint: {x: 0, y: 13.492, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 7.528, z: 0}
 --- !u!65 &676311040
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8801,7 +8802,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 5, z: 5}
+  m_Size: {x: 3, y: 5, z: 11.28}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &676311041
 MonoBehaviour:
@@ -8810,7 +8811,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676311038}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a455cb34f2942b445a12fe51594afe8b, type: 3}
   m_Name: 
@@ -8913,6 +8914,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &676311043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676311038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f0ddbad0d2dca4cb850944636046fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionSound: {fileID: 8300000, guid: 7b51d4df1c1ea914f950d43f99a12b6a, type: 3}
+  player: {fileID: 889545044}
 --- !u!114 &683202982 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7868204630050664778, guid: 03c3e3144fbc80444853dda01cf7c198, type: 3}
