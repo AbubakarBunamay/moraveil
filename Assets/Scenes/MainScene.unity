@@ -3223,10 +3223,11 @@ GameObject:
   - component: {fileID: 227653630}
   - component: {fileID: 227653633}
   - component: {fileID: 227653632}
+  - component: {fileID: 227653634}
   - component: {fileID: 227653631}
   m_Layer: 0
   m_Name: Mural 3 (wedding)
-  m_TagString: Untagged
+  m_TagString: Mural
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3239,13 +3240,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 227653629}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.11746786, z: -0, w: 0.9930767}
-  m_LocalPosition: {x: 38.51, y: -0.37, z: 56.34}
+  m_LocalRotation: {x: -0, y: 0.36502486, z: -0, w: 0.93099785}
+  m_LocalPosition: {x: 39.791, y: -0.599, z: 55.559}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1397119656}
-  m_LocalEulerAnglesHint: {x: 0, y: 13.492, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 42.818, z: 0}
 --- !u!65 &227653631
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3265,7 +3266,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1.37, z: 1.93}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &227653632
 MonoBehaviour:
@@ -3274,7 +3275,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 227653629}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a455cb34f2942b445a12fe51594afe8b, type: 3}
   m_Name: 
@@ -3377,6 +3378,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &227653634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227653629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f0ddbad0d2dca4cb850944636046fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionSound: {fileID: 8300000, guid: c59c8b1470fb80544812f13fbb9df8b8, type: 3}
+  player: {fileID: 889545044}
 --- !u!1001 &228195271
 PrefabInstance:
   m_ObjectHideFlags: 0
