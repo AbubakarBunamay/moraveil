@@ -105,8 +105,25 @@ public class UIManager : MonoBehaviour
                 PauseGame();
             }
         }
+        
+        // Check for Enter key press to skip the video and start the game
+        if (Input.GetKeyDown(KeyCode.Return) && isGameOnStart)
+        {
+            SkipVideo();
+        }
     }
-    
+    // Method to skip the video and start the game
+    private void SkipVideo()
+    {
+        // Hide the video canvas
+        videoCanvas.SetActive(false);
+
+        // Set the game state to false to transition to gameplay phase
+        isGameOnStart = false;
+
+        // Resume the game
+        ResumeGame();
+    }
     // Method to set up the Start menu
     private void StartMenu()
     {
