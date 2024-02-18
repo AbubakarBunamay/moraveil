@@ -15,8 +15,8 @@ public class StressManager : MonoBehaviour
     public float stressDecreaseRate = 5f; // Rate at which stress decreases per second.
     public string playerTag = "Player"; // Tag of the player GameObject.
     public float currentStress = 0f; // Current stress level.
-    // public Image darkScreen; // Reference to the full-screen darkening effect.
-    // public CanvasGroup stressCanvasGroup; // Reference to the CanvasGroup component.
+    public Image darkScreen; // Reference to the full-screen darkening effect.
+    public CanvasGroup stressCanvasGroup; // Reference to the CanvasGroup component.
     
     /*
      * Serialized fields for inspector references
@@ -113,40 +113,32 @@ public class StressManager : MonoBehaviour
         //float desiredOpacity = Mathf.Clamp(normalizedStress, 0.0f, 0.5f);
 
         // Check if the Vignette effect is available
-        if (volume != null)
-        {
-            // Try to get the Vignette effect from the volume's profile
-            if (volume.profile.TryGet(out Vignette vignette))
-            {
-                // Adjust the vignette intensity based on stress level
-                vignette.intensity.value = normalizedStress;
-            }
-
-            // Try to get the Film Grain effect from the volume's profile
-            if (volume.profile.TryGet(out FilmGrain fg))
-            {
-                // Adjust the Film Grain intensity based on stress level
-                fg.intensity.value = normalizedStress;
-            }
-            
-        }
+        // if (volume != null)
+        // {
+        //     // Try to get the Vignette effect from the volume's profile
+        //     if (volume.profile.TryGet(out Vignette vignette))
+        //     {
+        //         // Adjust the vignette intensity based on stress level
+        //         vignette.intensity.value = normalizedStress;
+        //     }
+        //
+        //     // Try to get the Film Grain effect from the volume's profile
+        //     if (volume.profile.TryGet(out FilmGrain fg))
+        //     {
+        //         // Adjust the Film Grain intensity based on stress level
+        //         fg.intensity.value = normalizedStress;
+        //     }
+        //     
+        // }
         
-        /*// Toggle the darkening effect and camera shake based on stress level.
+        // Toggle the darkening effect and camera shake based on stress level.
         if (currentStress > 0)
         {
             // Fade in the image based on stress level.
             // stressCanvasGroup.alpha = desiredOpacity;
             stressCanvasGroup.alpha = normalizedStress;
-
-            // Trigger camera shake
-            shake.StressShakeCamera(shakeDuration, shakeMagnitude);
-
         }
-        else
-        {
-            // Fade out the image when stress is zero.
-            stressCanvasGroup.alpha = 0f;
-        }*/
+        
     }
     
     // Increasing Stress Function
@@ -208,21 +200,32 @@ public class StressManager : MonoBehaviour
     // Reset Stress Effects
     public void ResetStressEffects()
     {
-        // Gradually reduce Vignette intensity
-        if (volume.profile.TryGet(out Vignette vignette))
-        {
-            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0f, Time.deltaTime);
-        }
-
-        // Gradually reduce Film Grain intensity
-        if (volume.profile.TryGet(out FilmGrain fg))
-        {
-            fg.intensity.value = Mathf.Lerp(fg.intensity.value, 0f, Time.deltaTime);
-        }
+        // // Gradually reduce Vignette intensity
+        // if (volume.profile.TryGet(out Vignette vignette))
+        // {
+        //     vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0f, Time.deltaTime);
+        // }
+        //
+        // // Gradually reduce Film Grain intensity
+        // if (volume.profile.TryGet(out FilmGrain fg))
+        // {
+        //     fg.intensity.value = Mathf.Lerp(fg.intensity.value, 0f, Time.deltaTime);
+        // }
         
         // If stress level drops to zero or below, reset camera shake
         if (currentStress <= 0f)
         {
+            // Fade out the image when stress is zero.
+            if (stressCanvasGroup.alpha > 0.01f)
+            {
+                // Gradually decrease the alpha to zero over time.
+                stressCanvasGroup.alpha = Mathf.Lerp(stressCanvasGroup.alpha, 0f, Time.deltaTime * 2f); 
+            }
+            else
+            {
+                // Ensure the alpha value is exactly zero when very close to zero.
+                stressCanvasGroup.alpha = 0f;
+            }
             shake.ResetCameraShake();
         }
 
