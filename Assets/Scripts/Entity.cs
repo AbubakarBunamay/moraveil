@@ -60,7 +60,15 @@ public class Entity : MonoBehaviour
             Debug.Log("There no waypoints set on" + gameObject.name); // If no waypoints have been add (Error Handler)
         }
         
+        // Register this entity with the EntityManager
+        EntityManager.Instance.RegisterEntity(this);
         SetReferencesFromManager(); //Setting References
+    }
+    
+    private void OnDestroy()
+    {
+        // Unregister this entity from the EntityManager
+        EntityManager.Instance.UnregisterEntity(this);
     }
 
     // Update is called once per frame
