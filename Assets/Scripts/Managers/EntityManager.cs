@@ -5,11 +5,46 @@ using UnityEngine.AI;
 
 public class EntityManager : MonoBehaviour
 {
+    // Singleton instance
+    public static EntityManager Instance { get; private set; }
+
     public Transform player; // To get player position
     public StressManager stressManager; // Reference to the StressManager component.
     private List<Entity> entities = new List<Entity>();     // List of the entities
     public Transform[][] entityWaypoints; // Array of entities & their waypoints
 
+    private void Awake()
+    {
+        // Ensure only one instance of EntityManager exists
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    // Register an entity with the manager
+    public void RegisterEntity(Entity entity)
+    {
+        entities.Add(entity);
+    }
+
+    // Unregister an entity from the manager
+    public void UnregisterEntity(Entity entity)
+    {
+        entities.Remove(entity);
+    }
+
+    // Get all registered entities
+    public Entity[] GetAllEntities()
+    {
+        return entities.ToArray();
+    }
+    
+    
     private void Start()
     {
         // Find the player GameObject by its tag.
