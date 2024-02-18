@@ -2653,10 +2653,11 @@ GameObject:
   - component: {fileID: 176026061}
   - component: {fileID: 176026064}
   - component: {fileID: 176026063}
+  - component: {fileID: 176026065}
   - component: {fileID: 176026062}
   m_Layer: 0
   m_Name: Mural 4 (war)
-  m_TagString: Untagged
+  m_TagString: Mural
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2669,13 +2670,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176026060}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.68489236, z: -0, w: 0.72864425}
-  m_LocalPosition: {x: -21.7, y: 2.35, z: 79.55}
+  m_LocalRotation: {x: -0, y: 0.5157022, z: -0, w: 0.8567679}
+  m_LocalPosition: {x: -22.67, y: 2.35, z: 73.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1397119656}
-  m_LocalEulerAnglesHint: {x: 0, y: 86.454, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 62.089, z: 0}
 --- !u!65 &176026062
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2695,7 +2696,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 5, z: 5}
+  m_Size: {x: 3, y: 5, z: 8.22}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &176026063
 MonoBehaviour:
@@ -2704,7 +2705,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176026060}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a455cb34f2942b445a12fe51594afe8b, type: 3}
   m_Name: 
@@ -2807,6 +2808,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &176026065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176026060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f0ddbad0d2dca4cb850944636046fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionSound: {fileID: 8300000, guid: 0a0de9f9aae635f4bad39184525ac828, type: 3}
+  player: {fileID: 889545044}
 --- !u!1 &193395477
 GameObject:
   m_ObjectHideFlags: 0
@@ -21278,10 +21293,11 @@ GameObject:
   - component: {fileID: 1185617235}
   - component: {fileID: 1185617238}
   - component: {fileID: 1185617237}
+  - component: {fileID: 1185617239}
   - component: {fileID: 1185617236}
   m_Layer: 0
   m_Name: Mural 5 (cu culains death)*
-  m_TagString: Untagged
+  m_TagString: Mural
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21294,13 +21310,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185617234}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.64680934, z: -0, w: 0.76265174}
-  m_LocalPosition: {x: -24.24, y: 18.56, z: 147.5}
+  m_LocalRotation: {x: -0, y: 0.5975361, z: -0, w: 0.8018421}
+  m_LocalPosition: {x: -25.73, y: 18.56, z: 151.532}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1397119656}
-  m_LocalEulerAnglesHint: {x: 0, y: 80.603, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 73.387, z: 0}
 --- !u!65 &1185617236
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21320,7 +21336,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 5, z: 5}
+  m_Size: {x: 3, y: 5, z: 7.76}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1185617237
 MonoBehaviour:
@@ -21329,7 +21345,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185617234}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a455cb34f2942b445a12fe51594afe8b, type: 3}
   m_Name: 
@@ -21432,6 +21448,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1185617239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185617234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f0ddbad0d2dca4cb850944636046fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionSound: {fileID: 8300000, guid: 156ec9d4fe5002341b116bdda9e0bc52, type: 3}
+  player: {fileID: 889545044}
 --- !u!1 &1188880026
 GameObject:
   m_ObjectHideFlags: 0
