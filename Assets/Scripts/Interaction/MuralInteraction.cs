@@ -5,10 +5,12 @@ using UnityEngine;
 public class MuralInteraction : MonoBehaviour
 {
     // Reference to the sound to play
-    public AudioClip interactionSound;
+    [SerializeField]
+    private AudioClip interactionSound;
 
     // Reference to the player object
-    public GameObject player;
+    [SerializeField]
+    private GameObject player;
 
     // Flag to track player movement state
     private bool isPlayerLocked = false;
