@@ -50,7 +50,6 @@ public class FPSController : MonoBehaviour
     private Transform cameraTransform; // Reference to the main camera's transform.
     private Quaternion originalCameraRotation; // Stores the original rotation of the camera.
 
-    public GlowstickController glowstickController; // Reference to the GlowstickController component.
     public FootstepSound footstepSound; // Reference to the FootstepSound component.
     private MouseHandler mHandler; // Reference to the MouseHandler component.
     public GameManager gameManager; //Reference to the game manager
