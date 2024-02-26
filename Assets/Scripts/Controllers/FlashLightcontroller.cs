@@ -6,19 +6,24 @@ using UnityEngine.UI;
 
 public class FlashLightcontroller : MonoBehaviour
 {
-    public Light flashLight;  // Reference to a Light component for the flashlight.
-    public bool isFlashlightOn = false;  // A boolean flag to track if the flashlight is on or off.
-    private Transform playerCamera;  // Reference to the player's camera.
-    public float bigCrystalMaxIntensity = 30f; // Max intensity the BigCrystal can shine when light shinned on
-    public float smallCrystalMaxIntensity = 20f; // Max Intensity the SmallCrystals can shine when lught shinned on
-
-    RaycastHit hit; // Raycast hit var
-    private RaycastHit sphereHit; // sphereCast Hit
-
-    public float maxDistance = 1f; // MAx Distance when Flashlight intensity lowers
-    public float minDistance = 2f; // Min Distance when flashlight intensity increases
-    public float maxIntensity = 100f; //Max Intensity when close to an object 
-    public float minIntensity = 70f; // Min Intensity when close to an object 
+    [SerializeField]
+    private Light flashLight;  // Reference to a Light component for the flashlight.
+    
+    // Crystal Glow Intensity 
+    [SerializeField]
+    private float bigCrystalMaxIntensity = 30f; // Max intensity the BigCrystal can shine when light shinned on
+    [SerializeField]
+    private float smallCrystalMaxIntensity = 20f; // Max Intensity the SmallCrystals can shine when lught shinned on
+    
+    // Flashlight Intensity & Distance
+    [SerializeField]
+    private float maxDistance = 1f; // MAx Distance when Flashlight intensity lowers
+    [SerializeField]
+    private float minDistance = 2f; // Min Distance when flashlight intensity increases
+    [SerializeField]
+    private float maxIntensity = 100f; //Max Intensity when close to an object 
+    [SerializeField]
+    private float minIntensity = 70f; // Min Intensity when close to an object 
     
     // Decal Fade Variables
     // Variable for fade speed
@@ -26,6 +31,11 @@ public class FlashLightcontroller : MonoBehaviour
     private float fadeSpeed = 5f;
     // Target fade factor
     private float targetFadeFactor = 0f;
+    
+    public bool isFlashlightOn = false;  // A boolean flag to track if the flashlight is on or off.
+    private Transform playerCamera;  // Reference to the player's camera.x
+    private RaycastHit hit; // Raycast hit var
+    private RaycastHit sphereHit; // sphereCast Hit
 
 
     void Start()
