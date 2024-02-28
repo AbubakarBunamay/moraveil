@@ -17,6 +17,8 @@ public class FPSController : MonoBehaviour
     public float gravity = 9.8f; // Gravity force applied to the character.
     public Image crouchIcon; // Reference to the UI Image for the crouch icon
     public GameObject headCube; // Reference to the cube object placed above the player's head
+    private float uncrouchSpeed = 4f; // The speed of uncrouching
+    private bool isUncrouching = false; // The player uncrouching state
     
     [HideInInspector]
     public float originalRunningSpeed; // Variable to store the original running speed
@@ -321,8 +323,9 @@ public class FPSController : MonoBehaviour
             {
                 // If the player is crouching, allow uncrouching.
                 // Restore original height and center.
-                characterController.center = originalCenter;
-                characterController.height = originalHeight;
+                //characterController.center = originalCenter;
+                //characterController.height = originalHeight;
+                StartCoroutine(UncrouchSmooth());
 
                 // Hide the crouch icon when standing.
                 if (crouchIcon != null)
@@ -338,6 +341,34 @@ public class FPSController : MonoBehaviour
         }
     }
     }
+    
+    // Effectively uncrouching the character speed.
+    private IEnumerator UncrouchSmooth()
+    {
+        float targetHeight = originalHeight; // Store the original standing height as the target height for uncrouching.
+        float startHeight = characterController.height; // Store the current height of the character as the starting height for uncrouching.
+        float distanceToTarget = Mathf.Abs(targetHeight - startHeight); // Calculate the absolute distance between the start height and the target height.
+        float uncrouchDuration = distanceToTarget / uncrouchSpeed;  // Calculate the duration of the uncrouching speed based on the distance to travel and the uncrouch speed.
+
+        float timer = 0f; // Initialize a timer to track the elapsed time during the uncrouching speed.
+
+        while (timer < uncrouchDuration)
+        {
+            float t = timer / uncrouchDuration; // Calculate the normalized time value (t) within the range [0, 1] based on the current elapsed time and uncrouch duration.
+            float smoothStep = Mathf.SmoothStep(0f, 1f, t); // Apply a smooth step function to the normalized time value to ensure a smooth transition in the character's height.
+            characterController.height = Mathf.Lerp(startHeight, targetHeight, smoothStep); // gradually adjusting the character's height.
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        characterController.height = targetHeight;     // Ensure that the character's height is set to the target height accurately.
+       
+        // Update the isCrouching and isUncrouching flags to reflect the character's state.
+        isCrouching = false;
+        isUncrouching = false;
+    }
+
     
     // Method to check if the cube collides with anything above the player's head preventing uncrouching.
     private bool HeadCubeCollides()
