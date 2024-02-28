@@ -20,8 +20,6 @@ public class Keypad : Interactable
     // Method to check the input code
     private void CheckInput()
     {
-        manager = FindAnyObjectByType<KeypadManager>(); // Find the KeypadManager in the scene
-
         if (manager != null) // Check if the KeypadManager is found
         {
             if (correctCode.StartsWith(enteredCode)) // Check if the correct code starts with the entered code
