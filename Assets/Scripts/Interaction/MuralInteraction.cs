@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class MuralInteraction : MonoBehaviour
 {
     // Reference to the sound to play
     [SerializeField]
     private AudioClip interactionSound;
+
+    //Reference to the virutal cam
+    [SerializeField]
+    private CinemachineVirtualCameraBase virtualCam;
 
     // Reference to the player object
     [SerializeField]
@@ -41,7 +46,7 @@ public class MuralInteraction : MonoBehaviour
         if (isPlayerLocked)
         {
             // Play the interaction sound
-            if (interactionSound != null && audioSource != null)
+            if (interactionSound != null && audioSource != null && audioSource.isPlaying == false)
             {
                 audioSource.Play();
             }
@@ -55,6 +60,12 @@ public class MuralInteraction : MonoBehaviour
                 {
                     controller.enabled = false;
                 }
+            }
+
+            //Increase virtual cam priority to be higher than main cam
+            if(virtualCam)
+            {
+                virtualCam.m_Priority = 11;
             }
         }
         else
@@ -74,6 +85,11 @@ public class MuralInteraction : MonoBehaviour
                 {
                     controller.enabled = true;
                 }
+            }
+
+            if (virtualCam)
+            {
+                virtualCam.m_Priority = 9;
             }
         }
     }
