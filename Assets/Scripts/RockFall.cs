@@ -55,7 +55,7 @@ public class RockFall : MonoBehaviour
             }
             
             // So the rock passes through colliders
-            rb.detectCollisions = false;
+           // rb.detectCollisions = false;
             
             // Wait for a random delay before the next fall
             yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
