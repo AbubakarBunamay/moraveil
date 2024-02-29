@@ -346,6 +346,12 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Game Exiting");
         Application.Quit(); // Quit the game.
+        if (Application.isEditor)
+        {
+            #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+            #endif
+        }
     }
 
     // Method called when the player dies to show the restart prompt
