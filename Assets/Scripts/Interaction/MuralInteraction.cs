@@ -62,7 +62,7 @@ public class MuralInteraction : MonoBehaviour
                 }
             }
 
-            //Increase virtual cam priority to be higher than main cam
+            // Increase virtual cam priority to be higher than main cam
             if(virtualCam)
             {
                 virtualCam.m_Priority = 11;
@@ -87,6 +87,7 @@ public class MuralInteraction : MonoBehaviour
                 }
             }
 
+            // Revert virtual cam priority to be lower than main cam
             if (virtualCam)
             {
                 virtualCam.m_Priority = 9;
