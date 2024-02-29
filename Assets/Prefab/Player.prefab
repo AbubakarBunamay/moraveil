@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4779076755987483843}
   m_Layer: 0
   m_Name: Light
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,7 +133,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashLight: {fileID: 4309162000708614544}
-  isFlashlightOn: 0
   bigCrystalMaxIntensity: 30
   smallCrystalMaxIntensity: 20
   maxDistance: 20
@@ -141,6 +140,7 @@ MonoBehaviour:
   maxIntensity: 100
   minIntensity: 5
   fadeSpeed: 5
+  isFlashlightOn: 0
 --- !u!1 &719990635276630203
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,9 +210,9 @@ MonoBehaviour:
   maxFallinStressRange: 1
   isJumping: 0
   isRunning: 0
-  glowstickController: {fileID: 0}
   footstepSound: {fileID: 0}
   gameManager: {fileID: 0}
+  currentLilypad: {fileID: 0}
 --- !u!114 &8318440606463636135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1989,7 +1989,7 @@ GameObject:
   - component: {fileID: 6773020965956643555}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
