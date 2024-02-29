@@ -56,6 +56,9 @@ public class FPSController : MonoBehaviour
     private MouseHandler mHandler; // Reference to the MouseHandler component.
     public GameManager gameManager; //Reference to the game manager
     private bool isInEndpointTriggerZone = false; // Bool if player passes end point
+    
+    private LilyPadTrigger currentLilypad; // Reference to the current lilypad the player is on
+
 
     private void Start()
     {
@@ -103,6 +106,13 @@ public class FPSController : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
+        }
+        
+        // Check if the player is on a lilypad
+        if (currentLilypad != null)
+        {
+            // Synchronize player movement with lilypad
+            currentLilypad.MovePlayerWithLilypad();
         }
         
         // Store the original rotation of the camera.
@@ -543,6 +553,13 @@ public class FPSController : MonoBehaviour
         {
             CanCrouch = false;
         }
+        
+        // Check if the player entered a lilypad's trigger collider
+        if (other.CompareTag("Lilypad"))
+        {
+            // Get the LilypadController component of the entered lilypad
+            currentLilypad = other.GetComponent<LilyPadTrigger>();
+        }
     }
 
     public void OnTriggerExit(Collider other)
@@ -563,6 +580,13 @@ public class FPSController : MonoBehaviour
         if (other.CompareTag("NoUnCrouchZone"))
         {
             CanCrouch = true;
+        }
+        
+        // Check if the player exited a lilypad's trigger collider
+        if (other.CompareTag("Lilypad"))
+        {
+            // Clear the current lilypad reference
+            currentLilypad = null;
         }
     }
     
