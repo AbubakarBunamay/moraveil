@@ -36,6 +36,16 @@ public class FlashLightcontroller : MonoBehaviour
     private Transform playerCamera;  // Reference to the player's camera.x
     private RaycastHit hit; // Raycast hit var
     private RaycastHit sphereHit; // sphereCast Hit
+    [SerializeField] private float minFalloff = 0.1f; // Adjust these values in the inspector
+    [SerializeField] private float maxFalloff = 1f;   // Adjust these values in the inspector
+
+    [SerializeField] private float minSpotAngle = 20f; // Minimum spot angle of the flashlight beam
+    [SerializeField] private float maxSpotAngle = 60f; // Maximum spot angle of the flashlight beam
+    [SerializeField] private float minRange = 5f; // Minimum range of the flashlight beam
+    [SerializeField] private float maxRange = 20f; // Maximum range of the flashlight beam
+    
+
+    
 
 
     void Start()
@@ -131,30 +141,73 @@ public class FlashLightcontroller : MonoBehaviour
         Debug.Log("Flashlight is " + (isFlashlightOn ? "on" : "off"));  // Log the flashlight state.
 
     }
-    
+    [SerializeField] float spherecastRadius = 1f; // Radius of the spherecast
+    [SerializeField] Color spherecastColor = Color.yellow; // Color of the spherecast
+
     // Method to gradually increase/decrease flashlight intensity based on distance 
     // To allow to see without blinding players
     private void LightIntensityDistance()
     {
         // Calculate the normalized distance based on the hit distance, min distance, and max distance
         // float normalizedDistance = Mathf.Clamp01((hit.distance - minDistance) / (maxDistance - minDistance * 0.5f));
-        if (Physics.SphereCast(playerCamera.position, 50f, playerCamera.forward, out sphereHit, maxDistance))
+        // if (Physics.SphereCast(playerCamera.position, 50f, playerCamera.forward, out sphereHit, maxDistance))
+        // {
+        //     // Use a smoother easing function to create subtler transitions in intensity
+        //     //float easedIntensity = EaseInOut(normalizedDistance);
+        //     float easedIntensity = Mathf.InverseLerp(minDistance, maxDistance, hit.distance);
+        //
+        //     // Reduce the overall intensity range directly using a linear interpolation
+        //     float smoothedIntensity = Mathf.Lerp(minIntensity, maxIntensity, easedIntensity);
+        //
+        //     // Set the flashlight intensity to the smoothed value
+        //     flashLight.intensity = smoothedIntensity;
+        //
+        //     //Debug.Log("Hit distance: " + hit.distance);
+        //     // Debug.Log("Hit GameObject name: " + hit.transform.name);
+        // }
+        
+        if (Physics.SphereCast(playerCamera.position, 0.5f, playerCamera.forward, out sphereHit, maxDistance))
         {
-            // Use a smoother easing function to create subtler transitions in intensity
-            //float easedIntensity = EaseInOut(normalizedDistance);
-            float easedIntensity = Mathf.InverseLerp(minDistance, maxDistance, hit.distance);
+            float distance = sphereHit.distance;
 
-            // Reduce the overall intensity range directly using a linear interpolation
-            float smoothedIntensity = Mathf.Lerp(minIntensity, maxIntensity, easedIntensity);
+            // Calculate the angle attenuation based on the distance
+            float angleAttenuation = Mathf.Clamp01(distance / maxDistance);
 
-            // Set the flashlight intensity to the smoothed value
-            flashLight.intensity = smoothedIntensity;
+            // Calculate the falloff factor for the flashlight intensity
+            float falloffFactor = Mathf.Lerp(minFalloff, maxFalloff, angleAttenuation);
 
-            //Debug.Log("Hit distance: " + hit.distance);
-            // Debug.Log("Hit GameObject name: " + hit.transform.name);
+            // Calculate the intensity based on the falloff factor
+            //float intensity = maxIntensity * falloffFactor;
+
+            // Set the flashlight intensity to the calculated value
+            //flashLight.intensity = intensity;
+
+            // Calculate the adjusted spot angle and range
+            float newSpotAngle = Mathf.Lerp(minSpotAngle, maxSpotAngle, Mathf.Pow(angleAttenuation, 0.5f)); // Adjust spot angle
+            //float newRange = Mathf.Lerp(minRange, maxRange, angleAttenuation); // Adjust range
+
+            // Update the light component's properties
+            flashLight.spotAngle = newSpotAngle;
+            //flashLight.range = newRange;
+        }
+        else
+        {
+            // If no wall is hit, set intensity to minIntensity and reset spot angle and range
+            //flashLight.intensity = minIntensity;
+            //flashLight.spotAngle = maxSpotAngle;
+            //flashLight.range = maxRange;
         }
     }
+    
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = spherecastColor;
 
+        // Draw the spherecast
+        Gizmos.DrawSphere(playerCamera.position, spherecastRadius);
+        Gizmos.DrawLine(playerCamera.position, playerCamera.position + playerCamera.forward * maxDistance);
+    }
+    
     // smoother ease-in-out function
     private float EaseInOut(float t)
     {
