@@ -11,6 +11,7 @@ public class SoundTrigger : MonoBehaviour
 
     private bool hasPlayed = false;    // Tracks whether the sound has been played.
     private SubtitleManager subtitleManager; // Reference to the subtitleManager
+    [SerializeField] private SubtitleTexts soundTriggerSubtitle; // Reference to the specific subtitle text
 
     void Start()
     {
@@ -36,7 +37,12 @@ public class SoundTrigger : MonoBehaviour
                 // Set the AudioClip for the AudioSource and play it.
                 audioSource.clip = soundToPlay;
                 audioSource.Play();
-                subtitleManager.TriggerSubtitle();
+                // Trigger subtitle
+                if (subtitleManager != null)
+                {
+                    subtitleManager.CueSubtitle(soundTriggerSubtitle);
+                }          
+                
                 // Mark that the sound has been played.
                 hasPlayed = true;
             }
