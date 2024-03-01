@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Events;
 
 public class MuralInteraction : MonoBehaviour
 {
@@ -22,11 +23,21 @@ public class MuralInteraction : MonoBehaviour
     
     // Reference to the audio source
     private AudioSource audioSource;
+
+    // Reference to the SubtitleManager
+    [SerializeField] private SubtitleManager subtitleManager;
+    // Reference to the specific mural's subtitle data
+    [SerializeField] private SubtitleTexts muralSubtitle; 
+    
     
     private void Start()
     {
         // Get the audio source component
         audioSource = GetComponent<AudioSource>();
+        
+        // Find the SubtitleManager in the scene
+        subtitleManager = GameObject.FindObjectOfType<SubtitleManager>();
+        
         if (audioSource == null)
         {
             // Add AudioSource component if not already attached
@@ -50,6 +61,12 @@ public class MuralInteraction : MonoBehaviour
             {
                 audioSource.Play();
             }
+            
+            // Trigger subtitle
+            if (subtitleManager != null)
+            {
+                subtitleManager.CueSubtitle(muralSubtitle);
+            }
 
             // Lock the player
             if (player != null)
@@ -67,6 +84,7 @@ public class MuralInteraction : MonoBehaviour
             {
                 virtualCam.m_Priority = 11;
             }
+            
         }
         else
         {
