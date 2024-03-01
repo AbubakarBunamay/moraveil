@@ -1,90 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-
-// Serializable class to represent a pair of audio clip and its corresponding subtitle
-[System.Serializable]
-public class AudioSubtitlePair
-{
-    public AudioClip audioClip; // Audio clip to be played
-    public string subtitle; // Subtitle associated with the audio clip
-}
+using TMPro;
+using UnityEngine.Events;
 
 public class SubtitleManager : MonoBehaviour
 {
-    public TextMeshProUGUI subtitleText;  // Reference to the TextMeshProUGUI for displaying subtitles
-    public List<AudioSubtitlePair> audioSubtitlePairs = new List<AudioSubtitlePair>(); // List of audio-subtitle pairs
+    // Reference to the TextMeshProUGUI component for displaying subtitles
+    [SerializeField] public TextMeshProUGUI subtitleText;
 
-    private AudioSource audioSource; // Reference to the AudioSource component
-    private int currentSubtitleIndex = 0; // Index to keep track of the current audio-subtitle pair
-
-    void Start()
+    private Coroutine subControl; // Coroutine for controlling the subtitle sequence
+    private bool subtitleSequenceRunning; // Flag indicating whether a subtitle sequence is currently running
+    
+    // CueSubtitle method starts a new subtitle sequence
+    public void CueSubtitle(SubtitleTexts subText)
     {
-        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component attached to this GameObject
-        audioSource.playOnAwake = false; // Make sure the audio doesn't play on awake
-
-        // Check if there are audio-subtitle pairs provided
-        if (audioSubtitlePairs.Count > 0)
+        // Check if subtitles are interruptible and a sequence is already running
+        if(subtitleSequenceRunning)
         {
-            PlayNextAudio(); // Play the first audio clip
+            return; // If so, do not start a new sequence
         }
         else
         {
-            Debug.Log("No audio-subtitle pairs provided.");
-        }
-    }
-
-    void Update()
-    {
-        // Check if the audio clip has finished playing
-        if (!audioSource.isPlaying)
-        {
-            currentSubtitleIndex++;
-
-            // Check if there are more audio-subtitle pairs to play
-            if (currentSubtitleIndex < audioSubtitlePairs.Count)
+            // If a sequence is running, stop it
+            if (subtitleSequenceRunning)
             {
-                // Play the next audio clip and update the subtitle
-                PlayNextAudio();
-                UpdateSubtitleText();
-            }
-            else
-            {
-                // All audio tracks have been played
-                Debug.Log("All audio tracks played.");
+                StopCoroutine(subControl);
             }
         }
+        
+        // Start a new subtitle sequence coroutine
+        subControl = StartCoroutine(SubtitleControl(subText));
     }
 
-    // Method to play the next audio clip in the list
-    void PlayNextAudio()
+    // Coroutine for controlling the subtitle sequence
+    IEnumerator SubtitleControl(SubtitleTexts subText)
     {
-        // Play the audio clip from the current audio-subtitle pair
-        audioSource.clip = audioSubtitlePairs[currentSubtitleIndex].audioClip;
-        audioSource.Play();
-    }
-    
-    // Method to trigger the subtitle manually (e.g., from another script or UI button)
-    public void TriggerSubtitle()
-    {
-        // Check if there are more audio-subtitle pairs to play
-        if (currentSubtitleIndex < audioSubtitlePairs.Count)
+        subtitleSequenceRunning = true; // Set the flag indicating a sequence is running
+
+        // Loop through each dialogue line in the SubtitleTexts data
+        for (int i = 0; i < subText.dialogue.Length; i++)
         {
-            // Play the next audio clip and update the subtitle
-            PlayNextAudio();
-            UpdateSubtitleText();
+            // Set the subtitle text to the current dialogue line
+            subtitleText.text = subText.dialogue[i];
+            // Wait for the specified duration before proceeding
+            yield return new WaitForSeconds(subText.pauseUntilNextLine[i]);
         }
-        else
-        {
-            Debug.Log("All audio tracks played.");
-        }
-    }
-    
-    // Method to update the subtitle text with the corresponding subtitle for the current audio track
-    void UpdateSubtitleText()
-    {
-        // Update the subtitle text with the corresponding subtitle for the current audio track
-        subtitleText.text = audioSubtitlePairs[currentSubtitleIndex].subtitle;
+        
+        // Clear the subtitle text after the sequence finishes
+        subtitleText.text = "";
+        // Reset the flag indicating a sequence is running
+        subtitleSequenceRunning = false;
     }
 }
