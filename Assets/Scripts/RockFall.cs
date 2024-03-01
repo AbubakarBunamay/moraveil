@@ -23,16 +23,18 @@ public class RockFall : MonoBehaviour
     {
         // Store the original positions of the falling objects
         originalPositions = new Vector3[objectsToFall.Length];
-        for (int i = 0; i < objectsToFall.Length; i++)
+        
+        // Disable gravity and set kinematic to true for each rock
+        foreach (GameObject rock in objectsToFall)
         {
-            originalPositions[i] = objectsToFall[i].transform.position;
-            
-            // Disable gravity and set kinematic to true for each rock
-            Rigidbody rb = objectsToFall[i].GetComponent<Rigidbody>();
-            if (rb != null)
+            Rigidbody[] childRbs = rock.GetComponentsInChildren<Rigidbody>();
+            foreach (Rigidbody rb in childRbs)
             {
-                rb.useGravity = false;
-                rb.isKinematic = true;
+                if (rb != null)
+                {
+                    rb.useGravity = false;
+                    rb.isKinematic = true;
+                }
             }
         }
     }
@@ -46,24 +48,19 @@ public class RockFall : MonoBehaviour
             int randomRockIndex = Random.Range(0, objectsToFall.Length);
             GameObject rockToFall = objectsToFall[randomRockIndex];
 
-            Rigidbody rb = rockToFall.GetComponent<Rigidbody>();
-            if (rb != null)
+            // Enable Rigidbody and gravity for both the parent and its children
+            Rigidbody[] rbs = rockToFall.GetComponentsInChildren<Rigidbody>();
+            foreach (Rigidbody rb in rbs)
             {
-                // Enable Rigidbody and gravity
-                rb.isKinematic = false;
-                rb.useGravity = true;
+                if (rb != null)
+                {
+                    rb.isKinematic = false;
+                    rb.useGravity = true;
+                }
             }
-            
-            // So the rock passes through colliders
-           // rb.detectCollisions = false;
             
             // Wait for a random delay before the next fall
             yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
-            
-            // Disable the gameobject making it disappear to stop falling after n seconds
-            yield return new WaitForSeconds(2f);
-            
-            rockToFall.SetActive(false);
         }
     }
 }
