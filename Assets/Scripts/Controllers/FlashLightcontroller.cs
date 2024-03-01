@@ -142,7 +142,7 @@ public class FlashLightcontroller : MonoBehaviour
 
     }
     [SerializeField] float spherecastRadius = 1f; // Radius of the spherecast
-    [SerializeField] Color spherecastColor = Color.yellow; // Color of the spherecast
+    [SerializeField] Color spherecastColor = Color.red; // Color of the spherecast
 
     // Method to gradually increase/decrease flashlight intensity based on distance 
     // To allow to see without blinding players
@@ -166,15 +166,24 @@ public class FlashLightcontroller : MonoBehaviour
         //     // Debug.Log("Hit GameObject name: " + hit.transform.name);
         // }
         
-        if (Physics.SphereCast(playerCamera.position, 0.5f, playerCamera.forward, out sphereHit, maxDistance))
+        // Calculate the origin of the spherecast slightly higher and forward from the player's camera position
+        Vector3 spherecastOrigin = playerCamera.position + playerCamera.forward * 0.2f + playerCamera.up * 2f;
+
+
+        
+        if (Physics.SphereCast(spherecastOrigin, 0.01f, playerCamera.forward, out sphereHit, maxDistance))
         {
-            float distance = sphereHit.distance;
+            // Check if the hit normal points away from the player's forward direction
+            bool hittingObject = Vector3.Dot(playerCamera.forward, sphereHit.normal) < 0;
+
+            // Calculate the falloff factor based on whether hitting an object or not
+            float falloffFactor = hittingObject ? Mathf.Lerp(minFalloff, maxFalloff, sphereHit.distance / maxDistance) : 1f;
 
             // Calculate the angle attenuation based on the distance
-            float angleAttenuation = Mathf.Clamp01(distance / maxDistance);
+            //float angleAttenuation = Mathf.Clamp01(distance / maxDistance);
 
             // Calculate the falloff factor for the flashlight intensity
-            float falloffFactor = Mathf.Lerp(minFalloff, maxFalloff, angleAttenuation);
+            //float falloffFactor = Mathf.Lerp(minFalloff, maxFalloff, angleAttenuation);
 
             // Calculate the intensity based on the falloff factor
             //float intensity = maxIntensity * falloffFactor;
@@ -183,7 +192,8 @@ public class FlashLightcontroller : MonoBehaviour
             //flashLight.intensity = intensity;
 
             // Calculate the adjusted spot angle and range
-            float newSpotAngle = Mathf.Lerp(minSpotAngle, maxSpotAngle, Mathf.Pow(angleAttenuation, 0.5f)); // Adjust spot angle
+            //float newSpotAngle = Mathf.Lerp(minSpotAngle, maxSpotAngle, Mathf.Pow(angleAttenuation, 0.5f)); // Adjust spot angle
+            float newSpotAngle = Mathf.Lerp(minSpotAngle, maxSpotAngle, Mathf.Sqrt(falloffFactor)); // Adjust spot angle
             //float newRange = Mathf.Lerp(minRange, maxRange, angleAttenuation); // Adjust range
 
             // Update the light component's properties
@@ -193,19 +203,21 @@ public class FlashLightcontroller : MonoBehaviour
         else
         {
             // If no wall is hit, set intensity to minIntensity and reset spot angle and range
-            //flashLight.intensity = minIntensity;
-            //flashLight.spotAngle = maxSpotAngle;
+            flashLight.intensity = maxIntensity;
+            flashLight.spotAngle = maxSpotAngle;
             //flashLight.range = maxRange;
         }
     }
     
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = spherecastColor;
+        // Calculate the origin of the spherecast
+        Vector3 spherecastOrigin = playerCamera.position + playerCamera.forward * 0.2f + playerCamera.up * 2f;
 
-        // Draw the spherecast
-        Gizmos.DrawSphere(playerCamera.position, spherecastRadius);
-        Gizmos.DrawLine(playerCamera.position, playerCamera.position + playerCamera.forward * maxDistance);
+        // Draw a wire sphere to visualize the spherecast
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(spherecastOrigin + playerCamera.forward * maxDistance, spherecastRadius);
+
     }
     
     // smoother ease-in-out function

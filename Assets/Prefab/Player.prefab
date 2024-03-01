@@ -135,12 +135,20 @@ MonoBehaviour:
   flashLight: {fileID: 4309162000708614544}
   bigCrystalMaxIntensity: 30
   smallCrystalMaxIntensity: 20
-  maxDistance: 20
-  minDistance: 5
+  maxDistance: 5
+  minDistance: 2
   maxIntensity: 100
-  minIntensity: 5
+  minIntensity: 10
   fadeSpeed: 5
   isFlashlightOn: 0
+  minFalloff: 0.1
+  maxFalloff: 1
+  minSpotAngle: 20
+  maxSpotAngle: 60
+  minRange: 5
+  maxRange: 20
+  spherecastRadius: 0.5
+  spherecastColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &719990635276630203
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +220,6 @@ MonoBehaviour:
   isRunning: 0
   footstepSound: {fileID: 0}
   gameManager: {fileID: 0}
-  currentLilypad: {fileID: 0}
 --- !u!114 &8318440606463636135
 MonoBehaviour:
   m_ObjectHideFlags: 0
