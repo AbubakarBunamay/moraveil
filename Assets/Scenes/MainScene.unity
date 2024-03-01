@@ -3748,7 +3748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1262095426046719092, guid: f562e08dde30af143810acf9d00b480a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.02874935
+      value: -0.028749358
       objectReference: {fileID: 0}
     - target: {fileID: 1262095426046719092, guid: f562e08dde30af143810acf9d00b480a, type: 3}
       propertyPath: m_LocalRotation.y
@@ -3756,7 +3756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1262095426046719092, guid: f562e08dde30af143810acf9d00b480a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.021188203
+      value: -0.021188196
       objectReference: {fileID: 0}
     - target: {fileID: 1471577867996791048, guid: f562e08dde30af143810acf9d00b480a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6602,12 +6602,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2915420952002360979, guid: 25a06bcf00b2f8247952185856f2ed59, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6431874772661148114, guid: 25a06bcf00b2f8247952185856f2ed59, type: 3}
       propertyPath: subtitleText
       value: 
       objectReference: {fileID: 924393258}
+    - target: {fileID: 6431874772661148114, guid: 25a06bcf00b2f8247952185856f2ed59, type: 3}
+      propertyPath: audioSubtitlePairs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431874772661148114, guid: 25a06bcf00b2f8247952185856f2ed59, type: 3}
+      propertyPath: audioSubtitlePairs.Array.data[0].subtitle
+      value: Testing one two
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431874772661148114, guid: 25a06bcf00b2f8247952185856f2ed59, type: 3}
+      propertyPath: audioSubtitlePairs.Array.data[0].audioSource
+      value: 
+      objectReference: {fileID: 1041122434}
+    - target: {fileID: 6431874772661148114, guid: 25a06bcf00b2f8247952185856f2ed59, type: 3}
+      propertyPath: BeforeSubtitleBegins.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431874772661148114, guid: 25a06bcf00b2f8247952185856f2ed59, type: 3}
+      propertyPath: BeforeSubtitleBegins.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431874772661148114, guid: 25a06bcf00b2f8247952185856f2ed59, type: 3}
+      propertyPath: BeforeSubtitleBegins.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1041122435}
+    - target: {fileID: 6431874772661148114, guid: 25a06bcf00b2f8247952185856f2ed59, type: 3}
+      propertyPath: BeforeSubtitleBegins.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431874772661148114, guid: 25a06bcf00b2f8247952185856f2ed59, type: 3}
+      propertyPath: BeforeSubtitleBegins.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MuralInteract
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431874772661148114, guid: 25a06bcf00b2f8247952185856f2ed59, type: 3}
+      propertyPath: BeforeSubtitleBegins.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MuralInteraction, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431874772661148114, guid: 25a06bcf00b2f8247952185856f2ed59, type: 3}
+      propertyPath: BeforeSubtitleBegins.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8369989928201566857, guid: 25a06bcf00b2f8247952185856f2ed59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7448,7 +7488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1429010988499940705, guid: 818a7eada263fc74aa2faf04f05eb52c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.01635315
+      value: -0.016353164
       objectReference: {fileID: 0}
     - target: {fileID: 1429010988499940705, guid: 818a7eada263fc74aa2faf04f05eb52c, type: 3}
       propertyPath: m_LocalRotation.y
@@ -7456,7 +7496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1429010988499940705, guid: 818a7eada263fc74aa2faf04f05eb52c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.044747557
+      value: 0.044747565
       objectReference: {fileID: 0}
     - target: {fileID: 1706534632272234664, guid: 818a7eada263fc74aa2faf04f05eb52c, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7919,6 +7959,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: f9f21b828ed7ff94d93e168957eeed3b, type: 3}
   playOnce: 1
+  soundTriggerSubtitle: {fileID: 0}
 --- !u!82 &397912335
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10612,6 +10653,8 @@ MonoBehaviour:
   interactionSound: {fileID: 8300000, guid: 1911f823a8e88dd409a217a7d9315b11, type: 3}
   virtualCam: {fileID: 489186783}
   player: {fileID: 889545044}
+  subtitleManager: {fileID: 0}
+  muralSubtitle: {fileID: 0}
 --- !u!1 &627670714 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6698530659901836621, guid: c8d1dfc9bd89ba641b460a4b3e1d75e8, type: 3}
@@ -18304,6 +18347,8 @@ MonoBehaviour:
   interactionSound: {fileID: 8300000, guid: 8507226bb7f6c1e489a459b5c0d48c75, type: 3}
   virtualCam: {fileID: 489186784}
   player: {fileID: 889545044}
+  subtitleManager: {fileID: 0}
+  muralSubtitle: {fileID: 0}
 --- !u!4 &809181288 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8758443644639299329, guid: f562e08dde30af143810acf9d00b480a, type: 3}
@@ -22446,6 +22491,8 @@ MonoBehaviour:
   interactionSound: {fileID: 8300000, guid: 1e972e02e5ad9bb43a0b3a2c2bb6ca96, type: 3}
   virtualCam: {fileID: 1702866826}
   player: {fileID: 889545044}
+  subtitleManager: {fileID: 0}
+  muralSubtitle: {fileID: 0}
 --- !u!1 &1005988883
 GameObject:
   m_ObjectHideFlags: 0
@@ -22815,6 +22862,8 @@ MonoBehaviour:
   interactionSound: {fileID: 8300000, guid: c99abf6edd7c91c48b9f4597d8c4f184, type: 3}
   virtualCam: {fileID: 844073364}
   player: {fileID: 889545044}
+  subtitleManager: {fileID: 1252966081}
+  muralSubtitle: {fileID: 11400000, guid: 5a25f8056c1cccf4b91709c994adfed1, type: 2}
 --- !u!1 &1048370894 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3811978330610809248, guid: c8d1dfc9bd89ba641b460a4b3e1d75e8, type: 3}
@@ -26155,6 +26204,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249890523}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1252966081 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6431874772661148114, guid: 25a06bcf00b2f8247952185856f2ed59, type: 3}
+  m_PrefabInstance: {fileID: 327201622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e417933713ff5f64494b95324d9e7b56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1254589840
 GameObject:
   m_ObjectHideFlags: 0
@@ -28530,6 +28590,8 @@ MonoBehaviour:
   interactionSound: {fileID: 8300000, guid: cb94422056df7784898fe12c20dcb24f, type: 3}
   virtualCam: {fileID: 386403822}
   player: {fileID: 889545044}
+  subtitleManager: {fileID: 1252966081}
+  muralSubtitle: {fileID: 11400000, guid: 80d8a9531a914fe4a8f3063e26d290bb, type: 2}
 --- !u!1 &1421428602
 GameObject:
   m_ObjectHideFlags: 0
@@ -29380,6 +29442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: f9f21b828ed7ff94d93e168957eeed3b, type: 3}
   playOnce: 1
+  soundTriggerSubtitle: {fileID: 0}
 --- !u!33 &1483204432
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -30718,6 +30781,10 @@ PrefabInstance:
     - target: {fileID: 2685050018416628343, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: waterRunningSpeed
       value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3389426362364475516, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3783649533297217448, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: m_Alpha
@@ -45083,6 +45150,8 @@ MonoBehaviour:
   interactionSound: {fileID: 8300000, guid: 329d7ce6222ad8f4988baa2c48b5f457, type: 3}
   virtualCam: {fileID: 0}
   player: {fileID: 889545044}
+  subtitleManager: {fileID: 0}
+  muralSubtitle: {fileID: 0}
 --- !u!1 &2120268949
 GameObject:
   m_ObjectHideFlags: 0
