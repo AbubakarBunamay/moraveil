@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Subtitle Text")]
 public class SubtitleTexts : ScriptableObject
 {
-        [SerializeField] [TextArea] public string[] dialogue; // Array to hold dialogue lines for the subtitle sequence
-        [SerializeField] public float[] pauseUntilNextLine; // Array to hold pause durations between each dialogue line
-
+        [TextArea] public string[] dialogue; // Array to hold dialogue lines for the subtitle sequence
+        public float[] pauseUntilNextLine; // Array to hold pause durations between each dialogue line
 }
