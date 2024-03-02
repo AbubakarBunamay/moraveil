@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JournalInteraction : MonoBehaviour
 {
-    private Animator animator;
+    private Animator animator; // Reference to the Animator
 
     // Start is called before the first frame update
     void Start()
