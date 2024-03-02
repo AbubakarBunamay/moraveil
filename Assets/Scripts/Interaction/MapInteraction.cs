@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class MapInteraction : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameObject> gameObjectToChange; // List of GameObjects to change the material of
-    [SerializeField]
-    private Material materialToChange; // Material to apply to the specified GameObjects
-    [SerializeField]
-    private GameManager gameManager; // Reference to the GameManager script
+    [SerializeField] private List<GameObject> gameObjectToChange; // List of GameObjects to change the material of
+    [SerializeField] private Material materialToChange; // Material to apply to the specified GameObjects
+    [SerializeField] private GameManager gameManager; // Reference to the GameManager script
     
     // Interact with the map function 
     public void InteractWithMap()
