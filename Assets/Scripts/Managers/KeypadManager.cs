@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class KeypadManager : MonoBehaviour
 {
+    [SerializeField] private Transform[] buttons; // Array to hold the transforms of keypad buttons
+    
     private bool isPushed = false; // Track whether a button is currently pushed
     private Vector3[] initialPositions; // Array to store the initial positions of the buttons
     private List<Transform> pushedButtons = new List<Transform>(); // List to store pushed buttons
-    public Transform[] buttons; // Array to hold the transforms of keypad buttons
-
+    
     private void Start()
     {
         // Cache the initial positions of the buttons
