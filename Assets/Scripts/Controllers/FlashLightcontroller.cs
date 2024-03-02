@@ -6,31 +6,21 @@ using UnityEngine.UI;
 
 public class FlashLightcontroller : MonoBehaviour
 {
-    [SerializeField]
-    private Light flashLight;  // Reference to a Light component for the flashlight.
+    [SerializeField] private Light flashLight;  // Reference to a Light component for the flashlight.
     
     // Crystal Glow Intensity 
-    [SerializeField]
-    private float bigCrystalMaxIntensity = 30f; // Max intensity the BigCrystal can shine when light shinned on
-    [SerializeField]
-    private float smallCrystalMaxIntensity = 20f; // Max Intensity the SmallCrystals can shine when lught shinned on
+    [SerializeField] private float bigCrystalMaxIntensity = 30f; // Max intensity the BigCrystal can shine when light shinned on
+    [SerializeField] private float smallCrystalMaxIntensity = 20f; // Max Intensity the SmallCrystals can shine when lught shinned on
     
     // Flashlight Intensity & Distance
-    [SerializeField]
-    private float maxDistance = 1f; // MAx Distance when Flashlight intensity lowers
-    [SerializeField]
-    private float minDistance = 2f; // Min Distance when flashlight intensity increases
-    [SerializeField]
-    private float maxIntensity = 100f; //Max Intensity when close to an object 
-    [SerializeField]
-    private float minIntensity = 70f; // Min Intensity when close to an object 
+    [SerializeField] private float maxDistance = 1f; // MAx Distance when Flashlight intensity lowers
+    [SerializeField] private float minDistance = 2f; // Min Distance when flashlight intensity increases
+    [SerializeField] private float maxIntensity = 100f; //Max Intensity when close to an object 
+    [SerializeField] private float minIntensity = 70f; // Min Intensity when close to an object 
     
     // Decal Fade Variables
-    // Variable for fade speed
-    [SerializeField]
-    private float fadeSpeed = 5f;
-    // Target fade factor
-    private float targetFadeFactor = 0f;
+    [SerializeField] private float fadeSpeed = 5f; // Variable for fade speed
+    private float targetFadeFactor = 0f;// Target fade factor
     
     public bool isFlashlightOn = false;  // A boolean flag to track if the flashlight is on or off.
     private Transform playerCamera;  // Reference to the player's camera.x
@@ -44,10 +34,6 @@ public class FlashLightcontroller : MonoBehaviour
     [SerializeField] private float minRange = 5f; // Minimum range of the flashlight beam
     [SerializeField] private float maxRange = 20f; // Maximum range of the flashlight beam
     
-
-    
-
-
     void Start()
     {
         flashLight = GetComponent<Light>();  // Get the Light component of the object.
