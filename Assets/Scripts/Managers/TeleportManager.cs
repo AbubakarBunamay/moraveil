@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class TeleportManager : MonoBehaviour
 {
-    // Array to store positions of the rooms
-    public Transform[] roomPositions;
     
-    // Reference to FPSController
-    public GameObject fpsController;
+    [SerializeField] Transform[] roomPositions; // Array to store positions of the rooms
+    [SerializeField] GameObject fpsController; // Reference to FPSController
 
     // Update is called once per frame
     void Update()
