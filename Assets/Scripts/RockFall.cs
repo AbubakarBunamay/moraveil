@@ -3,10 +3,8 @@ using UnityEngine;
 
 public class RockFall : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] objectsToFall; // Array to hold objects that will fall
-    [SerializeField]
-    private float minDelay = 1f, maxDelay = 3f; // Minimum delay before next rock falls & Maximum delay before next rock falls
+    [SerializeField] private GameObject[] objectsToFall; // Array to hold objects that will fall
+    [SerializeField] private float minDelay = 1f, maxDelay = 3f; // Minimum delay before next rock falls & Maximum delay before next rock falls
 
     private Vector3[] originalPositions; // Array to hold original positions of falling objects
 
