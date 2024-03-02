@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class KeypadButton : MonoBehaviour
 {
-    public KeypadManager keyPad; // Reference to the KeypadManager script
-    public Keypad button; // Reference to the Keypad script
-    public string digit; // String to store the digit associated with the button
+    [SerializeField] private  KeypadManager keyPad; // Reference to the KeypadManager script
+    [SerializeField] private  Keypad button; // Reference to the Keypad script
+    [SerializeField] private  string digit; // String to store the digit associated with the button
 
     // Method called when the keypad button is clicked
     public void KeypadClicked()
