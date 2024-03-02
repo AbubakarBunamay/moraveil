@@ -4,22 +4,13 @@ using UnityEngine;
 
 public class PolaroidInteraction : MonoBehaviour
 {
-    // Reference to the sound to play
-    [SerializeField]
-    private AudioClip interactionSound;
-
-    // Reference to the player object
-    [SerializeField]
-    private GameObject player;
-
-    // Flag to track player movement state
-    private bool isPlayerLocked = false;
     
-    // Reference to the audio source
-    private AudioSource audioSource;
+    [SerializeField] private AudioClip interactionSound; // Reference to the sound to play
+    [SerializeField] private GameObject player; // Reference to the player object
     
-    // Reference to the animator
-    private Animator animator;
+    private bool isPlayerLocked = false; // Flag to track player movement state
+    private AudioSource audioSource; // Reference to the audio source
+    private Animator animator; // Reference to the animator
 
     // Start is called before the first frame update
     void Start()
