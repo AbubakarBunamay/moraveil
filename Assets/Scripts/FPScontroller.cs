@@ -123,6 +123,10 @@ public class FPSController : MonoBehaviour
     
     private string CalculateTerrainType()
     {
+        // Initialize terrain type
+        string terrainType = "DefaultFootstep";
+
+        // Check all colliders within a radius around the player's position
         Collider[] colliders = Physics.OverlapSphere(transform.position, characterController.radius * 0.5f);
 
         foreach (Collider collider in colliders)
@@ -130,15 +134,16 @@ public class FPSController : MonoBehaviour
             // Check the tag of the collider to determine the terrain type
             if (collider.CompareTag("Grass"))
             {
-                return "GrassFootstep"; // Return grass footstep sound
+                terrainType = "GrassFootstep"; // Update terrain type to grass footstep sound
             }
             else if (collider.CompareTag("Water"))
             {
-                return "WaterFootstep"; // Return water footstep sound
+                terrainType = "WaterFootstep"; // Update terrain type to water footstep sound
             }
         }
 
-        return "DefaultFootstep"; // Default footstep sound if no specific terrain is detected
+        // Return the calculated terrain type
+        return terrainType;
     }
 
     /*
