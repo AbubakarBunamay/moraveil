@@ -3,13 +3,9 @@ using UnityEngine;
 
 public class MouseHandler : MonoBehaviour
 {
-    // Reference to the UI manager for accessing sensitivity sliders
-    [SerializeField]
-    private UIManager uiManager;
-
-    // Cinemachine VirtualCamera component
-    [SerializeField]
-    private CinemachineVirtualCamera virtualCamera;
+    
+    [SerializeField] private UIManager uiManager; // Reference to the UI manager for accessing sensitivity sliders
+    [SerializeField] private CinemachineVirtualCamera virtualCamera; // Cinemachine VirtualCamera component
     
     void Start()
     {
