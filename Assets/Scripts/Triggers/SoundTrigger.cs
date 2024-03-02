@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class SoundTrigger : MonoBehaviour
 {
-    public AudioClip soundToPlay;      // The audio clip to play when triggered.
-    private AudioSource audioSource;   // Reference to the AudioSource component attached to the GameObject.
-    public bool playOnce = true;       // Should the sound be played only once when triggered?
+    [SerializeField] private  AudioClip soundToPlay;      // The audio clip to play when triggered.
+    [SerializeField] private  bool playOnce = true;       // Should the sound be played only once when triggered?
+    [SerializeField] private SubtitleTexts soundTriggerSubtitle; // Reference to the specific subtitle text
 
     private bool hasPlayed = false;    // Tracks whether the sound has been played.
     private SubtitleManager subtitleManager; // Reference to the subtitleManager
-    [SerializeField] private SubtitleTexts soundTriggerSubtitle; // Reference to the specific subtitle text
+    private AudioSource audioSource;   // Reference to the AudioSource component attached to the GameObject.
 
     void Start()
     {
