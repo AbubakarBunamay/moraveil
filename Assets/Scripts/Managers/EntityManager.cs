@@ -10,8 +10,9 @@ public class EntityManager : MonoBehaviour
 
     public Transform player; // To get player position
     public StressManager stressManager; // Reference to the StressManager component.
+   
     private List<Entity> entities = new List<Entity>();     // List of the entities
-    public Transform[][] entityWaypoints; // Array of entities & their waypoints
+    private Transform[][] entityWaypoints; // Array of entities & their waypoints
 
     private void Awake()
     {
