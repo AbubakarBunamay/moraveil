@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class RoomTrigger : MonoBehaviour
 {
-    public AudioClip soundToPlay;      // The audio clip to play when triggered.
+    [SerializeField] private  AudioClip soundToPlay;      // The audio clip to play when triggered.
     private AudioSource audioSource;   // Reference to the AudioSource component attached to the GameObject.
     private static AudioSource currentlyPlaying;  // Static reference to the currently playing audio source.
-    public float fadeDuration = 1.0f;   // Duration of the crossfade.
+    [SerializeField] private  float fadeDuration = 1.0f;   // Duration of the crossfade.
 
 
     void Start()
