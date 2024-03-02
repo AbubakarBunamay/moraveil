@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class LilyPadTrigger : MonoBehaviour
 {
-    public LilySoundManager lilySoundManager; // Referencing LilySoundManager 
+    [SerializeField] private LilySoundManager lilySoundManager; // Referencing LilySoundManager 
+    [SerializeField] private Transform playerTransform; // Reference to the player's transform
+    [SerializeField] private float moveSpeed = 2f; // The speed at which the player moves with the lilypad
+    
     private AudioSource audioSource; // Audio Source of player
-    public Transform playerTransform; // Reference to the player's transform
-    public float moveSpeed = 2f; // The speed at which the player moves with the lilypad
 
     private void Start()
     {
