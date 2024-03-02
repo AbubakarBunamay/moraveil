@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class RespawnManager : MonoBehaviour
 {
-    public Transform  respawnPoint; // The point where the player will respawn.
-    public CharacterController player; // Reference to the player CharacterController.
-    public UIManager uiManager; // Reference to the UIManager script.
-    public GameManager gameManager; // Reference to the GameManager script.
+    [SerializeField] private Transform  respawnPoint; // The point where the player will respawn.
+    [SerializeField] private CharacterController player; // Reference to the player CharacterController.
+    [SerializeField] private UIManager uiManager; // Reference to the UIManager script.
+    [SerializeField] private GameManager gameManager; // Reference to the GameManager script.
     
 
     // Public method to initiate player respawn
