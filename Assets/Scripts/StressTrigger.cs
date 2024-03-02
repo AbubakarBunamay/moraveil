@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StressTrigger : MonoBehaviour
 {
-    public StressManager stressManager; // Reference to StressManager
+    private StressManager stressManager; // Reference to StressManager
     private bool playerInsideTrigger = false; // By default player not inside trigger
 
     // Start is called before the first frame update
