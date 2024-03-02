@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class TextPopupTrigger : MonoBehaviour
 {
-    public TextMeshProUGUI popupText; // Reference to the TextMeshProUGUI component
-    public string message = "It Works!"; // The message to be displayed in the popup.
+    [SerializeField] private  TextMeshProUGUI popupText; // Reference to the TextMeshProUGUI component
+    [SerializeField] private  string message = "It Works!"; // The message to be displayed in the popup.
+    
     private string defaultText = "Default message"; // Default message if no specific message is found
 
     private void Start()
