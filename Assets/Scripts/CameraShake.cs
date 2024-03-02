@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    [SerializeField]
-    private CinemachineVirtualCamera virtualCamera; // Reference to the Cinemachine virtual camera.
+    [SerializeField] private CinemachineVirtualCamera virtualCamera; // Reference to the Cinemachine virtual camera.
     
     private CinemachineBasicMultiChannelPerlin virtualCameraNoise; // Reference to the Cinemachine noise settings.
     private Vector3 originalPosition; // Store the camera's original position for recovery.
