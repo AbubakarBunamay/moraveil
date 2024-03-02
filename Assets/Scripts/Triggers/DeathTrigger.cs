@@ -6,6 +6,7 @@ using UnityEngine;
 public class DeathTrigger : MonoBehaviour
 {
     public RespawnManager respawnManager; // Respawn Manager Reference
+    
     private void OnTriggerEnter(Collider other)
     {
         // Check if the object entering the trigger area has a specific tag (in this case, "Player").
