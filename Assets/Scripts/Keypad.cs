@@ -3,14 +3,15 @@ using UnityEngine;
 
 public class Keypad : Interactable
 {
-    public KeypadManager manager; // Reference to the KeypadManager script
-    public string correctCode = ""; // String to store the correct code
+    [SerializeField] private  KeypadManager manager; // Reference to the KeypadManager script
+    [SerializeField] private  string correctCode = ""; // String to store the correct code
+    [SerializeField] private  GameObject Door; // Reference to the game object to move
+    [SerializeField] private  float doorOpenSpeed = 2.0f; // Speed of the door opening animation
+    [SerializeField] private  AudioSource doorAudioSource; // Reference to the AudioSource component on the door
+    [SerializeField] private  AudioClip doorOpenSound; // Reference to the door opening sound
+    
     private string enteredCode = ""; // String to store the entered code
-    public GameObject Door; // Reference to the game object to move
-    public float doorOpenSpeed = 2.0f; // Speed of the door opening animation
-    public AudioSource doorAudioSource; // Reference to the AudioSource component on the door
-    public AudioClip doorOpenSound; // Reference to the door opening sound
-
+    
     // Method called when interacting with the keypad
     public override void Interact()
     {
