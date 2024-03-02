@@ -19,15 +19,16 @@ public class Entity : MonoBehaviour
     private Transform player; // Reference to the player's transform
     private StressManager stressManager;     // Reference to the StressManager
     
-    public float entityDistancetrigger = 5.0f;     // Trigger distance for activating the chase state
-    public Transform[] waypoints; // Array of waypoints for patrolling
+    [SerializeField] private float entityDistancetrigger = 5.0f;     // Trigger distance for activating the chase state
+    [SerializeField] private Transform[] waypoints; // Array of waypoints for patrolling
     private int currentWaypointIndex = 0; // Index of the current waypoint in the array
-
+    
+    // Entity States 
     public EntityState currentState = EntityState.Patrolling; // Current state of the entity
     private float chaseTimer = 0.0f; // Timer for the chase state
-    public float cooldownDuration ; // Cooldown duration after chasing
+    private float cooldownDuration ; // Cooldown duration after chasing
     private float distanceToPlayer; // Distance to the player
-    public float rotationSpeed = 5.0f; // Rotation speed of the entity
+    [SerializeField] private  float rotationSpeed = 5.0f; // Rotation speed of the entity
     
     // Stress Variables
     public float entityStressIncreaseRate; // Separate stress increase rate for this entity
