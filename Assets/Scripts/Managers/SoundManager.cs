@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance; // Static instance to create a singleton pattern for the SoundManager.
-    public AudioMixer audioMixer; // Reference to the AudioMixer to control different audio groups.
+    [SerializeField] private AudioMixer audioMixer; // Reference to the AudioMixer to control different audio groups.
 
     private void Awake()
     {
