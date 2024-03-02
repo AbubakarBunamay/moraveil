@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class EntityAudioController : MonoBehaviour
 {
-    [SerializeField]
-    private AudioClip[] enemySounds; // Array of enemy sounds
-    [SerializeField]
-    private float soundTriggerDistance = 5.0f; // Distance to trigger enemy sounds
+    [SerializeField] private AudioClip[] enemySounds; // Array of enemy sounds
+    [SerializeField] private float soundTriggerDistance = 5.0f; // Distance to trigger enemy sounds
     
     private AudioSource audioSource; // Reference to AudioSource component
     private Transform player; // Reference to the player's transform
