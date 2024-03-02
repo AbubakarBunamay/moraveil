@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class FootstepSound : MonoBehaviour
 {
-    public AudioClip defaultFootstepSound; // Default footstep Sound
-    public AudioClip grassFootstepSound; // Grass Footstep Sound
-    public AudioClip waterFootstepSound; // Water Footstep sound
+    [SerializeField] private  AudioClip defaultFootstepSound; // Default footstep Sound
+    [SerializeField] private  AudioClip grassFootstepSound; // Grass Footstep Sound
+    [SerializeField] private  AudioClip waterFootstepSound; // Water Footstep sound
 
     private AudioSource audioSource; // Player Audio Source
     private string currentTerrainType; // Variable to store the current terrain type
