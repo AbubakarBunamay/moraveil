@@ -14,17 +14,17 @@ public class UIManager : MonoBehaviour
     public static bool isGameOnStart = false;
     
     // UI elements to be assigned in the Inspector
-    public GameObject pauseMenuUI; 
-    public GameObject restartMenuUI; 
-    public GameObject settingsMenuUI; 
-    public GameObject settingsMenuUIFromStart; 
-    public GameObject startMenuUI; 
-    public GameObject exitMenuUI; 
-    public GameObject HUD; 
-    public GameObject creditsUI; 
-    public GameObject FullScreencreditsUI; 
-    public GameObject gameOverUI; 
-    public TextMeshProUGUI UItimer;
+    [SerializeField] private GameObject pauseMenuUI; 
+    [SerializeField] private GameObject restartMenuUI; 
+    [SerializeField] private GameObject settingsMenuUI; 
+    [SerializeField] private GameObject settingsMenuUIFromStart; 
+    [SerializeField] private GameObject startMenuUI; 
+    [SerializeField] private GameObject exitMenuUI; 
+    [SerializeField] private GameObject HUD; 
+    [SerializeField] private GameObject creditsUI; 
+    [SerializeField] private GameObject FullScreencreditsUI; 
+    [SerializeField] private GameObject gameOverUI; 
+    [SerializeField] private TextMeshProUGUI UItimer;
     
     // Time Tracker
     private float timer = 0f;
@@ -35,19 +35,19 @@ public class UIManager : MonoBehaviour
     private bool isPlayerDead = false; 
 
     // Volume Sliders
-    public Slider masterVolumeSlider; 
-    public Slider musicVolumeSlider; 
-    public Slider sfxVolumeSlider; 
-    public Slider dialogVolumeSlider; 
+    [SerializeField] private Slider masterVolumeSlider; 
+    [SerializeField] private Slider musicVolumeSlider; 
+    [SerializeField] private Slider sfxVolumeSlider; 
+    [SerializeField] private Slider dialogVolumeSlider; 
     
     //Sensitivity Sliders
     public Slider horizontalSensitivitySlider;
     public Slider verticalSensitivitySlider;
     
     //References
-    public RespawnManager respawnManager;
-    public MouseHandler mouseHandler;
-    public GameManager gameManager; // Reference to the GameManager script
+    [SerializeField] private RespawnManager respawnManager;
+    [SerializeField] private MouseHandler mouseHandler;
+    [SerializeField] private GameManager gameManager; // Reference to the GameManager script
     
     // Constants
     private const float DefaultMasterVolume = 1f;
@@ -58,10 +58,8 @@ public class UIManager : MonoBehaviour
     private const float DefaultVerticalSensitivity = 2f;
     
     // Opening SceneVideoPlayer
-    [SerializeField]
-    private VideoPlayer videoPlayer; // Reference to the VideoPlayer component
-    [SerializeField]
-    private GameObject videoCanvas; // Reference to the VideoPlayer component
+    [SerializeField] private VideoPlayer videoPlayer; // Reference to the VideoPlayer component
+    [SerializeField] private GameObject videoCanvas; // Reference to the VideoPlayer component
 
 
     
