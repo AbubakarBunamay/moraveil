@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MusicTrigger : MonoBehaviour
 {
-    public AudioClip musicClip; // The audio clip to play
+    [SerializeField] private AudioClip musicClip; // The audio clip to play
 
     private AudioSource audioSource; // Reference to the AudioSource component
 
