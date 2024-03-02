@@ -5,16 +5,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public float timerDuration = 60f; // Initial timer duration in seconds
+    public GameObject endpoint; // Reference to the GameObject with Collider representing the endpoint
+
     private bool isGameOver = false; // Game state if
     private bool isMapPickedUp = false; // Bool if map is picked up 
     private float timer; // Current timer value
-    public UIManager uiManager; // Reference to UIManager script
-    public GameObject endpoint; // Reference to the GameObject with Collider representing the endpoint
-    private FPSController player; // Reference to the player Object 
+    
+    [SerializeField] private UIManager uiManager; // Reference to UIManager script
+    [SerializeField] private FPSController player; // Reference to the player Object 
     
     // Triggers to be enabled after the map is picked up
-    [SerializeField]
-    private Collider[] rockfallTriggersToEnable;
+    [SerializeField]  private Collider[] rockfallTriggersToEnable;
 
     // Start is called before the first frame update
     void Start()
