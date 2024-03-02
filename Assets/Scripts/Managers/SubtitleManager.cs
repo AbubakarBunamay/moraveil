@@ -6,8 +6,8 @@ using UnityEngine.Events;
 
 public class SubtitleManager : MonoBehaviour
 {
-    // Reference to the TextMeshProUGUI component for displaying subtitles
-    [SerializeField] public TextMeshProUGUI subtitleText;
+    
+    [SerializeField] private TextMeshProUGUI subtitleText; // Reference to the TextMeshProUGUI component for displaying subtitles
 
     private Coroutine subControl; // Coroutine for controlling the subtitle sequence
     private bool subtitleSequenceRunning; // Flag indicating whether a subtitle sequence is currently running
