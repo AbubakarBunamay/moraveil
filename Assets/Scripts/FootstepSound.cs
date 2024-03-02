@@ -7,6 +7,8 @@ public class FootstepSound : MonoBehaviour
     public AudioClip waterFootstepSound; // Water Footstep sound
 
     private AudioSource audioSource; // Player Audio Source
+    private string currentTerrainType; // Variable to store the current terrain type
+
 
     private void Start()
     {
@@ -20,9 +22,16 @@ public class FootstepSound : MonoBehaviour
     // Play the foot step sounds
     public void PlayFootstepSound(string soundType)
     {
-        if (!audioSource.isPlaying)  // Check if the audio source is not currently playing
+        // Get the footstep sound for the current terrain type
+        AudioClip footstepSound = GetFootstepSound(soundType);
+
+        // Check if the terrain type has changed or if the audio source is not currently playing
+        if (currentTerrainType != soundType || !audioSource.isPlaying)
         {
-            AudioClip footstepSound = GetFootstepSound(soundType);
+            // Stop the currently playing footstep sound
+            audioSource.Stop();
+
+            // Set the new footstep sound
             if (footstepSound != null)
             {
                 audioSource.clip = footstepSound;
@@ -32,6 +41,9 @@ public class FootstepSound : MonoBehaviour
             {
                 Debug.LogError("Footstep sound is null!");
             }
+
+            // Update the current terrain type
+            currentTerrainType = soundType;
         }
     }
     
