@@ -6,28 +6,18 @@ using UnityEngine.Events;
 
 public class MuralInteraction : MonoBehaviour
 {
-    // Reference to the sound to play
-    [SerializeField]
-    private AudioClip interactionSound;
-
-    //Reference to the virutal cam
-    [SerializeField]
-    private CinemachineVirtualCameraBase virtualCam;
-
-    // Reference to the player object
-    [SerializeField]
-    private GameObject player;
-
-    // Flag to track player movement state
-    private bool isPlayerLocked = false;
     
-    // Reference to the audio source
-    private AudioSource audioSource;
+    [SerializeField] private AudioClip interactionSound; // Reference to the sound to play
+    [SerializeField] private CinemachineVirtualCameraBase virtualCam; //Reference to the virutal cam
+    [SerializeField] private GameObject player; // Reference to the player object
 
-    // Reference to the SubtitleManager
-    [SerializeField] private SubtitleManager subtitleManager;
-    // Reference to the specific mural's subtitle data
-    [SerializeField] private SubtitleTexts muralSubtitle; 
+    
+    private bool isPlayerLocked = false; // Flag to track player movement state
+    private AudioSource audioSource; // Reference to the audio source
+
+    
+    [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
+    [SerializeField] private SubtitleTexts muralSubtitle; // Reference to the specific mural's subtitle data
     
     
     private void Start()
