@@ -8,29 +8,24 @@ using UnityEngine.Serialization;
 public class StressManager : MonoBehaviour
 {
     /*
-     * Public variables for tuning stress-related parameters
+     * Stress-related parameters
      */
     public float maxStress = 100f; // Maximum stress level.
-    public float stressIncreaseRate = 10f; // Rate at which stress increases per second.
-    public float stressDecreaseRate = 5f; // Rate at which stress decreases per second.
+    [SerializeField] private float stressIncreaseRate = 10f; // Rate at which stress increases per second.
+    [SerializeField] private float stressDecreaseRate = 5f; // Rate at which stress decreases per second.
     public string playerTag = "Player"; // Tag of the player GameObject.
     public float currentStress = 0f; // Current stress level.
-    public Image darkScreen; // Reference to the full-screen darkening effect.
-    public CanvasGroup stressCanvasGroup; // Reference to the CanvasGroup component.
+    [SerializeField] private Image darkScreen; // Reference to the full-screen darkening effect.
+    [SerializeField] private CanvasGroup stressCanvasGroup; // Reference to the CanvasGroup component.
     
     /*
-     * Serialized fields for inspector references
+     *  CameraShake & Effects
      */
-    [FormerlySerializedAs("shakeManager")]
-    [SerializeField]
-    private CameraShake shake; // Reference to the CameraShake component.
-    [SerializeField]
-    private float maxShakeMagnitude; // Maximum camera shake magnitude.
-    [SerializeField]
-    private float maxShakeDuration,maxFrequency = 5f, maxAmplitude = 1f; // Maximum camera shake duration, Maximum frequency, Maximum amplitude  .
-    public Volume volume; // Reference to the Post-Processing Volume component
-
-    private bool isPlayerDead = false; // Variable to track player's life status.
+    [SerializeField] private CameraShake shake; // Reference to the CameraShake component.
+    [SerializeField] private float maxShakeMagnitude; // Maximum camera shake magnitude.
+    [SerializeField] private float maxShakeDuration,maxFrequency = 5f, maxAmplitude = 1f; // Maximum camera shake duration, Maximum frequency, Maximum amplitude  .
+    [SerializeField] private Volume volume; // Reference to the Post-Processing Volume component
+    
     
     /*
      * Stun Effect
@@ -63,7 +58,7 @@ public class StressManager : MonoBehaviour
         //IncreaseStressTrigger();
 
         // If stress level is critical and the player is not dead, trigger stun effect.
-        if (currentStress >= maxStress && !isPlayerDead)
+        if (currentStress >= maxStress)
         {
             // Check if the stun cooldown has passed.
             if (stunCooldown <= 0f)
