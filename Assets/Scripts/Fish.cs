@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class Fish : MonoBehaviour
-{
+{    
+    [SerializeField] private  Transform[] waypoints;              // Array of waypoints for the fish to follow
+    [SerializeField] private  float rotationSpeed = 5f;           // Rotation speed for the fish
+
     private NavMeshAgent navMeshAgent;         // Reference to the NavMeshAgent component
-    public Transform[] waypoints;              // Array of waypoints for the fish to follow
     private int currentWaypointIndex = 0;      // Index to keep track of the current waypoint
 
-    public float rotationSpeed = 5f;           // Rotation speed for the fish
 
     private void Start()
     {
