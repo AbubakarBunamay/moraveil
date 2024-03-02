@@ -7,56 +7,56 @@ public class FPSController : MonoBehaviour
     private CharacterController characterController; // Character Controller
 
     [Header("Character Height")]
-    public Vector3 originalCenter; // Original Center of Character
-    public float originalHeight; // Original Height of Character
+    [SerializeField] private  Vector3 originalCenter; // Original Center of Character
+    [SerializeField] private  float originalHeight; // Original Height of Character
 
     [Header("Movement")]
-    public float movementSpeed = 5f; // Speed of character movement.
-    public float runningSpeed = 10f; // Speed of running Movement
-    public float crouchRunningSpeed = 7f; // Speed when running while crouched
-    public float gravity = 9.8f; // Gravity force applied to the character.
-    public Image crouchIcon; // Reference to the UI Image for the crouch icon
-    public GameObject headCube; // Reference to the cube object placed above the player's head
-    private float uncrouchSpeed = 4f; // The speed of uncrouching
-    private bool isUncrouching = false; // The player uncrouching state
+    [SerializeField] private  float movementSpeed = 5f; // Speed of character movement.
+    [SerializeField] private  float runningSpeed = 10f; // Speed of running Movement
+    [SerializeField] private  float crouchRunningSpeed = 7f; // Speed when running while crouched
+    [SerializeField] private  float gravity = 9.8f; // Gravity force applied to the character.
+    [SerializeField] private  Image crouchIcon; // Reference to the UI Image for the crouch icon
+    [SerializeField] private  GameObject headCube; // Reference to the cube object placed above the player's head
+    [SerializeField] private  float uncrouchSpeed = 4f; // The speed of uncrouching
+    [SerializeField] private  bool isUncrouching = false; // The player uncrouching state
     
     [HideInInspector]
     public float originalRunningSpeed; // Variable to store the original running speed
 
     [Header("Walking on Water")]
-    public float walkOnWaterSpeed = 2.5f; // Adjust the speed as needed
-    public float waterRunningSpeed = 5f; // Adjust the speed as needed
+    [SerializeField] private  float walkOnWaterSpeed = 2.5f; // Adjust the speed as needed
+    [SerializeField] private  float waterRunningSpeed = 5f; // Adjust the speed as needed
     private bool isWalkingOnWater = false; // Flag indicating whether the character is walking on water.
 
     [Header("Jumping")]
-    public float jumpHeight = 1f; // Height of the character's jump.
-    public int maxJumps = 2; // Maximum number of allowed jumps.
+    [SerializeField] private  float jumpHeight = 1f; // Height of the character's jump.
+    [SerializeField] private  int maxJumps = 2; // Maximum number of allowed jumps.
     private float maxJumpHeight; // Maximum Jump Height
     private float fallHeightThreshold = 2.0f; // Maximum Fall Height
     private int fallsCount = 0; // Falls Count
 
     [Header("Stress")]
-    public StressManager stressManager; // Reference to the StressManager script.
+    [SerializeField] private  StressManager stressManager; // Reference to the StressManager script.
+    [SerializeField] private  float maxRunTime = 5f; // Maximum allowed running time before triggering stress.
+    [SerializeField] private  float runningStressIncreaseRate = 50f; // Rate of stress rising when running
+    [SerializeField] private  float maxFallinStressRange = 1f; // Play with range of falling stress
     private float runTimer = 0f; // Timer to track how long the player has been running.
-    public float maxRunTime = 5f; // Maximum allowed running time before triggering stress.
-    public float runningStressIncreaseRate = 50f; // Rate of stress rising when running
-    public float maxFallinStressRange = 1f; // Play with range of falling stress
+
 
     private int jumpsPerformed = 0; // Number of jumps performed.
     private float verticalVelocity; // Vertical velocity of the character.
-    public bool isJumping = false; // Flag indicating whether the character is currently jumping.
+    private bool isJumping = false; // Flag indicating whether the character is currently jumping.
     private bool isCrouching = false; //Flag indicating whether the character is currently crouching
-    public bool isRunning = false; // Flag Indcating whether the character is running
+    private bool isRunning = false; // Flag Indcating whether the character is running
     private bool canCrouch = true; // Add this line to store the crouch permission
 
     private Transform cameraTransform; // Reference to the main camera's transform.
     private Quaternion originalCameraRotation; // Stores the original rotation of the camera.
 
-    public FootstepSound footstepSound; // Reference to the FootstepSound component.
+    private FootstepSound footstepSound; // Reference to the FootstepSound component.
     private MouseHandler mHandler; // Reference to the MouseHandler component.
-    public GameManager gameManager; //Reference to the game manager
+    private GameManager gameManager; //Reference to the game manager
     private bool isInEndpointTriggerZone = false; // Bool if player passes end point
-    
     private LilyPadTrigger currentLilypad; // Reference to the current lilypad the player is on
 
 
@@ -70,9 +70,9 @@ public class FPSController : MonoBehaviour
 
         // Find and assign the components.
         stressManager = FindObjectOfType<StressManager>();
-        footstepSound = FindObjectOfType<FootstepSound>();
         mHandler = FindObjectOfType<MouseHandler>();
         footstepSound = FindObjectOfType<FootstepSound>(); 
+        gameManager = FindObjectOfType<GameManager>(); 
 
         // Get the main camera's transform and set the crouch icon to initially be disabled.
         cameraTransform = Camera.main.transform;
