@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.Interactions;
 public class InteractionManager : MonoBehaviour{
 
     // Maximum distance for interaction
-    public float maxInteractionDistance = 1f;
+    [SerializeField] private float maxInteractionDistance = 1f;
 
     private void Update()
     {
