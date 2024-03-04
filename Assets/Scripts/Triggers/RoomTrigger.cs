@@ -8,6 +8,8 @@ public class RoomTrigger : MonoBehaviour
     private AudioSource audioSource;   // Reference to the AudioSource component attached to the GameObject.
     private static AudioSource currentlyPlaying;  // Static reference to the currently playing audio source.
     [SerializeField] private  float fadeDuration = 1.0f;   // Duration of the crossfade.
+    [SerializeField] private bool playOnce = true;       // Should the sound be played only once when triggered?
+    [SerializeField] private bool hasPlayed = false;       // Should the sound be played only once when triggered?
 
 
     void Start()
@@ -24,11 +26,16 @@ public class RoomTrigger : MonoBehaviour
         // Check if the object entering the trigger area has a specific tag (in this case, "Player").
         if (other.CompareTag("Player"))
         {
-            // Check if the audio is not already playing before starting it.
-            if (currentlyPlaying != audioSource || !audioSource.isPlaying)
+            if (!hasPlayed || !playOnce)
             {
-                // Start crossfade.
-                StartCoroutine(CrossfadeAudio());
+                // Check if the audio is not already playing before starting it.
+                if (currentlyPlaying != audioSource || !audioSource.isPlaying)
+                {
+                    // Start crossfade.
+                    StartCoroutine(CrossfadeAudio());
+                }
+
+                hasPlayed = true;
             }
         }
     }
