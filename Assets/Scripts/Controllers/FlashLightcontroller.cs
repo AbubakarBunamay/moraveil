@@ -195,16 +195,16 @@ public class FlashLightcontroller : MonoBehaviour
         }
     }
     
-    private void OnDrawGizmosSelected()
-    {
-        // Calculate the origin of the spherecast
-        Vector3 spherecastOrigin = playerCamera.position + playerCamera.forward * 0.2f + playerCamera.up * 2f;
-
-        // Draw a wire sphere to visualize the spherecast
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(spherecastOrigin + playerCamera.forward * maxDistance, spherecastRadius);
-
-    }
+    // private void OnDrawGizmosSelected()
+    // {
+    //     // Calculate the origin of the spherecast
+    //     Vector3 spherecastOrigin = playerCamera.position + playerCamera.forward * 0.2f + playerCamera.up * 2f;
+    //
+    //     // Draw a wire sphere to visualize the spherecast
+    //     Gizmos.color = Color.yellow;
+    //     Gizmos.DrawWireSphere(spherecastOrigin + playerCamera.forward * maxDistance, spherecastRadius);
+    //
+    // }
     
     // smoother ease-in-out function
     private float EaseInOut(float t)
