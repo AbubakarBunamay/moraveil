@@ -64,6 +64,10 @@ public class Entity : MonoBehaviour
         // Register this entity with the EntityManager
         EntityManager.Instance.RegisterEntity(this);
         SetReferencesFromManager(); //Setting References
+        
+        // Find the EntityManager in the scene
+        entityManager = FindObjectOfType<EntityManager>();
+        
     }
     
     private void OnDestroy()
@@ -91,8 +95,6 @@ public class Entity : MonoBehaviour
     // Update the entity state using the EntityManager
     private void ImplementDefaultEntityLogic()
     {
-        // Find the EntityManager in the scene
-        entityManager = FindObjectOfType<EntityManager>();
 
         // Check if the EntityManager is not null and update the entity state
         if (entityManager != null)
