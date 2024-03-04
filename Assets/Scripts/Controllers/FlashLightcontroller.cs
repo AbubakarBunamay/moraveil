@@ -90,6 +90,16 @@ public class FlashLightcontroller : MonoBehaviour
                             targetFadeFactor = 1f; 
                         }
                     }
+                    else if (hit.collider.CompareTag("SymbolMural")) // Check if Instruction Mural
+                    {
+                        // Get the DecalProjector component
+                        var decalProjector = hit.collider.GetComponent<DecalProjector>();
+                        if (decalProjector != null)
+                        {
+                            // Set the target fade factor to control opacity gradually
+                            targetFadeFactor = 1f; 
+                        }
+                    }
 
                     // Gradually adjust the Decal fade factor
                     AdjustDecalFadeFactor();
