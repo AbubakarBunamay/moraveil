@@ -4,48 +4,46 @@ using UnityEngine;
 public class MouseHandler : MonoBehaviour
 {
     
-    [SerializeField] private UIManager uiManager; // Reference to the UI manager for accessing sensitivity sliders
     [SerializeField] private CinemachineVirtualCamera virtualCamera; // Cinemachine VirtualCamera component
     
+    private float sensitivity = 3.0f; // Default sensitivity value
+    
+    public float Sensitivity
+    {
+        get { return sensitivity; }
+        set
+        {
+            sensitivity = value;
+            UpdateSensitivity(value);
+        }
+    }
+
     void Start()
     {
-        if (virtualCamera != null && uiManager != null)
+        if (virtualCamera != null)
         {
-            UpdateSensitivityFromUI(); // Set initial sensitivity from UI sliders
-
-            // Register listeners for sensitivity sliders
-            uiManager.horizontalSensitivitySlider.onValueChanged.AddListener(UpdateHorizontalSensitivity);
-            uiManager.verticalSensitivitySlider.onValueChanged.AddListener(UpdateVerticalSensitivity);
+            UpdateSensitivityFromPlayerPrefs(); // Set initial sensitivity from UI sliders
         }
         else
         {
-            Debug.LogError("CinemachineVirtualCamera or UIManager not assigned on MouseHandler.");
+            Debug.LogError("CinemachineVirtualCamera not assigned on MouseHandler.");
         }
     }
-
+    public void UpdateSensitivityFromPlayerPrefs()
+    {
+        float sensitivity = PlayerPrefs.GetFloat("Sensitivity", 1.0f);
+        UpdateSensitivity(sensitivity);
+    }
+    
     // Method to update sensitivity values from UI sliders
-    public void UpdateSensitivityFromUI()
+    public void UpdateSensitivity( float value)
     {
-            CinemachinePOV pov = virtualCamera.GetCinemachineComponent<CinemachinePOV>();
-
-            // Set horizontal and vertical sensitivity from UI sliders
-            if (pov != null)
-            {
-                // Adjusting the axis sensitivity directly
-                pov.m_HorizontalAxis.m_MaxSpeed = uiManager.horizontalSensitivitySlider.value;
-                pov.m_VerticalAxis.m_MaxSpeed = uiManager.verticalSensitivitySlider.value;
-            }
-    }
-
-    // Method to update horizontal sensitivity
-    public void UpdateHorizontalSensitivity(float value)
-    {
-        UpdateSensitivityFromUI();
-    }
-
-    // Method to update vertical sensitivity
-    public void UpdateVerticalSensitivity(float value)
-    {
-        UpdateSensitivityFromUI();
+        CinemachinePOV pov = virtualCamera.GetCinemachineComponent<CinemachinePOV>();
+        if (pov != null)
+        {
+            pov.m_HorizontalAxis.m_MaxSpeed = value;
+            pov.m_VerticalAxis.m_MaxSpeed = value;
+        }
+        PlayerPrefs.SetFloat("Sensitivity", value);
     }
 }
