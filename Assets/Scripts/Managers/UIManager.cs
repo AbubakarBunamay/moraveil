@@ -135,6 +135,9 @@ public class UIManager : MonoBehaviour
         
         Time.timeScale = 0f; // Stop Time
         isGamePaused = true; // Set State
+        
+        // Set isGameOnStart to true
+        isGameOnStart = true;
     }
     
     
