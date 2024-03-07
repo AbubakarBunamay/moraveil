@@ -17,8 +17,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenuUI; 
     [SerializeField] private GameObject restartMenuUI; 
     [SerializeField] private GameObject settingsMenuUI; 
-    [SerializeField] private GameObject settingsMenuUIFromStart; 
-    [SerializeField] private GameObject startMenuUI; 
     [SerializeField] private GameObject exitMenuUI; 
     [SerializeField] private GameObject HUD; 
     [SerializeField] private GameObject creditsUI; 
@@ -49,18 +47,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private MouseHandler mouseHandler;
     [SerializeField] private GameManager gameManager; // Reference to the GameManager script
     
-    // Constants
-    private const float DefaultMasterVolume = 1f;
-    private const float DefaultMusicVolume = 1f;
-    private const float DefaultSFXVolume = 1f;
-    private const float DefaultDialogueVolume = 1f;
-    private const float DefaultHorizontalSensitivity = 2f;
-    private const float DefaultVerticalSensitivity = 2f;
-    
     // Opening SceneVideoPlayer
     [SerializeField] private VideoPlayer videoPlayer; // Reference to the VideoPlayer component
     [SerializeField] private GameObject videoCanvas; // Reference to the VideoPlayer component
-
 
     
     private void Start()
@@ -71,13 +60,17 @@ public class UIManager : MonoBehaviour
         settingsMenuUI.SetActive(false);
         UItimer.gameObject.SetActive(false);
         
-        // Game Starts with the Start menu which then launches player into the game
-        StartMenu();
+        // Start Game video
+        PlayVideo();
         
         // Store the initial timer value
         initialTimerValue = gameManager.timerDuration;
         // Subscribe to the loopPointReached event
         videoPlayer.loopPointReached += OnVideoEnd;
+        
+        // Load volume and sensitivity values and update sliders
+        LoadVolumeSettings();
+        LoadSensitivitySettings();
     }
 
     private void Update()
@@ -122,41 +115,7 @@ public class UIManager : MonoBehaviour
         // Resume the game
         ResumeGame();
     }
-    // Method to set up the Start menu
-    private void StartMenu()
-    {
-        //Set State
-        isGameOnStart = true;
-        
-        // Pause the game
-        Time.timeScale = 0f;
-        isGamePaused = true;
-
-        // Pause all audio 
-        AudioListener.pause = true;
-
-        // Hide the HUD when the restart prompt is shown 
-        HUD.SetActive(false);
-
-        // Unlock and show the cursor when the restart prompt is shown.
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        
-        // Show the Start menu
-        startMenuUI.SetActive(true);
-        
-        // Disable the timer UI initially
-        DisableTimerUI();
-    }
     
-    // Method to handle the Start button action
-    public void StartGameButton()
-    { 
-        // Play the video when the player starts the game
-        PlayVideo();
-        
-        startMenuUI.SetActive(false); // Hide the start menu
-    }
     
     // Method to play the video
     private void PlayVideo()
@@ -254,50 +213,14 @@ public class UIManager : MonoBehaviour
         
         // Add listeners for sensitivity sliders
         horizontalSensitivitySlider.onValueChanged.AddListener(UpdateHorizontalSensitivity);
-        verticalSensitivitySlider.onValueChanged.AddListener(UpdateVerticalSensitivity);
     }
     
-    
-    public void SettingsUIFromStart()
-    {
-        startMenuUI.SetActive(false); // Hide Pause Menu
-        settingsMenuUIFromStart.SetActive(true); // Show Settings Menu
-        Time.timeScale = 0f; // Stop Time
-        isGamePaused = true; // Set State
-
-        // Pause all audio
-        AudioListener.pause = true;
-
-        // Hide the HUD when the game is paused
-        HUD.SetActive(false);
-
-        // Unlock and show the cursor when paused
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        
-        // Add listeners for volume sliders
-        masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
-        musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
-        sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
-        dialogVolumeSlider.onValueChanged.AddListener(setDialogVolume);
-        
-        // Add listeners for sensitivity sliders
-        horizontalSensitivitySlider.onValueChanged.AddListener(UpdateHorizontalSensitivity);
-        verticalSensitivitySlider.onValueChanged.AddListener(UpdateVerticalSensitivity);
-    }
     
     // Method to go back from the settings menu to the pause menu
     public void BackButtonSetting()
     {
         settingsMenuUI.SetActive(false);
         pauseMenuUI.SetActive(true );
-    }
-    
-    // Method to go back from the start menu to the pause menu
-    public void BackButtonStart()
-    {
-        settingsMenuUIFromStart.SetActive(false);
-        startMenuUI.SetActive(true );
     }
 
     // Method to resume the game
@@ -344,12 +267,14 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Game Exiting");
         Application.Quit(); // Quit the game.
+        
         if (Application.isEditor)
         {
             #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
             #endif
         }
+        
     }
 
     // Method called when the player dies to show the restart prompt
@@ -625,12 +550,41 @@ public class UIManager : MonoBehaviour
     //Sensitivity Sliders
     public void UpdateHorizontalSensitivity(float value)
     {
-        mouseHandler.UpdateHorizontalSensitivity(value);
-    }
-
-    public void UpdateVerticalSensitivity(float value)
-    {
-        mouseHandler.UpdateVerticalSensitivity(value);
+        mouseHandler.UpdateSensitivity(value);
     }
     
+    // Method to load volume settings and update sliders
+    private void LoadVolumeSettings()
+    {
+        // Load volume settings from PlayerPrefs 
+        float masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        float dialogVolume = PlayerPrefs.GetFloat("DialogueVolume", 1f);
+
+        // Update volume sliders
+        masterVolumeSlider.value = masterVolume;
+        musicVolumeSlider.value = musicVolume;
+        sfxVolumeSlider.value = sfxVolume;
+        dialogVolumeSlider.value = dialogVolume;
+
+        // Apply volume settings
+        SetMasterVolume(masterVolume);
+        SetMusicVolume(musicVolume);
+        SetSFXVolume(sfxVolume);
+        setDialogVolume(dialogVolume);
+    }
+
+    // Method to load sensitivity settings and update sliders
+    private void LoadSensitivitySettings()
+    {
+        // Load sensitivity settings from PlayerPrefs 
+        float horizontalSensitivity = PlayerPrefs.GetFloat("HorizontalSensitivity", 1f);
+
+        // Update sensitivity sliders
+        horizontalSensitivitySlider.value = horizontalSensitivity;
+
+        // Apply sensitivity settings
+        UpdateHorizontalSensitivity(horizontalSensitivity);
+    }
 }
