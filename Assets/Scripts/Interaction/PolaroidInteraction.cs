@@ -11,6 +11,9 @@ public class PolaroidInteraction : MonoBehaviour
     private bool isPlayerLocked = false; // Flag to track player movement state
     private AudioSource audioSource; // Reference to the audio source
     private Animator animator; // Reference to the animator
+    
+    [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
+    [SerializeField] private SubtitleTexts polaroidSubtitle; // Reference to the specific polaroid subtitle data
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +52,12 @@ public class PolaroidInteraction : MonoBehaviour
                 audioSource.Play();
                 // Trigger Polaroid Interaction Animation
                 animator.SetTrigger("polaroidInteraction");
+            }
+            
+            // Trigger subtitle
+            if (subtitleManager != null)
+            {
+                subtitleManager.CueSubtitle(polaroidSubtitle);
             }
 
             // Lock the player
