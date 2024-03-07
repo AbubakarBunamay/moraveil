@@ -7,7 +7,9 @@ public class MapInteraction : MonoBehaviour
     [SerializeField] private List<GameObject> gameObjectToChange; // List of GameObjects to change the material of
     [SerializeField] private Material materialToChange; // Material to apply to the specified GameObjects
     [SerializeField] private GameManager gameManager; // Reference to the GameManager script
-    
+    [SerializeField] private StressManager stressManager; // Reference to the Stress Manager
+    [SerializeField] private float StressIncreaseTo = 40f;
+
     // Interact with the map function 
     public void InteractWithMap()
     {
@@ -15,6 +17,9 @@ public class MapInteraction : MonoBehaviour
         {
             ChangeMaterialOftheObject(objToChange); // Change the material of each specified GameObject
         }
+        
+        // Shake the camera when the map is picked up
+        stressManager.IncreaseStress(StressIncreaseTo);
         
         Disappear(); // Make the map disappear
         
