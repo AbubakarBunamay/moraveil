@@ -17,7 +17,8 @@ public class StressManager : MonoBehaviour
     public float currentStress = 0f; // Current stress level.
     [SerializeField] private Image darkScreen; // Reference to the full-screen darkening effect.
     [SerializeField] private CanvasGroup stressCanvasGroup; // Reference to the CanvasGroup component.
-    
+    [SerializeField] private Image stressMeterBar; // Reference to the stress meter UI element.
+
     /*
      *  CameraShake & Effects
      */
@@ -154,6 +155,9 @@ public class StressManager : MonoBehaviour
             StressEffects();
             
         }
+        
+        // Updates the stress meter bar UI.
+        stressMeterBar.fillAmount = currentStress / maxStress;
         
         // Clamp stress within the defined range
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
