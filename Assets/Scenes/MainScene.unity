@@ -30648,6 +30648,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 125
       objectReference: {fileID: 0}
+    - target: {fileID: 2367899535037648439, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 889545044}
+    - target: {fileID: 2367899535037648439, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
+      propertyPath: virtualCam
+      value: 
+      objectReference: {fileID: 555575010}
     - target: {fileID: 2383190606075653356, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 125
@@ -31074,7 +31082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4013847661953173940, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4028752924422962319, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -31086,7 +31094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4092758104023360261, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4112470703366111160, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -31718,7 +31726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7035617805102681241, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7037078174793150633, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -32158,7 +32166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8990936942640714978, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9004570417228416318, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -32262,6 +32270,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3641754181715998002, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
   m_PrefabInstance: {fileID: 555575008}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &555575010 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4731664100678898837, guid: e10d81cec218ace45bbb441d24f61091, type: 3}
+  m_PrefabInstance: {fileID: 555575008}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319d2fe34a804e245819465c9505ea59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &556048167 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 5733500314977699334, guid: 458bc99dab9989e4c9b07e2e3ce93033, type: 3}
@@ -57594,19 +57613,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8018310091998129105, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9536039
       objectReference: {fileID: 0}
     - target: {fileID: 8018310091998129105, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.0022144082
       objectReference: {fileID: 0}
     - target: {fileID: 8018310091998129105, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.301055
       objectReference: {fileID: 0}
     - target: {fileID: 8018310091998129105, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.00069909374
       objectReference: {fileID: 0}
     - target: {fileID: 8318440606463636135, guid: 6cb48a1ea2e99774b9e95673e6c8ca6d, type: 3}
       propertyPath: uiManager
