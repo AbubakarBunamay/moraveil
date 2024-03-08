@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class PolaroidInteraction : MonoBehaviour
@@ -7,7 +8,8 @@ public class PolaroidInteraction : MonoBehaviour
     
     [SerializeField] private AudioClip interactionSound; // Reference to the sound to play
     [SerializeField] private GameObject player; // Reference to the player object
-    
+    [SerializeField] private CinemachineVirtualCameraBase virtualCam; //Reference to the virutal cam
+
     private bool isPlayerLocked = false; // Flag to track player movement state
     private AudioSource audioSource; // Reference to the audio source
     private Animator animator; // Reference to the animator
@@ -54,6 +56,12 @@ public class PolaroidInteraction : MonoBehaviour
                 animator.SetTrigger("polaroidInteraction");
             }
             
+            // Increase virtual cam priority to be higher than main cam
+            if (virtualCam)
+            {
+                virtualCam.m_Priority = 11;
+            }
+            
             // Trigger subtitle
             if (subtitleManager != null)
             {
@@ -88,6 +96,12 @@ public class PolaroidInteraction : MonoBehaviour
                 {
                     controller.enabled = true;
                 }
+            }
+            
+            // Revert virtual cam priority to be lower than main cam
+            if (virtualCam)
+            {
+                virtualCam.m_Priority = 9;
             }
             
             // Deactivate the polaroid GameObject
