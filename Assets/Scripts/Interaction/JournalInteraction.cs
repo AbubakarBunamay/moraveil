@@ -9,6 +9,8 @@ public class JournalInteraction : MonoBehaviour
     [SerializeField] private CinemachineVirtualCameraBase virtualCam; //Reference to the virutal cam
     private AudioSource audioSource; // Reference to the audio source
     [SerializeField] private GameObject player; // Reference to the player object
+    private bool isPlayerLocked = false; // Flag to track player movement state
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,16 +26,31 @@ public class JournalInteraction : MonoBehaviour
     }
     public void JournalInteract()
     {
-        // Trigger Journal Interaction Animation
-        animator.SetTrigger("journal_Interaction");
+        // Toggle player movement lock state
+        isPlayerLocked = !isPlayerLocked;
 
-        // Increase virtual cam priority to be higher than main cam
-        if (virtualCam)
+        if (isPlayerLocked)
         {
-            virtualCam.m_Priority = 11;
-        }
+            // Trigger Journal Interaction Animation
+            animator.SetTrigger("journal_Interaction");
 
-    
+            // Increase virtual cam priority to be higher than main cam
+            if (virtualCam)
+            {
+                virtualCam.m_Priority = 11;
+            }
+
+            // Lock the player
+            if (player != null)
+            {
+                // Disable player movement 
+                CharacterController controller = player.GetComponent<CharacterController>();
+                if (controller != null)
+                {
+                    controller.enabled = false;
+                }
+            }
+        }
         else
         {
             // Stop the audio if it's playing
@@ -42,25 +59,27 @@ public class JournalInteraction : MonoBehaviour
                 audioSource.Stop();
             }
 
-        // Unlock the player
-        if (player != null)
-        {
-            // Re-enable player movement
-            CharacterController controller = player.GetComponent<CharacterController>();
-            if (controller != null)
+            // Unlock the player
+            if (player != null)
             {
-                controller.enabled = true;
+                // Re-enable player movement
+                CharacterController controller = player.GetComponent<CharacterController>();
+                if (controller != null)
+                {
+                    controller.enabled = true;
+                }
             }
+
+            // Revert virtual cam priority to be lower than main cam
+            if (virtualCam)
+            {
+                virtualCam.m_Priority = 9;
+            }
+
+            // Deactivate the Journal GameObject
+            gameObject.SetActive(false);
         }
 
-        // Revert virtual cam priority to be lower than main cam
-        if (virtualCam)
-        {
-            virtualCam.m_Priority = 9;
-        }
-                
-        }
-           
     }
 
 

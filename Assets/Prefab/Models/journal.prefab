@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: journal
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c36ab86b58e37da45bb2fdb757e3ee6b, type: 3}
+      propertyPath: m_TagString
+      value: Journal
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -79,6 +83,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c36ab86b58e37da45bb2fdb757e3ee6b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4539207077776099891}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c36ab86b58e37da45bb2fdb757e3ee6b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5993153693609756760}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c36ab86b58e37da45bb2fdb757e3ee6b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3992360189107619327}
   m_SourcePrefab: {fileID: 100100000, guid: c36ab86b58e37da45bb2fdb757e3ee6b, type: 3}
 --- !u!1 &3420391197023758541 stripped
 GameObject:
@@ -106,3 +116,38 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &5993153693609756760
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3420391197023758541}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.14, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3992360189107619327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3420391197023758541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5277184fec888140bcc28dbe645485d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCam: {fileID: 0}
+  player: {fileID: 0}
