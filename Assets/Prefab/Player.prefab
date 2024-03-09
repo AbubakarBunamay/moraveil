@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 237737970726586985}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.059, y: 1.326, z: -1.615}
+  m_LocalPosition: {x: 0, y: 1.326, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -136,9 +136,9 @@ MonoBehaviour:
   bigCrystalMaxIntensity: 30
   smallCrystalMaxIntensity: 20
   maxDistance: 5
-  minDistance: 2
-  maxIntensity: 100
-  minIntensity: 10
+  minDistance: 1
+  maxIntensity: 90
+  minIntensity: 20
   fadeSpeed: 5
   isFlashlightOn: 0
   minFalloff: 0.1
@@ -146,7 +146,7 @@ MonoBehaviour:
   minSpotAngle: 20
   maxSpotAngle: 60
   minRange: 5
-  maxRange: 20
+  maxRange: 50
   spherecastRadius: 0.5
   spherecastColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &719990635276630203
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 8318440606463636135}
   - component: {fileID: 2718699024034500145}
   - component: {fileID: 5836786648840833029}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
