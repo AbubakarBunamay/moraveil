@@ -144,77 +144,49 @@ public class FlashLightcontroller : MonoBehaviour
     // To allow to see without blinding players
     private void LightIntensityDistance()
     {
-        // Calculate the normalized distance based on the hit distance, min distance, and max distance
-        // float normalizedDistance = Mathf.Clamp01((hit.distance - minDistance) / (maxDistance - minDistance * 0.5f));
-        // if (Physics.SphereCast(playerCamera.position, 50f, playerCamera.forward, out sphereHit, maxDistance))
-        // {
-        //     // Use a smoother easing function to create subtler transitions in intensity
-        //     //float easedIntensity = EaseInOut(normalizedDistance);
-        //     float easedIntensity = Mathf.InverseLerp(minDistance, maxDistance, hit.distance);
-        //
-        //     // Reduce the overall intensity range directly using a linear interpolation
-        //     float smoothedIntensity = Mathf.Lerp(minIntensity, maxIntensity, easedIntensity);
-        //
-        //     // Set the flashlight intensity to the smoothed value
-        //     flashLight.intensity = smoothedIntensity;
-        //
-        //     //Debug.Log("Hit distance: " + hit.distance);
-        //     // Debug.Log("Hit GameObject name: " + hit.transform.name);
-        // }
-        
         // Calculate the origin of the spherecast slightly higher and forward from the player's camera position
         Vector3 spherecastOrigin = playerCamera.position + playerCamera.forward * 0.2f + playerCamera.up * 2f;
-
-
         
-        if (Physics.SphereCast(spherecastOrigin, 0.01f, playerCamera.forward, out sphereHit, maxDistance))
+        int playerLayerMask = 1 << LayerMask.NameToLayer("Player");
+        int noCollideLayerMask = ~playerLayerMask;
+        
+        if (Physics.SphereCast(spherecastOrigin, spherecastRadius, playerCamera.forward, out sphereHit, maxDistance, noCollideLayerMask))
         {
-            // Check if the hit normal points away from the player's forward direction
-            bool hittingObject = Vector3.Dot(playerCamera.forward, sphereHit.normal) < 0;
-
             // Calculate the falloff factor based on whether hitting an object or not
-            float falloffFactor = hittingObject ? Mathf.Lerp(minFalloff, maxFalloff, sphereHit.distance / maxDistance) : 1f;
-
-            // Calculate the angle attenuation based on the distance
-            //float angleAttenuation = Mathf.Clamp01(distance / maxDistance);
-
-            // Calculate the falloff factor for the flashlight intensity
-            //float falloffFactor = Mathf.Lerp(minFalloff, maxFalloff, angleAttenuation);
+            float falloffFactor = Mathf.Lerp(minFalloff, maxFalloff, Mathf.Clamp01(sphereHit.distance / maxDistance));
 
             // Calculate the intensity based on the falloff factor
-            //float intensity = maxIntensity * falloffFactor;
+            float intensity = Mathf.Lerp(minIntensity, maxIntensity, falloffFactor);
 
-            // Set the flashlight intensity to the calculated value
-            //flashLight.intensity = intensity;
+            // Set the flashlight intensity to the calculated value 
+            flashLight.intensity = intensity;
 
             // Calculate the adjusted spot angle and range
-            //float newSpotAngle = Mathf.Lerp(minSpotAngle, maxSpotAngle, Mathf.Pow(angleAttenuation, 0.5f)); // Adjust spot angle
-            float newSpotAngle = Mathf.Lerp(minSpotAngle, maxSpotAngle, Mathf.Sqrt(falloffFactor)); // Adjust spot angle
-            //float newRange = Mathf.Lerp(minRange, maxRange, angleAttenuation); // Adjust range
+            float angleAttenuation = Mathf.Clamp01(sphereHit.distance / maxDistance);
+            float newSpotAngle = Mathf.Lerp(minSpotAngle, maxSpotAngle, Mathf.Sqrt(falloffFactor));
+            float newRange = Mathf.Lerp(minRange, maxRange, angleAttenuation);
 
             // Update the light component's properties
             flashLight.spotAngle = newSpotAngle;
-            //flashLight.range = newRange;
+            flashLight.range = newRange;
+
+            // Draw a debug line to visualize the raycast
+            //Debug.DrawLine(spherecastOrigin, sphereHit.point, Color.red);
+            
+            // Access the GameObject that was hit
+            //GameObject hitObject = sphereHit.collider.gameObject;
+            //string hitObjectName = hitObject.name;
+            //Debug.Log("Hit object name: " + hitObjectName);
         }
         else
         {
-            // If no wall is hit, set intensity to minIntensity and reset spot angle and range
+            // If no wall is hit, set intensity to maxIntensity and reset spot angle and range
             flashLight.intensity = maxIntensity;
             flashLight.spotAngle = maxSpotAngle;
-            //flashLight.range = maxRange;
+            flashLight.range = maxRange;
         }
     }
     
-    // private void OnDrawGizmosSelected()
-    // {
-    //     // Calculate the origin of the spherecast
-    //     Vector3 spherecastOrigin = playerCamera.position + playerCamera.forward * 0.2f + playerCamera.up * 2f;
-    //
-    //     // Draw a wire sphere to visualize the spherecast
-    //     Gizmos.color = Color.yellow;
-    //     Gizmos.DrawWireSphere(spherecastOrigin + playerCamera.forward * maxDistance, spherecastRadius);
-    //
-    // }
     
     // smoother ease-in-out function
     private float EaseInOut(float t)
