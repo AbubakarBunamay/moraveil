@@ -18,7 +18,8 @@ public class MuralInteraction : MonoBehaviour
     
     [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
     [SerializeField] private SubtitleTexts muralSubtitle; // Reference to the specific mural's subtitle data
-    
+    [SerializeField] private TipsPopup tipsPopup; // Reference to the TipsPopup component
+
     
     private void Start()
     {
@@ -73,6 +74,12 @@ public class MuralInteraction : MonoBehaviour
             if(virtualCam)
             {
                 virtualCam.m_Priority = 11;
+            }
+            
+            // Toggle the interaction state and update the tips pop-up text
+            if (tipsPopup != null)
+            {
+                tipsPopup.OnPlayerInteract();
             }
             
         }
