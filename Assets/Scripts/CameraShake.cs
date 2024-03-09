@@ -13,6 +13,7 @@ public class CameraShake : MonoBehaviour
 
     private float defaultFrequencyGain; // Default frequency gain.
     private float defaultAmplitudeGain; // Default amplitude gain.
+    private bool isStressShaking = false; // Flag to indicate if the camera shake was triggered by stress
 
     private void Start()
     {
@@ -27,6 +28,12 @@ public class CameraShake : MonoBehaviour
         {
             Debug.LogError("VirtualCamera Isn't found for shake");
         }
+    }
+    
+    // Method to check if the camera shake was triggered by stress
+    public bool IsStressShaking()
+    {
+        return isStressShaking;
     }
     
     // Stress Camera Shake Method
@@ -51,6 +58,9 @@ public class CameraShake : MonoBehaviour
         {
             originalPosition = virtualCamera.transform.position;
         }
+        
+        isStressShaking = true;
+
     }
     
     // Reset frequency and Amplitude for the camera shake to the default values method
@@ -60,6 +70,30 @@ public class CameraShake : MonoBehaviour
         virtualCameraNoise.m_AmplitudeGain = defaultAmplitudeGain;
         virtualCamera.transform.position = originalPosition; // Reset camera position.
         shakeTimer = 0f;
+        
+        // Reset isStressShaking flag
+        isStressShaking = false;
+    }
+    
+    // Method to trigger a camera shake with custom parameters
+    public void TriggerCameraShake(float duration, float frequency, float amplitude)
+    {
+        if (shakeTimer <= 0f) // Check if the shake timer is not already running
+        {
+            if (virtualCameraNoise != null)
+            {
+                // Apply custom parameters to the noise profile
+                virtualCameraNoise.m_FrequencyGain = frequency;
+                virtualCameraNoise.m_AmplitudeGain = amplitude;
+
+                // Store the camera's original position
+                originalPosition = virtualCamera.transform.position;
+
+                // Start the shake timer
+                shakeTimer = duration;
+                
+            }
+        }
     }
 
     private void Update()

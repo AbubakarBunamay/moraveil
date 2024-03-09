@@ -175,10 +175,11 @@ public class StressManager : MonoBehaviour
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
         
         // If stress level drops to zero or below, reset camera shake
-        if (currentStress <= 0f)
+        if (currentStress <= 0f && shake.IsStressShaking())
         {
             shake.ResetCameraShake();
         }
+        
     }
     
     // Stress Trigger Increase
@@ -218,20 +219,24 @@ public class StressManager : MonoBehaviour
         // }
         
         // If stress level drops to zero or below, reset camera shake
-        if (currentStress <= 0f)
+        if (currentStress <= 0f && shake.IsStressShaking())
         {
-            // Fade out the image when stress is zero.
-            if (stressCanvasGroup.alpha > 0.01f)
-            {
-                // Gradually decrease the alpha to zero over time.
-                stressCanvasGroup.alpha = Mathf.Lerp(stressCanvasGroup.alpha, 0f, Time.deltaTime * 2f); 
-            }
-            else
-            {
-                // Ensure the alpha value is exactly zero when very close to zero.
-                stressCanvasGroup.alpha = 0f;
-            }
             shake.ResetCameraShake();
+        }
+        
+        // Calculate the desired alpha based on the stress level
+        float stressAlpha = currentStress <= 0f ? 0f : (currentStress / maxStress);
+        
+        // Fade out the image when stress is zero.
+        if (stressCanvasGroup.alpha > stressAlpha)
+        {
+            // Gradually decrease the alpha to the desired value over time.
+            stressCanvasGroup.alpha = Mathf.Lerp(stressCanvasGroup.alpha, stressAlpha, Time.deltaTime * 2f); 
+        }
+        else
+        {
+            // Ensure the alpha value is exactly equal to the desired value.
+            stressCanvasGroup.alpha = stressAlpha;
         }
 
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +8,16 @@ public class MapInteraction : MonoBehaviour
     [SerializeField] private List<GameObject> gameObjectToChange; // List of GameObjects to change the material of
     [SerializeField] private Material materialToChange; // Material to apply to the specified GameObjects
     [SerializeField] private GameManager gameManager; // Reference to the GameManager script
-    [SerializeField] private StressManager stressManager; // Reference to the Stress Manager
-    [SerializeField] private float StressIncreaseTo = 40f;
+    [SerializeField] private CameraShake cameraShake; // Reference to the camera Shake
+    [SerializeField] private float rumbleShakeDuration = 5f; // Rumble Camera Shake Duration
+    [SerializeField] private float rumbleShakeFrequency = 3f; // Rumble Camera Shake Frequency
+    [SerializeField] private float rumbleShakeAmplitude = 3f; // Rumble Camera Shake Amplitude
 
+    private void Start()
+    {
+        cameraShake = FindObjectOfType<CameraShake>();
+    }
+    
     // Interact with the map function 
     public void InteractWithMap()
     {
@@ -18,13 +26,12 @@ public class MapInteraction : MonoBehaviour
             ChangeMaterialOftheObject(objToChange); // Change the material of each specified GameObject
         }
         
-        // Shake the camera when the map is picked up
-        stressManager.IncreaseStress(StressIncreaseTo);
-        
         Disappear(); // Make the map disappear
         
         // Notify GameManager that the map has been picked up
         gameManager.MapPickedUp();
+        
+        cameraShake.TriggerCameraShake(rumbleShakeDuration,rumbleShakeFrequency,rumbleShakeAmplitude);
     }
     
     // Change the material of a specified GameObject
