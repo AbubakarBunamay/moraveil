@@ -95,6 +95,9 @@ public class StressManager : MonoBehaviour
             currentStress = Mathf.Clamp(currentStress - stressDecreaseRate * Time.deltaTime, 0f, maxStress);
             ResetStressEffects(); // Reset visual effects when stress is decreasing.
         }
+        
+        // Updates the stress meter bar UI.
+        stressMeterBar.fillAmount = currentStress / maxStress;
 
     }
     
@@ -155,9 +158,6 @@ public class StressManager : MonoBehaviour
             StressEffects();
             
         }
-        
-        // Updates the stress meter bar UI.
-        stressMeterBar.fillAmount = currentStress / maxStress;
         
         // Clamp stress within the defined range
         currentStress = Mathf.Clamp(currentStress, 0f, maxStress);
