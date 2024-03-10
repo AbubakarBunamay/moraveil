@@ -12,10 +12,12 @@ public class MapInteraction : MonoBehaviour
     [SerializeField] private float rumbleShakeDuration = 5f; // Rumble Camera Shake Duration
     [SerializeField] private float rumbleShakeFrequency = 3f; // Rumble Camera Shake Frequency
     [SerializeField] private float rumbleShakeAmplitude = 3f; // Rumble Camera Shake Amplitude
+    [SerializeField] private PlayerDialogManager playerDialogManager; // Reference to the PlayerDialogManager
 
     private void Start()
     {
         cameraShake = FindObjectOfType<CameraShake>();
+        playerDialogManager = FindObjectOfType<PlayerDialogManager>();
     }
     
     // Interact with the map function 
@@ -31,7 +33,11 @@ public class MapInteraction : MonoBehaviour
         // Notify GameManager that the map has been picked up
         gameManager.MapPickedUp();
         
+        //Trigger Camera Shake
         cameraShake.TriggerCameraShake(rumbleShakeDuration,rumbleShakeFrequency,rumbleShakeAmplitude);
+        
+        // Play the Map Pickup Dialog
+        playerDialogManager.PlayMapInteractionDialog();
     }
     
     // Change the material of a specified GameObject

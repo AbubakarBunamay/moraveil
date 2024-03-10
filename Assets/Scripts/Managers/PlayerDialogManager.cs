@@ -8,8 +8,9 @@ public class PlayerDialogManager : MonoBehaviour
     [SerializeField] private AudioClip[] stunVoiceLines;
     [SerializeField] private AudioClip lilypadVoiceLine; // Voice line for stepping on the lilypad
     [SerializeField] private AudioClip firstWaterVoiceLine; // Voice line for stepping on water
-    [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
-
+    [SerializeField] private AudioClip mapInteractionDialogue; // Voice line for stepping on water
+    
+    private SubtitleManager subtitleManager; // Reference to the SubtitleManager
     private StressManager stressManager; // Reference to the StressManager
     private bool isStunned = false;
     private bool hasSteppedOnLilypad = false; // Track if the player has stepped on the lilypad
@@ -76,6 +77,17 @@ public class PlayerDialogManager : MonoBehaviour
         if (!hasBeenInWater && firstWaterVoiceLine != null)
         {
             voiceAudioSource.clip = firstWaterVoiceLine;
+            voiceAudioSource.Play();
+            hasBeenInWater = true;
+        }
+    }
+    
+    // Function to play the map interaction Dialog
+    public void PlayMapInteractionDialog()
+    {
+        if (mapInteractionDialogue != null)
+        {
+            voiceAudioSource.clip = mapInteractionDialogue;
             voiceAudioSource.Play();
             hasBeenInWater = true;
         }
