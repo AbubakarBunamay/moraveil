@@ -20,6 +20,9 @@ public class FPSController : MonoBehaviour
     [SerializeField] private  float uncrouchSpeed = 4f; // The speed of uncrouching
     [SerializeField] private  bool isUncrouching = false; // The player uncrouching state
     
+    // Reference to the PlayerDialogManager
+    [SerializeField] private PlayerDialogManager playerDialogManager;
+    
     [HideInInspector]
     public float originalRunningSpeed; // Variable to store the original running speed
 
@@ -564,6 +567,9 @@ public class FPSController : MonoBehaviour
         {
             // Get the LilypadController component of the entered lilypad
             currentLilypad = other.GetComponent<LilyPadTrigger>();
+            
+            // Call the PlayLilypadDialogue() function of the PlayerDialogManager
+            playerDialogManager.PlayLilypadDialogue();
         }
     }
 

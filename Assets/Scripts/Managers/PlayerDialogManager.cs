@@ -6,8 +6,11 @@ public class PlayerDialogManager : MonoBehaviour
 {
     [SerializeField] private AudioSource voiceAudioSource;
     [SerializeField] private AudioClip[] stunVoiceLines;
+    [SerializeField] private AudioClip lilypadVoiceLine; // Voice line for stepping on the lilypad
+
     private StressManager stressManager; // Reference to the StressManager
     private bool isStunned = false;
+    private bool hasSteppedOnLilypad = false; // Track if the player has stepped on the lilypad
 
 
     private void Start()
@@ -47,6 +50,17 @@ public class PlayerDialogManager : MonoBehaviour
             int randomIndex = Random.Range(0, stunVoiceLines.Length);
             voiceAudioSource.clip = stunVoiceLines[randomIndex];
             voiceAudioSource.Play();
+        }
+    }
+    
+    // Function to play the lilypad dialogue
+    public void PlayLilypadDialogue()
+    {
+        if (!hasSteppedOnLilypad && lilypadVoiceLine != null)
+        {
+            voiceAudioSource.clip = lilypadVoiceLine;
+            voiceAudioSource.Play();
+            hasSteppedOnLilypad = true;
         }
     }
 }
