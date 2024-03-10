@@ -107,6 +107,12 @@ public class MuralInteraction : MonoBehaviour
             {
                 virtualCam.m_Priority = 9;
             }
+            
+            // Clear the subtitle when the player stops interacting
+            if (subtitleManager != null)
+            {
+                subtitleManager.ClearSubtitle();
+            }
         }
     }
 }
