@@ -7,10 +7,12 @@ public class PlayerDialogManager : MonoBehaviour
     [SerializeField] private AudioSource voiceAudioSource;
     [SerializeField] private AudioClip[] stunVoiceLines;
     [SerializeField] private AudioClip lilypadVoiceLine; // Voice line for stepping on the lilypad
+    [SerializeField] private AudioClip firstWaterVoiceLine; // Voice line for stepping on water
 
     private StressManager stressManager; // Reference to the StressManager
     private bool isStunned = false;
     private bool hasSteppedOnLilypad = false; // Track if the player has stepped on the lilypad
+    private bool hasBeenInWater = false; // Track if the player has been in water
 
 
     private void Start()
@@ -61,6 +63,17 @@ public class PlayerDialogManager : MonoBehaviour
             voiceAudioSource.clip = lilypadVoiceLine;
             voiceAudioSource.Play();
             hasSteppedOnLilypad = true;
+        }
+    } 
+    
+    // Function to play the first time in water dialogue
+    public void PlayFirstTimeinWaterDialogue()
+    {
+        if (!hasBeenInWater && firstWaterVoiceLine != null)
+        {
+            voiceAudioSource.clip = firstWaterVoiceLine;
+            voiceAudioSource.Play();
+            hasBeenInWater = true;
         }
     }
 }

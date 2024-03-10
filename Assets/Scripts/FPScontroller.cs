@@ -549,6 +549,9 @@ public class FPSController : MonoBehaviour
         {
             isWalkingOnWater = true; // Set the flag to indicate that the character is walking on water.
             HandleCrouch();
+            
+            // Call the PlayFirstTimeinWaterDialogue() function of the PlayerDialogManager
+            playerDialogManager.PlayFirstTimeinWaterDialogue();
         }
         
         // Check if the player object is the endpoint in the GameManager.
