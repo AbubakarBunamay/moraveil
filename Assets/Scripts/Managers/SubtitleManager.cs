@@ -52,4 +52,13 @@ public class SubtitleManager : MonoBehaviour
         // Reset the flag indicating a sequence is running
         subtitleSequenceRunning = false;
     }
+    
+    public void ClearSubtitle()
+    {
+        // Clear the subtitle text
+        subtitleText.text = "";
+        // Reset the flag indicating a sequence is running
+        subtitleSequenceRunning = false;
+        StopCoroutine(subControl);
+    }
 }
