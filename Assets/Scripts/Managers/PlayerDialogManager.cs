@@ -8,6 +8,7 @@ public class PlayerDialogManager : MonoBehaviour
     [SerializeField] private AudioClip[] stunVoiceLines;
     [SerializeField] private AudioClip lilypadVoiceLine; // Voice line for stepping on the lilypad
     [SerializeField] private AudioClip firstWaterVoiceLine; // Voice line for stepping on water
+    [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
 
     private StressManager stressManager; // Reference to the StressManager
     private bool isStunned = false;
@@ -25,6 +26,9 @@ public class PlayerDialogManager : MonoBehaviour
         
         // Find and assign the StressManager reference
         stressManager = FindObjectOfType<StressManager>();
+        
+        // Find and assign the Subtitle reference
+        subtitleManager = FindObjectOfType<SubtitleManager>();
     }
 
     private void Update()
