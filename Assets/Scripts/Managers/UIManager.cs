@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RespawnManager respawnManager;
     [SerializeField] private MouseHandler mouseHandler;
     [SerializeField] private GameManager gameManager; // Reference to the GameManager script
-    
+    [SerializeField] private SubtitleManager subtitleManager;
     // Opening SceneVideoPlayer
     [SerializeField] private VideoPlayer videoPlayer; // Reference to the VideoPlayer component
     [SerializeField] private GameObject videoCanvas; // Reference to the VideoPlayer component
@@ -589,5 +589,10 @@ public class UIManager : MonoBehaviour
 
         // Apply sensitivity settings
         UpdateHorizontalSensitivity(horizontalSensitivity);
+    }
+
+    public void ToggleUISubtitle()
+    {
+        subtitleManager.ToggleSubtitles();
     }
 }
