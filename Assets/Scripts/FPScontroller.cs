@@ -609,4 +609,9 @@ public class FPSController : MonoBehaviour
     {
         get { return isInEndpointTriggerZone; }
     }
+
+    public void TurnOffAnimator()
+    {
+        GetComponent<Animator>().enabled = false;
+    }
 }
