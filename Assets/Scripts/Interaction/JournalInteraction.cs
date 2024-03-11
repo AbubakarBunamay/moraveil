@@ -6,10 +6,14 @@ using UnityEngine;
 public class JournalInteraction : MonoBehaviour
 {
     private Animator animator; // Reference to the Animator
-    [SerializeField] private CinemachineVirtualCameraBase virtualCam; //Reference to the virutal cam
-    private AudioSource audioSource; // Reference to the audio source
-    [SerializeField] private GameObject player; // Reference to the player object
     private bool isPlayerLocked = false; // Flag to track player movement state
+    private AudioSource audioSource; // Reference to the audio source
+
+    [SerializeField] private CinemachineVirtualCameraBase virtualCam; //Reference to the virutal cam
+    [SerializeField] private GameObject player; // Reference to the player object   
+    [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
+    [SerializeField] private SubtitleTexts journalSubtitle; // Reference to the specific polaroid subtitle data
+    [SerializeField] private AudioClip interactionSound; // Reference to the sound to play
 
 
     // Start is called before the first frame update
@@ -23,6 +27,16 @@ public class JournalInteraction : MonoBehaviour
         {
             Debug.LogError("Animator component not found on Journal!");
         }
+        
+        // Get the audio source component
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            // Add AudioSource component if not already attached
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        // Assign the interaction sound to the audio source
+        audioSource.clip = interactionSound;
     }
     public void JournalInteract()
     {
@@ -40,6 +54,12 @@ public class JournalInteraction : MonoBehaviour
                 virtualCam.m_Priority = 11;
             }
 
+            // Trigger subtitle
+            if (subtitleManager != null)
+            {
+                subtitleManager.CueSubtitle(journalSubtitle);
+            }
+            
             // Lock the player
             if (player != null)
             {
@@ -78,6 +98,12 @@ public class JournalInteraction : MonoBehaviour
 
             // Deactivate the Journal GameObject
             gameObject.SetActive(false);
+            
+            // Clear the subtitle when the player stops interacting
+            if (subtitleManager != null)
+            {
+                subtitleManager.ClearSubtitle();
+            }
         }
 
     }

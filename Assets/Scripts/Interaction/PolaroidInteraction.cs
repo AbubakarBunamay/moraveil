@@ -106,6 +106,12 @@ public class PolaroidInteraction : MonoBehaviour
             
             // Deactivate the polaroid GameObject
             gameObject.SetActive(false);
+            
+            // Clear the subtitle when the player stops interacting
+            if (subtitleManager != null)
+            {
+                subtitleManager.ClearSubtitle();
+            }
         }
     }
             
