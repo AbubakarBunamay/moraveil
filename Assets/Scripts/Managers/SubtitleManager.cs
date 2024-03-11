@@ -11,6 +11,8 @@ public class SubtitleManager : MonoBehaviour
 
     private Coroutine subControl; // Coroutine for controlling the subtitle sequence
     private bool subtitleSequenceRunning; // Flag indicating whether a subtitle sequence is currently running
+    private bool subtitlesEnabled = true; // Toggling the subtitles on and off
+
     
     // CueSubtitle method starts a new subtitle sequence
     public void CueSubtitle(SubtitleTexts subText)
@@ -60,5 +62,17 @@ public class SubtitleManager : MonoBehaviour
         // Reset the flag indicating a sequence is running
         subtitleSequenceRunning = false;
         StopCoroutine(subControl);
+    }
+
+    public void ToggleSubtitles()
+    {
+        if (!subtitlesEnabled)
+        {
+            subtitleText.enabled = true;
+        }
+        else
+        {
+            subtitleText.enabled = false;
+        }
     }
 }
