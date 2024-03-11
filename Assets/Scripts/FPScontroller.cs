@@ -169,7 +169,7 @@ public class FPSController : MonoBehaviour
         HandleRunning(); //Handling Running
         
         // Check if the player has velocity (is moving) & If movemevent buttons are pressed & if player is on ground 
-        if ((horizontal != 0 || vertical != 0) && characterController.velocity.magnitude > 0.1f && characterController.isGrounded) 
+        if ((horizontal != 0 || vertical != 0) && characterController.velocity.magnitude > 0.1f ) 
         {
             // Calculate the terrain type based on the player's position.
             string terrainType = CalculateTerrainType();
