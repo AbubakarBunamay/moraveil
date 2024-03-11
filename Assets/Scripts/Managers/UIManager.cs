@@ -395,17 +395,9 @@ public class UIManager : MonoBehaviour
     }
     
     // Methods for Credits UI
-    public void CreditsUI()
+    public void CreditsUIScene()
     {
-        creditsUI.SetActive(true); // Show Credits Menu
-        Time.timeScale = 0f; // Stop Time
-        isGamePaused = true; // Set State
-
-        // Pause all audio
-        AudioListener.pause = true;
-
-        // Hide the HUD when the game is paused
-        HUD.SetActive(false);
+        SceneManager.LoadScene("Credit");
     }
     
     // Methods for FullScreen Credits UI
