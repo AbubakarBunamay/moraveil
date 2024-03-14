@@ -17,7 +17,8 @@ public class PlayerDialogManager : MonoBehaviour
     [SerializeField] private SubtitleTexts lilypadSubtitle; // Subtitle for stepping on the lilypad
     [SerializeField] private SubtitleTexts firstWaterSubtitle; // Subtitle for stepping on water
     [SerializeField] private SubtitleTexts mapInteractionSubtitle; // Subtitle for map interaction
-    
+    [SerializeField] private SubtitleTexts[] stunSubtitles; // Array of subtitle texts for stun dialogues
+
     private StressManager stressManager; // Reference to the StressManager
     private bool isStunned = false;
     private bool hasSteppedOnLilypad = false; // Track if the player has stepped on the lilypad
@@ -62,6 +63,12 @@ public class PlayerDialogManager : MonoBehaviour
             int randomIndex = Random.Range(0, stunVoiceLines.Length);
             voiceAudioSource.clip = stunVoiceLines[randomIndex];
             voiceAudioSource.Play();
+            // Check if a corresponding subtitle exists
+            if (randomIndex < stunSubtitles.Length && subtitleManager != null)
+            {
+                // Trigger the corresponding subtitle
+                subtitleManager.CueSubtitle(stunSubtitles[randomIndex]);
+            }
         }
     }
     
