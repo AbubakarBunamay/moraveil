@@ -154,6 +154,12 @@ public class FPSController : MonoBehaviour
     * Character Movement
     * 
     */
+    private bool IsPlayerGrounded()
+    {
+        // Cast a ray downwards from the character's position
+        // Adjust the length of the ray according to your character's size
+        return Physics.Raycast(transform.position, Vector3.down, characterController.height / 2 + 0.1f);
+    }
 
     private void HandleMovement()
     {
@@ -169,7 +175,7 @@ public class FPSController : MonoBehaviour
         HandleRunning(); //Handling Running
         
         // Check if the player has velocity (is moving) & If movemevent buttons are pressed & if player is on ground 
-        if ((horizontal != 0 || vertical != 0) && characterController.velocity.magnitude > 0.1f ) 
+        if ((horizontal != 0 || vertical != 0) && characterController.velocity.magnitude > 0.1f && IsPlayerGrounded() ) 
         {
             // Calculate the terrain type based on the player's position.
             string terrainType = CalculateTerrainType();
