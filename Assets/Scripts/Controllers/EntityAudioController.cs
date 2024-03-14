@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class EntityAudioController : MonoBehaviour
 {
-    [SerializeField] private AudioClip[] enemySounds; // Array of enemy sounds
-    [SerializeField] private float soundTriggerDistance = 5.0f; // Distance to trigger enemy sounds
+    [Header("AudioClips")]
+    [SerializeField] private AudioClip[] entitySounds; // Array of enemy sounds
     
+    [Header("Subtitle")]
+    [SerializeField] private SubtitleTexts[] entitySubtitles; // Array of subtitle texts for entity dialogues
+
+    [SerializeField] private float soundTriggerDistance = 5.0f; // Distance to trigger enemy sounds
+    [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
+
     private AudioSource audioSource; // Reference to AudioSource component
     private Transform player; // Reference to the player's transform
 
@@ -31,8 +37,16 @@ public class EntityAudioController : MonoBehaviour
             if (Vector3.Distance(transform.position, player.position) < soundTriggerDistance)
             {
                 // Play a random sound from the array
-                AudioClip randomSound = enemySounds[Random.Range(0, enemySounds.Length)];
+                int randomIndex = Random.Range(0, entitySounds.Length);
+                AudioClip randomSound = entitySounds[randomIndex];
                 audioSource.PlayOneShot(randomSound);
+                
+                // Check if a corresponding subtitle exists
+                if (randomIndex < entitySubtitles.Length && subtitleManager != null)
+                {
+                    // Trigger the corresponding subtitle
+                    subtitleManager.CueSubtitle(entitySubtitles[randomIndex]);
+                }
             }
 
             // Wait for some time before checking again
