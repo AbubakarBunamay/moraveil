@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class PlayerDialogManager : MonoBehaviour
 {
-    [SerializeField] private AudioSource voiceAudioSource;
+    private AudioSource voiceAudioSource;
+    [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
+    
+    [Header("AudioClips")]
     [SerializeField] private AudioClip[] stunVoiceLines;
     [SerializeField] private AudioClip lilypadVoiceLine; // Voice line for stepping on the lilypad
     [SerializeField] private AudioClip firstWaterVoiceLine; // Voice line for stepping on water
     [SerializeField] private AudioClip mapInteractionDialogue; // Voice line for stepping on water
     
-    private SubtitleManager subtitleManager; // Reference to the SubtitleManager
+    [Header("Subtitles")]
+    [SerializeField] private SubtitleTexts lilypadSubtitle; // Subtitle for stepping on the lilypad
+    [SerializeField] private SubtitleTexts firstWaterSubtitle; // Subtitle for stepping on water
+    [SerializeField] private SubtitleTexts mapInteractionSubtitle; // Subtitle for map interaction
+    
     private StressManager stressManager; // Reference to the StressManager
     private bool isStunned = false;
     private bool hasSteppedOnLilypad = false; // Track if the player has stepped on the lilypad
@@ -28,8 +35,6 @@ public class PlayerDialogManager : MonoBehaviour
         // Find and assign the StressManager reference
         stressManager = FindObjectOfType<StressManager>();
         
-        // Find and assign the Subtitle reference
-        subtitleManager = FindObjectOfType<SubtitleManager>();
     }
 
     private void Update()
@@ -68,6 +73,11 @@ public class PlayerDialogManager : MonoBehaviour
             voiceAudioSource.clip = lilypadVoiceLine;
             voiceAudioSource.Play();
             hasSteppedOnLilypad = true;
+            // Trigger subtitle
+            if (subtitleManager != null)
+            {
+                subtitleManager.CueSubtitle(lilypadSubtitle);
+            }
         }
     } 
     
@@ -79,6 +89,11 @@ public class PlayerDialogManager : MonoBehaviour
             voiceAudioSource.clip = firstWaterVoiceLine;
             voiceAudioSource.Play();
             hasBeenInWater = true;
+            // Trigger subtitle
+            if (subtitleManager != null)
+            {
+                subtitleManager.CueSubtitle(firstWaterSubtitle);
+            }
         }
     }
     
@@ -90,6 +105,11 @@ public class PlayerDialogManager : MonoBehaviour
             voiceAudioSource.clip = mapInteractionDialogue;
             voiceAudioSource.Play();
             hasBeenInWater = true;
+            // Trigger subtitle
+            if (subtitleManager != null)
+            {
+                subtitleManager.CueSubtitle(mapInteractionSubtitle);
+            }
         }
     }
 }
