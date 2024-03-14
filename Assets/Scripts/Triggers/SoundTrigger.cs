@@ -11,12 +11,12 @@ public class SoundTrigger : MonoBehaviour
 
     private bool hasPlayed = false;    // Tracks whether the sound has been played.
     private SubtitleManager subtitleManager; // Reference to the subtitleManager
-    private AudioSource audioSource;   // Reference to the AudioSource component attached to the GameObject.
+    [SerializeField] private AudioSource audioSource;   // Reference to the AudioSource component attached to the GameObject.
 
     void Start()
     {
         // Get the AudioSource component attached to this GameObject.
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
 
         // Find the SubtitleManager in the scene
         subtitleManager = GameObject.FindObjectOfType<SubtitleManager>();
