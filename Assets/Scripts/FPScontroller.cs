@@ -157,7 +157,7 @@ public class FPSController : MonoBehaviour
     private bool IsPlayerGrounded()
     {
         // Cast a ray downwards from the character's position
-        // Adjust the length of the ray according to your character's size
+        // Using this instead as charactercontroller.grounded not working properly it seems so a quick way is this
         return Physics.Raycast(transform.position, Vector3.down, characterController.height / 2 + 0.1f);
     }
 
