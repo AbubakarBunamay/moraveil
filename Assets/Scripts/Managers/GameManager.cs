@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class GameManager : MonoBehaviour
 {
     public float timerDuration = 60f; // Initial timer duration in seconds
@@ -16,6 +15,20 @@ public class GameManager : MonoBehaviour
     
     // Triggers to be enabled after the map is picked up
     [SerializeField]  private Collider[] rockfallTriggersToEnable;
+    
+    [Header("Camera Shake")] // Camera Shake
+    [SerializeField] private CameraShake cameraShake; // Camera Shake Reference
+    // Minimum and maximum time intervals between camera shakes
+    [SerializeField] private float minTimeBetweenShakes = 5f;
+    [SerializeField] private float maxTimeBetweenShakes = 10f;
+    [SerializeField] private float minShakeDuration = 1f;
+    [SerializeField] private float maxShakeDuration = 5f;
+    // Minimum and maximum values for frequency and amplitude
+    [SerializeField] private float minFrequency = 1f;
+    [SerializeField] private float maxFrequency = 4f;
+    [SerializeField] private float minAmplitude = 1f;
+    [SerializeField] private float maxAmplitude = 4f;
+    private float timeUntilNextShake; // Time until the next camera shake
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +41,10 @@ public class GameManager : MonoBehaviour
         {
             trigger.enabled = false;
         }
+        
+        // Setting the initial time until the next shake
+        timeUntilNextShake = Random.Range(minTimeBetweenShakes, maxTimeBetweenShakes);
+
     }
 
     // Update is called once per frame
@@ -50,6 +67,29 @@ public class GameManager : MonoBehaviour
                 if (timer <= 0f)
                 {
                     ShowGameOver();
+                }
+                // Check if it's time to trigger a camera shake
+                if (timeUntilNextShake <= 0f)
+                {
+                    // Trigger a camera shake
+                    if (cameraShake != null)
+                    {
+                        // Randomize frequency,amplitude and shake duration within the specified ranges
+                        float frequency = Random.Range(minFrequency, maxFrequency);
+                        float amplitude = Random.Range(minAmplitude, maxAmplitude);
+                        float shakeDuration = Random.Range(minShakeDuration, maxShakeDuration);
+
+                        // Trigger the camera shake with random parameters
+                        cameraShake.TriggerCameraShake(shakeDuration, frequency, amplitude);
+
+                        // Reset the timer for the next shake
+                        timeUntilNextShake = Random.Range(minTimeBetweenShakes, maxTimeBetweenShakes);
+                    }
+                }
+                else
+                {
+                    // Decrease the time until the next shake
+                    timeUntilNextShake -= Time.deltaTime;
                 }
             }
         }
