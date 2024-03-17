@@ -29,7 +29,7 @@ public class SoundTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (!hasPlayed || !playOnce)
+        if (!hasPlayed || !playOnce && !audioSource.isPlaying)
         {
             // Check if the object entering the trigger area has a specific tag (in this case, "Player").
             if (other.CompareTag("Player"))
@@ -48,9 +48,5 @@ public class SoundTrigger : MonoBehaviour
             }
         }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        audioSource.Stop();
-    }
+    
 }
