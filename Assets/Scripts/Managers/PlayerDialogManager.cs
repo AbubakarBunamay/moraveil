@@ -75,7 +75,7 @@ public class PlayerDialogManager : MonoBehaviour
     // Function to play the lilypad dialogue
     public void PlayLilypadDialogue()
     {
-        if (!hasSteppedOnLilypad && lilypadVoiceLine != null)
+        if (!hasSteppedOnLilypad && !voiceAudioSource.isPlaying && lilypadVoiceLine != null)
         {
             voiceAudioSource.clip = lilypadVoiceLine;
             voiceAudioSource.Play();
