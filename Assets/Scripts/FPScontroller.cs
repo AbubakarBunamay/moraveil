@@ -104,7 +104,7 @@ public class FPSController : MonoBehaviour
             HandleJump();
 
             // Check if the player is falling and trigger stress.
-            //CheckFalls();
+            CheckFalls();
 
             // Lock the cursor to the center of the screen.
             Cursor.visible = false;
@@ -493,56 +493,56 @@ public class FPSController : MonoBehaviour
 
 
     // This checks if the player is currently falling and triggers stress
-    // private void CheckFalls()
-    // {
-    //     // Check if the player is falling (not grounded and moving downward).
-    //     if (!characterController.isGrounded && characterController.velocity.y < 0)
-    //     {
-    //         // Calculate the fall height based on the highest point reached during the jump.
-    //         float fallHeight = maxJumpHeight - transform.position.y;
-    //
-    //         // Check if the fall height is greater than the specified threshold.
-    //         if (fallHeight > fallHeightThreshold)
-    //         {
-    //             // Increment the falls count.
-    //             fallsCount++;
-    //
-    //             // If the player falls twice their height, trigger stress.
-    //             if (fallsCount >= 2)
-    //             {
-    //                 // Calculate stress increase as a percentage of the fall height.
-    //                 float stressIncreasePercentage = Mathf.Clamp(fallHeight / fallHeightThreshold, 0f, maxFallinStressRange); 
-    //                 float stressIncrement = 20f; 
-    //
-    //                 // Calculate the actual stress increase.
-    //                 float stressIncrease = stressIncreasePercentage * stressIncrement;
-    //
-    //                 // Clamp the stress increase to a maximum value.
-    //                 //stressIncrease = Mathf.Clamp(stressIncrease, 0f, 20f); // Adjust the upper limit as needed.
-    //
-    //                 // Increment stress by the calculated amount
-    //                 stressManager.IncreaseStress(stressIncrease);
-    //
-    //                 // Reset falls count.
-    //                 fallsCount = 0;
-    //             }
-    //         }
-    //         else
-    //         {
-    //             // Reset falls count when the fall height is pointless.
-    //             fallsCount = 0;
-    //         }
-    //     }
-    //     else
-    //     {
-    //         // Reset falls count when grounded.
-    //         fallsCount = 0;
-    //
-    //         //If the player not falling decrease stress
-    //         stressManager.DecreaseStress(stressManager.stressDecreaseRate * Time.deltaTime);
-    //
-    //     }
-    // }
+    private void CheckFalls()
+    {
+        // Check if the player is falling (not grounded and moving downward).
+        if (!characterController.isGrounded && characterController.velocity.y < 0)
+        {
+            // Calculate the fall height based on the highest point reached during the jump.
+            float fallHeight = maxJumpHeight - transform.position.y;
+    
+            // Check if the fall height is greater than the specified threshold.
+            if (fallHeight > fallHeightThreshold)
+            {
+                // Increment the falls count.
+                fallsCount++;
+    
+                // If the player falls twice their height, trigger stress.
+                if (fallsCount >= 2)
+                {
+                    // Calculate stress increase as a percentage of the fall height.
+                    float stressIncreasePercentage = Mathf.Clamp(fallHeight / fallHeightThreshold, 0f, maxFallinStressRange); 
+                    float stressIncrement = 20f; 
+    
+                    // Calculate the actual stress increase.
+                    float stressIncrease = stressIncreasePercentage * stressIncrement;
+    
+                    // Clamp the stress increase to a maximum value.
+                    //stressIncrease = Mathf.Clamp(stressIncrease, 0f, 20f); // Adjust the upper limit as needed.
+    
+                    // Increment stress by the calculated amount
+                    stressManager.IncreaseStress(stressIncrease);
+    
+                    // Reset falls count.
+                    fallsCount = 0;
+                }
+            }
+            else
+            {
+                // Reset falls count when the fall height is pointless.
+                fallsCount = 0;
+            }
+        }
+        else
+        {
+            // Reset falls count when grounded.
+            fallsCount = 0;
+    
+            //If the player not falling decrease stress
+            stressManager.DecreaseStress(stressManager.stressDecreaseRate * Time.deltaTime);
+    
+        }
+    }
     
     // Method to disable or enable movement
     public void SetMovementEnabled(bool isEnabled)

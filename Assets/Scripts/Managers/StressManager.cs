@@ -12,7 +12,7 @@ public class StressManager : MonoBehaviour
      */
     public float maxStress = 100f; // Maximum stress level.
     [SerializeField] private float stressIncreaseRate = 10f; // Rate at which stress increases per second.
-    [SerializeField] private float stressDecreaseRate = 5f; // Rate at which stress decreases per second.
+    public float stressDecreaseRate = 5f; // Rate at which stress decreases per second.
     public string playerTag = "Player"; // Tag of the player GameObject.
     public float currentStress = 0f; // Current stress level.
     [SerializeField] private Image darkScreen; // Reference to the full-screen darkening effect.
