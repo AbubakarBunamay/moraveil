@@ -574,7 +574,7 @@ public class UIManager : MonoBehaviour
     private void LoadSensitivitySettings()
     {
         // Load sensitivity settings from PlayerPrefs 
-        float horizontalSensitivity = PlayerPrefs.GetFloat("HorizontalSensitivity");
+        float horizontalSensitivity = PlayerPrefs.GetFloat("HorizontalSensitivity", 1f);
 
         // Update sensitivity sliders
         horizontalSensitivitySlider.value = horizontalSensitivity;
