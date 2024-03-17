@@ -34,6 +34,7 @@ public class FPSController : MonoBehaviour
     [Header("Jumping")]
     [SerializeField] private  float jumpHeight = 1f; // Height of the character's jump.
     [SerializeField] private  int maxJumps = 2; // Maximum number of allowed jumps.
+    [SerializeField] private float jumpAirControlFactor = 0.2f; // The value to control the amount of horizontal movement allowed in the air.
     private float maxJumpHeight; // Maximum Jump Height
     private float fallHeightThreshold = 2.0f; // Maximum Fall Height
     private int fallsCount = 0; // Falls Count
@@ -222,9 +223,9 @@ public class FPSController : MonoBehaviour
         // Apply vertical velocity if the character is in the air.
         if (!IsPlayerGrounded())
         {
-            // If the player is jumping or falling, restrict horizontal movement.
-            move.x = 0;
-            move.z = 0;
+            // Limit horizontal movement while in the air to a small value.
+            move.x *= jumpAirControlFactor;
+            move.z *= jumpAirControlFactor;
         }
 
         // Apply delta time to make movement frame rate independent.
