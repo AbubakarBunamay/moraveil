@@ -552,10 +552,10 @@ public class UIManager : MonoBehaviour
     private void LoadVolumeSettings()
     {
         // Load volume settings from PlayerPrefs 
-        float masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
-        float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
-        float dialogVolume = PlayerPrefs.GetFloat("DialogueVolume", 1f);
+        float masterVolume = PlayerPrefs.GetFloat("MasterVolume");
+        float musicVolume = PlayerPrefs.GetFloat("MusicVolume");
+        float sfxVolume = PlayerPrefs.GetFloat("SFXVolume");
+        float dialogVolume = PlayerPrefs.GetFloat("DialogueVolume");
 
         // Update volume sliders
         masterVolumeSlider.value = masterVolume;
@@ -574,7 +574,7 @@ public class UIManager : MonoBehaviour
     private void LoadSensitivitySettings()
     {
         // Load sensitivity settings from PlayerPrefs 
-        float horizontalSensitivity = PlayerPrefs.GetFloat("HorizontalSensitivity", 1f);
+        float horizontalSensitivity = PlayerPrefs.GetFloat("HorizontalSensitivity");
 
         // Update sensitivity sliders
         horizontalSensitivitySlider.value = horizontalSensitivity;
