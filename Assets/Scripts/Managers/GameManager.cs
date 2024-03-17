@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     // Triggers to be enabled after the map is picked up
     [SerializeField]  private Collider[] rockfallTriggersToEnable;
     
+    // Triggers to be disabled after the map is picked up
+    [SerializeField]  private Collider[] triggersToDisableOnMapPickup;
+    
     [Header("Camera Shake")] // Camera Shake
     [SerializeField] private CameraShake cameraShake; // Camera Shake Reference
     // Minimum and maximum time intervals between camera shakes
@@ -106,6 +109,12 @@ public class GameManager : MonoBehaviour
         foreach (Collider trigger in rockfallTriggersToEnable)
         {
             trigger.enabled = true;
+        }
+        
+        // Disable specified triggers after the map is picked up
+        foreach (Collider trigger in triggersToDisableOnMapPickup)
+        {
+            trigger.enabled = false;
         }
         
     }
