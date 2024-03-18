@@ -9,6 +9,7 @@ public class LilyPadTrigger : MonoBehaviour
     [SerializeField] private float moveSpeed = 2f; // The speed at which the player moves with the lilypad
     
     private AudioSource audioSource; // Audio Source of player
+    private Vector3 previousLilypadPosition; // Previous position of the lilypad
 
     private void Start()
     {
@@ -28,6 +29,8 @@ public class LilyPadTrigger : MonoBehaviour
             Debug.LogWarning("Player GameObject not found in the scene!");
         }
         
+        // Initialize previous lilypad position
+        previousLilypadPosition = transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,16 +47,13 @@ public class LilyPadTrigger : MonoBehaviour
     // Method to synchronize player movement with lilypad
     public void MovePlayerWithLilypad()
     {
+        // Calculate the movement of the lilypad
+        Vector3 lilypadMovement = transform.position - previousLilypadPosition;
+        
+        // Move the player along with the lilypad's movement, scaled by moveSpeed
+        playerTransform.position += lilypadMovement * moveSpeed;
 
-        // Calculate the direction to move the player
-        Vector3 targetPosition = transform.position; // Target position is the position of the lilypad
-        targetPosition.y = playerTransform.position.y; // Maintain the player's vertical position
-
-        // Calculate the new position for the player using MoveTowards
-        Vector3 newPosition = Vector3.MoveTowards(playerTransform.position, targetPosition, Time.deltaTime * moveSpeed);
-
-        // Update the player's position
-        playerTransform.position = newPosition;
-
+        // Update the previous lilypad position
+        previousLilypadPosition = transform.position;
     }
 }
