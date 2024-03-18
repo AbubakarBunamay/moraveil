@@ -14,8 +14,8 @@ public class MuralInteraction : MonoBehaviour
     
     private bool isPlayerLocked = false; // Flag to track player movement state
     private AudioSource audioSource; // Reference to the audio source
-
     
+    [SerializeField] private FlashLightcontroller flashLightcontroller;
     [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
     [SerializeField] private SubtitleTexts muralSubtitle; // Reference to the specific mural's subtitle data
     [SerializeField] private TipsPopup tipsPopup; // Reference to the TipsPopup component
@@ -28,6 +28,8 @@ public class MuralInteraction : MonoBehaviour
         
         // Find the SubtitleManager in the scene
         subtitleManager = GameObject.FindObjectOfType<SubtitleManager>();
+        // Get the FlashLightcontroller component
+        flashLightcontroller = FindObjectOfType<FlashLightcontroller>();
         
         if (audioSource == null)
         {
@@ -80,6 +82,11 @@ public class MuralInteraction : MonoBehaviour
             if (tipsPopup != null)
             {
                 tipsPopup.OnPlayerInteract();
+            }
+
+            if (flashLightcontroller != null && !flashLightcontroller.isFlashlightOn)
+            {
+                flashLightcontroller.ToggleFlashlight();
             }
             
         }

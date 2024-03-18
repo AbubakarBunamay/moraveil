@@ -130,7 +130,7 @@ public class FlashLightcontroller : MonoBehaviour
     }
     
      // Method to toggle the flashlight on or off
-    private void ToggleFlashlight()
+    public void ToggleFlashlight()
     {
         isFlashlightOn = !isFlashlightOn;  // Toggle the flashlight state.
         flashLight.enabled = isFlashlightOn;  // Turn the flashlight on or off.
