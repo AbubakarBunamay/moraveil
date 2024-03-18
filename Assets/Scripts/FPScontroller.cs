@@ -136,11 +136,7 @@ public class FPSController : MonoBehaviour
         foreach (Collider collider in colliders)
         {
             // Check the tag of the collider to determine the terrain type
-            if (collider.CompareTag("Grass"))
-            {
-                terrainType = "GrassFootstep"; // Update terrain type to grass footstep sound
-            }
-            else if (collider.CompareTag("Water"))
+             if (collider.CompareTag("Water"))
             {
                 terrainType = "WaterFootstep"; // Update terrain type to water footstep sound
             }

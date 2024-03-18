@@ -54,8 +54,6 @@ public class FootstepSound : MonoBehaviour
         {
             case "DefaultFootstep":
                 return defaultFootstepSound;
-            case "GrassFootstep":
-                return grassFootstepSound;
             case "WaterFootstep":
                 return waterFootstepSound;
             default:
