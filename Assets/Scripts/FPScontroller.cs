@@ -488,47 +488,39 @@ public class FPSController : MonoBehaviour
         {
             // Calculate the fall height based on the highest point reached during the jump.
             float fallHeight = maxJumpHeight - transform.position.y;
-    
+
             // Check if the fall height is greater than the specified threshold.
             if (fallHeight > fallHeightThreshold)
             {
                 // Increment the falls count.
                 fallsCount++;
-    
+
                 // If the player falls twice their height, trigger stress.
-                if (fallsCount >= 2)
+                if (fallsCount >= 2 && IsPlayerGrounded())
                 {
                     // Calculate stress increase as a percentage of the fall height.
                     float stressIncreasePercentage = Mathf.Clamp(fallHeight / fallHeightThreshold, 0f, maxFallinStressRange); 
                     float stressIncrement = 20f; 
-    
+
                     // Calculate the actual stress increase.
                     float stressIncrease = stressIncreasePercentage * stressIncrement;
-    
-                    // Clamp the stress increase to a maximum value.
-                    //stressIncrease = Mathf.Clamp(stressIncrease, 0f, 20f); // Adjust the upper limit as needed.
-    
+
                     // Increment stress by the calculated amount
                     stressManager.IncreaseStress(stressIncrease);
-    
-                    // Reset falls count.
-                    fallsCount = 0;
                 }
             }
             else
             {
-                // Reset falls count when the fall height is pointless.
+                // Reset falls count when the fall height is not significant.
                 fallsCount = 0;
             }
         }
-        else
+        else // Player is grounded
         {
             // Reset falls count when grounded.
             fallsCount = 0;
-    
-            //If the player not falling decrease stress
-            stressManager.DecreaseStress(stressManager.stressDecreaseRate * Time.deltaTime);
-    
+
+            // If the player is grounded, decrease stress.
         }
     }
     
