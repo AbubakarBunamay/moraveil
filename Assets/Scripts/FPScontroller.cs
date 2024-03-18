@@ -219,14 +219,6 @@ public class FPSController : MonoBehaviour
         {
             move.y = verticalVelocity;
         }
-        
-        // Apply vertical velocity if the character is in the air.
-        if (!IsPlayerGrounded())
-        {
-            // Limit horizontal movement while in the air to a small value.
-            move.x = 0;
-            //move.z *= jumpAirControlFactor;
-        }
 
         // Apply delta time to make movement frame rate independent.
         move *= Time.deltaTime;
