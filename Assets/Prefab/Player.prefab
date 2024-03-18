@@ -215,6 +215,7 @@ MonoBehaviour:
   waterRunningSpeed: 3
   jumpHeight: 1
   maxJumps: 1
+  jumpAirControlFactor: 0.2
   stressManager: {fileID: 0}
   maxRunTime: 5
   runningStressIncreaseRate: 50
@@ -1040,14 +1041,14 @@ RectTransform:
   m_GameObject: {fileID: 2286191247764092836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.67293, y: 0.67293, z: 0.67293}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7079456499641897679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160, y: -176}
+  m_AnchoredPosition: {x: 160, y: -134}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2205113220856204906
@@ -1141,7 +1142,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -335.2201, w: -86.70819}
+  m_margin: {x: -75.28842, y: 0, z: -191.54791, w: -69.89395}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1358,14 +1359,14 @@ RectTransform:
   m_GameObject: {fileID: 3389426362364475516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.52269, y: 0.52269, z: 0.52269}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7079456499641897679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 118}
+  m_AnchoredPosition: {x: -93.7, y: 65}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6055778688609118084
@@ -1396,10 +1397,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 'the quick brown fox jumped over the lazy dog the quick brown fox jumped
+    over the lazy dog '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d11b47db090e4ce4f95bb9ab67c24c09, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9c66674e2433a2f43bf3bece8237afd9, type: 2}
+  m_sharedMaterial: {fileID: -5303529652252711109, guid: 9c66674e2433a2f43bf3bece8237afd9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1459,10 +1461,10 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -565.0832, y: -108.88138, z: -578.8073, w: 0}
+  m_margin: {x: -740.58734, y: -108.88138, z: -1099.3705, w: -80.42159}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4363547795944963494
@@ -1491,7 +1493,7 @@ Transform:
   m_GameObject: {fileID: 4363547795944963494}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0000051124357, y: -0.0000063180923, z: 0.000004084753}
+  m_LocalPosition: {x: 0.0000035213297, y: 0.0000012516975, z: 0.0000027217775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1688,7 +1690,7 @@ Transform:
   m_GameObject: {fileID: 6573685573254117707}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0023216822, y: -0.019861797, z: -0.000046122008, w: -0.9998}
-  m_LocalPosition: {x: 0.00049750006, y: 0.54734397, z: 0.40515578}
+  m_LocalPosition: {x: 0.00050354004, y: 0.54735154, z: 0.40514946}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
