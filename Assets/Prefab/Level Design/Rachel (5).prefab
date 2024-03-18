@@ -10380,6 +10380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3509297994818174833}
+  - component: {fileID: 1537588906837009676}
   m_Layer: 0
   m_Name: FallingStalactite_Room5
   m_TagString: Untagged
@@ -10407,6 +10408,21 @@ Transform:
   - {fileID: 3531869434642065150}
   m_Father: {fileID: 8758443644639299329}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1537588906837009676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3193026675831457786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fca628fbc7bf804ebc2e51639632795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToFall: []
+  minDelay: 1
+  maxDelay: 3
 --- !u!1 &3205283212680715890
 GameObject:
   m_ObjectHideFlags: 0
