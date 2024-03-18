@@ -224,8 +224,8 @@ public class FPSController : MonoBehaviour
         if (!IsPlayerGrounded())
         {
             // Limit horizontal movement while in the air to a small value.
-            move.x *= jumpAirControlFactor;
-            move.z *= jumpAirControlFactor;
+            move.x = 0;
+            //move.z *= jumpAirControlFactor;
         }
 
         // Apply delta time to make movement frame rate independent.
