@@ -13,16 +13,23 @@ public class MapInteraction : MonoBehaviour
     [SerializeField] private float rumbleShakeFrequency = 3f; // Rumble Camera Shake Frequency
     [SerializeField] private float rumbleShakeAmplitude = 3f; // Rumble Camera Shake Amplitude
     [SerializeField] private PlayerDialogManager playerDialogManager; // Reference to the PlayerDialogManager
-
+    [SerializeField] private GameObject mapWhisp; // Reference to the Map Whisp
+    [SerializeField] private GameObject whispGuide; // Reference to the Whisp Guide
+    
     private void Start()
     {
         cameraShake = FindObjectOfType<CameraShake>();
         playerDialogManager = FindObjectOfType<PlayerDialogManager>();
+        
+        whispGuide.SetActive(false); // Deactivate whisp guide
     }
     
     // Interact with the map function 
     public void InteractWithMap()
     {
+        mapWhisp.SetActive(false); // deactivate the map whisp
+        whispGuide.SetActive(true); // activate the whisp guide
+        
         foreach (GameObject objToChange in gameObjectToChange)
         {
             ChangeMaterialOftheObject(objToChange); // Change the material of each specified GameObject
