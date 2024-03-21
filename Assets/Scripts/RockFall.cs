@@ -7,7 +7,8 @@ public class RockFall : MonoBehaviour
     [SerializeField] private float minDelay = 1f, maxDelay = 3f; // Minimum delay before next rock falls & Maximum delay before next rock falls
 
     private Vector3[] originalPositions; // Array to hold original positions of falling objects
-
+    
+   private ParticleSystem[] rockHitParticles; // Array to hold particle systems of rocks
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) // Check if the player has entered the trigger zone
@@ -35,6 +36,15 @@ public class RockFall : MonoBehaviour
                 }
             }
         }
+        
+        // Initialize an array to hold particle systems
+        rockHitParticles = new ParticleSystem[objectsToFall.Length];
+
+        // Getting references to the particle systems of each rock
+        for (int i = 0; i < objectsToFall.Length; i++)
+        {
+            rockHitParticles[i] = objectsToFall[i].GetComponentInChildren<ParticleSystem>();
+        }
     }
 
     // Coroutine to make rocks fall periodically
@@ -54,6 +64,20 @@ public class RockFall : MonoBehaviour
                 {
                     rb.isKinematic = false;
                     rb.useGravity = true;
+                }
+            }
+            
+            // Activate the particle system of the falling rock and deactivate others
+            // Simply works as only play when rock is falling and stop when next rock falls
+            for (int i = 0; i < rockHitParticles.Length; i++)
+            {
+                if (i == randomRockIndex && rockHitParticles[i] != null)
+                {
+                    rockHitParticles[i].Play();
+                }
+                else if (rockHitParticles[i] != null)
+                {
+                    rockHitParticles[i].Stop();
                 }
             }
             
