@@ -2,19 +2,24 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class JournalInteraction : MonoBehaviour
 {
+    
+    [Header("Journal Interaction")]
+    [SerializeField] private CinemachineVirtualCameraBase virtualCam; //Reference to the virutal cam
+    [SerializeField] private GameObject player; // Reference to the player object  
+    
+    [Header("Journal Dialogue & Subtitle")]
+    [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
+    [SerializeField] private SubtitleTexts journalSubtitle; // Reference to the specific polaroid subtitle data
+    [SerializeField] private AudioClip dialogueSound; // Reference to the sound to play
+    
+    
     private Animator animator; // Reference to the Animator
     private bool isPlayerLocked = false; // Flag to track player movement state
     private AudioSource audioSource; // Reference to the audio source
-
-    [SerializeField] private CinemachineVirtualCameraBase virtualCam; //Reference to the virutal cam
-    [SerializeField] private GameObject player; // Reference to the player object   
-    [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
-    [SerializeField] private SubtitleTexts journalSubtitle; // Reference to the specific polaroid subtitle data
-    [SerializeField] private AudioClip interactionSound; // Reference to the sound to play
-
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +41,7 @@ public class JournalInteraction : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
         }
         // Assign the interaction sound to the audio source
-        audioSource.clip = interactionSound;
+        audioSource.clip = dialogueSound;
     }
     public void JournalInteract()
     {
@@ -48,7 +53,7 @@ public class JournalInteraction : MonoBehaviour
             // Trigger Journal Interaction Animation
             animator.SetTrigger("journal_Interaction");
 
-            // Increase virtual cam priority to be higher than main cam
+            // Switch to the Journal Interaction Cam
             if (virtualCam)
             {
                 virtualCam.m_Priority = 11;
@@ -90,7 +95,7 @@ public class JournalInteraction : MonoBehaviour
                 }
             }
 
-            // Revert virtual cam priority to be lower than main cam
+            // Revert to the player camera
             if (virtualCam)
             {
                 virtualCam.m_Priority = 9;
