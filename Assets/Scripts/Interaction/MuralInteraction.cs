@@ -3,41 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class MuralInteraction : MonoBehaviour
 {
-    
-    [SerializeField] private AudioClip interactionSound; // Reference to the sound to play
+    [Header("Mural Interaction")]
     [SerializeField] private CinemachineVirtualCameraBase virtualCam; //Reference to the virutal cam
     [SerializeField] private GameObject player; // Reference to the player object
-
+    [SerializeField] private FlashLightcontroller flashLightcontroller; // Reference to the flashlight object
+    [SerializeField] private TipsPopup tipsPopup; // Reference to the TipsPopup component
+    
+    [Header("Mural Dialog and Subtitle")]
+    [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
+    [SerializeField] private SubtitleTexts muralSubtitle; // Reference to the specific mural's subtitle data
+    [SerializeField] private AudioClip dialogSound; // Reference to the sound to play
     
     private bool isPlayerLocked = false; // Flag to track player movement state
     private AudioSource audioSource; // Reference to the audio source
-    
-    [SerializeField] private FlashLightcontroller flashLightcontroller;
-    [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
-    [SerializeField] private SubtitleTexts muralSubtitle; // Reference to the specific mural's subtitle data
-    [SerializeField] private TipsPopup tipsPopup; // Reference to the TipsPopup component
-
     
     private void Start()
     {
         // Get the audio source component
         audioSource = GetComponent<AudioSource>();
         
-        // Find the SubtitleManager in the scene
-        subtitleManager = GameObject.FindObjectOfType<SubtitleManager>();
-        // Get the FlashLightcontroller component
-        flashLightcontroller = FindObjectOfType<FlashLightcontroller>();
+        subtitleManager = GameObject.FindObjectOfType<SubtitleManager>(); // Find the SubtitleManager in the scene
+        
+        flashLightcontroller = FindObjectOfType<FlashLightcontroller>(); // Get the FlashLightcontroller component
         
         if (audioSource == null)
         {
             // Add AudioSource component if not already attached
             audioSource = gameObject.AddComponent<AudioSource>();
         }
+        
         // Assign the interaction sound to the audio source
-        audioSource.clip = interactionSound;
+        audioSource.clip = dialogSound;
     }
 
 
@@ -49,8 +49,8 @@ public class MuralInteraction : MonoBehaviour
 
         if (isPlayerLocked)
         {
-            // Play the interaction sound
-            if (interactionSound != null && audioSource != null && audioSource.isPlaying == false)
+            // Play the dialogue
+            if (dialogSound != null && audioSource != null && audioSource.isPlaying == false)
             {
                 audioSource.Play();
             }
@@ -72,7 +72,7 @@ public class MuralInteraction : MonoBehaviour
                 }
             }
 
-            // Increase virtual cam priority to be higher than main cam
+            // Switch to the Mural Interaction Cam
             if(virtualCam)
             {
                 virtualCam.m_Priority = 11;
@@ -83,7 +83,8 @@ public class MuralInteraction : MonoBehaviour
             {
                 tipsPopup.OnPlayerInteract();
             }
-
+            
+            // Turn on the flashlight if the flashlight is turned off
             if (flashLightcontroller != null && !flashLightcontroller.isFlashlightOn)
             {
                 flashLightcontroller.ToggleFlashlight();
@@ -109,7 +110,7 @@ public class MuralInteraction : MonoBehaviour
                 }
             }
 
-            // Revert virtual cam priority to be lower than main cam
+            // Switch back to the player camera
             if (virtualCam)
             {
                 virtualCam.m_Priority = 9;
