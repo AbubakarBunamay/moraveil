@@ -5,23 +5,30 @@ using UnityEngine;
 
 public class MapInteraction : MonoBehaviour
 {
+    [Header("Manager References")]
+    [SerializeField] private PlayerDialogManager playerDialogManager; // Reference to the PlayerDialogManager
+    [SerializeField] private GameManager gameManager; // Reference to the GameManager script
+    
+    [Header("Materials to change")]
     [SerializeField] private List<GameObject> gameObjectToChange; // List of GameObjects to change the material of
     [SerializeField] private Material materialToChange; // Material to apply to the specified GameObjects
-    [SerializeField] private GameManager gameManager; // Reference to the GameManager script
+    
+    [Header("Camera Shake")]
     [SerializeField] private CameraShake cameraShake; // Reference to the camera Shake
     [SerializeField] private float rumbleShakeDuration = 5f; // Rumble Camera Shake Duration
     [SerializeField] private float rumbleShakeFrequency = 3f; // Rumble Camera Shake Frequency
     [SerializeField] private float rumbleShakeAmplitude = 3f; // Rumble Camera Shake Amplitude
-    [SerializeField] private PlayerDialogManager playerDialogManager; // Reference to the PlayerDialogManager
+    
+    [Header("Whisp References")]
     [SerializeField] private GameObject mapWhisp; // Reference to the Map Whisp
     [SerializeField] private GameObject whispGuide; // Reference to the Whisp Guide
     
     private void Start()
     {
-        cameraShake = FindObjectOfType<CameraShake>();
-        playerDialogManager = FindObjectOfType<PlayerDialogManager>();
+        cameraShake = FindObjectOfType<CameraShake>(); // Find the Camere Shake
+        playerDialogManager = FindObjectOfType<PlayerDialogManager>(); // Find the player
         
-        whispGuide.SetActive(false); // Deactivate whisp guide
+        whispGuide.SetActive(false); // Initially deactivate whisp guide
     }
     
     // Interact with the map function 
@@ -32,7 +39,7 @@ public class MapInteraction : MonoBehaviour
         
         foreach (GameObject objToChange in gameObjectToChange)
         {
-            ChangeMaterialOftheObject(objToChange); // Change the material of each specified GameObject
+            ChangeMaterialOftheObject(objToChange); // Change the material of each specified material
         }
         
         Disappear(); // Make the map disappear
@@ -47,7 +54,7 @@ public class MapInteraction : MonoBehaviour
         playerDialogManager.PlayMapInteractionDialog();
     }
     
-    // Change the material of a specified GameObject
+    // Change the material of a specified materials
     private void ChangeMaterialOftheObject(GameObject objToChange)
     {
         if (objToChange != null)
