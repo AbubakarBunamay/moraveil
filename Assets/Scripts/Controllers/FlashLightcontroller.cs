@@ -34,6 +34,8 @@ public class FlashLightcontroller : MonoBehaviour
     [SerializeField] private float minRange = 5f; // Minimum range of the flashlight beam
     [SerializeField] private float maxRange = 20f; // Maximum range of the flashlight beam
     
+    [SerializeField] float spherecastRadius = 2f; // Radius of the spherecast
+    [SerializeField] Color spherecastColor = Color.red; // Color of the spherecast
     void Start()
     {
         flashLight = GetComponent<Light>();  // Get the Light component of the object.
@@ -137,15 +139,13 @@ public class FlashLightcontroller : MonoBehaviour
         Debug.Log("Flashlight is " + (isFlashlightOn ? "on" : "off"));  // Log the flashlight state.
 
     }
-    [SerializeField] float spherecastRadius = 1f; // Radius of the spherecast
-    [SerializeField] Color spherecastColor = Color.red; // Color of the spherecast
 
     // Method to gradually increase/decrease flashlight intensity based on distance 
     // To allow to see without blinding players
     private void LightIntensityDistance()
     {
         // Calculate the origin of the spherecast slightly higher and forward from the player's camera position
-        Vector3 spherecastOrigin = playerCamera.position + playerCamera.forward * 0.2f + playerCamera.up * 2f;
+        Vector3 spherecastOrigin = playerCamera.position + playerCamera.forward * 0.01f + playerCamera.up * 1f;
         
         int playerLayerMask = 1 << LayerMask.NameToLayer("Player");
         int noCollideLayerMask = ~playerLayerMask;
@@ -156,19 +156,20 @@ public class FlashLightcontroller : MonoBehaviour
             float falloffFactor = Mathf.Lerp(minFalloff, maxFalloff, Mathf.Clamp01(sphereHit.distance / maxDistance));
 
             // Calculate the intensity based on the falloff factor
-            float intensity = Mathf.Lerp(minIntensity, maxIntensity, falloffFactor);
+            float intensity = Mathf.Lerp(minIntensity, maxIntensity, EaseInOut(falloffFactor));
 
             // Set the flashlight intensity to the calculated value 
             flashLight.intensity = intensity;
 
             // Calculate the adjusted spot angle and range
             float angleAttenuation = Mathf.Clamp01(sphereHit.distance / maxDistance);
-            float newSpotAngle = Mathf.Lerp(minSpotAngle, maxSpotAngle, Mathf.Sqrt(falloffFactor));
+            float newSpotAngle = Mathf.Lerp(minSpotAngle, maxSpotAngle, EaseInOut(falloffFactor));
             float newRange = Mathf.Lerp(minRange, maxRange, angleAttenuation);
 
-            // Update the light component's properties
-            flashLight.spotAngle = newSpotAngle;
-            flashLight.range = newRange;
+            // Gradually adjust the flashlight's intensity, spot angle, and range based on distance
+            flashLight.intensity = Mathf.Lerp(flashLight.intensity, intensity, Time.deltaTime * fadeSpeed);
+            flashLight.spotAngle = Mathf.Lerp(flashLight.spotAngle, newSpotAngle, Time.deltaTime * fadeSpeed);
+            flashLight.range = Mathf.Lerp(flashLight.range, newRange, Time.deltaTime * fadeSpeed);
 
             // Draw a debug line to visualize the raycast
             //Debug.DrawLine(spherecastOrigin, sphereHit.point, Color.red);
@@ -180,10 +181,11 @@ public class FlashLightcontroller : MonoBehaviour
         }
         else
         {
-            // If no wall is hit, set intensity to maxIntensity and reset spot angle and range
-            flashLight.intensity = maxIntensity;
-            flashLight.spotAngle = maxSpotAngle;
-            flashLight.range = maxRange;
+            // If no wall is hit, smoothly reset intensity, spot angle, and range to their maximum values
+            flashLight.intensity = Mathf.Lerp(flashLight.intensity, maxIntensity, Time.deltaTime * fadeSpeed);
+            flashLight.spotAngle = Mathf.Lerp(flashLight.spotAngle, maxSpotAngle, Time.deltaTime * fadeSpeed);
+            flashLight.range = Mathf.Lerp(flashLight.range, maxRange, Time.deltaTime * fadeSpeed);
+
         }
     }
     
