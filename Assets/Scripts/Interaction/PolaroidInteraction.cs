@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PolaroidInteraction : MonoBehaviour
 {
-    
-    [SerializeField] private AudioClip interactionSound; // Reference to the sound to play
+    [Header("Polaroid Interaction")]
     [SerializeField] private GameObject player; // Reference to the player object
     [SerializeField] private CinemachineVirtualCameraBase virtualCam; //Reference to the virutal cam
-
+    
+    [Header("Polaroid Dialogue & Subtitle")]
+    [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
+    [SerializeField] private SubtitleTexts polaroidSubtitle; // Reference to the specific polaroid subtitle data
+    [SerializeField] private AudioClip dialogueSound; // Reference to the sound to play
+    
     private bool isPlayerLocked = false; // Flag to track player movement state
     private AudioSource audioSource; // Reference to the audio source
     private Animator animator; // Reference to the animator
-    
-    [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
-    [SerializeField] private SubtitleTexts polaroidSubtitle; // Reference to the specific polaroid subtitle data
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +38,13 @@ public class PolaroidInteraction : MonoBehaviour
             // Add AudioSource component if not already attached
             audioSource = gameObject.AddComponent<AudioSource>();
         }
-        // Assign the interaction sound to the audio source
-        audioSource.clip = interactionSound;
+        
+        // Assign the dialogue sound to the audio source
+        audioSource.clip = dialogueSound;
         
     }
-
+    
+    // Method to be called when interacting with the polaroid
     public void PolaroidInteract()
     {
         // Toggle player movement lock state
@@ -49,14 +53,14 @@ public class PolaroidInteraction : MonoBehaviour
         if (isPlayerLocked)
         {
             // Play the interaction sound
-            if (interactionSound != null && audioSource != null)
+            if (dialogueSound != null && audioSource != null)
             {
                 audioSource.Play();
                 // Trigger Polaroid Interaction Animation
                 animator.SetTrigger("polaroidInteraction");
             }
             
-            // Increase virtual cam priority to be higher than main cam
+            // Switch to the polaroid interaction camera
             if (virtualCam)
             {
                 virtualCam.m_Priority = 11;
@@ -98,7 +102,7 @@ public class PolaroidInteraction : MonoBehaviour
                 }
             }
             
-            // Revert virtual cam priority to be lower than main cam
+            // Revert back to the player camera
             if (virtualCam)
             {
                 virtualCam.m_Priority = 9;
@@ -115,4 +119,4 @@ public class PolaroidInteraction : MonoBehaviour
         }
     }
             
-    }
+}
