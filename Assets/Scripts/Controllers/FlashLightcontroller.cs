@@ -9,33 +9,37 @@ public class FlashLightcontroller : MonoBehaviour
     [SerializeField] private Light flashLight;  // Reference to a Light component for the flashlight.
     
     // Crystal Glow Intensity 
+    [Header("Crystal Intensity")]
     [SerializeField] private float bigCrystalMaxIntensity = 30f; // Max intensity the BigCrystal can shine when light shinned on
     [SerializeField] private float smallCrystalMaxIntensity = 20f; // Max Intensity the SmallCrystals can shine when lught shinned on
     
-    // Flashlight Intensity & Distance
+    // Flashlight Modification
+    [Header("Flashlight Mod")]
+    [SerializeField] private float minFalloff = 0.1f; // Adjust these values in the inspector
+    [SerializeField] private float maxFalloff = 1f;   // Adjust these values in the inspector
+    [SerializeField] private float minSpotAngle = 20f; // Minimum spot angle of the flashlight beam
+    [SerializeField] private float maxSpotAngle = 60f; // Maximum spot angle of the flashlight beam
+    [SerializeField] private float minRange = 5f; // Minimum range of the flashlight beam
+    [SerializeField] private float maxRange = 20f; // Maximum range of the flashlight beam
     [SerializeField] private float maxDistance = 1f; // MAx Distance when Flashlight intensity lowers
     [SerializeField] private float minDistance = 2f; // Min Distance when flashlight intensity increases
     [SerializeField] private float maxIntensity = 100f; //Max Intensity when close to an object 
     [SerializeField] private float minIntensity = 70f; // Min Intensity when close to an object 
+    [SerializeField] float spherecastRadius = 2f; // Radius of the spherecast
+    [SerializeField] Color spherecastColor = Color.red; // Color of the spherecast
+    private RaycastHit hit; // Raycast hit var
+    private RaycastHit sphereHit; // sphereCast Hit
     
     // Decal Fade Variables
+    [Header("Decals Fade")]
     [SerializeField] private float fadeSpeed = 5f; // Variable for fade speed
     private float targetFadeFactor = 0f;// Target fade factor
     
     public bool isFlashlightOn = false;  // A boolean flag to track if the flashlight is on or off.
     private Transform playerCamera;  // Reference to the player's camera.x
-    private RaycastHit hit; // Raycast hit var
-    private RaycastHit sphereHit; // sphereCast Hit
-    [SerializeField] private float minFalloff = 0.1f; // Adjust these values in the inspector
-    [SerializeField] private float maxFalloff = 1f;   // Adjust these values in the inspector
 
-    [SerializeField] private float minSpotAngle = 20f; // Minimum spot angle of the flashlight beam
-    [SerializeField] private float maxSpotAngle = 60f; // Maximum spot angle of the flashlight beam
-    [SerializeField] private float minRange = 5f; // Minimum range of the flashlight beam
-    [SerializeField] private float maxRange = 20f; // Maximum range of the flashlight beam
     
-    [SerializeField] float spherecastRadius = 2f; // Radius of the spherecast
-    [SerializeField] Color spherecastColor = Color.red; // Color of the spherecast
+
     void Start()
     {
         flashLight = GetComponent<Light>();  // Get the Light component of the object.
@@ -60,7 +64,7 @@ public class FlashLightcontroller : MonoBehaviour
                 ToggleFlashlight();  // Toggle the flashlight on and off.
             }
 
-            // Shine Crystals when Flashlight Shun 
+            // Flashlight Interaction
             if (isFlashlightOn)
             {
                 if (Physics.Raycast(playerCamera.position, playerCamera.forward, out hit))
@@ -136,8 +140,6 @@ public class FlashLightcontroller : MonoBehaviour
     {
         isFlashlightOn = !isFlashlightOn;  // Toggle the flashlight state.
         flashLight.enabled = isFlashlightOn;  // Turn the flashlight on or off.
-        Debug.Log("Flashlight is " + (isFlashlightOn ? "on" : "off"));  // Log the flashlight state.
-
     }
 
     // Method to gradually increase/decrease flashlight intensity based on distance 
