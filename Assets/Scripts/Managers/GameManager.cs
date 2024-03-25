@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 public class GameManager : MonoBehaviour
 {
+    [Header("Duration & Endpoint")]
     public float timerDuration = 60f; // Initial timer duration in seconds
     public GameObject endpoint; // Reference to the GameObject with Collider representing the endpoint
-
-    private bool isGameOver = false; // Game state if
-    private bool isMapPickedUp = false; // Bool if map is picked up 
-    private float timer; // Current timer value
-    
-    [SerializeField] private UIManager uiManager; // Reference to UIManager script
-    [SerializeField] private FPSController player; // Reference to the player Object 
     
     // Triggers to be enabled after the map is picked up
+    [Header("Rockfall Triggers")]
     [SerializeField]  private Collider[] rockfallTriggersToEnable;
     
+    [Header("Disabled Triggers After Pickup")]
     // Triggers to be disabled after the map is picked up
     [SerializeField]  private Collider[] triggersToDisableOnMapPickup;
     
@@ -31,8 +27,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float maxFrequency = 4f;
     [SerializeField] private float minAmplitude = 1f;
     [SerializeField] private float maxAmplitude = 4f;
+    
+    [Header("References")]
+    [SerializeField] private UIManager uiManager; // Reference to UIManager script
+    [SerializeField] private FPSController player; // Reference to the player Object 
+    
     private float timeUntilNextShake; // Time until the next camera shake
-
+    private bool isGameOver = false; // Game state if
+    private bool isMapPickedUp = false; // Bool if map is picked up 
+    private float timer; // Current timer value
+    
     // Start is called before the first frame update
     void Start()
     {
