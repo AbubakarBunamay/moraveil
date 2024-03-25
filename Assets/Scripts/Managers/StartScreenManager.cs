@@ -168,6 +168,19 @@ public class StartScreenManager : MonoBehaviour
         }
     }
     
+    // Method to quit the game
+    public void QuitPopUp()
+    {   
+        exitMenuUI.SetActive(true);
+    } 
+    
+    // Method to quit the game
+    public void BackQuit()
+    {   
+        exitMenuUI.SetActive(false);
+        startMenuUI.SetActive(true);
+    } 
+    
     public void UpdateSensitivity( float value)
     {
         Debug.Log("Sens changing");
