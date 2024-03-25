@@ -52,6 +52,7 @@ public class FlashLightcontroller : MonoBehaviour
 
         playerCamera = transform.parent;  // Set the playerCamera reference to the parent of this object.
         transform.SetParent(playerCamera);  // Make this object a child of the playerCamera for positioning.
+        audioSource = GetComponent<AudioSource>(); // Get Audio Source for flashlight on/off sound
 
     }
 
