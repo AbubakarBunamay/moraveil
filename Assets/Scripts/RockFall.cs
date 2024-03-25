@@ -50,7 +50,11 @@ public class RockFall : MonoBehaviour
     // Coroutine to make rocks fall periodically
     private IEnumerator FallRocksPeriodically()
     {
-        while (true)
+        // Track the number of rocks that have fallen
+        int rocksFallen = 0;
+        
+        // Repeat Until all rocks have fallen
+        while (rocksFallen < objectsToFall.Length)
         {
             // Make one random rock fall
             int randomRockIndex = Random.Range(0, objectsToFall.Length);
@@ -80,6 +84,9 @@ public class RockFall : MonoBehaviour
                     rockHitParticles[i].Stop();
                 }
             }
+            
+            // Increment the count of fallen rocks
+            rocksFallen++;
             
             // Wait for a random delay before the next fall
             yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
