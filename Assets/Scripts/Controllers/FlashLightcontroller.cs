@@ -34,6 +34,12 @@ public class FlashLightcontroller : MonoBehaviour
     [SerializeField] private float fadeSpeed = 5f; // Variable for fade speed
     private float targetFadeFactor = 0f;// Target fade factor
     
+    [Header("Flashlight Sound")]
+    [SerializeField] private AudioClip flashlightOnSound;  // Sound to play when turning on the flashlight.
+    [SerializeField] private AudioClip flashlightOffSound;  // Sound to play when turning off the flashlight.
+    private AudioSource audioSource;  // Reference to the AudioSource component.
+
+    
     public bool isFlashlightOn = false;  // A boolean flag to track if the flashlight is on or off.
     private Transform playerCamera;  // Reference to the player's camera.x
 
@@ -139,6 +145,17 @@ public class FlashLightcontroller : MonoBehaviour
     {
         isFlashlightOn = !isFlashlightOn;  // Toggle the flashlight state.
         flashLight.enabled = isFlashlightOn;  // Turn the flashlight on or off.
+        
+        // Play the appropriate sound effect based on the flashlight state
+        if (isFlashlightOn && flashlightOnSound != null)
+        {
+            audioSource.PlayOneShot(flashlightOnSound);
+        }
+        else if (!isFlashlightOn && flashlightOffSound != null)
+        {
+            audioSource.PlayOneShot(flashlightOffSound);
+        }
+        
     }
 
     // Method to gradually increase/decrease flashlight intensity based on distance 
