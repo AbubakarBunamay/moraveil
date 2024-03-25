@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerDialogManager : MonoBehaviour
 {
-    private AudioSource voiceAudioSource;
     [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
     
     [Header("AudioClips")]
@@ -18,7 +17,8 @@ public class PlayerDialogManager : MonoBehaviour
     [SerializeField] private SubtitleTexts firstWaterSubtitle; // Subtitle for stepping on water
     [SerializeField] private SubtitleTexts mapInteractionSubtitle; // Subtitle for map interaction
     [SerializeField] private SubtitleTexts[] stunSubtitles; // Array of subtitle texts for stun dialogues
-
+   
+    private AudioSource voiceAudioSource;
     private StressManager stressManager; // Reference to the StressManager
     private bool isStunned = false;
     private bool hasSteppedOnLilypad = false; // Track if the player has stepped on the lilypad
