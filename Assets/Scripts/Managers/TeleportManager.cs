@@ -8,6 +8,9 @@ public class TeleportManager : MonoBehaviour
     [SerializeField] Transform[] roomPositions; // Array to store positions of the rooms
     [SerializeField] GameObject fpsController; // Reference to FPSController
 
+    [SerializeField] GameObject[] doors; // Array to store references to all doors
+    private bool allDoorsOpened = false; // Flag to track if all doors have been opened
+
     // Update is called once per frame
     void Update()
     {
@@ -38,10 +41,36 @@ public class TeleportManager : MonoBehaviour
 
             // Teleport the player to the corresponding room position
             fpsController.transform.position = roomPositions[roomNumber - 1].position;
-           //Debug.Log("Player teleported to room " + roomNumber);
-
+           
+           // Check if the player has teleported to the map room (7)
+           if (roomNumber == 7 && !allDoorsOpened)
+           {
+               // Open all doors
+               OpenDoor(doors);
+               allDoorsOpened = true; // Set flag to true to indicate all doors are opened
+           }
             // Re-enable FPSController script after teleportation
             fpsController.SetActive(true);
         }
     }
+    
+    void OpenDoor(GameObject[] doorsToOpen)
+    {
+        foreach (GameObject doorToOpen in doorsToOpen)
+        {
+            float elapsedTime = 0f;
+            Vector3 initialPosition = doorToOpen.transform.position;
+            Vector3 targetPosition = initialPosition + Vector3.up * 10f;
+
+            while (elapsedTime < 1f)
+            {
+                doorToOpen.transform.position = Vector3.Lerp(initialPosition, targetPosition, elapsedTime);
+                elapsedTime += Time.deltaTime * 2f;
+            }
+
+            // Ensure the door reaches the final position
+            doorToOpen.transform.position = targetPosition;
+        }
+    }
+
 }
