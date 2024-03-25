@@ -45,9 +45,6 @@ public class RespawnManager : MonoBehaviour
                 // Log an error if  UIManager is not assigned
                 Debug.LogError("UIManager script not assigned in the RespawnManager script.");
             }
-        
-            // Log a message with respawned position and rotation
-            //Debug.Log("Respawned at position: " + player.transform.position + ", rotation: " + player.transform.rotation.eulerAngles);
         }
         else
         {
