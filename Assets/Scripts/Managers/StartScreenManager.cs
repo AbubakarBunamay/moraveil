@@ -8,16 +8,17 @@ using UnityEngine.UI;
 public class StartScreenManager : MonoBehaviour
 {
     //UI Elements
+    [Header("UI References")]
     [SerializeField] private GameObject startMenuUI; 
     [SerializeField] private GameObject settingsMenuUI; 
     [SerializeField] private GameObject exitMenuUI; 
     
     // Volume Sliders
+    [Header("Slider References")]
     [SerializeField] private Slider masterVolumeSlider; 
     [SerializeField] private Slider musicVolumeSlider; 
     [SerializeField] private Slider sfxVolumeSlider; 
     [SerializeField] private Slider dialogVolumeSlider; 
-    
     //Sensitivity Sliders
     public Slider sensitivitySlider;
     
@@ -200,7 +201,7 @@ public class StartScreenManager : MonoBehaviour
     private void LoadSensitivitySettings()
     {
         // Load sensitivity settings from PlayerPrefs 
-        float Sensitivity = PlayerPrefs.GetFloat("HorizontalSensitivity", 1f);
+        float Sensitivity = PlayerPrefs.GetFloat("HorizontalSensitivity", 3f);
 
         // Update sensitivity sliders
         sensitivitySlider.value = Sensitivity;
