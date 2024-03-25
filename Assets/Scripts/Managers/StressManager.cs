@@ -10,27 +10,29 @@ public class StressManager : MonoBehaviour
     /*
      * Stress-related parameters
      */
+    [Header("Stress Parameters")]
     public float maxStress = 100f; // Maximum stress level.
     [SerializeField] private float stressIncreaseRate = 10f; // Rate at which stress increases per second.
     public float stressDecreaseRate = 5f; // Rate at which stress decreases per second.
     public string playerTag = "Player"; // Tag of the player GameObject.
     public float currentStress = 0f; // Current stress level.
-    [SerializeField] private Image darkScreen; // Reference to the full-screen darkening effect.
-    [SerializeField] private CanvasGroup stressCanvasGroup; // Reference to the CanvasGroup component.
-    [SerializeField] private Image stressMeterBar; // Reference to the stress meter UI element.
 
     /*
      *  CameraShake & Effects
      */
+    [Header("Stress Shake & Effects")]
     [SerializeField] private CameraShake shake; // Reference to the CameraShake component.
     [SerializeField] private float maxShakeMagnitude; // Maximum camera shake magnitude.
     [SerializeField] private float maxShakeDuration,maxFrequency = 5f, maxAmplitude = 1f; // Maximum camera shake duration, Maximum frequency, Maximum amplitude  .
     [SerializeField] private Volume volume; // Reference to the Post-Processing Volume component
-    
+    [SerializeField] private Image darkScreen; // Reference to the full-screen darkening effect.
+    [SerializeField] private CanvasGroup stressCanvasGroup; // Reference to the CanvasGroup component.
+    [SerializeField] private Image stressMeterBar; // Reference to the stress meter UI element.    
     
     /*
      * Stun Effect
      */
+    [Header("Stun Duration")]
     public float stunDuration = 5f; // Duration of the stun effect in seconds.
     private float stunCooldown = 0f; // Cooldown for the stun effect.
     private bool isStunned = false; // Flag to indicate whether the player is currently stunned.
@@ -54,10 +56,6 @@ public class StressManager : MonoBehaviour
 
     private void Update()
     {
-        // Update stress, trigger stress effects, and update UI.
-        //StressEffects();
-        //IncreaseStressTrigger();
-
         // If stress level is critical and the player is not dead, trigger stun effect.
         if (currentStress >= maxStress)
         {
@@ -115,32 +113,10 @@ public class StressManager : MonoBehaviour
 
     private void HandleVisualEffects( float normalizedStress)
     {
-        //float desiredOpacity = Mathf.Clamp(normalizedStress, 0.0f, 0.5f);
-
-        // Check if the Vignette effect is available
-        // if (volume != null)
-        // {
-        //     // Try to get the Vignette effect from the volume's profile
-        //     if (volume.profile.TryGet(out Vignette vignette))
-        //     {
-        //         // Adjust the vignette intensity based on stress level
-        //         vignette.intensity.value = normalizedStress;
-        //     }
-        //
-        //     // Try to get the Film Grain effect from the volume's profile
-        //     if (volume.profile.TryGet(out FilmGrain fg))
-        //     {
-        //         // Adjust the Film Grain intensity based on stress level
-        //         fg.intensity.value = normalizedStress;
-        //     }
-        //     
-        // }
-        
         // Toggle the darkening effect and camera shake based on stress level.
         if (currentStress > 0)
         {
             // Fade in the image based on stress level.
-            // stressCanvasGroup.alpha = desiredOpacity;
             stressCanvasGroup.alpha = normalizedStress;
         }
         
@@ -206,18 +182,6 @@ public class StressManager : MonoBehaviour
     // Reset Stress Effects
     public void ResetStressEffects()
     {
-        // // Gradually reduce Vignette intensity
-        // if (volume.profile.TryGet(out Vignette vignette))
-        // {
-        //     vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0f, Time.deltaTime);
-        // }
-        //
-        // // Gradually reduce Film Grain intensity
-        // if (volume.profile.TryGet(out FilmGrain fg))
-        // {
-        //     fg.intensity.value = Mathf.Lerp(fg.intensity.value, 0f, Time.deltaTime);
-        // }
-        
         // If stress level drops to zero or below, reset camera shake
         if (currentStress <= 0f && shake.IsStressShaking())
         {
