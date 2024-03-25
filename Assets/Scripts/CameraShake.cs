@@ -9,7 +9,6 @@ public class CameraShake : MonoBehaviour
     private CinemachineBasicMultiChannelPerlin virtualCameraNoise; // Reference to the Cinemachine noise settings.
     private Vector3 originalPosition; // Store the camera's original position for recovery.
     private float shakeTimer = 0f; // Timer to control the duration of the shake.
-    private float shakeDuration = 0f; // Duration of the shake.
 
     private float defaultFrequencyGain; // Default frequency gain.
     private float defaultAmplitudeGain; // Default amplitude gain.

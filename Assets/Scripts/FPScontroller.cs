@@ -34,7 +34,6 @@ public class FPSController : MonoBehaviour
     [Header("Jumping")]
     [SerializeField] private  float jumpHeight = 1f; // Height of the character's jump.
     [SerializeField] private  int maxJumps = 2; // Maximum number of allowed jumps.
-    [SerializeField] private float jumpAirControlFactor = 0.2f; // The value to control the amount of horizontal movement allowed in the air.
     [SerializeField] private float fallHeightThreshold = 3.0f; // Maximum Fall Height
     private float maxJumpHeight; // Maximum Jump Height
     private int fallsCount = 0; // Falls Count

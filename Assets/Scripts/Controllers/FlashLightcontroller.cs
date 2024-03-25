@@ -22,7 +22,6 @@ public class FlashLightcontroller : MonoBehaviour
     [SerializeField] private float minRange = 5f; // Minimum range of the flashlight beam
     [SerializeField] private float maxRange = 20f; // Maximum range of the flashlight beam
     [SerializeField] private float maxDistance = 1f; // MAx Distance when Flashlight intensity lowers
-    [SerializeField] private float minDistance = 2f; // Min Distance when flashlight intensity increases
     [SerializeField] private float maxIntensity = 100f; //Max Intensity when close to an object 
     [SerializeField] private float minIntensity = 70f; // Min Intensity when close to an object 
     [SerializeField] float spherecastRadius = 2f; // Radius of the spherecast
