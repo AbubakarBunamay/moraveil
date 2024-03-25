@@ -66,13 +66,9 @@ public class SubtitleManager : MonoBehaviour
 
     public void ToggleSubtitles()
     {
-        if (!subtitlesEnabled)
-        {
-            subtitleText.enabled = true;
-        }
-        else
-        {
-            subtitleText.enabled = false;
-        }
+        subtitlesEnabled = !subtitlesEnabled; // Toggle the state of subtitlesEnabled
+
+        subtitleText.enabled = subtitlesEnabled; // Update UI state based on the new value of subtitlesEnabled
+
     }
 }
