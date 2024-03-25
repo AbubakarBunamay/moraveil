@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Keypad : Interactable
@@ -46,7 +47,7 @@ public class Keypad : Interactable
             {
 
                 // Reset the buttons in the KeypadManager only when the first digit is incorrect
-                if (enteredCode.Length == correctCode.Length)
+                if (!correctCode.StartsWith(enteredCode))
                 {
                     manager.ResetButtons();
                     // Incorrect input, reset entered code and buttons in the KeypadManager
