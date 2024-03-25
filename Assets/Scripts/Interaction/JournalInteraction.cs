@@ -50,6 +50,7 @@ public class JournalInteraction : MonoBehaviour
 
         if (isPlayerLocked)
         {
+            audioSource.Play(); // Journal Dialogue Play
             // Trigger Journal Interaction Animation
             animator.SetTrigger("journal_Interaction");
 
