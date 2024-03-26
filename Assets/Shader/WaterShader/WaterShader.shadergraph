@@ -167,6 +167,9 @@
         },
         {
             "m_Id": "b739ee82c4b94be4acedc9192460f0dd"
+        },
+        {
+            "m_Id": "b7bdce9e6e89413a97f9e5b590ecf715"
         }
     ],
     "m_GroupDatas": [
@@ -521,6 +524,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "b7bdce9e6e89413a97f9e5b590ecf715"
+                },
+                "m_SlotId": 3
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "eafaa600fd5b480db2246e441c6a2254"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "d5fc256f912b4122b057df6cc23c447f"
                 },
                 "m_SlotId": 2
@@ -633,8 +650,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": 1746.0001220703125,
-            "y": -138.0
+            "x": 1999.0,
+            "y": -156.00001525878907
         },
         "m_Blocks": [
             {
@@ -650,8 +667,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 1747.0,
-            "y": 129.0
+            "x": 1999.9998779296875,
+            "y": 110.99996185302735
         },
         "m_Blocks": [
             {
@@ -679,7 +696,7 @@
     },
     "m_PreviewData": {
         "serializedMesh": {
-            "m_SerializedMesh": "{\"mesh\":{\"instanceID\":0}}",
+            "m_SerializedMesh": "{\"mesh\":{\"fileID\":-3824469690833666930,\"guid\":\"85c26d6a205bf5f4fa28f441399eef6f\",\"type\":3}}",
             "m_Guid": ""
         },
         "preventRotation": false
@@ -1032,6 +1049,30 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.ViewDirectionMaterialSlot",
+    "m_ObjectId": "1a2a613186234d94900d35a8e1ef0a43",
+    "m_Id": 0,
+    "m_DisplayName": "View Dir",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "ViewDir",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": [],
+    "m_Space": 0
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "1adcdcf0269a44d99a79b6f199888d7d",
     "m_Id": 1,
@@ -1365,6 +1406,29 @@
     "m_StageCapability": 3,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "33e211ec0d764261bec4b56b62e381bc",
+    "m_Id": 3,
+    "m_DisplayName": "Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
     "m_Labels": []
 }
 
@@ -2468,6 +2532,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "78a0e04463354bb79ee504f0f2eac48b",
+    "m_Id": 2,
+    "m_DisplayName": "LOD",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "LOD",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.StepNode",
     "m_ObjectId": "7b9f8531042648218944494a32598e81",
     "m_Group": {
@@ -3230,6 +3309,30 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.NormalMaterialSlot",
+    "m_ObjectId": "a3706576b4244dc8b83bc20725c0987f",
+    "m_Id": 1,
+    "m_DisplayName": "Normal",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Normal",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": [],
+    "m_Space": 0
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "a502ac38ae2748b6856e640570236d7a",
     "m_Id": 3,
@@ -3482,6 +3585,52 @@
     ],
     "synonyms": [
         "separate"
+    ],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.ReflectionProbeNode",
+    "m_ObjectId": "b7bdce9e6e89413a97f9e5b590ecf715",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Reflection Probe",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 1684.9998779296875,
+            "y": 321.0,
+            "width": 166.0001220703125,
+            "height": 125.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "1a2a613186234d94900d35a8e1ef0a43"
+        },
+        {
+            "m_Id": "a3706576b4244dc8b83bc20725c0987f"
+        },
+        {
+            "m_Id": "78a0e04463354bb79ee504f0f2eac48b"
+        },
+        {
+            "m_Id": "33e211ec0d764261bec4b56b62e381bc"
+        }
+    ],
+    "synonyms": [
+        "light probe",
+        "cube map",
+        "environment"
     ],
     "m_Precision": 0,
     "m_PreviewExpanded": true,
