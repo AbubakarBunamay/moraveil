@@ -69,7 +69,7 @@ public class UIManager : MonoBehaviour
         videoPlayer.loopPointReached += OnVideoEnd;
         
         // Load volume and sensitivity values and update sliders
-        LoadVolumeSettings();
+        //LoadVolumeSettings();
         LoadSensitivitySettings();
     }
 
@@ -558,10 +558,10 @@ public class UIManager : MonoBehaviour
     private void LoadVolumeSettings()
     {
         // Load volume settings from PlayerPrefs 
-        float masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
-        float musicVolume = PlayerPrefs.GetFloat("MusicVolume",1f);
-        float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
-        float dialogVolume = PlayerPrefs.GetFloat("DialogueVolume", 1f);
+        float masterVolume = PlayerPrefs.GetFloat("MasterVolume", 0.2f);
+        float musicVolume = PlayerPrefs.GetFloat("MusicVolume",0.2f);
+        float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.2f);
+        float dialogVolume = PlayerPrefs.GetFloat("DialogueVolume", 0.2f);
 
         // Update volume sliders
         masterVolumeSlider.value = masterVolume;
