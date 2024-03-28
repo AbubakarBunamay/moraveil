@@ -35,20 +35,8 @@ public class InteractionManager : MonoBehaviour{
     // Handle interactions based on collider tags
     private void HandleInteractable(Collider collider)
     {
-        // Check if the collider has the "Symbol" tag
-        if (collider.CompareTag("Symbol"))
-        {
-            // Get the SymbolInteract component from the collider
-            SymbolInteract symbol = collider.GetComponent<SymbolInteract>();
-
-            // If the SymbolInteract component is not null, call its Interact method
-            if (symbol != null)
-            {
-                symbol.Interact();
-            }
-        }
         // Check if the collider has the "KeypadButton" tag
-        else if (collider.CompareTag("KeypadButton"))
+        if (collider.CompareTag("KeypadButton"))
         {
             // Get the KeypadButton component from the collider
             KeypadButton keypadButton = collider.GetComponent<KeypadButton>();
