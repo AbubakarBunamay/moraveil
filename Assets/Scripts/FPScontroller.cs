@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class FPSController : MonoBehaviour
@@ -233,7 +234,7 @@ public class FPSController : MonoBehaviour
     {
         // Get Input for running
         // * Removed !isCrouching so now the player can run 
-        isRunning =  Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        isRunning =  Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || Gamepad.current != null && Gamepad.current.rightShoulder.isPressed;
         
         // Check if the player is currently running.
         if (isRunning && characterController.velocity.magnitude > 0.1f)
@@ -311,7 +312,7 @@ public class FPSController : MonoBehaviour
     else
     {
         // Check if the crouch input is pressed.
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl) || Gamepad.current != null && Gamepad.current.buttonEast.wasPressedThisFrame && CanCrouch)
         {
             // Check if the cube collides with anything above the player's head.
             if (isCrouching && HeadCubeCollides())

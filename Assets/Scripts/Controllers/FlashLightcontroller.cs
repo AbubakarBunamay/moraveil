@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
@@ -65,7 +66,7 @@ public class FlashLightcontroller : MonoBehaviour
         }
         else
         {
-            if (Input.GetMouseButtonDown(1))  // Check if the right mouse button is clicked.
+            if (Input.GetMouseButtonDown(1) || Gamepad.current != null && Gamepad.current.buttonNorth.wasPressedThisFrame)  // Check if the right mouse button is clicked.
             {
                 ToggleFlashlight();  // Toggle the flashlight on and off.
             }

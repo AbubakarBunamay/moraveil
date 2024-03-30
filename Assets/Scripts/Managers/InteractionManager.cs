@@ -1,6 +1,7 @@
     using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
 public class InteractionManager : MonoBehaviour{
@@ -11,7 +12,7 @@ public class InteractionManager : MonoBehaviour{
     private void Update()
     {
         // Check if the left mouse button is clicked
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Gamepad.current != null && Gamepad.current.leftShoulder.wasPressedThisFrame)
         {
             // Cast a ray from the camera to the mouse position
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
