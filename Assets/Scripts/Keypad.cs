@@ -10,7 +10,10 @@ public class Keypad : Interactable
     [SerializeField] private  float doorOpenSpeed = 2.0f; // Speed of the door opening animation
     [SerializeField] private  AudioSource doorAudioSource; // Reference to the AudioSource component on the door
     [SerializeField] private  AudioClip doorOpenSound; // Reference to the door opening sound
-    
+    [SerializeField] private Material correctMaterial; // Material for correct button
+    [SerializeField] private Material defaultMaterial; // Material for default button 
+    [SerializeField] private Renderer[] buttonRenderers; // Renderers of the keypad buttons
+
     private string enteredCode = ""; // String to store the entered code
     
     // Method called when interacting with the keypad
@@ -26,6 +29,8 @@ public class Keypad : Interactable
         {
             if (correctCode.StartsWith(enteredCode)) // Check if the correct code starts with the entered code
             {
+                int buttonIndex = manager.GetButtonIndex(this.transform);
+
                 if (enteredCode == correctCode) // Check if the entered code matches the correct code
                 {
                     // Output a debug message indicating the correct password
@@ -36,12 +41,17 @@ public class Keypad : Interactable
                     {
                         StartCoroutine(OpenDoor());
                     }
+                    
+                    // Change All Button Material to Correct 
+                    //SetAllButtonMaterial(correctMaterial);
+                    
+                    // Disable button interaction
+                    DisableButtonInteraction();
                 }
-                else
-                {
-                    // Continue checking for the next digit
-                    Debug.Log("Correct input so far. Continue entering the password.");
-                }
+
+                // Change the material of specific buttons to correct material
+                //SetButtonMaterial(buttonIndex, correctMaterial);
+
             }
             else
             {
@@ -53,7 +63,7 @@ public class Keypad : Interactable
                     // Incorrect input, reset entered code and buttons in the KeypadManager
                     enteredCode = "";
                     Debug.Log("Incorrect input. Retry.");
-
+                    SetAllButtonMaterial(defaultMaterial);
                 }
             }
         }
@@ -62,7 +72,34 @@ public class Keypad : Interactable
             Debug.Log("KeypadManager not found"); // Output a debug message if KeypadManager is not found
         }
     }
+    
+// Method to set material for specific button
+    private void SetButtonMaterial(int buttonIndex, Material material)
+    {
+        if (buttonIndex >= 0 && buttonIndex < buttonRenderers.Length)
+        {
+            buttonRenderers[buttonIndex].material = material;
+        }
+    }
+   
+    private void SetAllButtonMaterial( Material material)
+    {
+        foreach (var renderer in buttonRenderers)
+        {
+            renderer.material = material;
+        }
+    }
 
+    // Method to disable button interaction
+    private void DisableButtonInteraction()
+    {
+        foreach (var button in manager.buttons)
+        {
+            button.GetComponent<Collider>().enabled = false;
+            Debug.Log("Pass Correct so KeypadButtons Disabled");
+        }
+    }
+    
     // Method to append a digit to the entered code
     public void AppendDigit(string digit)
     {

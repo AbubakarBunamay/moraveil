@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KeypadManager : MonoBehaviour
 {
-    [SerializeField] private Transform[] buttons; // Array to hold the transforms of keypad buttons
+    [SerializeField] public Transform[] buttons; // Array to hold the transforms of keypad buttons
     
     private bool isPushed = false; // Track whether a button is currently pushed
     private Vector3[] initialPositions; // Array to store the initial positions of the buttons
@@ -96,5 +96,20 @@ public class KeypadManager : MonoBehaviour
             // Play the button press sound
             audioSource.PlayOneShot(audioSource.clip);
         }
+    }
+    
+    // Method to get the index of a button in the buttons array
+    public int GetButtonIndex(Transform button)
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            if (buttons[i] == button)
+            {
+                return i;
+            }
+        }
+        
+        Debug.Log("NO button");
+        return -1; // Button not found
     }
 }
