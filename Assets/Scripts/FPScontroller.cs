@@ -234,7 +234,7 @@ public class FPSController : MonoBehaviour
     {
         // Get Input for running
         // * Removed !isCrouching so now the player can run 
-        isRunning =  Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || Gamepad.current != null && Gamepad.current.rightShoulder.isPressed;
+        isRunning =  Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || Gamepad.current != null && Gamepad.current.rightTrigger.isPressed;
         
         // Check if the player is currently running.
         if (isRunning && characterController.velocity.magnitude > 0.1f)

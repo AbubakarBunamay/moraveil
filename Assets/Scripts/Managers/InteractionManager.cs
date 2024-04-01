@@ -12,7 +12,7 @@ public class InteractionManager : MonoBehaviour{
     private void Update()
     {
         // Check if the left mouse button is clicked
-        if (Input.GetMouseButtonDown(0) || Gamepad.current != null && Gamepad.current.leftShoulder.wasPressedThisFrame)
+        if (Input.GetMouseButtonDown(0) || Gamepad.current != null && Gamepad.current.buttonWest.wasPressedThisFrame)
         {
             // Cast a ray from the camera to the mouse position
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
