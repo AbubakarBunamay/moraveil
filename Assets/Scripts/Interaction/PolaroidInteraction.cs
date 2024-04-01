@@ -9,12 +9,13 @@ public class PolaroidInteraction : MonoBehaviour
     [Header("Polaroid Interaction")]
     [SerializeField] private GameObject player; // Reference to the player object
     [SerializeField] private CinemachineVirtualCameraBase virtualCam; //Reference to the virutal cam
-    
+    [SerializeField] private TipsPopup tipsPopup; // Reference to the TipsPopup component
+
     [Header("Polaroid Dialogue & Subtitle")]
     [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
     [SerializeField] private SubtitleTexts polaroidSubtitle; // Reference to the specific polaroid subtitle data
     [SerializeField] private AudioClip dialogueSound; // Reference to the sound to play
-    
+
     private bool isPlayerLocked = false; // Flag to track player movement state
     private AudioSource audioSource; // Reference to the audio source
     private Animator animator; // Reference to the animator
