@@ -38,7 +38,7 @@ public class SoundTrigger : MonoBehaviour
                 audioSource.clip = soundToPlay;
                 audioSource.Play();
                 // Trigger subtitle
-                if (subtitleManager != null)
+                if (subtitleManager != null && soundTriggerSubtitle != null)
                 {
                     subtitleManager.CueSubtitle(soundTriggerSubtitle);
                 }          
