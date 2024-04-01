@@ -1,5 +1,47 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-7752513047522959056
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 055dab35bf85b3649943393d66a25728
+  m_EffectName: SFX Reverb
+  m_MixLevel: 6935d3d838842234dbdff793ec0e20a6
+  m_Parameters:
+  - m_ParameterName: Dry Level
+    m_GUID: e8ad437e758c0794ba2fb433bc791c3f
+  - m_ParameterName: Room
+    m_GUID: 946a9dfe3be3d694e861c6bb5113ba4b
+  - m_ParameterName: Room HF
+    m_GUID: d516e4e9ee0499447911d3e523ece468
+  - m_ParameterName: Decay Time
+    m_GUID: 1d63d3c28aba5df4081a7047d8f66ac1
+  - m_ParameterName: Decay HF Ratio
+    m_GUID: 7fa89a2e05a677f42bddb075c23eb0ad
+  - m_ParameterName: Reflections
+    m_GUID: 37ff4f40ada5b4347b797c37038f2383
+  - m_ParameterName: Reflect Delay
+    m_GUID: 598a0342de1967c46943bc44cb86768f
+  - m_ParameterName: Reverb
+    m_GUID: 824ae7f4f33bc25439c1ec545961a9f3
+  - m_ParameterName: Reverb Delay
+    m_GUID: d8eae4f27bb9ab54192e2cc2ba0e6adb
+  - m_ParameterName: Diffusion
+    m_GUID: 05006caf78623cb45919035f02795682
+  - m_ParameterName: Density
+    m_GUID: d6591d69412cc5a488c3bd1452d27783
+  - m_ParameterName: HF Reference
+    m_GUID: 894c437cdb625ff43844fb2504017c1f
+  - m_ParameterName: Room LF
+    m_GUID: 017aa6498fe7d6c468bb18e5e2d726df
+  - m_ParameterName: LF Reference
+    m_GUID: 649bbba4761206942bef61f245086785
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-2045984709087844153
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -60,6 +102,7 @@ AudioMixerGroupController:
   m_Effects:
   - {fileID: 24400004}
   - {fileID: -2045984709087844153}
+  - {fileID: -7752513047522959056}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -88,6 +131,12 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: c2ec617233a034f4693fa81a6d00e602
   m_FloatValues:
+    598a0342de1967c46943bc44cb86768f: 0.078
+    1d63d3c28aba5df4081a7047d8f66ac1: 9.2
+    d8eae4f27bb9ab54192e2cc2ba0e6adb: 0.0522
+    824ae7f4f33bc25439c1ec545961a9f3: 605
     fb63f3c647e5d454eb29793f2fe7aead: -16.4
     8ef4b23ab5f1500439d1d3695868bddd: -24.162655
+    e8ad437e758c0794ba2fb433bc791c3f: 0
+    946a9dfe3be3d694e861c6bb5113ba4b: -1440
   m_TransitionOverrides: {}
