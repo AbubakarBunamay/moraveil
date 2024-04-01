@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -76,7 +77,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         // Check for the Escape key to handle pausing or going back
-        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOnStart)
+        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOnStart || Gamepad.current != null && Gamepad.current.startButton.wasPressedThisFrame)
         {
             if (isGamePaused)
             {

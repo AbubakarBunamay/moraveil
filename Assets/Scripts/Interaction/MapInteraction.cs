@@ -56,7 +56,7 @@ public class MapInteraction : MonoBehaviour
     
     // Change the material of a specified materials
     private void ChangeMaterialOftheObject(GameObject objToChange)
-    {
+    { //Aceess Render Component
         if (objToChange != null)
         {
             Renderer render = objToChange.GetComponent<Renderer>(); // Get the Renderer component of the GameObject
