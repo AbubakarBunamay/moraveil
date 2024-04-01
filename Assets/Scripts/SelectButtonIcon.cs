@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class SelectButtonIcon : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
+public class SelectButtonIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
+    
     [SerializeField] private GameObject icon; // Highlight Icon
+    private bool isHighlighted;
     
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -17,6 +19,13 @@ public class SelectButtonIcon : MonoBehaviour, IPointerExitHandler, IPointerEnte
     {
         icon.SetActive(false);
     }
-
-   
+    
+    public void OnSelect(BaseEventData eventData)
+    {
+        icon.SetActive(true);
+    }
+    public void OnDeselect(BaseEventData eventData)
+    {
+        icon.SetActive(false);
+    }
 }
