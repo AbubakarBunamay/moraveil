@@ -31,6 +31,7 @@ public class SoundManager : MonoBehaviour
             if (audioMixer != null)
             {
                 audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20); // Set the MasterVolume parameter in the AudioMixer based on the provided volume.
+                
                 return;
             }
         }
@@ -44,6 +45,7 @@ public class SoundManager : MonoBehaviour
             if (audioMixer != null)
             {
                 audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20); // Set the MusicVolume parameter in the AudioMixer based on the provided volume.
+                audioMixer.SetFloat("MuralMixerVolume", Mathf.Log10(volume) * 20);
                 return;
             }
         }
