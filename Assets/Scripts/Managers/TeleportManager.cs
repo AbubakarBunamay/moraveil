@@ -44,13 +44,25 @@ public class TeleportManager : MonoBehaviour
             fpsController.transform.position = roomPositions[roomNumber - 1].position;
            
            // Check if the player has teleported to the map room (7)
-           if (roomNumber == 7 && !allDoorsOpened)
+           if (roomNumber == 7  || roomNumber == 6 && !allDoorsOpened)
            {
                // Open all doors
                OpenDoor(doors);
                allDoorsOpened = true; // Set flag to true to indicate all doors are opened
                tipsPopup.DisplayTipMessage(MapTipPopup,5);
            }
+           else if (roomNumber == 4  || roomNumber == 5 && !allDoorsOpened)
+           {
+               // Open the first door in the doors array
+               if (doors.Length > 0)
+               {
+                   GameObject[] singleDoorArray = new GameObject[1];
+                   singleDoorArray[0] = doors[0];
+                   OpenDoor(singleDoorArray);
+               }
+           }
+           
+           
             // Re-enable FPSController script after teleportation
             fpsController.SetActive(true);
         }
