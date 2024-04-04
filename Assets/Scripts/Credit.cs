@@ -10,6 +10,8 @@ public class Credit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Unpause all audio
+        AudioListener.pause = false;
         Time.timeScale = 1f; // Returns Time scale back 
     }
     
