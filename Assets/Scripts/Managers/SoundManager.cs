@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance; // Static instance to create a singleton pattern for the SoundManager.
-    [SerializeField] private AudioMixer audioMixer; // Reference to the AudioMixer to control different audio groups.
+    [SerializeField] private AudioMixer[] audioMixer; // Reference to the AudioMixer to control different audio groups.
 
     private void Awake()
     {
@@ -24,26 +24,54 @@ public class SoundManager : MonoBehaviour
     }
 
     // Method to set the master volume level.
-    public void SetMasterVolume(float volume)
+    public void SetMasterVolume( float volume)
     {
-        audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20); // Set the MasterVolume parameter in the AudioMixer based on the provided volume.
+        foreach (AudioMixer audioMixer in audioMixer)
+        {
+            if (audioMixer != null)
+            {
+                audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20); // Set the MasterVolume parameter in the AudioMixer based on the provided volume.
+                return;
+            }
+        }
     }
 
     // Method to set the music volume level.
-    public void SetMusicVolume(float volume)
+    public void SetMusicVolume( float volume)
     {
-        audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20); // Set the MusicVolume parameter in the AudioMixer based on the provided volume.
+        foreach (AudioMixer audioMixer in audioMixer)
+        {
+            if (audioMixer != null)
+            {
+                audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20); // Set the MusicVolume parameter in the AudioMixer based on the provided volume.
+                return;
+            }
+        }
     }
 
     // Method to set the sound effects volume level.
     public void SetSFXVolume(float volume)
     {
-        audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20); // Set the SFXVolume parameter in the AudioMixer based on the provided volume.
+        foreach (AudioMixer audioMixer in audioMixer)
+        {
+            if (audioMixer != null)
+            {
+                audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20); // Set the SFXVolume parameter in the AudioMixer based on the provided volume.
+                return;
+            }
+        }
     }
 
     // Method to set the dialogue volume level.
     public void SetDialogueVolume(float volume)
     {
-        audioMixer.SetFloat("DialogueVolume", Mathf.Log10(volume) * 20); // Set the DialogueVolume parameter in the AudioMixer based on the provided volume.
+        foreach (AudioMixer audioMixer in audioMixer)
+        {
+            if (audioMixer != null)
+            {
+                audioMixer.SetFloat("DialogueVolume", Mathf.Log10(volume) * 20); // Set the DialogueVolume parameter in the AudioMixer based on the provided volume.
+                return;
+            }
+        }
     }
 }
