@@ -44,6 +44,9 @@ public class StartScreenManager : MonoBehaviour
             UpdateSensitivity(sensitivity);
         }
         
+        // Return If Audio Listener is off to on
+        AudioListener.pause = false;
+        
         // Load volume and sensitivity values and update sliders
         LoadVolumeSettings();
         LoadSensitivitySettings();
