@@ -31,8 +31,6 @@ public class SoundManager : MonoBehaviour
             if (audioMixer != null)
             {
                 audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20); // Set the MasterVolume parameter in the AudioMixer based on the provided volume.
-                
-                return;
             }
         }
     }
@@ -45,11 +43,12 @@ public class SoundManager : MonoBehaviour
             if (audioMixer != null)
             {
                 audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20); // Set the MusicVolume parameter in the AudioMixer based on the provided volume.
-                audioMixer.SetFloat("MuralMixerVolume", Mathf.Log10(volume) * 20);
-                return;
+                audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
+                audioMixer.SetFloat("RoomTrigerVolume", Mathf.Log10(volume) * 20);
             }
         }
     }
+    
 
     // Method to set the sound effects volume level.
     public void SetSFXVolume(float volume)
@@ -59,7 +58,8 @@ public class SoundManager : MonoBehaviour
             if (audioMixer != null)
             {
                 audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20); // Set the SFXVolume parameter in the AudioMixer based on the provided volume.
-                return;
+                audioMixer.SetFloat("OneShotMixerVolume", Mathf.Log10(volume) * 20);
+                audioMixer.SetFloat("WindVolume", Mathf.Log10(volume) * 20);
             }
         }
     }
@@ -72,7 +72,6 @@ public class SoundManager : MonoBehaviour
             if (audioMixer != null)
             {
                 audioMixer.SetFloat("DialogueVolume", Mathf.Log10(volume) * 20); // Set the DialogueVolume parameter in the AudioMixer based on the provided volume.
-                return;
             }
         }
     }
