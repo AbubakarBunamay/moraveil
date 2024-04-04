@@ -72,4 +72,20 @@ public class TipsPopup : MonoBehaviour
         // Update the popup text based on the new interaction state
         UpdatePopupText(!hasInteracted);
     }
+    
+    // Method to deactivate the popup and clear its text
+    public void DeactivateAndClearText()
+    {
+        // Hide the popup text and reset the interaction state
+        HidePopupText();
+        popupText.text = "";
+        hasInteracted = true;
+        
+        // Disable the collider
+        Collider collider = GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.enabled = false;
+        }
+    }
 }

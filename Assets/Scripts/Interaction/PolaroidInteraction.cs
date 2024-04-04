@@ -72,6 +72,12 @@ public class PolaroidInteraction : MonoBehaviour
             {
                 subtitleManager.CueSubtitle(polaroidSubtitle);
             }
+            
+            // Toggle the interaction state and update the tips pop-up text
+            if (tipsPopup != null)
+            {
+                tipsPopup.OnPlayerInteract();
+            }
 
             // Lock the player
             if (player != null)
@@ -107,6 +113,11 @@ public class PolaroidInteraction : MonoBehaviour
             if (virtualCam)
             {
                 virtualCam.m_Priority = 9;
+            }
+            // Toggle the interaction state and remove the tips pop-up 
+            if (tipsPopup != null)
+            {
+                tipsPopup.DeactivateAndClearText();
             }
             
             // Deactivate the polaroid GameObject
