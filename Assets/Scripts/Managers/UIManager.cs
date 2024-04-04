@@ -155,6 +155,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void StartScreen()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
+
     // Method to handle back button functionality for different menus
     private void BackButton()
     {
