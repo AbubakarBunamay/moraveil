@@ -10,6 +10,7 @@ public class TipsPopup : MonoBehaviour
     [SerializeField] private string uninteractMessage = "Click to uninteract"; // Message to display when the player has interacted
 
     private bool hasInteracted = false; // Flag to track if the player has interacted
+    private Coroutine currentTipCoroutine; // Reference to the currently running tippopup coroutine
 
     private void Start()
     {
@@ -87,5 +88,25 @@ public class TipsPopup : MonoBehaviour
         {
             collider.enabled = false;
         }
+    }
+    
+    // Method to display a tip popup message for a specified duration
+    public void DisplayTipMessage(string message, float duration)
+    {
+        if (currentTipCoroutine != null)
+        {
+            StopCoroutine(currentTipCoroutine);
+        }
+
+        popupText.text = message;
+        popupText.gameObject.SetActive(true); 
+        currentTipCoroutine = StartCoroutine(HidePopupAfterDelay(duration));
+    }
+
+    // Coroutine to hide the popup text after a specified delay
+    private IEnumerator HidePopupAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        popupText.text = "";
     }
 }

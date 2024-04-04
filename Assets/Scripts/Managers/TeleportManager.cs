@@ -7,7 +7,8 @@ public class TeleportManager : MonoBehaviour
     
     [SerializeField] Transform[] roomPositions; // Array to store positions of the rooms
     [SerializeField] GameObject fpsController; // Reference to FPSController
-
+    [SerializeField] private TipsPopup tipsPopup; // Reference to the TipsPopup component
+    [SerializeField] private string MapTipPopup= "Grab the Map"; // The Map tipPopup Text
     [SerializeField] GameObject[] doors; // Array to store references to all doors
     private bool allDoorsOpened = false; // Flag to track if all doors have been opened
 
@@ -48,6 +49,7 @@ public class TeleportManager : MonoBehaviour
                // Open all doors
                OpenDoor(doors);
                allDoorsOpened = true; // Set flag to true to indicate all doors are opened
+               tipsPopup.DisplayTipMessage(MapTipPopup,5);
            }
             // Re-enable FPSController script after teleportation
             fpsController.SetActive(true);
