@@ -10,7 +10,8 @@ public class JournalInteraction : MonoBehaviour
     [Header("Journal Interaction")]
     [SerializeField] private CinemachineVirtualCameraBase virtualCam; //Reference to the virutal cam
     [SerializeField] private GameObject player; // Reference to the player object  
-    
+    [SerializeField] private TipsPopup tipsPopup; // Reference to the TipsPopup component
+
     [Header("Journal Dialogue & Subtitle")]
     [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
     [SerializeField] private SubtitleTexts journalSubtitle; // Reference to the specific polaroid subtitle data
@@ -66,6 +67,12 @@ public class JournalInteraction : MonoBehaviour
                 subtitleManager.CueSubtitle(journalSubtitle);
             }
             
+            // Toggle the interaction state and update the tips pop-up text
+            if (tipsPopup != null)
+            {
+                tipsPopup.OnPlayerInteract();
+            }
+            
             // Lock the player
             if (player != null)
             {
@@ -100,6 +107,12 @@ public class JournalInteraction : MonoBehaviour
             if (virtualCam)
             {
                 virtualCam.m_Priority = 9;
+            }
+            
+            // Toggle the interaction state and remove the tips pop-up 
+            if (tipsPopup != null)
+            {
+                tipsPopup.DeactivateAndClearText();
             }
 
             // Deactivate the Journal GameObject
