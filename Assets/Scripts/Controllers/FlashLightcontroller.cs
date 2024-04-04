@@ -160,6 +160,12 @@ public class FlashLightcontroller : MonoBehaviour
         
     }
 
+    public void ToggleOffFlashlight()
+    {
+        isFlashlightOn = !isFlashlightOn;  // Toggle the flashlight state.
+        flashLight.enabled = false;  // Turn the flashlight off if it was on, or vice versa.
+    }
+
     // Method to gradually increase/decrease flashlight intensity based on distance 
     // To allow to see without blinding players
     private void LightIntensityDistance()
