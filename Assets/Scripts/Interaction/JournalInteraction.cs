@@ -11,6 +11,7 @@ public class JournalInteraction : MonoBehaviour
     [SerializeField] private CinemachineVirtualCameraBase virtualCam; //Reference to the virutal cam
     [SerializeField] private GameObject player; // Reference to the player object  
     [SerializeField] private TipsPopup tipsPopup; // Reference to the TipsPopup component
+    [SerializeField] private FlashLightcontroller flashLightcontroller; // Reference to the flashlight object
 
     [Header("Journal Dialogue & Subtitle")]
     [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
@@ -41,6 +42,9 @@ public class JournalInteraction : MonoBehaviour
             // Add AudioSource component if not already attached
             audioSource = gameObject.AddComponent<AudioSource>();
         }
+        
+        flashLightcontroller = FindObjectOfType<FlashLightcontroller>(); // Get the FlashLightcontroller component
+
         // Assign the interaction sound to the audio source
         audioSource.clip = dialogueSound;
     }
@@ -82,6 +86,12 @@ public class JournalInteraction : MonoBehaviour
                 {
                     controller.enabled = false;
                 }
+            }
+            
+            // Turn off the flashlight if the flashlight is turned on
+            if (flashLightcontroller != null && flashLightcontroller.isFlashlightOn)
+            {
+                flashLightcontroller.ToggleOffFlashlight();
             }
         }
         else

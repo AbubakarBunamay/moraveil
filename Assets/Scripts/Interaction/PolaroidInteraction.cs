@@ -10,6 +10,7 @@ public class PolaroidInteraction : MonoBehaviour
     [SerializeField] private GameObject player; // Reference to the player object
     [SerializeField] private CinemachineVirtualCameraBase virtualCam; //Reference to the virutal cam
     [SerializeField] private TipsPopup tipsPopup; // Reference to the TipsPopup component
+    [SerializeField] private FlashLightcontroller flashLightcontroller; // Reference to the flashlight object
 
     [Header("Polaroid Dialogue & Subtitle")]
     [SerializeField] private SubtitleManager subtitleManager; // Reference to the SubtitleManager
@@ -40,6 +41,8 @@ public class PolaroidInteraction : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
         }
         
+        flashLightcontroller = FindObjectOfType<FlashLightcontroller>(); // Get the FlashLightcontroller component
+
         // Assign the dialogue sound to the audio source
         audioSource.clip = dialogueSound;
         
@@ -88,6 +91,12 @@ public class PolaroidInteraction : MonoBehaviour
                 {
                     controller.enabled = false;
                 }
+            }
+            
+            // Turn off the flashlight if the flashlight is turned on
+            if (flashLightcontroller != null && flashLightcontroller.isFlashlightOn)
+            {
+                flashLightcontroller.ToggleOffFlashlight();
             }
         }
         else
