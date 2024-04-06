@@ -43,7 +43,7 @@ public class Keypad : Interactable
                     }
                     
                     // Change All Button Material to Correct 
-                    //SetAllButtonMaterial(correctMaterial);
+                    SetAllButtonMaterial(correctMaterial);
                     
                     // Disable button interaction
                     DisableButtonInteraction();
