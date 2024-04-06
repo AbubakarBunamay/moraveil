@@ -312,7 +312,7 @@ public class FPSController : MonoBehaviour
     else
     {
         // Check if the crouch input is pressed.
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl) || Gamepad.current != null && Gamepad.current.leftShoulder.wasPressedThisFrame && CanCrouch)
+        if (!stressManager.IsPlayerStunned() &&Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl) || Gamepad.current != null && Gamepad.current.leftShoulder.wasPressedThisFrame && CanCrouch)
         {
             // Check if the cube collides with anything above the player's head.
             if (isCrouching && HeadCubeCollides())
