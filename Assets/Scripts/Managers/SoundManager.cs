@@ -60,7 +60,8 @@ public class SoundManager : MonoBehaviour
             {
                 audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20); // Set the SFXVolume parameter in the AudioMixer based on the provided volume.
                 audioMixer.SetFloat("OneShotMixerVolume", Mathf.Log10(volume) * 20);
-                audioMixer.SetFloat("WindVolume", Mathf.Log10(volume) * 20);
+                audioMixer.SetFloat("MixSFXVolume", Mathf.Log10(volume) * 20);
+                audioMixer.SetFloat("WindMasterVolume", Mathf.Log10(volume) * 20);
             }
         }
     }
