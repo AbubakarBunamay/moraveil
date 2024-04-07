@@ -43,8 +43,9 @@ public class SoundManager : MonoBehaviour
             if (audioMixer != null)
             {
                 audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20); // Set the MusicVolume parameter in the AudioMixer based on the provided volume.
-                audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
+                audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20); 
                 audioMixer.SetFloat("RoomTrigerVolume", Mathf.Log10(volume) * 20);
+                audioMixer.SetFloat("MuralMixerVolume", Mathf.Log10(volume) * 20);
             }
         }
     }
@@ -72,6 +73,7 @@ public class SoundManager : MonoBehaviour
             if (audioMixer != null)
             {
                 audioMixer.SetFloat("DialogueVolume", Mathf.Log10(volume) * 20); // Set the DialogueVolume parameter in the AudioMixer based on the provided volume.
+                audioMixer.SetFloat("KeevadialougeVolume", Mathf.Log10(volume) * 20);                                                                 
             }
         }
     }
