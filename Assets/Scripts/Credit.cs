@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,17 @@ public class Credit : MonoBehaviour
         AudioListener.pause = false;
         Time.timeScale = 1f; // Returns Time scale back 
     }
-    
+
+    void Update()
+    {
+        // Check if the Enter key is pressed
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            // Skip the animation and load the next scene
+            LoadNextScene();
+        }
+    }
+
     // Method to load the next scene
     public void LoadNextScene()
     {
